@@ -1,0 +1,28 @@
+.icon{
+    cursor: pointer;
+    max-height: calc(60px - (0.25rem * 2));
+    margin-left: 10px;
+  }
+  header {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 10fr;
+      align-items: center;
+      color: var(--white);
+    background-color: #102770;
+  
+  }
+  .hh {
+    margin-top: 20px;
+      font-size: 1.2rem;
+      color:#fff;
+      letter-spacing: 1px;
+  }
+  .ph {
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: 0.3s;
+  }
+  
