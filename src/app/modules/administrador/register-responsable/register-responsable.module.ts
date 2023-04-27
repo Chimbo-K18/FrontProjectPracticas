@@ -15,12 +15,25 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
+
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 @NgModule({
   declarations: [
     RegisterResponsableComponent
   ],
   imports: [
     CommonModule,
+<<<<<<< Updated upstream
     RegisterResponsableRoutingModule,
 
 
@@ -31,6 +44,20 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatDatepickerModule
 
 
+=======
+
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+
+
+    RegisterResponsableRoutingModule
+>>>>>>> Stashed changes
   ],
   exports:[
     RegisterResponsableComponent
