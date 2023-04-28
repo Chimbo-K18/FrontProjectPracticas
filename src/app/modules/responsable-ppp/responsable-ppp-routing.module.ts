@@ -7,6 +7,12 @@ const routes: Routes = [
     path: 'aprobar-solicitud',
     loadChildren: () => import("./aprobacion-solicitud/aprobacion-solicitud.module").then(m => m.AprobacionSolicitudModule)
 
+  },
+
+  {
+    path: 'registro-empresarial',
+    loadChildren: () => import("./registro-tut-empresarial/registro-tut-empresarial.module").then(m => m.RegistroTutEmpresarialModule)
+
   }
 ];
 
