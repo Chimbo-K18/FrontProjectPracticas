@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AprobacionSolicitudComponent } from './pages/aprobacion-solicitud/aprobacion-solicitud.component';
+import { ListaSoliEnviadasComponent } from './pages/lista-soli-enviadas/lista-soli-enviadas.component';
 
 const routes: Routes = [
-
   {
-
     path:'',
-    component: AprobacionSolicitudComponent
+    component: ListaSoliEnviadasComponent
   }
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AprobacionSolicitudRoutingModule { }
+export class ListaSoliEnviadasRoutingModule { }

@@ -4,15 +4,22 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
   {
-    path: 'aprobar-solicitud',
-    loadChildren: () => import("./aprobacion-solicitud/aprobacion-solicitud.module").then(m => m.AprobacionSolicitudModule)
-
+    path: 'registro-empresarial',
+    loadChildren: () => import("./registro-tut-empresarial/registro-tut-empresarial.module").then(m => m.RegistroTutEmpresarialModule)
   },
 
   {
-    path: 'registro-empresarial',
-    loadChildren: () => import("./registro-tut-empresarial/registro-tut-empresarial.module").then(m => m.RegistroTutEmpresarialModule)
+    path: 'solicitud-recibida',
+    loadChildren: () => import("./lista-soli-recibidas/lista-soli-recibidas.module").then(m => m.ListaSoliRecibidasModule)
+  },
+  {
+    path: 'registro-actividad',
+    loadChildren: () => import("./registro-actividades/registro-actividades.module").then(m => m.RegistroActividadesModule)
+  },
 
+  {
+    path: 'lanzamiento-convocatoria',
+    loadChildren: () => import("./lanzamiento-convocatoria/lanzamiento-convocatoria.module").then(m => m.LanzamientoConvocatoriaModule)
   }
 ];
 
