@@ -1,1 +1,158 @@
-<p>register-convenio works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Productos</title>
+</head>
+<body class="bodyL">
+  
+
+
+    <h1> <strong>Registro Convenio </strong></h1>
+
+
+    <mat-stepper linear #stepper class="headerxd">
+        
+        <mat-step [stepControl]="firstFormGroup" >
+            <form [formGroup]="firstFormGroup" >
+              <ng-template matStepLabel>Fase 1</ng-template>
+  
+
+
+              <div class="container">
+                
+
+              
+              <mat-card class="example-card" style="width: 500px;">
+          
+                  <mat-card-content>
+           
+                    <h1 style="text-align: left;"> Datos Personales  </h1>
+                    
+                    <div>
+                        <div style="display: flex;">
+                            <div style="margin-right: 150px;">
+                                <h3><strong>Número de Convenio:</strong></h3>
+                                <p style="font-size: 15px;">PPP-ISTA-001-2023</p>
+                            </div>
+                            <div>
+                                <h3><strong>Fecha Elaboración:</strong></h3>
+                                <p style="font-size: 15px;">27/04/2023</p>
+                            </div>
+                        </div>
+
+
+
+                            <H3><strong>Número de ITV:</strong> </H3>
+                            <p style="font-size: 15px;">SIES-ISTA-001-2023</p>
+
+                    </div>
+                         
+                         
+                        <div >
+                            <mat-form-field class="example-full-width" style="margin-right: 50px;width:250px;">
+                                <mat-label>Descripción:</mat-label>
+                                <input type="text" maxlength="10" placeholder="CEDULA" class="form-control, text" required >
+
+                                <!-- <textarea matInput placeholder="Escriba una descripción..." formControlName="firstCtrl" required></textarea> -->
+                              </mat-form-field>
+
+                              <input type="text" maxlength="10" placeholder="CEDULA" class="form-control, text" required >
+          
+
+
+                              <button mat-raised-button >Subir Pdf</button>
+
+                      </div>
+
+                    
+
+                      
+        
+                      
+                         
+  
+                      <div style="margin-top:25px; text-align: center;">
+                          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                        </div>
+                  
+                          
+                            
+                  
+          
+                  
+                  </mat-card-content>
+                  
+                </mat-card>
+            </div>
+  
+
+  
+              
+              
+            </form>
+          </mat-step>
+
+          
+
+
+        <mat-step>
+            <ng-template matStepLabel>Fase 2</ng-template>
+            <div class="container">
+
+
+                
+
+
+                <mat-card class="example-card">
+               <h1 style="text-align: left;"> Datos Personales  </h1>
+               <div style="display: flex;">
+                <div style="margin-right: 150px;">
+                    <h3><strong>Fecha de Inicialización:</strong></h3>
+                    <p style="font-size: 15px;">27/04/2023</p>
+                </div>
+                <div>
+                    <h3><strong>Fecha Caducidad:</strong></h3>
+                    <p style="font-size: 15px;">27/04/2023</p>
+                </div>
+            </div>
+
+
+            <h3><strong>Fecha de Inicialización:</strong></h3>
+
+            <select id="country" name="country">
+              <option value="australia">Seleccione una carrera</option>
+              <option value="dato1">Dato1</option>
+              <option value="dato2">Dato2</option>
+              <option value="dato3">Dato3</option>
+            </select>
+           
+                    
+
+                      <div style="text-align: center;">
+                        <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
+                        <button style="margin-right: 12px;" mat-raised-button color="warn">Aceptar</button>
+                        <button  mat-raised-button color="primary"(click)="stepper.reset()">Reset</button>
+                      </div>
+        
+                    </mat-card>
+
+                    
+                </div>
+        </mat-step>
+
+       
+      </mat-stepper>
+
+      
+   
+    
+
+
+
+  
+</body>
+
+</html>
