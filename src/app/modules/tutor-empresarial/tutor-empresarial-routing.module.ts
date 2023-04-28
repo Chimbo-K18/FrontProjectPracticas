@@ -7,6 +7,12 @@ const routes: Routes = [
     path: 'solicitud-practicas',
     loadChildren: () => import("./envio-solicitud/envio-solicitud.module").then(m => m.EnvioSolicitudModule)
 
+  },
+
+  {
+    path: 'lista-soli-enviadas',
+    loadChildren: () => import("./lista-soli-enviadas/lista-soli-enviadas.module").then(m => m.ListaSoliEnviadasModule)
+
   }
 ];
 
