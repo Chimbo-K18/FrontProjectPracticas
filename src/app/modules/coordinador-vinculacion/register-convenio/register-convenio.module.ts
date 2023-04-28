@@ -14,6 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+
+
+
 @NgModule({
   declarations: [
     RegisterConvenioComponent
@@ -25,7 +31,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatTableModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatIconModule,
     RegisterConvenioRoutingModule
   ],
   exports:[
