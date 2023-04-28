@@ -1,1 +1,156 @@
-<p>registro-actividades works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Productos</title>
+</head>
+<body class="bodyL">
+  
+  <div style="display: flex; flex-direction: column; align-items: center;">
+   
+    <mat-card style="width: 750px; margin-top: 25px;">
+      <h1><strong>REGISTRO DE ACTIVIDADES A CUMPLIR</strong> </h1>
+    <mat-card  style="width: 700px; ">
+      
+
+
+
+
+            <div style="display: flex; align-items: center; margin-top: 25px; ">
+                    
+                <h3 style="margin-right: 20px;"><STrong>Solicitud:</STrong></h3>
+                <mat-form-field class="example-full-width" style="width: 300px;">
+                  <mat-label>Solicitud</mat-label>
+                  <input matInput placeholder="Empresa">
+                </mat-form-field>
+                <button mat-raised-button style="margin-left: 25px;" ><mat-icon>add</mat-icon></button>  
+    
+                
+              </div>
+
+          <div style="display: flex; align-items: center; margin-top: 25px; ">
+                    
+            <h3 style="margin-right: 20px;"><STrong>Empresa:</STrong></h3>
+            <mat-form-field class="example-full-width" style="width: 300px;">
+              <mat-label>Empresa:</mat-label>
+              <input matInput placeholder="Empresa">
+            </mat-form-field>
+ 
+          </div>
+
+
+          <div style="display: flex; align-items: center; margin-top: 28px; ">
+                    
+            <h3 style="margin-right: 20px;"><STrong>Carrera:</STrong></h3>
+            <mat-form-field class="example-full-width" style="width: 300px;">
+              <mat-label>Carrera</mat-label>
+              <input matInput placeholder="Empresa">
+            </mat-form-field>
+          </div>
+
+          
+    </mat-card>
+
+    <mat-card  style="width: 700px; ">
+        <h3 style="margin-right: 20px; font-size: 19px;"><STrong>Datos de solicitud:</STrong></h3>
+        <div style="margin-left:25px; flex-grow: 0; text-align: center;">
+            <img src="https://p.calameoassets.com/130401180402-96c61bdf9ef6d895049e244c9720b58c/p1.jpg" alt="" style="width: 200px; height: 300px;">
+          <p style="text-align: center; font-size:15px;">Vista Previa del documento</p>
+          </div>
+    </mat-card>
+
+
+    <mat-card  style="width: 700px; ">
+        <h3 style="margin-right: 20px; font-size: 19px;"><STrong>Asignación de actividades:</STrong></h3>
+
+        <div>
+
+            <mat-form-field class="example-full-width" style="width: 340px; margin-right: 20px;">
+                <mat-label>Descripción de actividad:</mat-label>
+                <textarea matInput placeholder="Descripción"></textarea>
+              </mat-form-field>
+
+
+              <mat-form-field class="example-full-width" style="width: 340px;">
+                <mat-label>Herramienta Requerida:</mat-label>
+                <textarea matInput placeholder="Herramienta"></textarea>
+              </mat-form-field>
+
+        </div>
+        
+    </mat-card>
+
+
+    <mat-card  style="width: 700px; ">
+        <h3 style="margin-right: 20px; font-size: 19px;"><STrong>Materias aprobadas requeridas:</STrong></h3>
+
+        <div>
+
+            <select id="country" name="country" >
+                <option value="australia">Seleccione la materia</option>
+                <option value="dato1">DATO 1 </option>
+                <option value="dato2">DATO 2</option>
+              </select>
+
+              <div style="text-align: center;">
+                <button mat-raised-button color="primary" style="margin-right: 20px;">Guardar</button>
+                <button mat-raised-button color="warn"><mat-icon>add</mat-icon>Agregar Nueva</button>
+              </div>
+
+        </div>
+
+        
+    </mat-card>
+
+
+
+
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <td mat-cell *matCellDef="let element"> DATO1</td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <td mat-cell *matCellDef="let element"> DATO 2</td>
+
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[2, 4, 6]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+  <div style="text-align: right;">
+    <button  style="margin-right: 25px;" mat-raised-button color="warn">Finalizar</button>
+
+  </div>
+
+</mat-card>
+
+
+  </div>
+  
+</body>
+
+</html>
