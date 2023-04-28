@@ -7,6 +7,18 @@ const routes: Routes = [
     path: 'registro-convenio',
     loadChildren: () => import("./register-convenio/register-convenio.module").then(m => m.RegisterConvenioModule)
 
+  },
+
+  {
+    path: 'lista-convenios',
+    loadChildren: () => import("./lista-convenios/lista-convenios.module").then(m => m.ListaConveniosModule)
+
+  },
+
+  {
+    path: 'registro-empresa',
+    loadChildren: () => import("./registro-empresa/registro-empresa.module").then(m => m.RegistroEmpresaModule)
+
   }
 ];
 
