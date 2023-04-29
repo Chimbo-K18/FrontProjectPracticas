@@ -24,39 +24,40 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-register-convenio',
-  templateUrl: './register-convenio.component.html',
-  styleUrls: ['./register-convenio.component.css']
+  selector: 'app-registro-tut-empresarial',
+  templateUrl: './registro-tut-empresarial.component.html',
+  styleUrls: ['./registro-tut-empresarial.component.css']
 })
-export class RegisterConvenioComponent  {
-//TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+export class RegistroTutEmpresarialComponent {
+  //TABLA
+    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+    }
+  
+    //FINTABLA
+  
+  
+  
+  
+  
+    firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+    secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
+  
+    isEditable = false;
+  
+    constructor(private _formBuilder: FormBuilder) {}
+  
+    ngOnInit(): void {
+    }
+  
   }
-
-  //FINTABLA
-
-
-
-
-
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-
-  isEditable = false;
-
-  constructor(private _formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-  }
-
-}
+  

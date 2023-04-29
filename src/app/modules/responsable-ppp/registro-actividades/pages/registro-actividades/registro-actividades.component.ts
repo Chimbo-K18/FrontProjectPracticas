@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+
 
 export interface PeriodicElement {
   name: string;
@@ -22,14 +22,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
-
 @Component({
-  selector: 'app-register-convenio',
-  templateUrl: './register-convenio.component.html',
-  styleUrls: ['./register-convenio.component.css']
+  selector: 'app-registro-actividades',
+  templateUrl: './registro-actividades.component.html',
+  styleUrls: ['./registro-actividades.component.css']
 })
-export class RegisterConvenioComponent  {
-//TABLA
+export class RegistroActividadesComponent implements OnInit {
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
@@ -39,22 +38,7 @@ export class RegisterConvenioComponent  {
     this.dataSource.paginator = this.paginator;
   }
 
-  //FINTABLA
-
-
-
-
-
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-
-  isEditable = false;
-
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor() { }
 
   ngOnInit(): void {
   }

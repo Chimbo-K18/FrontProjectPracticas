@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RegisterConvenioRoutingModule } from './register-convenio-routing.module';
-import { RegisterConvenioComponent } from './pages/register-convenio/register-convenio.component';
+import { LanzamientoConvocatoriaRoutingModule } from './lanzamiento-convocatoria-routing.module';
+import { LanzamientoConvocatoriaComponent } from './pages/lanzamiento-convocatoria/lanzamiento-convocatoria.component';
 
 
 //Importaciones clave
@@ -13,16 +13,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
-    RegisterConvenioComponent
+    LanzamientoConvocatoriaComponent
   ],
   imports: [
     CommonModule,
@@ -33,12 +32,14 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatTableModule,
     MatButtonModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatIconModule,
-    RegisterConvenioRoutingModule
+    MatDatepickerModule,
+    LanzamientoConvocatoriaRoutingModule
   ],
   exports:[
-    RegisterConvenioComponent
+    LanzamientoConvocatoriaComponent
   ]
 })
-export class RegisterConvenioModule { }
+export class LanzamientoConvocatoriaModule { }

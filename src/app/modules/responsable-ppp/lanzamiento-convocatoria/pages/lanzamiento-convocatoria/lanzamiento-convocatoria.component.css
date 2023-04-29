@@ -1,4 +1,4 @@
-
+@@ -0,0 +1,399 @@
 .container {
     position: fixed;
     top: 50%;
@@ -10,25 +10,34 @@
     border-radius: 12px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  .mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
-  }
-  
-  
   table {
     width: 100%;
   }
-  
-  
+
+  .mat-date-range-input {
+    display: none;
+  }
+  .mat-date-range-input-selected {
+    color: black;
+  }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
   .mat-stepper-horizontal {
     margin-top: 8px;
+  }
+
+  .pdf{
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+
   }
   
   .mat-mdc-form-field {
@@ -40,44 +49,46 @@
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(0, 0, 0, 0);
+
   
   
-  
-  
-  
+
+
   }
   
-  
+
   .mat-tab-group {
     margin-bottom: 48px;
   }
   
   mat-card{
-    width: 625px;
-    margin-block-end: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 1100px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
-  
-  mat-card{
-    width: 625px;
-    margin-block-end: 12px;
-  }
-  
-  
+
+
   h1{
-  
+
       letter-spacing: 1px;
       transition: 0.3s;
   }
-  
+
   .example-card {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  
+
    
   }
   
-  
-  
-  
+
+
+
   h1{
     text-align: center;
   }
@@ -85,12 +96,12 @@
     float: right;
     width: 40%; /* Opcional: ajusta el ancho del contenedor según sea necesario */
   }
-  
+
   /* img {
     width: 550px;
   } */
-  
-  
+
+
   .icon{
     cursor: pointer;
     max-height: calc(60px - (0.25rem * 2));
@@ -447,7 +458,9 @@
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
   }
   
-  
+  .example-form-field {
+    margin: 0 8px 16px 0;
+  }
   
   
   .logo {

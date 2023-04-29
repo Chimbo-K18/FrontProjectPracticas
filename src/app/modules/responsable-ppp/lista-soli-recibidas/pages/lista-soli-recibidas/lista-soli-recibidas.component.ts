@@ -22,41 +22,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
-
 @Component({
-  selector: 'app-register-convenio',
-  templateUrl: './register-convenio.component.html',
-  styleUrls: ['./register-convenio.component.css']
+  selector: 'app-lista-soli-recibidas',
+  templateUrl: './lista-soli-recibidas.component.html',
+  styleUrls: ['./lista-soli-recibidas.component.css']
 })
-export class RegisterConvenioComponent  {
-//TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+export class ListaSoliRecibidasComponent {
+  //TABLA
+    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+    }
+  
+    //FINTABLA
+  
+  
+  
+  
+  
+    firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+    secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
+  
+    isEditable = false;
+  
+    constructor(private _formBuilder: FormBuilder) {}
+  
+    ngOnInit(): void {
+    }
+  
   }
-
-  //FINTABLA
-
-
-
-
-
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-
-  isEditable = false;
-
-  constructor(private _formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-  }
-
-}
+  

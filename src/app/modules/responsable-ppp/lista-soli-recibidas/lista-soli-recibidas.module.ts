@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RegisterConvenioRoutingModule } from './register-convenio-routing.module';
-import { RegisterConvenioComponent } from './pages/register-convenio/register-convenio.component';
+import { ListaSoliRecibidasRoutingModule } from './lista-soli-recibidas-routing.module';
+import { ListaSoliRecibidasComponent } from './pages/lista-soli-recibidas/lista-soli-recibidas.component';
 
 
 //Importaciones clave
@@ -19,10 +19,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 
 
-
 @NgModule({
   declarations: [
-    RegisterConvenioComponent
+    ListaSoliRecibidasComponent
   ],
   imports: [
     CommonModule,
@@ -35,10 +34,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatPaginatorModule,
     MatIconModule,
-    RegisterConvenioRoutingModule
+    ListaSoliRecibidasRoutingModule
   ],
   exports:[
-    RegisterConvenioComponent
+    ListaSoliRecibidasComponent
   ]
 })
-export class RegisterConvenioModule { }
+export class ListaSoliRecibidasModule { }
