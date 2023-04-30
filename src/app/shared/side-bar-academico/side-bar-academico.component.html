@@ -1,1 +1,39 @@
-<p>side-bar-academico works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+<input type="checkbox" id="check">
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+        </label>
+          <div class="sidebar">
+            <header>My Menu</header>
+              <a href="#" class="active">
+                <i class="fas fa-qrcode"></i>
+                  <span>Dashboard</span>
+              </a>
+              <a href="#" [class.active]="selectedItem === 'home'" (click)="selectItem('home')">
+                <i class="fas fa-link"></i>
+                  <span>Home</span>
+              </a>
+              <a href="#" [class.active]="selectedItem === 'registro'" (click)="selectItem('registro')">
+                <i class="fas fa-stream"></i>
+                <span>Registro</span>
+              </a>
+              <a href="#" [class.active]="selectedItem === 'registro-empresa'" (click)="selectItem('registro-empresa')">
+                <i class="fas fa-calendar"></i>
+                <span>Registro de Empresa</span>
+              </a>
+              <a href="#" [class.active]="selectedItem === 'asignar-responsable'" (click)="selectItem('asignar-responsable')">
+                <i class="far fa-question-circle"></i>
+                <span>Registro de Responsable</span>
+              </a>
+              <a href="#" [class.active]="selectedItem === 'asignar-coordinador'" (click)="selectItem('asignar-coordinador')">
+                <i class="fas fa-sliders-h"></i>
+                <span>Asignación de Coordinador</span>
+              </a>
+              <a href="#" [class.active]="selectedItem === 'reports'" (click)="selectItem('reports')">
+                <i class="far fa-envelope"></i>
+                <span>Reportes</span>
+              </a>
+</div>

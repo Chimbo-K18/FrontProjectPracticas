@@ -1,118 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
+/*/neew/*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
 *{
-	list-style: none;
-	text-decoration: none;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
+margin: 0;
+padding: 0;
+text-decoration: none;
 }
-
-body{
-	background: #f5f6fa;
+.sidebar{
+position: fixed;
+width: 240px;
+left: -240px;
+height: 100%;
+background: #10558d;
+transition: all .5s ease;
 }
-
-.wrapper .sidebar{
-	background:#10558d;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 225px;
-	height: 100%;
-	padding: 20px 0;
-	transition: all 0.5s ease;
+.profile {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+background-color: #10558d;
+border-bottom: 1px solid black;
+color: #fff;
 }
-
-.wrapper .sidebar .profile{
-	margin-bottom: 30px;
-	text-align: center;
+.profile img {
+width: 80px;
+height: 80px;
+object-fit: cover;
+border-radius: 50%;
+margin-bottom: 10px;
 }
-
-.wrapper .sidebar .profile img{
-	display: block;
-	width: 100px;
-	height: 100px;
-    border-radius: 50%;
-	margin: 0 auto;
+.sidebar header{
+font-size: 28px;
+color: white;
+line-height: 70px;
+text-align: center;
+background: #10558d;
+user-select: none;
+font-family: 'Montserrat', sans-serif;
 }
-
-.wrapper .sidebar .profile h3{
-	color: #ffffff;
-	margin: 10px 0 5px;
+.sidebar a{
+display: block;
+height: 65px;
+width: 100%;
+color: white;
+line-height: 65px;
+padding-left: 30px;
+box-sizing: border-box;
+border-bottom: 1px solid black;
+border-top: 1px solid rgba(255,255,255,.1);
+border-left: 5px solid transparent;
+font-family: 'Open Sans', sans-serif;
+transition: all .5s ease;
 }
-
-.wrapper .sidebar .profile p{
-	color: rgb(206, 240, 253);
-	font-size: 14px;
+a.active,a:hover{
+border-left: 5px solid #b93632;
+color: #b93632;
 }
-
-.wrapper .sidebar ul li a{
-	display: block;
-	padding: 13px 30px;
-	border-bottom: 1px solid #10558d;
-	color: rgb(241, 237, 237);
-	font-size: 16px;
-	position: relative;
+.sidebar a i{
+font-size: 23px;
+margin-right: 16px;
 }
-
-.wrapper .sidebar ul li a .icon{
-	color: #dee4ec;
-	width: 30px;
-	display: inline-block;
+.sidebar a span{
+letter-spacing: 1px;
+text-transform: uppercase;
 }
-
- 
-
-.wrapper .sidebar ul li a:hover,
-.wrapper .sidebar ul li a.active{
-	color: #0c7db1;
-
-	background:white;
-    border-right: 2px solid rgb(5, 68, 104);
+#check{
+display: none;
 }
-
-.wrapper .sidebar ul li a:hover .icon,
-.wrapper .sidebar ul li a.active .icon{
-	color: #0c7db1;
+label #btn,label #cancel{
+position: absolute;
+cursor: pointer;
+color: white;
+border-radius: 5px;
+border: 1px solid #262626;
+margin: 15px 30px;
+font-size: 29px;
+background: #10558d;
+height: 45px;
+width: 45px;
+text-align: center;
+line-height: 45px;
+transition: all .5s ease;
 }
-
-.wrapper .sidebar ul li a:hover:before,
-.wrapper .sidebar ul li a.active:before{
-	display: block;
+label #cancel{
+opacity: 0;
+visibility: hidden;
 }
-
-.wrapper .section{
-	width: calc(100% - 225px);
-	margin-left: 225px;
-	transition: all 0.5s ease;
+#check:checked ~ .sidebar{
+left: 0;
 }
-
-.wrapper .section .top_navbar{
-	background: rgb(7, 105, 185);
-	height: 50px;
-	display: flex;
-	align-items: center;
-	padding: 0 30px;
- 
+#check:checked ~ label #btn{
+margin-left: 245px;
+opacity: 0;
+visibility: hidden;
 }
-
-.wrapper .section .top_navbar .hamburger a{
-	font-size: 28px;
-	color: #f4fbff;
+#check:checked ~ label #cancel{
+margin-left: 245px;
+opacity: 1;
+visibility: visible;
 }
-
-.wrapper .section .top_navbar .hamburger a:hover{
-	color: #a2ecff;
+@media(max-width : 860px){
+.sidebar{
+height: auto;
+width: 70px;
+left: 0;
+margin: 100px 0;
 }
-
- 
-
-body.active .wrapper .sidebar{
-	left: -225px;
+header,#btn,#cancel{
+display: none;
 }
-
-body.active .wrapper .section{
-	margin-left: 0;
-	width:100%;
+span{
+position: absolute;
+margin-left: 23px;
+opacity: 0;
+visibility: hidden;
+}
+.sidebar a{
+height: 60px;
+}
+.sidebar a i{
+margin-left: -10px;
+}
+a:hover {
+width: 200px;
+background: inherit;
+}
+.sidebar a:hover span{
+opacity: 1;
+visibility: visible;
+}
 }
