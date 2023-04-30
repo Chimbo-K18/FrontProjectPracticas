@@ -473,3 +473,7 @@
       width: auto;
       display: block;
   }
+  .preview-pdf{
+    text-align: center; 
+    margin-left: 20px
+  }
