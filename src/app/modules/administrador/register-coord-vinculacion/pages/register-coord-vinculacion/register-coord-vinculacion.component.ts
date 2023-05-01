@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatDialog} from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 export interface PeriodicElement {
@@ -25,23 +27,39 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-register-coord-vinculacion',
   templateUrl: './register-coord-vinculacion.component.html',
-  styleUrls: ['./register-coord-vinculacion.component.css']
+  styleUrls: ['./register-coord-vinculacion.component.css'
+]
 })
 export class RegisterCoordVinculacionComponent implements OnInit {
-
+  
   
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('modal')
+  modal!: TemplateRef<any>;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(public dialog: MatDialog){}
 
+  openModal(): void {
+    const dialogRef = this.dialog.open(this.modal);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  closeModal(): void {
+    this.dialog.closeAll();
+  }
   ngOnInit(): void {
   }
 
 }
+
+
