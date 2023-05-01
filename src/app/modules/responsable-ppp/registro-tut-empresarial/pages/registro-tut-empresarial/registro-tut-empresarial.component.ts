@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -40,8 +41,26 @@ export class RegistroTutEmpresarialComponent {
     }
   
     //FINTABLA
+    @ViewChild('modal')
+    modal!: TemplateRef<any>;
+
+    //MODAL
+    openModal(): void {
+
+     
+
+
+
+      const dialogRef = this.dialog.open(this.modal);
   
-  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+
+    closeModal(): void {
+      this.dialog.closeAll();
+    }
   
   
   
@@ -54,7 +73,7 @@ export class RegistroTutEmpresarialComponent {
   
     isEditable = false;
   
-    constructor(private _formBuilder: FormBuilder) {}
+    constructor(private _formBuilder: FormBuilder,public dialog: MatDialog) {}
   
     ngOnInit(): void {
     }
