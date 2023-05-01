@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'lanzamiento-convocatoria',
     loadChildren: () => import("./lanzamiento-convocatoria/lanzamiento-convocatoria.module").then(m => m.LanzamientoConvocatoriaModule)
+  },
+  {
+    path: 'aprobacion-estudiantes',
+    loadChildren: () => import("./aprobacion-estudiantes/aprobacion-estudiantes.module").then(m => m.AprobacionEstudiantesModule)
   }
 ];
 
