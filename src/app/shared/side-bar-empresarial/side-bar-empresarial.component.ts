@@ -12,4 +12,8 @@ export class SideBarEmpresarialComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedItem = "";
+  selectItem(item: string): void {
+    this.selectedItem = item;
+  }
 }

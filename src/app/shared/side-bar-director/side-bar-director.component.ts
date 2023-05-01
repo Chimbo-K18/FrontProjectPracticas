@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarDirectorComponent implements OnInit {
 
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+  selectedItem = "";
+  selectItem(item: string): void {
+    this.selectedItem = item;
   }
 
 }
