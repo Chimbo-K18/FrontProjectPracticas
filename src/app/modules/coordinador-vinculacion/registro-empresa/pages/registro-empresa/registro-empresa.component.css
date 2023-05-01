@@ -54,7 +54,7 @@
   
   mat-card{
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 1100px;
@@ -73,8 +73,9 @@
 
   .example-card {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    margin-top: 12px;
 
-   
   }
   
 
