@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
+import { httpInterceptorProviders } from './modules/helpers/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,20 +16,15 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
   ],
   
-  exports: [
-
-    [RouterModule],
-    FormsModule
-  ],
 
   
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

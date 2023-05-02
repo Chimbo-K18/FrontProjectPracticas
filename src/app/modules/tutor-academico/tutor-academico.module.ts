@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TutorAcademicoRoutingModule } from './tutor-academico-routing.module';
 import { WelcomeAcademicoComponent } from './welcome-academico/welcome-academico.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +11,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     TutorAcademicoRoutingModule
   ]
 })

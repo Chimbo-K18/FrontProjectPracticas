@@ -3,17 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { TutorEmpresarialRoutingModule } from './tutor-empresarial-routing.module';
 import { WelcomeEmpresarialComponent } from './welcome-empresarial/welcome-empresarial.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-    declarations: [
-        WelcomeEmpresarialComponent
-    ],
-    imports: [
-        CommonModule,
-        TutorEmpresarialRoutingModule,
-        SharedModule
-    ]
+  declarations: [
+    WelcomeEmpresarialComponent
+  ],
+  imports: [
+    CommonModule,
+    TutorEmpresarialRoutingModule
+  ]
 })
 export class TutorEmpresarialModule { }

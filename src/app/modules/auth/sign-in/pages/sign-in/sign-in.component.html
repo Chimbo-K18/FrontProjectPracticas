@@ -111,29 +111,32 @@
         <div style="flex-basis: 50%; flex-grow: 0; text-align: left; margin-right: 30px; display: flex; justify-content: center; align-items: center;">
           <img src="https://dev2020.tecazuay.edu.ec/wp-content/uploads/2022/11/cropped-LOGO-RECTANGULAR_SIN-FONDO.png" alt="" style="width: 100%;">
         </div>
+        <form action="#" class="login-form" ngNativeValidate (ngSubmit)="onSubmit()">
         <div style="flex-basis: 50%; flex-grow: 0;">
+          
           <h1><strong>Iniciar Sesion</strong></h1>
 
           <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
             <mat-label>Nombre Usuario</mat-label>
-            <input matInput type="username" name="username" placeholder="Ingrese su contraseña"  >
+            <input matInput type="username" name="username" placeholder="Ingrese su correo" [(ngModel)]="form.correo" (input)="autoCompleteEmail($event)" required  >
           </mat-form-field>
 
 
 
           <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;" >
             <mat-label>Password</mat-label>
-            <input matInput type="password"   name="username" placeholder="Ingrese su contraseña"  >
+            <input matInput type="password"   name="username" placeholder="Ingrese su contraseña"  [(ngModel)]="form.contrasenia" required>
           </mat-form-field>
 
-
+        
 
 
 
           <p>No tienes una cuenta <strong><a href="/auth/sign-up">Ingresa aqui</a></strong></p>
 
-          <button  style="text-align: center;" onclick="location.href=''" mat-raised-button color="primary">Ingresar</button>
+          <button  style="text-align: center;" mat-raised-button color="primary" type="submit">Ingresar</button>
         </div>
+      </form>
       </mat-card-content>
     </mat-card>
     
@@ -149,6 +152,20 @@
   </body>
 </html>
 
+<div style="margin-top: 25px; margin-left: 60px; text-align: justify; max-width: 600px;">
+  <p>Los principales objetivos de las prácticas pre-profesionales son:</p>
+  <p>- Promover la formación académica de los estudiantes en los aspectos cognitivos, procedimentales y actitudes en la intervención pre profesional.</p>
+  <p>- Promover la aplicación de los conocimientos teóricos y metodológicos en los diferentes campos de intervención.</p>
+  <p>- Lograr experiencia de intervención de las diferentes áreas o sectores de labor profesional.</p><br>
+  
+
+  </div>
+
+
+  <!DOCTYPE html>
+<html lang="en">
+  
+  <body class="bodyL">
 
 
 

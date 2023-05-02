@@ -9,6 +9,7 @@ import { SideBarDirectorComponent } from './side-bar-director/side-bar-director.
 import { SideBarResponsableComponent } from './side-bar-responsable/side-bar-responsable.component';
 import { SideBarCoordvinComponent } from './side-bar-coordvin/side-bar-coordvin.component';
 import { SideBarEstudianteComponent } from './side-bar-estudiante/side-bar-estudiante.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -26,7 +27,8 @@ import { SideBarEstudianteComponent } from './side-bar-estudiante/side-bar-estud
     SideBarEstudianteComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ], 
   exports:[
     HeaderComponent,

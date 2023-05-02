@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox'
 
 
 
@@ -21,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     CommonModule,
+    MatCheckboxModule,
     MatDialogModule,
     MatCardModule,
     MatButtonModule,
