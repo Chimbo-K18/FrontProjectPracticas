@@ -1,333 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista Productos</title>
-</head>
-<body class="bodyL">
-  
+  </head>
+  <body class="bodyL">
+    <h1><strong>Registro Tutor Empresarial </strong></h1>
 
-
-    <h1> <strong>Registro Tutor Empresarial </strong></h1>
-
-
-    <mat-stepper linear #stepper class="headerxd" >
-
+    <mat-stepper linear #stepper class="headerxd">
       <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup" >
+        <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Fase 1</ng-template>
 
+          <mat-card class="example-card" style="margin-top: 60px">
+            <p style="font-size: 16px"><strong>Datos Personales</strong></p>
 
-          <mat-card class="example-card" style="margin-top: 60px;">
+            <div style="display: flex">
+              <div>
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Cedula:</mat-label>
+                  <input [(ngModel)]="personasemp.cedula" [(ngModel)]="usuario.cedula" matInput formControlName="firstCtrl" required  (input)="actualizarValorSegundoInput()" />
+                </mat-form-field>
 
-            <p style="font-size:16px;"> <strong>Datos Personales</strong> </p>
-    
-            <div style="display: flex;">
-       
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Primer Nombre:</mat-label>
+                  <input [(ngModel)]="personasemp.primer_nombre" [(ngModel)]="usuario.nombres"matInput formControlName="firstCtrl" required />
+                </mat-form-field>
+
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Segundo Nombre:</mat-label>
+                  <input [(ngModel)]="personasemp.segundo_nombre" matInput formControlName="firstCtrl" required />
+                </mat-form-field>
+
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Primer Apellido:</mat-label>
+                  <input [(ngModel)]="personasemp.primer_apellido" [(ngModel)]="usuario.apellidos" matInput formControlName="firstCtrl" required />
+                </mat-form-field>
+
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Segundo Apellido:</mat-label>
+                  <input [(ngModel)]="personasemp.segundo_apellido" matInput formControlName="firstCtrl" required />
+                </mat-form-field>
+
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Telefono:</mat-label>
+                  <input [(ngModel)]="usuario.telefono" [(ngModel)]="tutorempresarial.numerocontacto" matInput formControlName="firstCtrl" required />
+                </mat-form-field>
+                <mat-form-field
+                appearance="fill"
+                style="margin-right: 20px; width: 300px"
+              >
+                <mat-label>Departamento:</mat-label>
+                <input [(ngModel)]="tutorempresarial.departamento" matInput formControlName="firstCtrl" required />
+              </mat-form-field>
+
+              <mat-form-field
+              appearance="fill"
+              style="margin-right: 20px; width: 300px"
+            >
+            <mat-label>Titulo:</mat-label>
+            <input [(ngModel)]="tutorempresarial.titulo" matInput formControlName="firstCtrl" required />
+          </mat-form-field>
+
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-right: 20px; width: 300px"
+                >
+                  <mat-label>Correo:</mat-label>
+                  <input [(ngModel)]="personasemp.correo" [(ngModel)]="usuario.correo" matInput formControlName="firstCtrl" required />
+                </mat-form-field>
+
                 <div>
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Cedula:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
-    
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Primer Nombre:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
-    
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Segundo Nombre:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
+                  <select id="genero" formControlName="firstCtrl" style="width: 300px; margin-right: 20px"
+                  [(ngModel)]="personasemp.genero" required >
+                  <option value="" disabled selected>Seleccione el genero</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                </select>
 
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Primer Apellido:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
-
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Segundo Apellido:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
-    
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Nombre:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
-    
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>Telefono:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                        <mat-icon matSuffix>mode_edit</mat-icon>
-                      </mat-form-field>
-    
-    
-                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-                        <mat-label>E-mail:</mat-label>
-                        <input matInput formControlName="firstCtrl" required>
-                      </mat-form-field>
-    
-                      <div>
-                        <select id="country" name="country" style="width: 300px; margin-right: 20px;">
-                          <option value="australia">Seleccione el genero</option>
-                          <option value="dato1">Hombre</option>
-                          <option value="dato2">Mujer</option>
-                        </select>
-      
-                        <mat-form-field appearance="fill" class="example-full-width" style="margin-right: 20px; width: 300px;">
-                          <mat-label>Cargo:</mat-label>
-                          <textarea matInput placeholder="Descripcion..."></textarea>
-                        </mat-form-field>
-
-                      </div>
-                      
-    
-    
-                     
-    
+                  <mat-form-field
+                    appearance="fill"
+                    class="example-full-width"
+                    style="margin-right: 20px; width: 300px"
+                  >
+                    <mat-label>Cargo:</mat-label>
+                    <input [(ngModel)]="tutorempresarial.cargo" matInput formControlName="firstCtrl"required />
+                  </mat-form-field>
                 </div>
-                
-    
-    
-             
-         </div>
-    
-    
-         
-        
-                 
-    
-                   <div style="text-align: center;">
-                     <button  mat-raised-button color="primary"  matStepperNext>Registrar Empresa</button>
-                   </div>
-     
-                 </mat-card>
+              </div>
+            </div>
 
-
-
-
-
-
-
-          
-          
+            <div style="text-align: center">
+              <button mat-raised-button color="primary" matStepperNext (click)="crearpersonaemp()">
+                <!-- <button mat-raised-button color="primary" matStepperNext> -->
+                Registrar Empresa
+              </button>
+            </div>
+          </mat-card>
         </form>
       </mat-step>
-        
-        <mat-step [stepControl]="secondFormGroup" >
-            <form [formGroup]="secondFormGroup" >
-              <ng-template matStepLabel>Fase 2</ng-template>
-  
 
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fase 2</ng-template>
 
-              <div class="container">
-                
-            
-              
-              <mat-card class="example-card" style="width: 600px;">
-          
-                  <mat-card-content>
-           
-                    <p style="font-size:16px;"> <strong>Generar Credenciales</strong> </p>
-                    <div style="display: flex; align-items: center;">
-                      <div style="flex-basis: 50%; flex-grow: 0;">
-                        <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
-                          <mat-label>Cedula</mat-label>
-                          <input matInput type="username" name="username" placeholder="Ingrese su usuario" formControlName="secondCtrl" required>
-                        </mat-form-field>
-                    
-                        <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
-                          <mat-label>Nombre Usuario</mat-label>
-                          <input matInput type="username" name="username" placeholder="Ingrese su usuario" formControlName="secondCtrl" required>
-                        </mat-form-field>
-                    
-                        <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
-                          <mat-label>Password</mat-label>
-                          <input matInput type="password" name="username" placeholder="Ingrese su contraseña" formControlName="secondCtrl" required>
-                        </mat-form-field>
-                      </div>
-                    
-                      <div style="margin-left:25px; flex-grow: 0; text-align: right;">
-                        <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80" alt="" style="width: 200px; height: 200px; border-radius: 16px;">
-                      <p style="text-align: center; font-size:15px;"><strong>Nombre:</strong> David Naula </p>
-                      </div>
-                    </div>
-
-                      <button mat-raised-button >Subir Foto</button>  
-  
-                      <div style="margin-top:25px; text-align: center;">
-                        <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
-                        </div>
-                  
-                          
-                            
-                  
-          
-                  
-                  </mat-card-content>
-                  
-                </mat-card>
-            </div>
-  
-
-  
-              
-              
-            </form>
-          </mat-step>
-
-          
-
-
-        <mat-step>
-            <ng-template matStepLabel>Fase 3</ng-template>
-            <div class="container">
-
-
-
-
-                
-
-
-                <mat-card class="example-card" style="text-align: center; width: 500px;" >
-                  <p style="font-size:16px;"> <strong>Generar Credenciales</strong> </p>
-
-       
-                    <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80" alt="" style="width: 150px; height: 150px; border-radius: 16px;">
-                  <p style="text-align: center; font-size:15px;"><strong>Nombre:</strong> David Naula </p>
-
-
-
-                  <h3 style="margin-top: 25px;"><strong>Rol Asignado:</strong>Tutor Empresarial</h3>
-
-                  <div style="display: flex; align-items: center; margin-top: 25px; ">
-                    
-                    <mat-form-field class="example-full-width" style="width: 300px;">
-                      <mat-label>Seleccione una Empresa:</mat-label>
-                      <input matInput placeholder="Empresa">
+          <div class="container">
+            <mat-card class="example-card" style="width: 600px">
+              <mat-card-content>
+                <p style="font-size: 16px">
+                  <strong>Generar Credenciales</strong>
+                </p>
+                <div style="display: flex; align-items: center">
+                  <div style="flex-basis: 50%; flex-grow: 0">
+                    <mat-form-field
+                      appearance="outline"
+                      class="example-full-width"
+                      style="margin-right: 20px; width: 300px"
+                    >
+                      <mat-label>Cedula</mat-label>
+                      <input matInput type="username" name="username" placeholder="Ingrese su usuario" formControlName="secondCtrl"   [(ngModel)]="usuario.cedula" readonly  />
                     </mat-form-field>
+                    <mat-form-field
+                    appearance="outline"
+                    class="example-full-width"
+                    style="margin-right: 20px; width: 300px"
+                  >
+                    <mat-label>Nombre Usuario</mat-label>
+                    <input matInput type="username"name="username" placeholder="Ingrese su usuario" formControlName="secondCtrl" [(ngModel)]="usuario.username" required />
+                  </mat-form-field>
 
-                    <button mat-raised-button style="margin-left: 25px;" (click)="openModal()">Empresa</button> 
-                    
-                    
+                  <mat-form-field
+                    appearance="outline"
+                    class="example-full-width"
+                    style="margin-right: 20px; width: 300px"
+                  >
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password"name="password" placeholder="Ingrese su contraseña"formControlName="secondCtrl" [(ngModel)]="usuario.contrasenia"  readonly />
+                  </mat-form-field>
+                </div>
+                  <div
+                    style="margin-left: 25px; flex-grow: 0; text-align: right"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"
+                      alt=""
+                      style="width: 200px; height: 200px; border-radius: 16px"
+                    />
+                    <p style="text-align: center; font-size: 15px">
+                      <strong>Nombre:</strong> David Naula
+                    </p>
+                  </div>
+                </div>
 
+                <button mat-raised-button>Subir Foto</button>
 
-                    <ng-template #modal >
-                      <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                        <div class="modal-dialog" >
-                          <div class="modal-content" >
+                <div style="margin-top: 25px; text-align: center">
+                  <button
+                    style="margin-right: 12px"
+                    mat-raised-button
+                    color="primary"
+                    matStepperPrevious
+                  >
+                    Back
+                  </button>
+                  <button mat-raised-button color="primary" matStepperNext (click)="crearusuario()">
+                    <!-- <button mat-raised-button color="primary" matStepperNext > -->
+                      Siguiente
+                    </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </form>
+      </mat-step>
 
+      <mat-step>
+        <ng-template matStepLabel>Fase 3</ng-template>
+        <div class="container">
+          <mat-card
+            class="example-card"
+            style="text-align: center; width: 500px"
+          >
+            <p style="font-size: 16px"><strong>Generar Credenciales</strong></p>
 
-                            <div class="modal-header">
-                              
+            <img
+              src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"
+              alt=""
+              style="width: 150px; height: 150px; border-radius: 16px"
+            />
+            <p style="text-align: center; font-size: 15px">
+              <strong>Nombre:</strong> David Naula
+            </p>
 
-                              <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h1>Seleccione una empresa</h1>
-                                <button mat-raised-button (click)="closeModal()" style="display: inline-block;"> <strong>X</strong></button>
-                            </div>
-                              
-                            </div>
-                            
-                            
+            <h3 style="margin-top: 25px">
+              <strong>Rol Asignado:</strong>Tutor Empresarial
+            </h3>
 
+            <div style="display: flex; align-items: center; margin-top: 25px">
+              <mat-form-field class="example-full-width" style="width: 300px">
+                <mat-label>Seleccione una Empresa:</mat-label>
+                <input matInput placeholder="Empresa" />
+              </mat-form-field>
 
-                            <div class="modal-body" style="height: 250px; width: 750px;">
-                              
+              <button
+                mat-raised-button
+                style="margin-left: 25px"
+                (click)="openModal()"
+              >
+                Empresa
+              </button>
 
-                              <mat-form-field appearance="fill" style="margin-right: 20px; width: 750px;">
-                                <mat-label>Buscar:</mat-label>
-                                <input matInput >
-                              </mat-form-field>
-  
-                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                                  <!-- Position Column -->
-                                  <ng-container matColumnDef="position">
-                                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                                  </ng-container>
-                                
-                                  <!-- Name Column -->
-                                  <ng-container matColumnDef="name">
-                                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                  </ng-container>
-                                
-                                  <!-- Weight Column -->
-                                  <ng-container matColumnDef="weight">
-                                    <th mat-header-cell *matHeaderCellDef> Weight </th>
-                                    <td mat-cell *matCellDef="let element"> Datro2</td>
-                                  </ng-container>
-                                
-                                  <!-- Symbol Column -->
-                                  <ng-container matColumnDef="symbol">
-                                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                                    <td mat-cell *matCellDef="let element"> <button mat-raised-button  color="primary"> <mat-icon>add</mat-icon>  Asignar</button></td>
-                            
-                                  </ng-container>
-                                
-                                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                </table>
-
-                            </div>
-
-
-                            <div class="modal-footer">
-      
-                            </div>
-
-
-                          </div>
+              <ng-template #modal>
+                <div
+                  class="modal fade"
+                  id="myModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                          "
+                        >
+                          <h1>Seleccione una empresa</h1>
+                          <button
+                            mat-raised-button
+                            (click)="closeModal()"
+                            style="display: inline-block"
+                          >
+                            <strong>X</strong>
+                          </button>
                         </div>
                       </div>
-                  </ng-template>
 
-                  
+                      <div
+                        class="modal-body"
+                        style="height: 250px; width: 750px"
+                      >
+                        <mat-form-field
+                          appearance="fill"
+                          style="margin-right: 20px; width: 750px"
+                        >
+                          <mat-label>Buscar:</mat-label>
+                          <input matInput />
+                        </mat-form-field>
 
+                        <table
+                          mat-table
+                          [dataSource]="dataSource"
+                          class="mat-elevation-z8"
+                        >
+                          <!-- Position Column -->
+                          <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef>No.</th>
+                            <td mat-cell *matCellDef="let element">
+                              {{ element.position }}
+                            </td>
+                          </ng-container>
 
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>Name</th>
+                            <td mat-cell *matCellDef="let element">
+                              {{ element.name }}
+                            </td>
+                          </ng-container>
 
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="weight">
+                            <th mat-header-cell *matHeaderCellDef>Weight</th>
+                            <td mat-cell *matCellDef="let element">Datro2</td>
+                          </ng-container>
 
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="symbol">
+                            <th mat-header-cell *matHeaderCellDef>Symbol</th>
+                            <td mat-cell *matCellDef="let element">
+                              <button mat-raised-button color="primary">
+                                <mat-icon>add</mat-icon> Asignar
+                              </button>
+                            </td>
+                          </ng-container>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                  </div>
-
-
-                      <div style="text-align: center; margin-top: 25px;">
-                        <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                        <button style="margin-right: 12px;" mat-raised-button color="warn">Finalizar</button>
-                        <button  mat-raised-button color="primary"(click)="stepper.reset()">Reset</button>
+                          <tr
+                            mat-header-row
+                            *matHeaderRowDef="displayedColumns"
+                          ></tr>
+                          <tr
+                            mat-row
+                            *matRowDef="let row; columns: displayedColumns"
+                          ></tr>
+                        </table>
                       </div>
-        
-                    </mat-card>
 
-                    
+                      <div class="modal-footer"></div>
+                    </div>
+                  </div>
                 </div>
-        </mat-step>
+              </ng-template>
+            </div>
 
-       
-      </mat-stepper>
-
-      
-   
-    
-
-
-
-  
-</body>
-
+            <div style="text-align: center; margin-top: 25px">
+              <button
+                style="margin-right: 12px"
+                mat-raised-button
+                color="primary"
+                matStepperPrevious
+              >
+                Back
+              </button>
+              <button style="margin-right: 12px" mat-raised-button color="warn">
+                Finalizar
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="stepper.reset()"
+              >
+                Reset
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </body>
 </html>
