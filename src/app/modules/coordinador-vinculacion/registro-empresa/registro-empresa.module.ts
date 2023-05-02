@@ -7,6 +7,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    RegistroEmpresaRoutingModule
+    RegistroEmpresaRoutingModule,
+    FormsModule
   ]
 })
 export class RegistroEmpresaModule { }
