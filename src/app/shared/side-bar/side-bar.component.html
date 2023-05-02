@@ -22,5 +22,9 @@
         <i class="fas fa-link"></i>
         <span>Registro de Cordinador</span>
     </a>
+    <a href="#"  *ngIf="rolCordinador == true || rolDirector==true" routerLinkActive="active" routerLink="/coordinador/registro-empresa">
+        <i class="fas fa-link"></i>
+        <span>Registro de Empresa</span>
+    </a>
     
 </div>
