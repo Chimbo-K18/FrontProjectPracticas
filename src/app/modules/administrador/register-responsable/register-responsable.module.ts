@@ -4,17 +4,9 @@ import { CommonModule } from '@angular/common';
 import { RegisterResponsableRoutingModule } from './register-responsable-routing.module';
 import { RegisterResponsableComponent } from './pages/register-responsable/register-responsable.component';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatInputModule} from '@angular/material/input';
-
-import {MatButtonModule} from '@angular/material/button';
-
-import {MatDatepickerModule} from '@angular/material/datepicker';
-
-
-
-
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 
 import {MatButtonModule} from '@angular/material/button';
@@ -33,18 +25,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   ],
   imports: [
     CommonModule,
-<<<<<<< Updated upstream
-    RegisterResponsableRoutingModule,
-
-
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDatepickerModule
-
-
-=======
 
     MatButtonModule,
     MatCardModule,
@@ -57,7 +37,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
     RegisterResponsableRoutingModule
->>>>>>> Stashed changes
   ],
   exports:[
     RegisterResponsableComponent

@@ -3,6 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { SideBarAcademicoComponent } from './side-bar-academico/side-bar-academico.component';
+import { SideBarEmpresarialComponent } from './side-bar-empresarial/side-bar-empresarial.component';
+import { SideBarDirectorComponent } from './side-bar-director/side-bar-director.component';
+import { SideBarResponsableComponent } from './side-bar-responsable/side-bar-responsable.component';
+import { SideBarCoordvinComponent } from './side-bar-coordvin/side-bar-coordvin.component';
+import { SideBarEstudianteComponent } from './side-bar-estudiante/side-bar-estudiante.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,10 +18,17 @@ import { SideBarComponent } from './side-bar/side-bar.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SideBarComponent
+    SideBarComponent,
+    SideBarAcademicoComponent,
+    SideBarEmpresarialComponent,
+    SideBarDirectorComponent,
+    SideBarResponsableComponent,
+    SideBarCoordvinComponent,
+    SideBarEstudianteComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ], 
   exports:[
     HeaderComponent,

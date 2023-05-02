@@ -11,14 +11,26 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
 
-  
-.datos{
-    padding: 20px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
 
-}
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+  .headerxd{
+     margin-top: 60px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 0, 0);
+
+  
+  
+
+
+  }
   
 
   .mat-tab-group {
