@@ -178,9 +178,8 @@
                   <th mat-header-cell *matHeaderCellDef>Asignar Horario</th>
                   <td mat-cell *matCellDef="let element">
                     <div class="example-flex-container">
-                      <button mat-icon-button style="color:white; background-color: #3f51b5; border-radius: 50px;">
-                        <mat-icon>alarm_add</mat-icon>
-                      </button>
+                      <button mat-raised-button  style="color:white; background-color: #3f51b5; border-radius: 50px;"data-bs-toggle="modal" data-bs-target="#modal-formulario">
+                        <mat-icon>alarm_add</mat-icon></button>
                     </div>
                   </td>
                 </ng-container>
@@ -225,5 +224,69 @@
     </div>
       </mat-step>
     </mat-stepper>
+
+
+      <!-- MODALLL--> 
+   <div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+    <div class="modal-dialog" style="display: flex; align-items: center; justify-content: center;">
+      <div class="container" style="width: 900px;">
+
+      <div class="modal-content">
+ 
+        <div class="container">
+          <div class="modal-header">
+
+            <h1 style="text-align: center;">Asignacion de Horario:</h1>
+
+          
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+
+          <div style="color: black; margin-top: 20px; text-align: center;" >
+            <mat-form-field class="example-full-width" style="margin-right: 20px;">
+              <mat-label>Fecha de inicio</mat-label>
+              <input matInput type="date" placeholder="Ex. Pizza" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Fecha final</mat-label>
+              <input matInput type="date" placeholder="Ex. Pizza" >
+            </mat-form-field>
+          </div>
+
+          <div style="color: black; margin-top: 20px; text-align: center;" >
+            <h4>Hora Incio</h4>
+            <select id="country" name="country" style="display: inline-block; width: 300px;">
+              <option value="australia">Seleccione una carrera</option>
+              <option value="dato1">7:00</option>
+              <option value="dato2">7:30</option>
+            </select>
+
+            <h4>Hora Final</h4>
+            <select id="country" name="country" style="display: inline-block; width: 300px;">
+              <option value="australia">Seleccione una carrera</option>
+              <option value="dato1">18:00</option>
+              <option value="dato2">18:00<</option>
+            </select>
+          </div>
+
+          <p>NO SE QUE MAS PUTAS PONER EL CHIMBO NO ME DIJO NADA :V</p>
+
+          
+
+         
+          
+          <div style="text-align:center;margin-top: 20px;margin-block-end: 20px;">
+            <button style="margin-right: 25px" mat-raised-button color="warn">
+              Guardar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
   </body>
 </html>
