@@ -20,12 +20,12 @@
       <div>
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Ruc:</mat-label>
-          <input [(ngModel)]="empresa.rucEmpresa" matInput  (keydown)="soloNumeros($event)" maxlength="13" required>
+          <input [(ngModel)]="empresa.rucEmpresa" matInput>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Correo:</mat-label>
-          <input [(ngModel)]="empresa.correo" matInput required>
+          <input [(ngModel)]="empresa.correo" matInput >
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
@@ -40,7 +40,7 @@
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Telefono:</mat-label>
-          <input [(ngModel)]="empresa.numeroTelefono"  matInput (keydown)="soloNumeros($event)" required>
+          <input [(ngModel)]="empresa.numeroTelefono"  matInput>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
@@ -64,7 +64,7 @@
     </div>
 
     <div style="text-align: center;">
-      <button mat-raised-button color="primary" (click)="crearEmpresa()" (click)="Limpiar()">Registrar Empresa</button>
+      <button mat-raised-button color="primary" (click)="crearEmpresa()">Registrar Empresa</button>
     </div>
 
   </mat-card>
