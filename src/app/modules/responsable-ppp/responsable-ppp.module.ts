@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ResponsablePppRoutingModule } from './responsable-ppp-routing.module';
 import { WelcomeResponsableComponent } from './welcome-responsable/welcome-responsable.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +11,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     ResponsablePppRoutingModule
   ]
 })

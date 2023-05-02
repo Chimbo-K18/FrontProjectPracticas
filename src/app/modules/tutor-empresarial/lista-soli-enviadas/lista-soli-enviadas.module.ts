@@ -3,19 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { ListaSoliEnviadasRoutingModule } from './lista-soli-enviadas-routing.module';
 import { ListaSoliEnviadasComponent } from './pages/lista-soli-enviadas/lista-soli-enviadas.component';
-//Importaciones clave
-import {MatStepperModule} from '@angular/material/stepper';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import {MatDatepickerModule} from '@angular/material/datepicker';
-
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 @NgModule({
@@ -24,18 +19,14 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
-    ListaSoliEnviadasRoutingModule,
-    CommonModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatCardModule,
-    MatDatepickerModule,
-    ReactiveFormsModule,
-    MatTableModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatPaginatorModule,
-    MatIconModule
+    MatInputModule,
+    MatIconModule,
+    MatTableModule,
+    ListaSoliEnviadasRoutingModule
   ],
   exports:[
     ListaSoliEnviadasComponent

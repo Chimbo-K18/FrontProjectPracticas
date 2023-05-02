@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { CoordinadorVinculacionRoutingModule } from './coordinador-vinculacion-routing.module';
 import { WelcomeCoordVinculacionComponent } from './welcome-coord-vinculacion/welcome-coord-vinculacion.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +11,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     CoordinadorVinculacionRoutingModule
   ]
 })

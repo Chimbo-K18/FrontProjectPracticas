@@ -1,17 +1,14 @@
-
+/*/neew/*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
 *{
 margin: 0;
 padding: 0;
 text-decoration: none;
 }
-
 .sidebar{
 position: fixed;
 width: 240px;
 left: -240px;
-bottom: 0;
-
 height: 100%;
 background: #10558d;
 transition: all .5s ease;

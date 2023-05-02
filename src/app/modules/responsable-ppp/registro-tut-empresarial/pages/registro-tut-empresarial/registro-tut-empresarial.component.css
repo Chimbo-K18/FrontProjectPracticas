@@ -38,7 +38,7 @@
   }
   .headerxd{
      margin-top: 60px;
-  width: 75%;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(0, 0, 0, 0);
@@ -55,8 +55,15 @@
   }
   
   mat-card{
-    width: 625px;
-    margin-block-end: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 1100px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
 
 

@@ -24,10 +24,10 @@
             <mat-label>Buscar cedula </mat-label>
             <input matInput placeholder="Buscar...">
           </mat-form-field>
-        
+          <div style="display: flex; flex-direction: column; align-items: center;">
          
 
-    
+            <mat-card style="width: 750px; margin-top: 25px;">
 
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <!-- Position Column -->
@@ -62,9 +62,10 @@
                          showFirstLastButtons
                          aria-label="Select page of periodic elements">
           </mat-paginator>
-
+        </mat-card>
         
         
+          </div>
 
 
 
@@ -85,11 +86,11 @@
   
 
 
-              <div class="container" style="color: black;   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); border-radius: 16px;">
+              <div class="container">
                 
 
               
-              
+              <mat-card class="example-card" style="width: 500px;">
           
                   <mat-card-content>
            
@@ -141,8 +142,8 @@
   
                       <div style="margin-top:25px; text-align: center;">
                         <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                          <button  style="margin-block-end: 20px;" mat-raised-button color="primary" matStepperNext>Siguiente</button>
-                      </div>
+                          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                        </div>
                   
                           
                             
@@ -151,7 +152,7 @@
                   
                   </mat-card-content>
                   
-    
+                </mat-card>
             </div>
   
 
@@ -171,9 +172,8 @@
 
                 
 
-              <div class="container" style="color: black;   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); border-radius: 16px;">
-                
-                
+
+                <mat-card class="example-card">
                <h1 style="text-align: left;"> Datos Personales  </h1>
                <div style="display: flex;">
                 <div style="margin-right: 150px;">
@@ -202,12 +202,12 @@
                       <div style="text-align: center;">
                         <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
                         <button style="margin-right: 12px;" mat-raised-button color="warn">Aceptar</button>
-                        <button  style="margin-block-end: 20px;" mat-raised-button color="primary"(click)="stepper.reset()">Reset</button>
+                        <button  mat-raised-button color="primary"(click)="stepper.reset()">Reset</button>
                       </div>
         
-           
+                    </mat-card>
 
-                    </div>
+                    
                 </div>
         </mat-step>
 

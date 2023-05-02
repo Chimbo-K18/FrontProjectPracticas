@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { DirectorCarreraRoutingModule } from './director-carrera-routing.module';
 import { WelcomeDirectorComponent } from './welcome-director/welcome-director.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +11,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     DirectorCarreraRoutingModule
   ]
 })
