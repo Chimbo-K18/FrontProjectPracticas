@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service'
+import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-envio-solicitud',
@@ -25,8 +28,11 @@ export class EnvioSolicitudComponent implements OnInit {
   thirdFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+  
+  //llamado a la clase 
+  public solicitudPractica: SolicitudPracticas=new SolicitudPracticas();
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService, private router:Router) { }
 
   ngOnInit(): void {
     const dropArea = document.querySelector<HTMLElement>(".drop_box")!;
@@ -60,4 +66,45 @@ export class EnvioSolicitudComponent implements OnInit {
       dropArea.innerHTML = filedata;
     });
   }
+  /*
+  public create(){
+    this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(this.solicitudPractica)=>{
+      this.secondFormGroup
+      Swal.fire(
+        'Solicitud de Practicas Guardado',
+        `Solicitud ${this.solicitudPractica.nombreSolicitud}`,
+        'success'
+      )
+    }
+  }*/
+
+  public create(){
+    return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
+      res => {
+        //this.router.navigate(['/administrador/lista-vehiculos'])
+      console.log(res)
+            Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Se a creado correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    
+      },
+
+      err => console.error(err)
+    )
+  }
+
+  validaRequest(){
+
+    if(!this.solicitud.getRequest(this.solicitudPractica.idSolicitudPracticas)){
+      console.log('Solicitud Encontrada');
+    }else{
+      this.create();
+    }
+
+  }
+
 }

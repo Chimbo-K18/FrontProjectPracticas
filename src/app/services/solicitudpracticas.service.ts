@@ -22,5 +22,9 @@ export class SolicitudpracticasService {
     return this.http.post<SolicitudPracticas>(`${this.URL}crear`, solicitud, {headers:this.httpHeaders});
   }
 
+  getRequest(idSolicitudPracticas:any) : Observable<SolicitudPracticas> {
+    return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
+  }
+
 
 }

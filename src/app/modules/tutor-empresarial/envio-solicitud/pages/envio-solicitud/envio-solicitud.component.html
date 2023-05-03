@@ -13,7 +13,7 @@
       <mat-stepper labelPosition="bottom" #stepper>
         <mat-step [stepControl]="firstFormGroup">
           <br />
-          <form [formGroup]="firstFormGroup">
+          <form [formGroup]="firstFormGroup" (ngSubmit)="validaRequest()">
             <ng-template matStepLabel>Ingrese datos de solicitud</ng-template>
 
             <div
@@ -24,19 +24,10 @@
                 flex-wrap: wrap;
               "
             >
-              <mat-form-field appearance="fill" style="width: 30%">
-                <mat-label>Nombre de documento:</mat-label>
-                <input
-                  matInput
-                  placeholder="Ingrese nombre de documento"
-                  formControlName="firstCtrl"
-                  required
-                />
-              </mat-form-field>
 
-              <mat-form-field appearance="fill" style="width: 30%">
+              <mat-form-field appearance="fill" style="width: 43%">
                 <mat-label>Fecha de envio</mat-label>
-                <input
+                <input id="fecha" name="date" [(ngModel)]="solicitudPractica.fechaEnvioSolicitud"
                   matInput
                   placeholder="Ingrese fecha de envio"
                   formControlName="firstCtrl"
@@ -44,9 +35,9 @@
                 />
               </mat-form-field>
 
-              <mat-form-field appearance="fill" style="width: 30%">
+              <mat-form-field appearance="fill" style="width: 43%">
                 <mat-label>Numero de estudiantes</mat-label>
-                <input
+                <input id="numeroe" name="numbere" [(ngModel)]="solicitudPractica.numeroEstudiantes"
                   matInput
                   placeholder="Ingrese numero de estudiantes"
                   formControlName="firstCtrl"
@@ -55,7 +46,7 @@
               </mat-form-field>
             </div>
             <br />
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext >Next</button>
           </form>
         </mat-step>
 
