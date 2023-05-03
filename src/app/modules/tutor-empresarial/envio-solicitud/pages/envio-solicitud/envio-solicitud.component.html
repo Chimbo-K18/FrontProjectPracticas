@@ -68,14 +68,17 @@
                 <mat-label>Tutor Empresarial</mat-label>
                 <input id="tutor" name="teacher" [(ngModel)]="solicitudPractica.fechaEnvioSolicitud" matInput
                   placeholder="Ingrese el tutor empresarial" formControlName="firstCtrl" required />
-                  <p style="background-color: aqua;">El valor de mi llave es: {{mivariable}}</p>
+                  
   
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
                 <mat-label>Carrera</mat-label>
                 <input id="carrera" name="career" [(ngModel)]="solicitudPractica.fechaEnvioSolicitud" matInput
-                  placeholder="Ingrese la carrrea" formControlName="firstCtrl" required />
+                  placeholder="Ingrese la carrrea" formControlName="firstCtrl" readonly/>
+
+                  <p>{{mivariable}}</p>
+                  
               </mat-form-field>
               
 
