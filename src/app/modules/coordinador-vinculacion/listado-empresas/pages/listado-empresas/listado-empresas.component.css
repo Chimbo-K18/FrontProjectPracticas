@@ -1,4 +1,16 @@
-@@ -0,0 +1,399 @@
+
+#home-lista{
+
+    background-color: rgb(141, 135, 135);
+    border: 1ch;
+    width: 1230px;
+    height: 580px;
+    top: 80%;
+    left: 80%;
+    transform: translate(24%, 25%);
+}
+
+
 .container {
     position: fixed;
     top: 50%;
@@ -10,7 +22,6 @@
     border-radius: 12px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
-
   table {
     width: 100%;
   }
@@ -54,9 +65,17 @@
   .mat-tab-group {
     margin-bottom: 48px;
   }
+  
   mat-card{
-    width: 625px;
-    margin-block-end: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 1100px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
 
 
@@ -460,63 +479,3 @@
       width: auto;
       display: block;
   }
-
-
-  .dsboton{
-    height: 35px;
-    width: 95px;
-    background-color: #f9f6f6;
-    box-shadow: 0px 0px 2px 2px rgba(49, 48, 48, 0.1);
-    color: rgba(30, 29, 29, 0.87);
-    border-radius: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 10px;
-    font-size: 14px;
-    font-weight: 400;
-  }
-  .dsboton:hover{
-    background-color: #3f51b5;
-    opacity: 5;
-    color: rgba(255, 255, 255, 0.87);
-    box-shadow: 0px 0px 2px 2px rgba(49, 48, 48, 0.1);
-  }
-  /* cargar la imagen */
-
-.conten {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.conten input[type="file"] {
-  display: none;
-}
-
-.recipiente {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  background-size: cover;
-background-image:url('https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png');
-}
-
-.fotico {
-  cursor: pointer;
-  width: 150px;
-  height: 150px;
-  box-sizing: border-box;
-  border: 2px solid transparent;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-  transition: all ease-in-out .3s;
-  border-radius: 100px;
-}
-
-.fotico:hover {
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-  border-radius: 100px;
-}
-
-
-
-/* FIN */

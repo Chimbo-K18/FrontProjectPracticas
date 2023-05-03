@@ -20,7 +20,22 @@
     </a>
     <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active"routerLink="/administrador/register-coord-vinculacion">
         <i class="fas fa-link"></i>
-        <span>Registro de Cordinador</span>
+        <span>Registrar Coordinador</span>
     </a>
-    
+    <a href="#" [class.active]="selectedItem === 'registro-empresa'" (click)="selectItem('registro-empresa')">
+        <i class="fas fa-calendar"></i>
+        <span>Registro de Empresa</span>
+      </a>
+      <a href="#" [class.active]="selectedItem === 'asignar-responsable'" (click)="selectItem('asignar-responsable')">
+        <i class="far fa-question-circle"></i>
+        <span>Registrar Responsable</span>
+      </a>
+      <a href="#" [class.active]="selectedItem === 'asignar-coordinador'" (click)="selectItem('asignar-coordinador')">
+        <i class="fas fa-sliders-h"></i>
+        <span>Asignar Coordinador</span>
+      </a>
+      <a href="#" [class.active]="selectedItem === 'reports'" (click)="selectItem('reports')">
+        <i class="far fa-envelope"></i>
+        <span>Reportes</span>
+      </a>
 </div>

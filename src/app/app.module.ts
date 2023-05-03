@@ -18,6 +18,7 @@ import { httpInterceptorProviders } from './modules/helpers/http.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule
   ],
   
 
