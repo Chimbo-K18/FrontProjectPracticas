@@ -52,6 +52,10 @@ export class EnvioSolicitudComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  ceroFormGroup = this._formBuilder.group({
+    cerotCtrl: ['', Validators.required],
+  });
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
