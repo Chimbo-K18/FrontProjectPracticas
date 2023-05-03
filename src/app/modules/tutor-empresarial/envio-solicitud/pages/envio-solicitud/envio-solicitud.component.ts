@@ -95,6 +95,10 @@ export class EnvioSolicitudComponent implements OnInit {
     this.listar();
     this.listarDetalles();
 
+    const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
+    this.mivariable=valor.nombre_carrera;
+
+
     const dropArea = document.querySelector<HTMLElement>(".drop_box")!;
     const button = dropArea.querySelector<HTMLButtonElement>("button")!;
     const input = dropArea.querySelector<HTMLInputElement>("input")!;
@@ -105,9 +109,6 @@ export class EnvioSolicitudComponent implements OnInit {
       input.click();
     };
    
-    const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
-    this.mivariable=valor.nombre_carrera;
-    console.log(this.mivariable)
 
   }
  
