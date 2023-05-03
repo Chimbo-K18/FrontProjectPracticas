@@ -1,6 +1,6 @@
 import { Byte } from "@angular/compiler/src/util";
 
-export class Convenios{
+export class Convenio{
 
     idConvenio !: number;
     numero_convenio !: number;

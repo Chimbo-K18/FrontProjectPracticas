@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { Convenios } from 'src/app/models/convenios';
+import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
@@ -73,7 +73,7 @@ export class EnvioSolicitudComponent implements OnInit {
   
   //llamado a la clase 
   public solicitudPractica: SolicitudPracticas=new SolicitudPracticas();
-  convenios: Convenios[] | undefined ;
+  convenios: Convenio[] | undefined ;
   listaDetalles: DetalleConvenio[] | undefined;
 
 

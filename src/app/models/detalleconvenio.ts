@@ -7,7 +7,7 @@ export class DetalleConvenio{
     fecha_caducidad !: string;
     nombre_carrera !: string;
 
-    convenio: Convenios | undefined; 
+    convenio: Convenio | undefined; 
 
 
     documentoConvenio: DocumentoConvenio | undefined; 
@@ -22,7 +22,7 @@ interface DocumentoConvenio {
 }
 
 
-interface Convenios {
+interface Convenio {
 
     idConvenio : number;
     numero_convenio : number;

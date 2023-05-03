@@ -30,12 +30,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let convenio of convenios">
-              <td>{{ convenio.idConvenio}} </td>
-              <td>{{ convenio.numero_convenio}} </td>
-              <td>{{ convenio.numero_itv}} </td>
-              <td>{{ convenio.fecha_elaboracion}} </td>
-              <td *ngFor = "let detalle of listaDetalles">{{ detalle.nombre_carrera}} </td>
+            <tr *ngFor="let detalles of listaDetalles">
+
+
+              <td>{{ detalles?.convenio?.idConvenio ?? 'Sin convenio' }}</td>
+              <td>{{ detalles?.convenio?.numero_convenio ?? 'Sin convenio' }}</td>
+              <td>{{ detalles?.convenio?.numero_itv ?? 'Sin convenio' }}</td>
+              <td>{{ detalles?.convenio?.fecha_elaboracion ?? 'Sin convenio' }}</td>
+
+              <td>{{ detalles?.nombre_carrera }}</td>
+              
 
       
               <td>

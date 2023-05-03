@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Convenios } from '../models/convenios';
+import { Convenio } from '../models/convenios';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class ConveniosService {
   constructor(private http: HttpClient) { }
 
 
-  getConvenios() : Observable<Convenios[]>{
-    return this.http.get<Convenios[]>(`${this.URL}listar`);
+  getConvenios() : Observable<Convenio[]>{
+    return this.http.get<Convenio[]>(`${this.URL}listar`);
 
   }
 
