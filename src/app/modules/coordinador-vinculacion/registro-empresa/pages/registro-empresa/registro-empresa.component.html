@@ -10,7 +10,9 @@
 
 <body class="bodyL">
 
-  <mat-card class="example-card" style="width: 700px;">
+    <mat-card class="example-card">
+        <h1> <strong>Registro de Empresa </strong></h1>
+        <p style="font-size:16px;"> <strong>Ingrese los siguientes datos:</strong> </p>
 
     <h1> <strong>Registro de Empresa </strong></h1>
     <p style="font-size:16px;"> <strong>Ingrese los siguientes datos:</strong> </p>
@@ -65,6 +67,10 @@
 
     <div style="text-align: center;">
       <button mat-raised-button color="primary" (click)="crearEmpresa()">Registrar Empresa</button>
+    </div>
+
+    <div style="text-align: center;">
+      <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas">Listados</button>
     </div>
 
   </mat-card>
