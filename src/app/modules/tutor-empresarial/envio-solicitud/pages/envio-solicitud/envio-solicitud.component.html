@@ -37,13 +37,10 @@
               <td>{{ detalles?.convenio?.numero_convenio ?? 'Sin convenio' }}</td>
               <td>{{ detalles?.convenio?.numero_itv ?? 'Sin convenio' }}</td>
               <td>{{ detalles?.convenio?.fecha_elaboracion ?? 'Sin convenio' }}</td>
-
               <td>{{ detalles?.nombre_carrera }}</td>
-              
-
       
               <td>
-                <button matStepperNext class="btn btn-light ">Seleccionar</button>
+                <button matStepperNext class="btn btn-light " (click)="seleccionarDetalle(detalles)">Seleccionar</button>
 
               </td>
 
@@ -51,7 +48,6 @@
           </tbody>
     
         </table>
-
 
 
       </mat-step>
@@ -68,6 +64,20 @@
                 justify-content: space-between;
                 flex-wrap: wrap;
               ">
+              <mat-form-field appearance="fill" style="width: 43%">
+                <mat-label>Tutor Empresarial</mat-label>
+                <input id="tutor" name="teacher" [(ngModel)]="solicitudPractica.fechaEnvioSolicitud" matInput
+                  placeholder="Ingrese el tutor empresarial" formControlName="firstCtrl" required />
+                  <p style="background-color: aqua;">El valor de mi llave es: {{mivariable}}</p>
+  
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" style="width: 43%">
+                <mat-label>Carrera</mat-label>
+                <input id="carrera" name="career" [(ngModel)]="solicitudPractica.fechaEnvioSolicitud" matInput
+                  placeholder="Ingrese la carrrea" formControlName="firstCtrl" required />
+              </mat-form-field>
+              
 
             <mat-form-field appearance="fill" style="width: 43%">
               <mat-label>Fecha de envio</mat-label>

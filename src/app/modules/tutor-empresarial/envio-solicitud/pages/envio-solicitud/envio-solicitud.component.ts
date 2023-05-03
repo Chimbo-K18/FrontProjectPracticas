@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service'
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
@@ -45,7 +45,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
     },
   ],
 })
+
+
 export class EnvioSolicitudComponent implements OnInit {
+
+  detalles: any;
+  //myForm: FormGroup;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -76,15 +81,16 @@ export class EnvioSolicitudComponent implements OnInit {
   convenios: Convenio[] | undefined ;
   listaDetalles: DetalleConvenio[] | undefined;
 
-
+  mivariable!:string;
 
   constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService, 
     private router:Router, private convenioService: ConveniosService,
-    private detalleService: DetalleconvenioService) { }
+    private detalleService: DetalleconvenioService) { 
+    }
 
   ngOnInit(): void {
 
-
+    
     this.listar();
     this.listarDetalles();
 
@@ -97,39 +103,40 @@ export class EnvioSolicitudComponent implements OnInit {
     button.onclick = () => {
       input.click();
     };
+   
+    const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
+    this.mivariable=valor||'{}';
 
-    input.addEventListener("change", function (e) {
-      const fileName = (e.target as HTMLInputElement).files![0].name;
-      const filedata = `
-        <form action="" method="post">
-        <div class="form">
-        <h4 style="margin-top: 10px;
-        margin-bottom: 20px;
-        font-size: 12px;
-        color: #005af0;">${fileName}</h4>
-        <button style="  text-decoration: none;
-        background-color: #005af0;
-        color: #ffffff;
-        padding: 10px 20px;
-        border: none;
-        outline: none;
-        transition: 0.3s;">Subir</button>
-        </div>
-        </form>`;
-      dropArea.innerHTML = filedata;
+
+  }
+ 
+
+  //Metodo para guardar en el sessionStorage lo que se selecciona en la tabla con el boton 
+  seleccionarDetalle(detalles: any) {
+  sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
+  }
+  
+
+
+/*
+  seleccionarDetalle(detalles: any) {
+    sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
+    
+    // Obtener los datos del sessionStorage y parsearlos de nuevo a un objeto JavaScript
+    const detalleSeleccionado = JSON.parse(sessionStorage.getItem('detalleSeleccionado')|| '{}');
+    
+    // Inicializar los valores del formulario con los datos obtenidos del sessionStorage
+    this.myForm = new FormGroup({
+      carrera: new FormControl(detalleSeleccionado.carrera, Validators.required),
+      // Agregar más controles de formulario según sea necesario
     });
   }
-  /*
-  public create(){
-    this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(this.solicitudPractica)=>{
-      this.secondFormGroup
-      Swal.fire(
-        'Solicitud de Practicas Guardado',
-        `Solicitud ${this.solicitudPractica.nombreSolicitud}`,
-        'success'
-      )
-    }
-  }*/
+  
+*/
+ 
+  
+
+
 
   public create(){
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
