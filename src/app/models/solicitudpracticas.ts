@@ -11,10 +11,7 @@ export class SolicitudPracticas {
     estadoConvocatoria!: boolean;
     estadoActividad!: boolean;
     descripcionActividades!: string;
-    documentoSolicitudPracticas: DocumentoSolPracticas | undefined;
-    tutorEmpresarial: TutorEmpresarial | undefined;
-    responsablePracticas: ResponsablePracticas | undefined;
-    empresa: Empresa | undefined;
+
 
 }
 

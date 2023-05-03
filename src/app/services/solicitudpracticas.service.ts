@@ -8,6 +8,8 @@ import { SolicitudPracticas } from '../models/solicitudpracticas';
 })
 export class SolicitudpracticasService {
 
+
+  
   URL: string = "http://localhost:8080/api/solicitudPractica/";
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
