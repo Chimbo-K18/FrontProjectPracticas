@@ -5,21 +5,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="bodyL">        
-            <div class="container">
-              <h1><strong>Envio de Solicitud de Practicas Pre-Profesionales</strong></h1>
-              <div class="card">
-                <h3>Cargar archivos</h3>
-                <div class="drop_box">
-                  <header>
-                    <h4>Seleccione aquí el archivo</h4>
-                  </header>
-                  <p>Archivos admitidos: PDF</p>
-                  <input type="file" hidden accept=".doc,.docx,.pdf" id="fileID" style="display:none;">
-                  <button class="btn">Cargar Archivo</button>
-                </div>
+  <body class="bodyL">
+    <div class="container">
+      <h1>
+        <strong>Envio de Solicitud de Practicas Pre-Profesionales</strong>
+      </h1>
+      <mat-stepper labelPosition="bottom" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <br />
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Ingrese datos de solicitud</ng-template>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+              "
+            >
+              <mat-form-field appearance="fill" style="width: 30%">
+                <mat-label>Nombre de documento:</mat-label>
+                <input
+                  matInput
+                  placeholder="Ingrese nombre de documento"
+                  formControlName="firstCtrl"
+                  required
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" style="width: 30%">
+                <mat-label>Fecha de envio</mat-label>
+                <input
+                  matInput
+                  placeholder="Ingrese fecha de envio"
+                  formControlName="firstCtrl"
+                  required
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" style="width: 30%">
+                <mat-label>Numero de estudiantes</mat-label>
+                <input
+                  matInput
+                  placeholder="Ingrese numero de estudiantes"
+                  formControlName="firstCtrl"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <br />
+            <button mat-button matStepperNext>Next</button>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="secondFormGroup" optional>
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Imprimir Archivo</ng-template>
+            <div class="download-container">
+              <button mat-raised-button color="primary">
+                <mat-icon>get_app</mat-icon> Descargar Archivo
+              </button>
+              <div class="instructions">
+                Haz clic en el botón para descargar el archivo
               </div>
             </div>
+            <div class="stepper-buttons">
+              <button mat-button matStepperPrevious>Anterior</button>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="thirdFormGroup" optional>
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Subir Documento</ng-template>
+            <div class="file-upload">
+              <input type="file" name="file" />
+              <mat-icon>cloud_upload</mat-icon>
+              <br />
+              <span
+                >Arrastre y suelte un archivo aquí o haga clic para cargar</span
+              >
+              <div class="file-name"></div>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+    </div>
   </body>
 </html>
 <!-- ruta: http://localhost:4200/empresarial/solicitud-practicas -->

@@ -8,7 +8,9 @@
   background-size: 100% 100%;
     overflow-x: hidden;
   }
-  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
   .container {
       position: fixed;
       top: 50%;
@@ -96,3 +98,57 @@
     padding: 12px 20px;
     border-radius: 4px;
   }
+
+  .file-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 2px dashed gray;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .file-upload:hover {
+    background-color: #fafafa;
+  }
+
+  .file-upload mat-icon {
+    font-size: 60px;
+  }
+
+  .file-upload span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .file-name {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .download-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .instructions {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: gray;
+  }
+  
+  .stepper-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }  
+  
+  
+    
