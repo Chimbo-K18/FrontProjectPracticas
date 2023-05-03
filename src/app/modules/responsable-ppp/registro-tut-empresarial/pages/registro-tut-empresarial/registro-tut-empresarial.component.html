@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <title>Lista Productos</title>
+    <!-- <script language="javascript">
+    function copy_address() {
+  console.log("función copy_address llamada");
+  document.getElementById('usercorreo').value = document.getElementById('correoPersona').value;
+}
+      </script> -->
   </head>
   <body class="bodyL">
     <h1><strong>Registro Tutor Empresarial </strong></h1>
@@ -24,7 +31,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Cedula:</mat-label>
-                  <input [(ngModel)]="personasemp.cedula" [(ngModel)]="usuario.cedula" matInput formControlName="firstCtrl" required  (input)="actualizarValorSegundoInput()" />
+                  <input id="cedulaPersona"[(ngModel)]="personasemp.cedula" matInput formControlName="firstCtrl" required />
                 </mat-form-field>
 
                 <mat-form-field
@@ -32,7 +39,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Primer Nombre:</mat-label>
-                  <input [(ngModel)]="personasemp.primer_nombre" [(ngModel)]="usuario.nombres"matInput formControlName="firstCtrl" required />
+                  <input id="first_name" [(ngModel)]="personasemp.primer_nombre" [(ngModel)]="usuarios.nombres"matInput formControlName="firstCtrl" required />
                 </mat-form-field>
 
                 <mat-form-field
@@ -48,7 +55,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Primer Apellido:</mat-label>
-                  <input [(ngModel)]="personasemp.primer_apellido" [(ngModel)]="usuario.apellidos" matInput formControlName="firstCtrl" required />
+                  <input id="last_name" [(ngModel)]="personasemp.primer_apellido" [(ngModel)]="usuarios.apellidos" matInput formControlName="firstCtrl" required />
                 </mat-form-field>
 
                 <mat-form-field
@@ -64,7 +71,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Telefono:</mat-label>
-                  <input [(ngModel)]="usuario.telefono" [(ngModel)]="tutorempresarial.numerocontacto" matInput formControlName="firstCtrl" required />
+                  <input [(ngModel)]="tutorempresarial.numerocontacto" matInput formControlName="firstCtrl" required />
                 </mat-form-field>
                 <mat-form-field
                 appearance="fill"
@@ -87,33 +94,31 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Correo:</mat-label>
-                  <input [(ngModel)]="personasemp.correo" [(ngModel)]="usuario.correo" matInput formControlName="firstCtrl" required />
+                  <input id="correoPersona" name="correoPersona" [(ngModel)]="personasemp.correo" matInput formControlName="firstCtrl" required />
                 </mat-form-field>
 
-                <div>
+                <mat-form-field
+                appearance="fill"
+                class="example-full-width"
+                style="margin-right: 20px; width: 300px"
+               >
+                <mat-label>Cargo:</mat-label>
+                <input [(ngModel)]="tutorempresarial.cargo" matInput formControlName="firstCtrl"required />
+                </mat-form-field>
                   <select id="genero" formControlName="firstCtrl" style="width: 300px; margin-right: 20px"
-                  [(ngModel)]="personasemp.genero" required >
-                  <option value="" disabled selected>Seleccione el genero</option>
+                  [(ngModel)]="personasemp.genero">
+                  <option value="" disabled selected >Seleccione el genero</option>
                   <option value="Masculino">Masculino</option>
                   <option value="Femenino">Femenino</option>
-                </select>
-
-                  <mat-form-field
-                    appearance="fill"
-                    class="example-full-width"
-                    style="margin-right: 20px; width: 300px"
-                  >
-                    <mat-label>Cargo:</mat-label>
-                    <input [(ngModel)]="tutorempresarial.cargo" matInput formControlName="firstCtrl"required />
-                  </mat-form-field>
-                </div>
+                 </select>
+                         
               </div>
             </div>
 
             <div style="text-align: center">
               <button mat-raised-button color="primary" matStepperNext (click)="crearpersonaemp()">
-                <!-- <button mat-raised-button color="primary" matStepperNext> -->
-                Registrar Empresa
+                <!-- <button mat-raised-button color="primary" matStepperNext (click)=" copy_address()"> -->
+                Siguiente
               </button>
             </div>
           </mat-card>
@@ -138,15 +143,15 @@
                       style="margin-right: 20px; width: 300px"
                     >
                       <mat-label>Cedula</mat-label>
-                      <input matInput type="username" name="username" placeholder="Ingrese su usuario" formControlName="secondCtrl"   [(ngModel)]="usuario.cedula" readonly  />
+                      <input matInput type="username" name="username" id="usercedula" placeholder="Ingrese su usuario" formControlName="secondCtrl"   [(ngModel)]="usuarios.cedula" readonly  />
                     </mat-form-field>
                     <mat-form-field
                     appearance="outline"
                     class="example-full-width"
                     style="margin-right: 20px; width: 300px"
                   >
-                    <mat-label>Nombre Usuario</mat-label>
-                    <input matInput type="username"name="username" placeholder="Ingrese su usuario" formControlName="secondCtrl" [(ngModel)]="usuario.username" required />
+                    <mat-label>Correo Usuario</mat-label>
+                    <input matInput type="username" name="usercorreo" id="usercorreo" placeholder="Ingrese su usuario" formControlName="secondCtrl" [(ngModel)]="usuarios.correo"readonly />
                   </mat-form-field>
 
                   <mat-form-field
@@ -155,25 +160,33 @@
                     style="margin-right: 20px; width: 300px"
                   >
                     <mat-label>Password</mat-label>
-                    <input matInput type="password"name="password" placeholder="Ingrese su contraseña"formControlName="secondCtrl" [(ngModel)]="usuario.contrasenia"  readonly />
+                    <input matInput type="password" name="password" id="userpassword" placeholder="Ingrese su contraseña"formControlName="secondCtrl" [(ngModel)]="usuarios.contrasenia"  readonly />
                   </mat-form-field>
                 </div>
-                  <div
-                    style="margin-left: 25px; flex-grow: 0; text-align: right"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"
-                      alt=""
-                      style="width: 200px; height: 200px; border-radius: 16px"
-                    />
-                    <p style="text-align: center; font-size: 15px">
-                      <strong>Nombre:</strong> David Naula
-                    </p>
+                  <div style="margin-left: 25px; flex-grow: 0; text-align: right">
+                  <div class="personal-image">
+                      <label class="label">
+                          <!-- <input type="file" (change)="imageSelected($event)"/> -->
+                          <figure class="personal-figure">
+                              <img class="personal-avatar"  *ngIf="file" [src]="file">
+                          </figure>
+                      </label>
                   </div>
+
+                    <p style="text-align: center; font-size: 15px">
+                      <strong>Nombre:</strong>
+                      <input id="NombreCompleto" matInput type="nombresss"  formControlName="secondCtrl"/>
+                    </p>
+                      </div>
+     
                 </div>
 
-                <button mat-raised-button>Subir Foto</button>
-
+                <label class="dsboton">Subir Foto
+                  <input type="file" class="uploadFile img" value="Upload Photo" (change)="imageSelected($event)"
+                      style="width: 0px;height: 0px;overflow: hidden;">
+                    </label>
+            
+                
                 <div style="margin-top: 25px; text-align: center">
                   <button
                     style="margin-right: 12px"
@@ -183,8 +196,8 @@
                   >
                     Back
                   </button>
-                  <button mat-raised-button color="primary" matStepperNext (click)="crearusuario()">
-                    <!-- <button mat-raised-button color="primary" matStepperNext > -->
+                  <!-- <button mat-raised-button color="primary" matStepperNext (click)="crearusuario()"> -->
+                    <button mat-raised-button color="primary" matStepperNext >
                       Siguiente
                     </button>
                 </div>
@@ -209,7 +222,8 @@
               style="width: 150px; height: 150px; border-radius: 16px"
             />
             <p style="text-align: center; font-size: 15px">
-              <strong>Nombre:</strong> David Naula
+              <strong>Nombre:</strong>
+              <input id="NombreCompleto2" matInput type="nombresss2" />
             </p>
 
             <h3 style="margin-top: 25px">
@@ -219,111 +233,13 @@
             <div style="display: flex; align-items: center; margin-top: 25px">
               <mat-form-field class="example-full-width" style="width: 300px">
                 <mat-label>Seleccione una Empresa:</mat-label>
-                <input matInput placeholder="Empresa" />
+                <input matInput placeholder="Empresa"/>
+                <input [(ngModel)]="tutorempresarial.Empresa" matInput formControlName=""required />
               </mat-form-field>
 
-              <button
-                mat-raised-button
-                style="margin-left: 25px"
-                (click)="openModal()"
-              >
-                Empresa
-              </button>
-
-              <ng-template #modal>
-                <div
-                  class="modal fade"
-                  id="myModal"
-                  tabindex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <div
-                          style="
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                          "
-                        >
-                          <h1>Seleccione una empresa</h1>
-                          <button
-                            mat-raised-button
-                            (click)="closeModal()"
-                            style="display: inline-block"
-                          >
-                            <strong>X</strong>
-                          </button>
-                        </div>
-                      </div>
-
-                      <div
-                        class="modal-body"
-                        style="height: 250px; width: 750px"
-                      >
-                        <mat-form-field
-                          appearance="fill"
-                          style="margin-right: 20px; width: 750px"
-                        >
-                          <mat-label>Buscar:</mat-label>
-                          <input matInput />
-                        </mat-form-field>
-
-                        <table
-                          mat-table
-                          [dataSource]="dataSource"
-                          class="mat-elevation-z8"
-                        >
-                          <!-- Position Column -->
-                          <ng-container matColumnDef="position">
-                            <th mat-header-cell *matHeaderCellDef>No.</th>
-                            <td mat-cell *matCellDef="let element">
-                              {{ element.position }}
-                            </td>
-                          </ng-container>
-
-                          <!-- Name Column -->
-                          <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef>Name</th>
-                            <td mat-cell *matCellDef="let element">
-                              {{ element.name }}
-                            </td>
-                          </ng-container>
-
-                          <!-- Weight Column -->
-                          <ng-container matColumnDef="weight">
-                            <th mat-header-cell *matHeaderCellDef>Weight</th>
-                            <td mat-cell *matCellDef="let element">Datro2</td>
-                          </ng-container>
-
-                          <!-- Symbol Column -->
-                          <ng-container matColumnDef="symbol">
-                            <th mat-header-cell *matHeaderCellDef>Symbol</th>
-                            <td mat-cell *matCellDef="let element">
-                              <button mat-raised-button color="primary">
-                                <mat-icon>add</mat-icon> Asignar
-                              </button>
-                            </td>
-                          </ng-container>
-
-                          <tr
-                            mat-header-row
-                            *matHeaderRowDef="displayedColumns"
-                          ></tr>
-                          <tr
-                            mat-row
-                            *matRowDef="let row; columns: displayedColumns"
-                          ></tr>
-                        </table>
-                      </div>
-
-                      <div class="modal-footer"></div>
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
+              <button mat-raised-button style="margin-left: 25px" data-bs-toggle="modal" data-bs-target="#modal-formulario">
+                <mat-icon>add</mat-icon>
+              </button> 
             </div>
 
             <div style="text-align: center; margin-top: 25px">
@@ -335,7 +251,7 @@
               >
                 Back
               </button>
-              <button style="margin-right: 12px" mat-raised-button color="warn">
+              <button style="margin-right: 12px" mat-raised-button color="warn" (click)="creartutoremp()">
                 Finalizar
               </button>
               <button
@@ -350,5 +266,65 @@
         </div>
       </mat-step>
     </mat-stepper>
+
+
+<!-- Modal con Boostrap -->
+
+<div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="container">
+
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> -->
+        <div class="container">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef>Weight</th>
+              <td mat-cell *matCellDef="let element">DATO1</td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef>Symbol</th>
+              <td mat-cell *matCellDef="let element">DATO 2</td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons aria-label="Select page of periodic elements">
+          </mat-paginator>
+          <div style="text-align: right">
+            <button style="margin-right: 25px" mat-raised-button color="warn">
+              Finalizar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
   </body>
 </html>

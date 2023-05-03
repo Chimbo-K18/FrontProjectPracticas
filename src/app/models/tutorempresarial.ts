@@ -1,5 +1,5 @@
+import { Usuarios } from 'src/app/models/usuarios';
 import { Empresa } from "./empresa";
-import { usuario } from "./usuario";
 import { personasemp } from "./personaemp";
 export class tutorempresarial {
     idtutorempresarial!: number;
@@ -12,7 +12,7 @@ export class tutorempresarial {
 
     // idpersonaemp!:number;
     Empresa?: Empresa;
-    usuario?: usuario;
+    usuario?: Usuarios;
     personasemp?: personasemp;
 
 }

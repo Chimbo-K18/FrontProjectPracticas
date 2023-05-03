@@ -1,7 +1,8 @@
+import { RolToUser } from 'src/app/models/RolToUser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Rol } from '../models/rol';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,6 @@ export class rolService {
 
   
   buscarrol(idrol: any){
-    return this.http.get<Rol>(this.url+'/buscar/'+idrol);
+    return this.http.get<RolToUser>(this.url+'/buscar/'+idrol);
   }
 }

@@ -467,3 +467,63 @@
       width: auto;
       display: block;
   }
+
+
+  .dsboton{
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0;
+    border: none;
+    outline: none;
+    padding: 0 1rem;
+    height: 36px;
+    min-width: 64px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+  }
+  /* IMAGEN */
+
+.personal-image {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.personal-image input[type="file"] {
+  display: none;
+}
+
+.personal-figure {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  /* background-image:url('https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png'); */
+}
+.personal-figure .imgocul{
+  visibility: hidden;
+}
+
+.personal-avatar {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all ease-in-out .3s;
+  border-radius: 100px;
+}
+
+.personal-avatar:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 100px;
+}
+
+
+
+/* FIN */
