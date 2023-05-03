@@ -12,6 +12,8 @@ import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 import {MatTableModule} from '@angular/material/table';
@@ -35,6 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatPaginatorModule,
     MatIconModule,
+    MatDatepickerModule, // import MatDatepickerModule
+    MatNativeDateModule,
     RegisterConvenioRoutingModule
   ],
   exports:[
