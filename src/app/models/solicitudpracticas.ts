@@ -3,7 +3,7 @@ import { Byte } from "@angular/compiler/src/util";
 export class SolicitudPracticas {
 
     idSolicitudPracticas!: number;
-    fechaEnvioSolicitud!: Date;
+    fechaEnvioSolicitud!: string
     numeroEstudiantes!: number;
     nombreSolicitud!: string;
     fechaAceptacion!: Date;
@@ -11,7 +11,10 @@ export class SolicitudPracticas {
     estadoConvocatoria!: boolean;
     estadoActividad!: boolean;
     descripcionActividades!: string;
-
+    documentoSolicitudPracticas: DocumentoSolPracticas | undefined;
+    tutorEmpresarial: TutorEmpresarial | undefined;
+    responsablePracticas: ResponsablePracticas | undefined;
+    empresa: Empresa | undefined;
 
 }
 
