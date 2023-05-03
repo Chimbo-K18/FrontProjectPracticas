@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { CarreraService } from 'src/app/services/carrera.service';
 
 export interface PeriodicElement {
   name: string;
@@ -41,10 +42,6 @@ export class RegisterConvenioComponent  {
 
   //FINTABLA
 
-
-
-
-
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -54,7 +51,25 @@ export class RegisterConvenioComponent  {
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder) {}
+
+  constructor(private _formBuilder: FormBuilder, private carrera: CarreraService){
+    
+    this.traercarreras();
+  }
+  Carrera:any;
+
+carrera_nombre : any [] = [];
+
+traercarreras() {
+  this.carrera.getCarreras().subscribe(data => {
+    this.carrera_nombre = data;
+    console.log(this.carrera_nombre);
+  });
+}
+carreraSeleccionada:any;
+seleccionarCarrera() {
+  console.log(this.carreraSeleccionada);
+}
 
   ngOnInit(): void {
   }

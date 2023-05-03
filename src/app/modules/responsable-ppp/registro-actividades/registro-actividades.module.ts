@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -26,7 +27,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatIconModule,
     MatTableModule,
-    RegistroActividadesRoutingModule
+    RegistroActividadesRoutingModule,
+    FormsModule
   ],
   exports:[
     RegistroActividadesComponent

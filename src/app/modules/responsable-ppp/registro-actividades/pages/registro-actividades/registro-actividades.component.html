@@ -36,7 +36,7 @@
           <h3 style="margin-right: 20px"><STrong>Carrera:</STrong></h3>
           <mat-form-field class="example-full-width" style="width: 300px">
             <mat-label>Carrera</mat-label>
-            <input matInput placeholder="Empresa" />
+            <input matInput placeholder="Carrera" (change)="buscarMateriasPorCarrera($event)"/>
           </mat-form-field>
         </div>
       </mat-card>
@@ -81,12 +81,14 @@
         </h3>
 
         <div>
-          <select id="country" name="country">
-            <option value="australia">Seleccione la materia</option>
-            <option value="dato1">DATO 1</option>
-            <option value="dato2">DATO 2</option>
+
+          
+          <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada" (ngModelChange)="seleccionarCarrera()">
+            <option value="">Seleccione una materia</option>
+            <option *ngFor="let materia of materias" [value]="materia">{{ materia }}</option>
           </select>
 
+        
           <div style="text-align: center">
             <button mat-raised-button color="primary" style="margin-right: 20px">
               Guardar

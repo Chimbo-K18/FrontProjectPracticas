@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { CarreraService } from 'src/app/services/carrera.service';
+import { MateriaService } from 'src/app/services/materias.service';
 
 
 export interface PeriodicElement {
@@ -38,7 +40,51 @@ export class RegistroActividadesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private carrera: CarreraService, private materia: MateriaService){
+    
+    // this.traercarreras();
+  }
+  Carrera:any;
+ capturarmateriasporcarrera(){
+
+  this.materia.getlistarmateriascarrera(this.Carrera).subscribe(data =>{
+    data.materia_nombre;
+    console.log(data.materia_nombre);
+  } );
+ } 
+ materias: any[] = [];
+
+
+
+ buscarMateriasPorCarrera(event: any) {
+  const carrera = decodeURIComponent(event.target.value);
+  if (carrera) {
+    this.materia.getlistarmateriascarrera(carrera).subscribe((data: any) => {
+      this.materias = data;
+    });
+  } else {
+    this.materias = [];
+  }
+}
+
+
+// carrera_nombre : any [] = [];
+// traercarreras() {
+//   this.carrera.getCarreras().subscribe(data => {
+//     this.carrera_nombre = data;
+//     console.log(this.carrera_nombre);
+//   });
+// }
+// carreraSeleccionada:any;
+// seleccionarCarrera() {
+//   console.log(this.carreraSeleccionada);
+// }
+
+
+carreraSeleccionada:any;
+seleccionarCarrera() {
+  console.log(this.carreraSeleccionada);
+}
 
   ngOnInit(): void {
   }

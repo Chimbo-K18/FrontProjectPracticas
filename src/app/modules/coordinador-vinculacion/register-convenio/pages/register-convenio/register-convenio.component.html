@@ -180,11 +180,9 @@
             <h3><strong>Fecha de Inicialización:</strong></h3>
 
 
-            <select id="country" name="country">
-              <option value="australia">Seleccione una carrera</option>
-              <option value="dato1">Dato1</option>
-              <option value="dato2">Dato2</option>
-              <option value="dato3">Dato3</option>
+            <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada">
+              <option value="">Seleccione una carrera</option>
+              <option *ngFor="let carrera of carrera_nombre" [value]="carrera">{{ carrera }}</option>
             </select>
            
                     
