@@ -1,0 +1,19 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Convenio } from '../models/convenio';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ConvenioService {
+  url: string = 'http://localhost:8080/api/convenio';
+  constructor(private http: HttpClient) { }
+
+  crearConvenio(convenio: Convenio): Observable<Convenio>{
+    return this.http.post<Convenio>(this.url+'/crear',convenio);
+  }
+
+  
+
+}

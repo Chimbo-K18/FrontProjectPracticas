@@ -1,194 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista Productos</title>
-</head>
-<body class="bodyL">
-  
-
-
-    <h1> <strong>Registro Convenio </strong></h1>
-
+  </head>
+  <body class="bodyL">
+    <h1><strong>Registro Convenio </strong></h1>
 
     <mat-stepper linear #stepper class="headerxd">
-
-      <mat-step >
-        <form [formGroup]="firstFormGroup" >
+      <mat-step>
+        <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Fase 1</ng-template>
 
-
-          <mat-form-field class="example-full-width" style="width: 600px; color: #000;">
-            <mat-label>Buscar cedula </mat-label>
-            <input matInput placeholder="Buscar...">
+          <mat-form-field
+            class="example-full-width"
+            style="width: 600px; color: #000"
+          >
+            <mat-label>Buscar RUC de la Empresa</mat-label>
+            <input
+              matInput
+              placeholder="Buscar..."
+              [formControl]="searchControl"
+            />
           </mat-form-field>
-          <div style="display: flex; flex-direction: column; align-items: center;">
-         
+          <div
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <mat-card style="width: 750px; margin-top: 25px">
+              <table
+                mat-table
+                [dataSource]="dataSource"
+                class="mat-elevation-z8"
+              >
+                <!-- Position Column -->
+                <ng-container matColumnDef="idEmpresa">
+                  <th mat-header-cell *matHeaderCellDef>Id Empresa</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    {{ empresa.idEmpresa }}
+                  </td>
+                </ng-container>
 
-            <mat-card style="width: 750px; margin-top: 25px;">
+                <!-- Name Column -->
+                <ng-container matColumnDef="nombreEmpresa">
+                  <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    {{ empresa.nombreEmpresa }}
+                  </td>
+                </ng-container>
 
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-              </ng-container>
-            
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-              </ng-container>
-            
-              <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> Data1</td>
-              </ng-container>
-            
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" matStepperNext>Asignacion</button></td>
-        
-              </ng-container>
-            
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator [pageSizeOptions]="[2, 4, 6]"
-                         showFirstLastButtons
-                         aria-label="Select page of periodic elements">
-          </mat-paginator>
-        </mat-card>
-        
-        
+                <!-- Weight Column -->
+                <ng-container matColumnDef="rucEmpresa">
+                  <th mat-header-cell *matHeaderCellDef>RUC</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    {{ empresa.rucEmpresa }}
+                  </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="correo">
+                  <th mat-header-cell *matHeaderCellDef>Correo</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    {{ empresa.correo }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="direccion">
+                  <th mat-header-cell *matHeaderCellDef>Dirección</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    {{ empresa.direccion }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="numeroTelefono">
+                  <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    {{ empresa.numeroTelefono }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="opcion">
+                  <th mat-header-cell *matHeaderCellDef>Generar Convenio</th>
+                  <td mat-cell *matCellDef="let empresa">
+                    <button mat-raised-button color="primary" matStepperNext>
+                      *
+                    </button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+              <mat-paginator
+                [pageSizeOptions]="[2, 4, 6]"
+                showFirstLastButtons
+                aria-label="Select page of empresas"
+              >
+              </mat-paginator>
+            </mat-card>
           </div>
-
-
-
-
-
-
-
-
-
-          
-          
         </form>
       </mat-step>
-        
-        <mat-step [stepControl]="secondFormGroup" >
-            <form [formGroup]="secondFormGroup" >
-              <ng-template matStepLabel>Fase 2</ng-template>
-  
 
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fase 2</ng-template>
 
-              <div class="container">
-                
+          <div class="container">
+            <mat-card class="example-card" style="width: 700px">
+              <mat-card-content>
+                <h1 style="text-align: center">Datos Convenio</h1>
 
-              
-              <mat-card class="example-card" style="width: 500px;">
-          
-                  <mat-card-content>
-           
-                    <h1 style="text-align: left;"> Datos Personales  </h1>
-                    
-                    <div>
-                        <div style="display: flex;">
-                            <div style="margin-right: 150px;">
-                                <h3><strong>Número de Convenio:</strong></h3>
-                                <p style="font-size: 15px;">PPP-ISTA-001-2023</p>
-                            </div>
-                            <div>
-                                <h3><strong>Fecha Elaboración:</strong></h3>
-                                <p style="font-size: 15px;">27/04/2023</p>
-                            </div>
-                        </div>
-
-
-
-                            <H3><strong>Número de ITV:</strong> </H3>
-                            <p style="font-size: 15px;">SIES-ISTA-001-2023</p>
-
-                    </div>
-                         
-                         
-                        <div >
-
-
-
-                              <mat-form-field appearance="fill" style="margin-right: 50px;width:250px;">
-                                <mat-label>Descipcion:</mat-label>
-                                <input matInput placeholder="Descipcion:" formControlName="secondCtrl" required>
-                              </mat-form-field>
-                              
-
-          
-
-
-                              <button mat-raised-button >Subir Pdf</button>
-
-                      </div>
-
-                    
-
-                      
-        
-                      
-                         
-  
-                      <div style="margin-top:25px; text-align: center;">
-                        <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
-                        </div>
-                  
-                          
-                            
-                  
-          
-                  
-                  </mat-card-content>
-                  
-                </mat-card>
-            </div>
-  
-
-  
-              
-              
-            </form>
-          </mat-step>
-
-          
-
-
-        <mat-step>
-            <ng-template matStepLabel>Fase 3</ng-template>
-            <div class="container">
-
-
-                
-
-
-                <mat-card class="example-card">
-               <h1 style="text-align: left;"> Datos Personales  </h1>
-               <div style="display: flex;">
-                <div style="margin-right: 150px;">
-                    <h3><strong>Fecha de Inicialización:</strong></h3>
-                    <p style="font-size: 15px;">27/04/2023</p>
-                </div>
                 <div>
-                    <h3><strong>Fecha Caducidad:</strong></h3>
-                    <p style="font-size: 15px;">27/04/2023</p>
-                </div>
-            </div>
+                  <div style="display: flex">
+                    <mat-form-field
+                      appearance="fill"
+                      style="margin-right: 20px; width: 300px"
+                    >
+                      <mat-label>Número Convocatoria:</mat-label>
+                      <input matInput />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
+                      <mat-label>Fecha de Elaboración:</mat-label>
+                      <input matInput [matDatepicker]="picker">
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
 
+                  <mat-form-field
+                    appearance="fill"
+                    style="margin-right: 20px; width: 300px"
+                  >
+                    <mat-label>Número de ITV:</mat-label>
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <mat-form-field
+                    appearance="fill"
+                    style="margin-right: 50px; width: 300px"
+                  >
+                    <mat-label>Descripción:</mat-label>
+                    <input
+                      matInput
+                      placeholder="Descripción:"
+                      formControlName="secondCtrl"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <button mat-raised-button>Subir Pdf</button>
+                </div>
+
+                <div style="margin-top: 25px; text-align: center">
+                  <button
+                    style="margin-right: 12px"
+                    mat-raised-button
+                    color="primary"
+                    matStepperPrevious
+                  >
+                    Back
+                  </button>
+                  <button mat-raised-button color="primary" matStepperNext>
+                    Siguiente
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Fase 3</ng-template>
+        <div class="container">
+          <mat-card class="example-card">
+            <h1 style="text-align: left">Datos Personales</h1>
+            <div style="display: flex">
+              <div style="margin-right: 150px">
+                <h3><strong>Fecha de Inicialización:</strong></h3>
+                <p style="font-size: 15px">27/04/2023</p>
+              </div>
+              <div>
+                <h3><strong>Fecha Caducidad:</strong></h3>
+                <p style="font-size: 15px">27/04/2023</p>
+              </div>
+            </div>
 
             <h3><strong>Fecha de Inicialización:</strong></h3>
-
 
             <select id="country" name="country">
               <option value="australia">Seleccione una carrera</option>
@@ -196,31 +202,30 @@
               <option value="dato2">Dato2</option>
               <option value="dato3">Dato3</option>
             </select>
-           
-                    
 
-                      <div style="text-align: center;">
-                        <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                        <button style="margin-right: 12px;" mat-raised-button color="warn">Aceptar</button>
-                        <button  mat-raised-button color="primary"(click)="stepper.reset()">Reset</button>
-                      </div>
-        
-                    </mat-card>
-
-                    
-                </div>
-        </mat-step>
-
-       
-      </mat-stepper>
-
-      
-   
-    
-
-
-
-  
-</body>
-
+            <div style="text-align: center">
+              <button
+                style="margin-right: 12px"
+                mat-raised-button
+                color="primary"
+                matStepperPrevious
+              >
+                Back
+              </button>
+              <button style="margin-right: 12px" mat-raised-button color="warn">
+                Aceptar
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="stepper.reset()"
+              >
+                Reset
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </body>
 </html>
