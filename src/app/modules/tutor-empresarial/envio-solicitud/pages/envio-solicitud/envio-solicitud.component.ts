@@ -9,6 +9,10 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Convenios } from 'src/app/models/convenios';
+import { ConveniosService } from 'src/app/services/convenios.service';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
+import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 
 export interface PeriodicElement {
   name: string;
@@ -69,10 +73,21 @@ export class EnvioSolicitudComponent implements OnInit {
   
   //llamado a la clase 
   public solicitudPractica: SolicitudPracticas=new SolicitudPracticas();
+  convenios: Convenios[] | undefined ;
+  listaDetalles: DetalleConvenio[] | undefined;
 
-  constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService, private router:Router) { }
+
+
+  constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService, 
+    private router:Router, private convenioService: ConveniosService,
+    private detalleService: DetalleconvenioService) { }
 
   ngOnInit(): void {
+
+
+    this.listar();
+    this.listarDetalles();
+
     const dropArea = document.querySelector<HTMLElement>(".drop_box")!;
     const button = dropArea.querySelector<HTMLButtonElement>("button")!;
     const input = dropArea.querySelector<HTMLInputElement>("input")!;
@@ -142,6 +157,16 @@ export class EnvioSolicitudComponent implements OnInit {
     }else{
       this.create();
     }
+
+  }
+
+  public listar() {
+    this.convenioService.getConvenios().subscribe((res) => (this.convenios = res))
+
+  }
+
+  public listarDetalles() {
+    this.detalleService.getDetalleConvenio().subscribe((res) => (this.listaDetalles = res))
 
   }
 
