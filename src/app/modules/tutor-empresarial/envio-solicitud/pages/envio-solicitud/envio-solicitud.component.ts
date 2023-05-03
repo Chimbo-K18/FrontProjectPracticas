@@ -1,6 +1,7 @@
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service'
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 
@@ -105,8 +106,8 @@ export class EnvioSolicitudComponent implements OnInit {
     };
    
     const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
-    this.mivariable=valor||'{}';
-
+    this.mivariable=valor.fecha_caducidad;
+    console.log(this.mivariable)
 
   }
  
