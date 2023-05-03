@@ -106,7 +106,7 @@ export class EnvioSolicitudComponent implements OnInit {
     };
    
     const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
-    this.mivariable=valor.fecha_caducidad;
+    this.mivariable=valor.nombre_carrera;
     console.log(this.mivariable)
 
   }
