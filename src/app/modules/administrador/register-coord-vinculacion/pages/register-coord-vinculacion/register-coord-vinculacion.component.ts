@@ -57,8 +57,11 @@ export class RegisterCoordVinculacionComponent implements OnInit {
     this.traerdocente();
   }
 
-  
 
+
+  traermaterias(){
+    
+  }
   openModal(): void {
     const dialogRef = this.dialog.open(this.modal);
 
