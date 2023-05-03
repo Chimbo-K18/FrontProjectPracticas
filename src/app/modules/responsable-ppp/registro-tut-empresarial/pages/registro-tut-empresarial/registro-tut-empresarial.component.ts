@@ -1,9 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
 import { rolService } from './../../../../../services/rol.service';
-import { usuarioService } from './../../../../../services/usuario.service';
-import { tutorempresarialService } from './../../../../../services/tutorempresarial.service';
-import { tutorempresarial } from './../../../../../models/tutorempresarial';
-import { personasemp } from './../../../../../models/personaemp';
+import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
+import { usuarioService } from 'src/app/services/usuario.service';
+import { tutorempresarial } from 'src/app/models//tutorempresarial';
+import { personasemp } from 'src/app/models/personaemp';
 import { personaempService } from './../../../../../services/personaemp.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
@@ -11,10 +11,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuarios } from 'src/app/models/usuarios';
-
+import { UsuarioRol } from 'src/app/models/UsuarioRol';
 // import { FormControl, FormGroup } from '@angular/forms';
 import { Empresa } from 'src/app/models/empresa';
 import { RolToUser } from 'src/app/models/RolToUser';
+import Swal from 'sweetalert2';
+import { UserService } from 'src/app/services/user.service';
+import { PermisosService } from 'src/app/services/permisos.service';
 // import { Rol } from 'src/app/models/rol';
 export interface PeriodicElement {
   name: string;
@@ -91,10 +94,22 @@ export class RegistroTutEmpresarialComponent {
     idUsuario: any;
     idEmpresa: any;
     idrol:any;
-  
+  ////
+  usuario: Usuarios = new Usuarios;
+  cedulafi:any
+  correo:any
+  carrera:any
+  contrasenia:any;
+  roltouser: RolToUser = new RolToUser();
+  usuariosrol: UsuarioRol = new UsuarioRol()
+  roles: String[] = [];
+  nombre:any;
+  apellido:any;
+  ROLE_TUTOREMPRESARIAL: boolean= false;
 
     constructor(private _formBuilder: FormBuilder,public dialog: MatDialog, private personaempService: personaempService
-      , private tutorempresarialService: tutorempresarialService , private usuarioService: usuarioService, private rolService: rolService) {}
+      , private tutorempresarialService: tutorempresarialService , private usuarioService: usuarioService, private rolService: rolService,
+      private userService: UserService,  private permisoservice: PermisosService) {}
   
 
     ngOnInit(): void {
@@ -169,13 +184,43 @@ export class RegistroTutEmpresarialComponent {
     }  
     
     
+/////agregar roool
+Agregarrol(cedula: any) {
+  this.userService.getcedula(this.usuario.cedula).subscribe((usuarios) => {
+    this.usuariosrol = usuarios;
+    this.roltouser.cedula = this.usuariosrol.cedula;
+    
+    // Buscar si el usuario ya tiene el rol "ROLE_CORDINADOR"
+    const tieneRolCordinador = this.usuariosrol.roles.some(r => r.rolNombre === 'ROLE_TUTOREMPRESARIAL');
+    
+    // Si el usuario no tiene el rol, se agrega
+    if (!tieneRolCordinador) {
+      this.roles.push('ROLE_TUTOREMPRESARIAL');
+    }
+
+    this.roltouser.roles = this.roles;
+    console.log(this.roltouser);
+
+    this.permisoservice.addRoleToUser(this.roltouser).subscribe(x => {
+      this.roles = new Array<string>();
+
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Roles Actualizado',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      this.closeModal();
+    });
+  });
+}
 
 
 
 
 
-
- // IMAGEN
+ // imageeeeeeeeeeeeeeeeeeeeen
  file: any = '';
  image!: any;
  retrievedImage: any;
@@ -183,37 +228,22 @@ export class RegistroTutEmpresarialComponent {
  cap_nombre_archivo: any;
  selectedFile!: File;
  public imageSelected(event: any) {
-    // VALIDAR SOLO IMAGENES
     const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
     const file = event.target.files[0];
     const extension = file.name.split('.').pop().toLowerCase();
     const fileSize = file.size / 1024; // tamaño en KB
 
     if (!allowedExtensions.includes(extension)) {
-      // código para manejar archivos no válidos
     } else if (fileSize > 1000) {
-      // this.toastrService.error(
-      //   'La imagen seleccionada es demasiado grande. El tamaño máximo permitido es de 1000 KB.',
-      //   'Tamaño de archivo no válido!',
-      //   {
-      //     timeOut: 3000,
-      //   }
-      // );
+    
       return;
     }
 
     if (!allowedExtensions.includes(extension)) {
-      // this.toastrService.error(
-      //   'Solo se permiten imágenes en formato JPG, PNG o GIF.',
-      //   'Formato de archivo no válido!',
-      //   {
-      //     timeOut: 3000,
-      //   }
-      // );
+ 
       return;
     }
    this.selectedFile = event.target.files[0];
-   // mostrar imagen seleccionada
    this.image = this.selectedFile;
    const reader = new FileReader();
    reader.readAsDataURL(this.selectedFile);
@@ -225,9 +255,7 @@ export class RegistroTutEmpresarialComponent {
    console.log('Nombre imagen original => ' + this.foto_usuario);
  }
 
- cargarImagenVoluntario() {
-  //  this.fotoService.guararImagenes(this.selectedFile);
- }
+
 
 
   }
