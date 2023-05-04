@@ -1,4 +1,4 @@
-import { DocumentoConvenio } from "./documentoConvenio";
+import { DocumentoConvenio } from "./documentoconvenio";
 
 export class Convenio {
 

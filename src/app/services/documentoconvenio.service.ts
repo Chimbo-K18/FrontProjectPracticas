@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DocumentoConvenio } from '../models/documentoConvenio';
+import { DocumentoConvenio } from '../models/documentoconvenio';
 
 @Injectable({
   providedIn: 'root'
