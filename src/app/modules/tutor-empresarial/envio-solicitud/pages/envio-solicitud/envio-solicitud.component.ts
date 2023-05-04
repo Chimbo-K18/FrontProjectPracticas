@@ -1,8 +1,13 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
-import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service'
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 
 import { MatPaginator } from '@angular/material/paginator';
@@ -23,16 +28,16 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
 ];
 
 @Component({
@@ -42,14 +47,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true},
+      useValue: { showError: true },
     },
   ],
 })
-
-
 export class EnvioSolicitudComponent implements OnInit {
-
   detalles: any;
   //myForm: FormGroup;
 
@@ -76,107 +78,96 @@ export class EnvioSolicitudComponent implements OnInit {
   thirdFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
-  
-  //llamado a la clase 
-  public solicitudPractica: SolicitudPracticas=new SolicitudPracticas();
-  convenios: Convenio[] | undefined ;
+
+  //llamado a la clase
+  public solicitudPractica: SolicitudPracticas = new SolicitudPracticas();
+  convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
-  mivariable!:string;
+  mivariable!: string;
 
-  constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService, 
-    private router:Router, private convenioService: ConveniosService,
-    private detalleService: DetalleconvenioService) { 
-    }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private solicitud: SolicitudpracticasService,
+    private router: Router,
+    private convenioService: ConveniosService,
+    private detalleService: DetalleconvenioService
+  ) {}
 
   ngOnInit(): void {
-
-    
     this.listar();
     this.listarDetalles();
 
-    const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
-    this.mivariable=valor.nombre_carrera;
+    this.getCurrentDate();
 
+    const valor = JSON.parse(
+      sessionStorage.getItem('detalleSeleccionado') || '{}'
+    );
+    this.mivariable = valor.nombre_carrera;
 
-    const dropArea = document.querySelector<HTMLElement>(".drop_box")!;
-    const button = dropArea.querySelector<HTMLButtonElement>("button")!;
-    const input = dropArea.querySelector<HTMLInputElement>("input")!;
+    const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
+    const button = dropArea.querySelector<HTMLButtonElement>('button')!;
+    const input = dropArea.querySelector<HTMLInputElement>('input')!;
+
     let file: File;
     let filename: string;
 
     button.onclick = () => {
       input.click();
     };
-   
-
   }
- 
 
-  //Metodo para guardar en el sessionStorage lo que se selecciona en la tabla con el boton 
-  seleccionarDetalle(detalles: any) {
-  sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
+  getCurrentDate() {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
-  
 
-
-/*
+  //Metodo para guardar en el sessionStorage lo que se selecciona en la tabla con el boton
   seleccionarDetalle(detalles: any) {
     sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
-    
-    // Obtener los datos del sessionStorage y parsearlos de nuevo a un objeto JavaScript
-    const detalleSeleccionado = JSON.parse(sessionStorage.getItem('detalleSeleccionado')|| '{}');
-    
-    // Inicializar los valores del formulario con los datos obtenidos del sessionStorage
-    this.myForm = new FormGroup({
-      carrera: new FormControl(detalleSeleccionado.carrera, Validators.required),
-      // Agregar más controles de formulario según sea necesario
-    });
   }
-  
-*/
- 
-  
 
 
-
-  public create(){
+  public create() {
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
-      res => {
+      (res) => {
         //this.router.navigate(['/administrador/lista-vehiculos'])
-      console.log(res)
-            Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Se a creado correctamente',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    
+        console.log(res);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Se a creado correctamente',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       },
 
-      err => console.error(err)
-    )
+      (err) => console.error(err)
+    );
   }
 
-  validaRequest(){
-
-    if(!this.solicitud.getRequest(this.solicitudPractica.idSolicitudPracticas)){
+  validaRequest() {
+    if (
+      !this.solicitud.getRequest(this.solicitudPractica.idSolicitudPracticas)
+    ) {
       console.log('Solicitud Encontrada');
-    }else{
+    } else {
       this.create();
     }
-
   }
 
   public listar() {
-    this.convenioService.getConvenios().subscribe((res) => (this.convenios = res))
-
+    this.convenioService
+      .getConvenios()
+      .subscribe((res) => (this.convenios = res));
   }
 
   public listarDetalles() {
-    this.detalleService.getDetalleConvenio().subscribe((res) => (this.listaDetalles = res))
-
+    this.detalleService
+      .getDetalleConvenio()
+      .subscribe((res) => (this.listaDetalles = res));
   }
-
 }
