@@ -17,5 +17,9 @@ export class EmpresaService {
   listarEmpresas(){
     return this.http.get<Empresa[]>(this.url+'/listar');
   }
+
+  getPorId(idEmpresa: number){
+    return this.http.get<Empresa>(this.url+ '/buscar/'+idEmpresa);
+  }
   
 }

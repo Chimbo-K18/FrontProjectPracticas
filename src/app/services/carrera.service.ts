@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Verdocentef } from '../models/verdocentef';
+import { Verestudiantef } from '../models/verestudiantef';
+import { verCarreras } from '../models/verCarreras';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CarreraService {
+
+  constructor(private http: HttpClient) { }
+
+  private urlFenix: string = 'http://localhost:8080/api/verCarreras';
+
+  getCarreras(){
+    return this.http.get<verCarreras[]>(this.urlFenix + '/nombrescarrera');
+  }
+}

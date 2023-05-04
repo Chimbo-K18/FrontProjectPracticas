@@ -11,6 +11,7 @@ import { DetalleConvenio } from 'src/app/models/detalleConvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { DocumentoConvenio } from 'src/app/models/documentoConvenio';
 import { DocumentoconvenioService } from 'src/app/services/documentoconvenio.service';
+import { CarreraService } from 'src/app/services/carrera.service';
 
 
 
@@ -49,20 +50,32 @@ export class RegisterConvenioComponent  {
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+  
 
   isEditable = false;
 
-  convenio: Convenio = new Convenio();
-  documentoConvenio: DocumentoConvenio = new DocumentoConvenio();
-  detalleConvenio: DetalleConvenio = new DetalleConvenio();
-  
-  constructor(private _formBuilder: FormBuilder, private empresaService: EmpresaService, private convenioService: ConvenioService, private detalleConvenioService: DetalleconvenioService, private documentoConvenioService: DocumentoconvenioService) {}
+  convenio: Convenio = new Convenio;
+  documentoConvenio: DocumentoConvenio = new DocumentoConvenio;
+  detalleConvenio: DetalleConvenio = new DetalleConvenio;
 
+  constructor(private _formBuilder: FormBuilder, private empresaService: EmpresaService, private convenioService: ConvenioService, private detalleConvenioService: DetalleconvenioService, private documentoConvenioService: DocumentoconvenioService, private carrera: CarreraService) {
+    this.traercarreras();
+  }
   ngOnInit(): void {
     this.obtenerEmpresas();
     this.searchControl.valueChanges.subscribe(value => {
       this.dataSource.filter = value.trim().toLowerCase();
     });
+  }
+
+   obtenerCedulaSeleccionada(idempresa: number){
+    this.empresaService.getPorId(idempresa).subscribe(
+      data =>{
+        this.empresa = data;
+        console.log(this.empresa);
+        
+      });
+
   }
 
   obtenerEmpresas() {
@@ -88,19 +101,53 @@ export class RegisterConvenioComponent  {
     )
   }
 
-  guardarConvenioCompleto() {
-    this.convenioService.crearConvenio(this.convenio).subscribe(() => {
-      this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe(() => {
-        this.documentoConvenioService.subirdocumentoConvenio(this.documentoConvenio).subscribe(() => {
-          Swal.fire({
-            position: 'top',
-            icon: 'success',
-            title: 'Convenio creado satisfactoriamente.',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        });
-      });
-    });
+  buscarEmpresaPorId(idEmpresa:number){
+    this.empresaService.getPorId(idEmpresa).subscribe(
+      data =>{
+        this.empresa = data;
+        console.log(this.empresa);
+        
+      }
+    )
   }
+
+  carrera_nombre : any [] = [];
+traercarreras() {
+  this.carrera.getCarreras().subscribe(data => {
+    this.carrera_nombre = data;
+    console.log(this.carrera_nombre);
+  });
+}
+carreraSeleccionada:any;
+seleccionarCarrera() {
+console.log(this.carreraSeleccionada);
+}
+  
+
+//   guardadoFull(){
+//     this.documentoConvenioService.subirdocumentoConvenio(documentoConvenio).subscribe(
+//       data=>{
+//         this.documentoConvenio = data;
+//         this.convenio.documentoConvenio = this.documentoConvenio
+//         this.convenioService.crearConvenio(this.convenio).subscribe(
+//           data =>{
+//             this.convenio = data;
+//             this.detalleConvenio.convenio = this.convenio
+//             this.detalleConvenio.empresa = this.empresa
+//             this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe(
+//               data =>{
+//                 Swal.fire({
+//                   position: 'top',
+//                   icon: 'success',
+//                   title: 'Convenio registrado satisfactoriamente.',
+//                   showConfirmButton: false,
+//                   timer: 2000,
+//                 });
+//               }
+//             )
+//           }
+//         )
+//       }
+//     )
+//   }
 }
