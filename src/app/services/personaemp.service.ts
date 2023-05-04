@@ -15,5 +15,9 @@ export class personaempService {
     return this.http.post<personasemp>(this.url+'/crear',personaemp);
   }
   
+  
+  buscarpersona(idpersona: any):Observable<personasemp>{
+    return this.http.get<personasemp>(this.url + `/buscar/ ${idpersona}`)
+  }
 
 }

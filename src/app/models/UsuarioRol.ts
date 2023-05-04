@@ -7,7 +7,7 @@ export class UsuarioRol{
 	carrera: string='';
 	contrasenia: string='';
 	roles: Rol[]=[];
-	personasemp: personasemp[]=[];
+
 
 }
 class Rol{
@@ -15,6 +15,3 @@ class Rol{
 	idRol: any;
 	rolNombre : any;
 }
-class personasemp{
-    idpersonaemp!: number;
-  }

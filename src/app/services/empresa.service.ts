@@ -17,5 +17,9 @@ export class EmpresaService {
   listarEmpresas(){
     return this.http.get<Empresa[]>(this.url+'/listar');
   }
-  
+
+   buscarempresa(idEmpresa: any):Observable<Empresa>{
+    return this.http.get<Empresa>(this.url + `/buscar/ ${idEmpresa}`)
+  }
+
 }

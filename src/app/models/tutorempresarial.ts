@@ -7,12 +7,8 @@ export class tutorempresarial {
     departamento!: string;
     titulo!: string;
     numerocontacto!: string;
-    // idempresa!:number;
-    // idusuario!:number;
-
-    // idpersonaemp!:number;
     Empresa?: Empresa;
     usuario?: Usuarios;
-    personasemp?: personasemp;
+
 
 }

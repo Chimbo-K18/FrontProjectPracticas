@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
-import { DetalleConvenio } from 'src/app/models/detalleconvenio';
+import { DetalleConvenio } from 'src/app/models/detalleConvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 
 export interface PeriodicElement {
@@ -91,7 +91,7 @@ export class EnvioSolicitudComponent implements OnInit {
 
     
     this.listar();
-    this.listarDetalles();
+    // this.listarDetalles();
 
     const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
     this.mivariable=valor.nombre_carrera;
@@ -174,9 +174,9 @@ export class EnvioSolicitudComponent implements OnInit {
 
   }
 
-  public listarDetalles() {
-    this.detalleService.getDetalleConvenio().subscribe((res) => (this.listaDetalles = res))
+  // public listarDetalles() {
+  //   this.detalleService.getDetalleConvenio().subscribe((res) => (this.listaDetalles = res))
 
-  }
+  // }
 
 }

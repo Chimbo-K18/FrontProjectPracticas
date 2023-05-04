@@ -17,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-
+import { FormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -37,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatPaginatorModule,
     MatIconModule,
-    RegistroTutEmpresarialRoutingModule
+    RegistroTutEmpresarialRoutingModule,
+    FormsModule
   ],
   exports: [
     RegistroTutEmpresarialComponent

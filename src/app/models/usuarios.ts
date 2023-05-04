@@ -1,3 +1,5 @@
+import { personasemp } from "./personaemp";
+
 export class Usuarios {
     idUsuario: number=0;
 	cedula: string='';
@@ -6,4 +8,5 @@ export class Usuarios {
 	correo: string='';
 	carrera: string='';
 	contrasenia: string='';
+    personasemp!:personasemp;
 }

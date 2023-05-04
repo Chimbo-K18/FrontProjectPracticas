@@ -33,12 +33,12 @@
             <tr *ngFor="let detalles of listaDetalles">
 
 
-              <td>{{ detalles?.convenio?.idConvenio ?? 'Sin convenio' }}</td>
+              <!-- <td>{{ detalles?.convenio?.idConvenio ?? 'Sin convenio' }}</td>
               <td>{{ detalles?.convenio?.numero_convenio ?? 'Sin convenio' }}</td>
               <td>{{ detalles?.convenio?.numero_itv ?? 'Sin convenio' }}</td>
               <td>{{ detalles?.convenio?.fecha_elaboracion ?? 'Sin convenio' }}</td>
               <td>{{ detalles?.nombre_carrera }}</td>
-      
+       -->
               <td>
                 <button matStepperNext class="btn btn-light " (click)="seleccionarDetalle(detalles)">Seleccionar</button>
 
