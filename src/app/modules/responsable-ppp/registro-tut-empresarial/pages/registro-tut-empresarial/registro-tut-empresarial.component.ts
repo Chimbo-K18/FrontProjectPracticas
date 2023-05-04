@@ -152,7 +152,7 @@ contraseniaDefecto: string="Empresarial123";
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Registro existosp.',
+          title: 'Registro Exitoso.',
           showConfirmButton: false,
           timer: 2000,
         });
@@ -260,9 +260,9 @@ tutorregistrado:any;
           showConfirmButton: false,
           timer: 2000,
         });
-        this.recargarPagina();
+   
       });
-      
+      this.recargarPagina();   
       } 
 //capturar persona
 
