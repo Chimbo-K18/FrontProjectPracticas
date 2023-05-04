@@ -19,22 +19,29 @@
             <span>Dashboard</span>
         </a>
     </li>
-   <li>
+   <!-- <li>
     <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active"routerLink="/administrador/register-coord-vinculacion">
         <i class="fas fa-link"></i>
         <span>Registro de Cordinador</span>
     </a>
-   </li>
-   <li>
+   </li> -->
+   <!-- <li>
     <a href="#"  *ngIf="rolEstudiante == true"  routerLinkActive="active" routerLink="/responsable/registro-actividad">
         <i class="fas fa-link"></i>
         <span>Registro Actividades</span>
     </a>
-   </li>
+   </li> -->
 <li>
-    <a href="#"  *ngIf="rolCordinador == true || rolDirector==true" routerLinkActive="active" routerLink="/coordinador/registro-empresa">
+    <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active" routerLink="/coordinador/registro-empresa">
         <i class="fas fa-link"></i>
         <span>Registro de Empresa</span>
+    </a>
+</li>
+
+<li>
+    <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active" routerLink="/coordinador/registro-convenio">
+        <i class="fas fa-link"></i>
+        <span>Registro Convenio</span>
     </a>
 </li>
   

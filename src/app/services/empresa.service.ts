@@ -13,5 +13,13 @@ export class EmpresaService {
   crearEmpresa(empresa: Empresa): Observable<Empresa>{
     return this.http.post<Empresa>(this.url+'/crear',empresa);
   }
+
+  listarEmpresas(){
+    return this.http.get<Empresa[]>(this.url+'/listar');
+  }
+
+  getPorId(idEmpresa: number){
+    return this.http.get<Empresa>(this.url+ '/buscar/'+idEmpresa);
+  }
   
 }

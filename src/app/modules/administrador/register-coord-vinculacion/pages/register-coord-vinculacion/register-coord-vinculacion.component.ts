@@ -60,7 +60,7 @@ export class RegisterCoordVinculacionComponent implements OnInit {
 
 
   traermaterias(){
-    
+
   }
   openModal(): void {
     const dialogRef = this.dialog.open(this.modal);
@@ -110,6 +110,8 @@ export class RegisterCoordVinculacionComponent implements OnInit {
     }
     console.log(`Cédulas seleccionadas: ${this.cedulasSeleccionadas}`);
   }
+
+  
 
   cedulastra:any;
   obtenerCedulaSeleccionada() {
