@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { verCarreras } from 'src/app/models/verCarreras';
+import { vermateriasf } from 'src/app/models/vermateriasf';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MateriaService } from 'src/app/services/materias.service';
 
@@ -35,13 +37,10 @@ export class RegistroActividadesComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  public vercarrera: verCarreras = new verCarreras();
 
   constructor(private carrera: CarreraService, private materia: MateriaService){
-    
+
     // this.traercarreras();
   }
   Carrera:any;
@@ -51,7 +50,7 @@ export class RegistroActividadesComponent implements OnInit {
     data.materia_nombre;
     console.log(data.materia_nombre);
   } );
- } 
+ }
  materias: any[] = [];
 
 
@@ -67,6 +66,10 @@ export class RegistroActividadesComponent implements OnInit {
   }
 }
 
+carreraSeleccionada:any;
+seleccionarCarrera() {
+  console.log(this.carreraSeleccionada);
+}
 
 // carrera_nombre : any [] = [];
 // traercarreras() {
@@ -81,10 +84,14 @@ export class RegistroActividadesComponent implements OnInit {
 // }
 
 
-carreraSeleccionada:any;
-seleccionarCarrera() {
-  console.log(this.carreraSeleccionada);
-}
+
+
+
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
 
   ngOnInit(): void {
   }

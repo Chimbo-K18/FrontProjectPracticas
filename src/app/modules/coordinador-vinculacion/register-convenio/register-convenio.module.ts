@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -35,6 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatPaginatorModule,
     MatIconModule,
+    MatDatepickerModule, // import MatDatepickerModule
+    MatNativeDateModule,
     RegisterConvenioRoutingModule,
     FormsModule
   ],

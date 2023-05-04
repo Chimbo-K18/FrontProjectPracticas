@@ -1,22 +1,17 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DetalleConvenio } from '../models/detalleconvenio';
+import { DetalleConvenio } from '../models/detalleConvenio';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetalleconvenioService {
 
-  URL: string = 'http://localhost:8080/api/detalleConvenio/';
-
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-
+  url: string = 'http://localhost:8080/api/detalleConvenio';
   constructor(private http: HttpClient) { }
 
-
-  getDetalleConvenio() : Observable<DetalleConvenio[]>{
-    return this.http.get<DetalleConvenio[]>(`${this.URL}listar`);
-
+  creardetalleConvenio(detalleconvenio: DetalleConvenio): Observable<DetalleConvenio>{
+    return this.http.post<DetalleConvenio>(this.url+'/crear',detalleconvenio);
   }
 }
