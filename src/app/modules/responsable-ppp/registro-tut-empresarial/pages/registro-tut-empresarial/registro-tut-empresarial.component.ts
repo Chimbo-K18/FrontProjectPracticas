@@ -73,7 +73,7 @@ export class RegistroTutEmpresarialComponent {
   personasemp: personasemp = new personasemp();
   tutorempresarial: tutorempresarial = new tutorempresarial();
   usuarios: Usuarios = new Usuarios();
-  Empresa:Empresa= new Empresa();
+  // Empresa:Empresa= new Empresa();
   rol: RolToUser = new RolToUser();
   // rol: Rol = new Rol();
   idUsuario: any;
@@ -137,6 +137,7 @@ export class RegistroTutEmpresarialComponent {
       });
       this.dataSource.data = this.listaEmpresa;
       this.loading = false;
+    
     });
   }
 
@@ -215,62 +216,81 @@ export class RegistroTutEmpresarialComponent {
       console.log(usercorreo);
     }
   }
+
+
+
+  idempre:any;
   //para crear el tutor empresarial
+
+  //obtener id empresa
+  ///////////////////////empresa
+
+  empresacreada:any;
+  obtenerempresacreada(idEmpresa: any){
+   this.empresaService.getPorId(idEmpresa).subscribe(
+     data =>{
+      //  this.empresa = data;
+       this.empresacreada = data;
+       console.log(this.empresa);
+       
+     });
+ }
+ // obtener id usuario
+ usuariocreada:any;
+ obtenerUsuariocreado(idUsuario: any){
+  this.userService.getUsuarioporId(idUsuario).subscribe(
+    data =>{
+      // this.usuarios = data;
+      this.usuariocreada = data;
+      console.log("estas es el id del usuario"+ this.usuariocreada);
+      
+    });
+}
+//crear tutor
+tutorregistrado:any;
   creartutoremp() {
-    this.tutorempresarial.Empresa=this.idempre;
     this.tutorempresarialService
       .creartutoremp(this.tutorempresarial)
-      .subscribe((response) =>
-        console.log('Exito al Registrar tutor empresarial')
-      );
-  }
+      .subscribe(data =>{
+        this.tutorregistrado = data;
+        this.tutorempresarial.Empresa = this.empresacreada;
+        this.tutorempresarial.usuario=this.usuariocreada;
+        console.log("usuario del tutor"+ this.empresacreada)
+        console.log("usuario del tutor"+ this.usuariocreada)
+        console.log(("Exito al registrar el tutor"));
+        this.tutorempresarialService.creartutoremp(this.tutorempresarial).subscribe({
+        });
+      });
+      
+      } 
+//capturar persona
+
   idper!:any;
-  capturarpersona(idpersona:number){
-    this.personaempService.buscarpersona(idpersona).subscribe(data => {
-      this.idper = data; // Se captura el valor de la propiedad idpersonaemp en la variable idper
+  capturarpersona(idpersonaemp:any){
+    this.personaempService.buscarpersona(idpersonaemp).subscribe(data => {
+      this.personasemp = data; // Se captura el valor de la propiedad idpersonaemp en la variable idper
+     this.idper= this.personasemp.idpersonaemp;
       console.log(this.idper);
     });
   }
 
-  //EMPRESA
-  idempre!:any;
-  capturarempresaa(idEmpresa:number){
-    this.empresaService.buscarempresa(idEmpresa).subscribe(data => {
-      this.idempre = data; // Se captura el valor de la propiedad idpersonaemp en la variable idper
-      console.log(this.idempre);
-    });
-  }
+
   // para crear el usuario
 
   crearusuario() {
-    this.usuarios.personasemp=this.idper;
-    console.log(this.usuarios.personasemp);
+    this.usuarios.idpersonaemp=this.idper;
+    console.log(this.usuarios.idpersonaemp);
     this.CreateAccountService.createUserempresa(this.usuarios).subscribe(response => {
       console.log('Exito al Registrar usuario');
       response.cedula;
+      response.idUsuario;
       this.Agregarrol(response.cedula);
+      // this.obtenerUsuarioSeleccionado(response.idUsuario);
     });
   }
   
   idemp:any;
-  // crearusuario() {
-  //   this.usuarios.idpersonaemp=this.idper;
-  // if(this.usuarios.idpersonaemp === this.idper){
-  //   console.log("son iguales")
-  //   this.idemp=this.idper;
-  //   this.usuarios.idpersonaemp = this.idemp;
-    // console.log(this.usuarios.idpersonaemp);
-    // this.CreateAccountService.createUserempresa(this.usuarios).subscribe(response => {
-    //   console.log('Exito al Registrar usuario');
-    //   response.cedula;
-    //   console.log("usuario" + response.cedula);
-    //   this.Agregarrol(response.cedula);
-    // });
-  // }else{
-  //   console.log("no son")
-  // }
-   
-  
+
   //////////////////obtener datos de otras tablas
 
   /////agregar roool
@@ -335,4 +355,9 @@ export class RegistroTutEmpresarialComponent {
     this.foto_usuario = this.cap_nombre_archivo.slice(12);
     console.log('Nombre imagen original => ' + this.foto_usuario);
   }
+
+
+
+
+
 }

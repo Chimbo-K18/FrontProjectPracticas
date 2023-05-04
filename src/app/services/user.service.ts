@@ -23,7 +23,9 @@ export class UserService {
   getUsuarioListar(idUsuario: any):Observable<UsuarioRol>{
     return this.http.get<UsuarioRol>(API_URL + `/search/ ${idUsuario}`)
   }
-
+  getUsuarioporId(idUsuario: any):Observable<Usuarios>{
+    return this.http.get<Usuarios>(API_URL + `/search/ ${idUsuario}`)
+  }
   getUsuariocedula(cedula: any):Observable<Usuarios>{
     return this.http.get<Usuarios>(API_URL + `/${cedula}`)
   }
