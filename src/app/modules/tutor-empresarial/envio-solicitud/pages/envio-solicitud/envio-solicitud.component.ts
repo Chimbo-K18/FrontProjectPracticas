@@ -21,6 +21,7 @@ import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
+import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 
 export interface PeriodicElement {
   name: string;
@@ -86,24 +87,24 @@ export class EnvioSolicitudComponent implements OnInit {
   convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
+  mivariable!: string;
+  micarrera!: string;
+  responsable !: ResponsablePpp;
 
-
-
-  mivariable!:string;
-
-  constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService,
-    private router:Router, private convenioService: ConveniosService,
+  constructor(
+    private _formBuilder: FormBuilder,
+    private solicitud: SolicitudpracticasService,
+    private router: Router,
+    private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
-    private responsableppp:responsablePpp) {
-    }
+    private responsableService: responsablePpp
+  ) {}
 
   ngOnInit(): void {
 
-    this.cargarCarrera();
     this.listar();
     this.listarDetalles();
 
-    this.getCurrentDate();
 
     const valor = JSON.parse(
       sessionStorage.getItem('detalleSeleccionado') || '{}'
@@ -122,6 +123,10 @@ export class EnvioSolicitudComponent implements OnInit {
     };
   }
 
+  seleccionarDetalle(detalles: any) {
+    sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
+  }
+
   getCurrentDate() {
     const date = new Date();
     const day = date.getDate();
@@ -130,12 +135,7 @@ export class EnvioSolicitudComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-
   //Metodo para sacar tutor desde el nombre de la carrera
-  public cargarCarrera(){
-    return this.responsableppp.getCarrera(this.mivariable);
-  }
-
 
   public create() {
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
@@ -175,5 +175,28 @@ export class EnvioSolicitudComponent implements OnInit {
     this.detalleService
       .getDetalleConvenio()
       .subscribe((res) => (this.listaDetalles = res));
+  }
+
+  obtenerCarrera() {
+
+    const valorCarrera = JSON.parse(
+      sessionStorage.getItem('detalleSeleccionado') || '{}'
+    );
+    this.micarrera = valorCarrera.nombre_carrera;
+
+    this.responsableService
+      .getCarrera((this.micarrera = valorCarrera.nombre_carrera))
+      .subscribe(
+        (data) => {
+          this.responsable = data;
+
+          const carreraObtenida = data.carrera;
+
+          console.log(data); // asigna la respuesta del servicio a la variable responsable
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 }

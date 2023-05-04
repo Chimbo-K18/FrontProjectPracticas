@@ -6,7 +6,8 @@ export class SolicitudPracticas {
     fechaEnvioSolicitud!: string
     numeroEstudiantes!: number;
     nombreSolicitud!: string;
-    fechaAceptacion!: Date;
+    fechaAceptacion!: string;
+    nombre_carrera !: string;
     estadoSolicitud!: boolean;
     estadoConvocatoria!: boolean;
     estadoActividad!: boolean;

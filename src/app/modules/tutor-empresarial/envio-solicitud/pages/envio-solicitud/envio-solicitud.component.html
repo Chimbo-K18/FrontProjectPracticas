@@ -42,6 +42,8 @@
                     matStepperNext
                     class="btn btn-light"
                     (click)="seleccionarDetalle(detalles)"
+                    (click)="obtenerCarrera()"
+                    (click)="getCurrentDate()"
                   >
                     Seleccionar
                   </button>
@@ -66,8 +68,17 @@
             >
               <mat-form-field appearance="fill" style="width: 43%">
                 <mat-label>Responsable de Practicas</mat-label>
-                <input id="tutor" name="teacher" matInput
-                 formControlName="firstCtrl" [ngModel]="cargarCarrera()" required />
+                <input
+                  id="tutor"
+                  name="teacher"
+                  [(ngModel)]="solicitudPractica.nombre_carrera"
+                  formControlName="firstCtrl"
+                  matInput
+                  readonly
+                  [disabled]="true"
+                />
+
+                <p>{{ responsable }}</p>
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
@@ -75,24 +86,25 @@
                 <input
                   id="carrera"
                   name="date"
-                  [(ngModel)]="solicitudPractica.fechaEnvioSolicitud"
+                  [(ngModel)]="solicitudPractica.numeroEstudiantes"
                   matInput
-                  readonly
+                  formControlName="firstCtrl"
+                  required
                   [disabled]="true"
                 />
-
                 <p>{{ mivariable }}</p>
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
-                <mat-label>Fecha de envio</mat-label>
+                <mat-label>Fecha de Envio: </mat-label>
                 <input
-                  id="fecha"
-                  name="date"
+                  id="nuas"
+                  name="numbease"
                   [(ngModel)]="solicitudPractica.fechaEnvioSolicitud"
                   matInput
-                  readonly
-                  [disabled]="true"
+                  placeholder="Ingrese fecha"
+                  formControlName="firstCtrl"
+                  required
                   [value]="getCurrentDate()"
                 />
               </mat-form-field>
