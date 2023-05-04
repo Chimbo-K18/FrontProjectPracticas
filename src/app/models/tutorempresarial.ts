@@ -6,7 +6,7 @@ export class tutorempresarial {
   cargo!: string;
   departamento!: string;
   titulo!: string;
-  numerocontacto!: string;
+  numerocontacto: string='';
   Empresa?: Empresa;
   usuario?: Usuarios;
 }

@@ -41,7 +41,7 @@
                   <input
                     id="first_name" style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.primer_nombre"
-                    [(ngModel)]="usuarios.nombres"
+              
                     matInput
                     formControlName="firstCtrl"
                     required
@@ -70,7 +70,7 @@
                   <input
                     id="last_name" style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.primer_apellido"
-                    [(ngModel)]="usuarios.apellidos"
+                  
                     matInput
                     formControlName="firstCtrl"
                     required
@@ -96,8 +96,8 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Telefono:</mat-label>
-                  <input
-                    [(ngModel)]="tutorempresarial.numerocontacto"
+                  <input id="celular"
+                  [(ngModel)]="tutorempresarial.numerocontacto"
                     matInput
                     formControlName="firstCtrl"
                     required
@@ -108,7 +108,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Departamento:</mat-label>
-                  <input style="text-transform: uppercase;"
+                  <input 
                     [(ngModel)]="tutorempresarial.departamento"
                     matInput
                     formControlName="firstCtrl"
@@ -121,7 +121,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Titulo:</mat-label>
-                  <input style="text-transform: uppercase;"
+                  <input 
                     [(ngModel)]="tutorempresarial.titulo"
                     matInput
                     formControlName="firstCtrl"
@@ -150,7 +150,7 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Cargo:</mat-label>
-                  <input style="text-transform: uppercase;"
+                  <input 
                     [(ngModel)]="tutorempresarial.cargo"
                     matInput
                     formControlName="firstCtrl"
@@ -247,10 +247,10 @@
                         id="userpassword"
                         placeholder="Ingrese su contraseña"
                         formControlName="secondCtrl"
+                  
                         readonly
                       />
-                      <!-- <input type="text" id="NombrePersonaemp"     formControlName="secondCtrl"   [(ngModel)]="usuarios.nombres"/>
-                      <input type="text" id="ApellidoPersonaemp"    formControlName="secondCtrl"  [(ngModel)]="usuarios.apellidos"/> -->
+              
                     </mat-form-field>
                   </div>
                   <div
