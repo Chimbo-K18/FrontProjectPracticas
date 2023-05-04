@@ -6,7 +6,6 @@ import { TutorEmpresarialRoutingModule } from './tutor-empresarial-routing.modul
 import { WelcomeEmpresarialComponent } from './welcome-empresarial/welcome-empresarial.component';
 
 
-
 @NgModule({
   declarations: [
     WelcomeEmpresarialComponent

@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
-import { DetalleConvenio } from 'src/app/models/detalleConvenio';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
@@ -112,12 +112,10 @@ export class EnvioSolicitudComponent implements OnInit {
     this.listar();
     // this.listarDetalles();
 
-    const valor=JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
+    const valor =JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
     this.mivariable=valor.nombre_carrera;
 
 
-
-    this.mivariable = valor.nombre_carrera;
 
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;
