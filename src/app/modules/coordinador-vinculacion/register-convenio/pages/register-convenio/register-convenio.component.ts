@@ -12,6 +12,7 @@ import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service
 import { DocumentoConvenio } from 'src/app/models/documentoConvenio';
 import { DocumentoconvenioService } from 'src/app/services/documentoconvenio.service';
 import { CarreraService } from 'src/app/services/carrera.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
 
@@ -129,9 +130,54 @@ console.log(this.carreraSeleccionada);
 
 }
 
-  conveniocreado:any;
+fechaela:any;
+fechaini:any;
+fechacaduca:any;
+onDateChange(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechaela = event.value.toISOString().slice(0, 10);
+    this.convenio.fecha_elaboracion = this.fechaela;
+    console.log(this.convenio.fecha_elaboracion);
+  } else {
+    console.log("entro a null");
+    this.fechaela = null;
+  }
+}
+
+onDateChange2(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechaini = event.value.toISOString().slice(0, 10);
+    this.detalleConvenio.fechaAprobacion = this.fechaini;
+    console.log(this.detalleConvenio.fechaAprobacion);
+  } else {
+    console.log("entro a null");
+    this.fechaini = null;
+  }
+}
+
+onDateChange3(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechacaduca = event.value.toISOString().slice(0, 10);
+    this.detalleConvenio.fecha_caducidad = this.fechacaduca;
+    console.log(this.detalleConvenio.fecha_caducidad);
+  } else {
+    console.log("entro a null");
+    this.fechacaduca = null;
+  }
+}
+
+conveniocreado:any;
+numcon:any;
+numitv:any;
 crearconvenio(){
   this.convenio.estado = true;
+  console.log(this.numcon);
+  console.log(this.numitv);
+  this.convenio.numero_convenio = this.numcon;
+  this.convenio.numero_itv = this.numitv;
 this.convenioService.crearConvenio(this.convenio).subscribe(data =>{
   this.conveniocreado = data;
   this.detalleConvenio.convenio =this.conveniocreado;
