@@ -56,6 +56,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class EnvioSolicitudComponent implements OnInit {
   detalles: any;
+  nombre: any;
+  idRes: any;
   //myForm: FormGroup;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -89,7 +91,8 @@ export class EnvioSolicitudComponent implements OnInit {
 
   mivariable!: string;
   micarrera!: string;
-  responsable !: ResponsablePpp;
+  responsable!: ResponsablePpp;
+  respon!: ResponsablePpp;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -101,10 +104,8 @@ export class EnvioSolicitudComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.listar();
     this.listarDetalles();
-
 
     const valor = JSON.parse(
       sessionStorage.getItem('detalleSeleccionado') || '{}'
@@ -177,26 +178,33 @@ export class EnvioSolicitudComponent implements OnInit {
       .subscribe((res) => (this.listaDetalles = res));
   }
 
-  obtenerCarrera() {
+  public nombreResponsable: string = '';
 
+  obtenerCarrera() {
     const valorCarrera = JSON.parse(
       sessionStorage.getItem('detalleSeleccionado') || '{}'
     );
     this.micarrera = valorCarrera.nombre_carrera;
 
-    this.responsableService
-      .getCarrera((this.micarrera = valorCarrera.nombre_carrera))
-      .subscribe(
-        (data) => {
-          this.responsable = data;
+    this.responsableService.getCarrera(this.micarrera).subscribe(
+      (data) => {
+        this.responsable = data;
+        console.log(data);
 
-          const carreraObtenida = data.carrera;
+        this.nombreResponsable = data.nombreResponsable; // Asignar el valor a la variable de clase
+         // Llamar al método getIdResp con el parámetro
+         this.getIdResp(this.nombreResponsable);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
-          console.log(data); // asigna la respuesta del servicio a la variable responsable
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+  getIdResp(nombreResponsable: string) {
+    this.responsableService.getIdResp(this.responsable.nombres).subscribe((data1) => {
+      this.respon = data1;
+      console.log(nombreResponsable);
+    });
   }
 }

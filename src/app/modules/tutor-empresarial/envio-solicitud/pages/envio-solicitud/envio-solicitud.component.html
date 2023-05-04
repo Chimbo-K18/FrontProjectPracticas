@@ -71,26 +71,31 @@
                 <input
                   id="tutor"
                   name="teacher"
-                  [(ngModel)]="solicitudPractica.nombre_carrera"
+                  [(ngModel)]="solicitudPractica.responsablePracticas"
                   formControlName="firstCtrl"
                   matInput
                   readonly
                   [disabled]="true"
                 />
 
-                <p>{{ responsable }}</p>
+                <p> {{responsable }} </p>
+
+
+
+
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
                 <mat-label>Carrera</mat-label>
                 <input
-                  id="carrera"
+                  id="carreraes"
                   name="date"
-                  [(ngModel)]="solicitudPractica.numeroEstudiantes"
+                  [(ngModel)]="solicitudPractica.nombre_carrera"
                   matInput
                   formControlName="firstCtrl"
                   required
                   [disabled]="true"
+                  [value]="mivariable"
                 />
                 <p>{{ mivariable }}</p>
               </mat-form-field>
@@ -103,7 +108,6 @@
                   [(ngModel)]="solicitudPractica.fechaEnvioSolicitud"
                   matInput
                   placeholder="Ingrese fecha"
-                  formControlName="firstCtrl"
                   required
                   [value]="getCurrentDate()"
                 />

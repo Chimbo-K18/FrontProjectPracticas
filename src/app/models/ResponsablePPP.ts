@@ -1,13 +1,15 @@
 import { Usuarios } from "./usuarios";
 
-export class ResponsablePpp{
+export class ResponsablePpp {
+  idResponsablePPP!: number;
 
-    idResponsablePPP !: number;
+  nombreResponsable !: string;
 
-    carrera !: string;
+  nombres!: string;
 
-    Usuario !: Usuarios[];
+  carrera!: string;
 
+  Usuario!: Usuarios[];
 }
 
 interface Usuario{
