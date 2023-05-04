@@ -7,12 +7,12 @@ import { EmpresaService } from 'src/app/services/empresa.service';
 import { Convenio } from 'src/app/models/convenio';
 import { ConvenioService } from 'src/app/services/convenio.service';
 import Swal from 'sweetalert2';
-import { DetalleConvenio } from 'src/app/models/detalleConvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { DocumentoConvenio } from 'src/app/models/documentoConvenio';
 import { DocumentoconvenioService } from 'src/app/services/documentoconvenio.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 
 
 
