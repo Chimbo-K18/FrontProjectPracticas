@@ -1,4 +1,4 @@
-import { tutorempresarial } from './../models/tutorempresarial';
+import { tutorempresarial } from '../models/tutorempresarial';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,9 +10,9 @@ export class tutorempresarialService {
   url: string = 'http://localhost:8080/api/tutorEmp';
   constructor(private http: HttpClient) { }
 
-  creartutoremp(tutorempresarial: tutorempresarial): Observable<tutorempresarial>{
-    return this.http.post<tutorempresarial>(this.url+'/crear',tutorempresarial);
+  creartutoremp(tutorempresarial1: tutorempresarial): Observable<tutorempresarial>{
+    return this.http.post<tutorempresarial>(this.url+'/crear',tutorempresarial1);
   }
-  
+
 
 }

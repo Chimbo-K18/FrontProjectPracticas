@@ -1,6 +1,4 @@
 import { CreateAccountService } from 'src/app/services/createaccount.service';
-import { ActivatedRoute } from '@angular/router';
-import { rolService } from './../../../../../services/rol.service';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { tutorempresarial } from 'src/app/models//tutorempresarial';
 import { personasemp } from 'src/app/models/personaemp';
@@ -87,6 +85,7 @@ export class RegistroTutEmpresarialComponent {
   roltouser: RolToUser = new RolToUser();
   usuariosrol: UsuarioRol = new UsuarioRol();
   roles: String[] = [];
+  contraseniaDefecto: string = 'Empresarial-123';
   nombre: any;
   apellido: any;
   idpersonaempresa:any;
@@ -137,7 +136,7 @@ export class RegistroTutEmpresarialComponent {
       });
       this.dataSource.data = this.listaEmpresa;
       this.loading = false;
-    
+
     });
   }
 
@@ -232,7 +231,7 @@ export class RegistroTutEmpresarialComponent {
       //  this.empresa = data;
        this.empresacreada = data;
        console.log(this.empresa);
-       
+
      });
  }
  // obtener id usuario
@@ -243,7 +242,7 @@ export class RegistroTutEmpresarialComponent {
       // this.usuarios = data;
       this.usuariocreada = data;
       console.log("estas es el id del usuario"+ this.usuariocreada);
-      
+
     });
 }
 //crear tutor
@@ -261,8 +260,8 @@ tutorregistrado:any;
         this.tutorempresarialService.creartutoremp(this.tutorempresarial).subscribe({
         });
       });
-      
-      } 
+
+      }
 //capturar persona
 
   idper!:any;
@@ -278,6 +277,7 @@ tutorregistrado:any;
   // para crear el usuario
 
   crearusuario() {
+    this.usuarios.contrasenia = this.contraseniaDefecto;
     this.usuarios.idpersonaemp=this.idper;
     console.log(this.usuarios.idpersonaemp);
     this.CreateAccountService.createUserempresa(this.usuarios).subscribe(response => {
@@ -288,7 +288,7 @@ tutorregistrado:any;
       // this.obtenerUsuarioSeleccionado(response.idUsuario);
     });
   }
-  
+
   idemp:any;
 
   //////////////////obtener datos de otras tablas

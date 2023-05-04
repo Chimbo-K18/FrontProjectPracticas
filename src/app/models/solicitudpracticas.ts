@@ -2,7 +2,7 @@ import { Byte } from "@angular/compiler/src/util";
 import { Usuarios } from "./usuarios";
 import { Empresa } from "./empresa";
 import { ResponsablePpp } from "./ResponsablePPP";
-import { tutorempresarial } from "./tutorEmpresarial";
+import { tutorempresarial } from "./tutorempresarial";
 import { DocumentoSolicitudPracticas } from "./documentoPracticas";
 
 export class SolicitudPracticas {
