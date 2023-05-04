@@ -14,6 +14,8 @@ import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
+import { responsablePpp } from 'src/app/services/responsablePpp.service';
+import { CarreraService } from 'src/app/services/carrera.service';
 
 export interface PeriodicElement {
   name: string;
@@ -82,16 +84,20 @@ export class EnvioSolicitudComponent implements OnInit {
   convenios: Convenio[] | undefined ;
   listaDetalles: DetalleConvenio[] | undefined;
 
+
+
+
   mivariable!:string;
 
   constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService, 
     private router:Router, private convenioService: ConveniosService,
-    private detalleService: DetalleconvenioService) { 
+    private detalleService: DetalleconvenioService,
+    private responsableppp:responsablePpp) { 
     }
 
   ngOnInit(): void {
 
-    
+    this.cargarCarrera();
     this.listar();
     this.listarDetalles();
 
@@ -117,26 +123,12 @@ export class EnvioSolicitudComponent implements OnInit {
   seleccionarDetalle(detalles: any) {
   sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
   }
-  
-
-
-/*
-  seleccionarDetalle(detalles: any) {
-    sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
-    
-    // Obtener los datos del sessionStorage y parsearlos de nuevo a un objeto JavaScript
-    const detalleSeleccionado = JSON.parse(sessionStorage.getItem('detalleSeleccionado')|| '{}');
-    
-    // Inicializar los valores del formulario con los datos obtenidos del sessionStorage
-    this.myForm = new FormGroup({
-      carrera: new FormControl(detalleSeleccionado.carrera, Validators.required),
-      // Agregar más controles de formulario según sea necesario
-    });
-  }
-  
-*/
  
-  
+
+  //Metodo para sacar tutor desde el nombre de la carrera
+  public cargarCarrera(){
+    return this.responsableppp.getCarrera(this.mivariable);
+  }
 
 
 

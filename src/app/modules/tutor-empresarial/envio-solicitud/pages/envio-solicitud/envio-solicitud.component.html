@@ -65,9 +65,9 @@
                 flex-wrap: wrap;
               ">
               <mat-form-field appearance="fill" style="width: 43%">
-                <mat-label>Tutor Empresarial</mat-label>
-                <input id="tutor" name="teacher" [(ngModel)]="solicitudPractica.fechaEnvioSolicitud" matInput
-                  placeholder="Ingrese el tutor empresarial" formControlName="firstCtrl" required />  
+                <mat-label>Responsable de Practicas</mat-label>
+                <input id="tutor" name="teacher" matInput
+                 formControlName="firstCtrl" [ngModel]="cargarCarrera()" required />  
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
