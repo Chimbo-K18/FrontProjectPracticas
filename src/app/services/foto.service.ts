@@ -11,13 +11,13 @@ export class FotoService {
     private http: HttpClient
   ) { }
 
-  private urlApiFoto: string = 'http://localhost:5000/image';
+  private urlApiFoto: string = '';
 
-  // NUEVOS METODOS
+
   guararImagenes(file: File) {
     const formData = new FormData();
     formData.append('image', file);
-    this.http.post(this.urlApiFoto + '/subir', formData).subscribe();
+    this.http.post(this.urlApiFoto + '/crear', formData).subscribe();
   }
 
 }

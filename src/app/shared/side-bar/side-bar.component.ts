@@ -87,6 +87,11 @@ export class SideBarComponent implements OnInit {
     });
   }
 
+  selectedItem = "";
+  selectItem(item: string): void {
+    this.selectedItem = item;
+  }
+
   ngAfterContentInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
       if (res.matches) {

@@ -110,13 +110,12 @@ export class EnvioSolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     this.listar();
-    this.listarDetalles();
+    // this.listarDetalles();
 
-    const valor = JSON.parse(
-      sessionStorage.getItem('detalleSeleccionado') || '{}'
-    );
+    const valor =JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
+    this.mivariable=valor.nombre_carrera;
 
-    this.mivariable = valor.nombre_carrera;
+
 
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;

@@ -1,8 +1,9 @@
+import { personasemp } from 'src/app/models/personaemp';
 import { Injectable } from '@angular/core';
 import {Usuarios} from '../models/usuarios';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
+import { map } from 'rxjs/operators';
 const urlEndPoint = 'http://localhost:8080/api/auth';
 
 const httpOptions = {
@@ -38,13 +39,30 @@ export class CreateAccountService {
       httpOptions
     );
   }
+//persona empresa
+public createUserempresa(nuevoUsuario: Usuarios): Observable<Usuarios> {
+  return this.http.post<Usuarios>(urlEndPoint + '/crear', nuevoUsuario);
+}
 
-
+registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string): Observable<any> {
+  return this.http.post(
+    urlEndPoint + '/crear',
+    {
+      cedula,
+      nombres,
+      apellidos,
+      correo,
+      carrera,
+      contrasenia,
+    },
+    httpOptions );
+  }
+//fin
   public createUserdocente(nuevoUsuario: Usuarios): Observable<Usuarios> {
     return this.http.post<Usuarios>(urlEndPoint + '/signupdocente', nuevoUsuario);
   }
 
-  registerUserdocente(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string): Observable<any> {
+  registerUserdocente(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string, idpersonaemp:number): Observable<any> {
     return this.http.post(
       urlEndPoint + '/signupdocente',
       {
@@ -54,6 +72,7 @@ export class CreateAccountService {
         correo,
         carrera,
         contrasenia,
+        personasemp,
       },
       httpOptions
     );
