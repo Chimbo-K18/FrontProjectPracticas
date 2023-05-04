@@ -8,8 +8,11 @@ import { ResponsablePpp } from '../models/ResponsablePPP';
   providedIn: 'root',
 })
 export class responsablePpp {
+
+  private API_URL: string = 'http://localhost:8080/api/representantePPP';
   private urlGet: string = 'http://localhost:8080/api/representantePPP/carrera';
-  private urlGet2: string = 'http://localhost:8080/api/representantePPP/idresponsable';
+  private urlGet2: string =
+    'http://localhost:8080/api/representantePPP/carreraID';
 
   private urlPost: string = '';
   private urlDelete: string = '';
@@ -30,9 +33,16 @@ export class responsablePpp {
     return this.http.get<ResponsablePpp>(`${this.urlGet}/${carrera}`);
   }
 
-  getIdResp(nombre: string): Observable<ResponsablePpp> {
-    return this.http.get<ResponsablePpp>(`${this.urlGet2}/${encodeURIComponent(nombre)}`);
+  getIdResp(carrera2: string): Observable<ResponsablePpp> {
+    return this.http.get<ResponsablePpp>(`${this.urlGet2}/${carrera2}`);
   }
+
+  getResponsable(idResponsable: any): Observable<ResponsablePpp> {
+    return this.http.get<ResponsablePpp>(
+      this.API_URL + `/buscar/ ${idResponsable}`
+    );
+  }
+
 
   //Metodo para crear POST
   createTutoEmp(tutor: ResponsablePpp): Observable<ResponsablePpp> {

@@ -1,5 +1,5 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -91,7 +91,12 @@ export class EnvioSolicitudComponent implements OnInit {
 
   mivariable!: string;
   micarrera!: string;
+  mifecha!: string;
+  micarrera2!: string;
   responsable!: ResponsablePpp;
+  responsable2!: any;
+  responsableKO!: any;
+
   respon!: ResponsablePpp;
 
   constructor(
@@ -110,6 +115,7 @@ export class EnvioSolicitudComponent implements OnInit {
     const valor = JSON.parse(
       sessionStorage.getItem('detalleSeleccionado') || '{}'
     );
+
     this.mivariable = valor.nombre_carrera;
 
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
@@ -136,9 +142,10 @@ export class EnvioSolicitudComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  //Metodo para sacar tutor desde el nombre de la carrera
-
   public create() {
+    this.solicitudPractica.nombre_carrera = this.mivariable;
+    this.solicitudPractica.fechaEnvioSolicitud = this.getCurrentDate();
+    this.solicitudPractica.responsablePracticas = this.responsableKO;
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
       (res) => {
         //this.router.navigate(['/administrador/lista-vehiculos'])
@@ -179,6 +186,7 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public nombreResponsable: string = '';
+  public nombreResponsable2: any;
 
   obtenerCarrera() {
     const valorCarrera = JSON.parse(
@@ -191,9 +199,10 @@ export class EnvioSolicitudComponent implements OnInit {
         this.responsable = data;
         console.log(data);
 
-        this.nombreResponsable = data.nombreResponsable; // Asignar el valor a la variable de clase
-         // Llamar al método getIdResp con el parámetro
-         this.getIdResp(this.nombreResponsable);
+        this.nombreResponsable = data.nombreCompleto; // Asignar el valor a la variable de clase
+
+        this.obtenerID();
+        // Llamar al método getIdResp con el parámetro
       },
       (error) => {
         console.error(error);
@@ -201,10 +210,31 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-  getIdResp(nombreResponsable: string) {
-    this.responsableService.getIdResp(this.responsable.nombres).subscribe((data1) => {
-      this.respon = data1;
-      console.log(nombreResponsable);
-    });
+  obtenerID() {
+    const valCarrera = JSON.parse(
+      sessionStorage.getItem('detalleSeleccionado') || '{}'
+    );
+    this.micarrera2 = valCarrera.nombre_carrera;
+
+    this.responsableService.getIdResp(this.micarrera2).subscribe(
+      (data) => {
+        this.responsable2 = data;
+        console.log(data);
+
+        this.nombreResponsable2 = data; // Asignar el valor a la variable de clase
+
+        this.responsableService
+          .getResponsable(this.responsable2)
+          .subscribe((data01) => {
+
+            this.responsableKO = data;
+            console.log(data01);
+          });
+        // Llamar al método getIdResp con el parámetro
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

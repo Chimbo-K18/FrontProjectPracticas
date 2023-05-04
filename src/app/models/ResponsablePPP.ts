@@ -3,7 +3,7 @@ import { Usuarios } from "./usuarios";
 export class ResponsablePpp {
   idResponsablePPP!: number;
 
-  nombreResponsable !: string;
+  nombreCompleto: string = '';
 
   nombres!: string;
 
