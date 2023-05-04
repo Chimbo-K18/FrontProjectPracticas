@@ -3,11 +3,11 @@ import { DocumentoConvenio } from "./documentoConvenio";
 export class Convenio {
 
     idConvenio?: number;
-    numeroConvenio?: string;
-    fechaElaboracion?: Date;
-    numeroItv?: string;
-    descripcionConvenio?: string;
-    estadoConvenio?: boolean;
+    numero_convenio?: number;
+    fecha_elaboracion?: Date;
+    numero_itv?: number;
+    descripcion?: string;
+    estado?: boolean;
     documentoConvenio?: DocumentoConvenio;
     
 }

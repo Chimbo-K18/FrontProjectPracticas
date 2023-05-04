@@ -13,18 +13,37 @@
         <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
             alt="profile_picture">
         <h3>{{ user_final}}</h3>
-    </div>
-    <a href="#" class="active">
-        <i class="fas fa-qrcode"></i>
-        <span>Dashboard</span>
-    </a>
+    </div><li>
+        <a href="#" class="active">
+            <i class="fas fa-qrcode"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+   <!-- <li>
     <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active"routerLink="/administrador/register-coord-vinculacion">
         <i class="fas fa-link"></i>
         <span>Registrar Coordinador</span>
     </a>
-    <a href="#"  *ngIf="rolCordinador == true || rolDirector==true" routerLinkActive="active" routerLink="/coordinador/registro-empresa">
+   </li> -->
+   <!-- <li>
+    <a href="#"  *ngIf="rolEstudiante == true"  routerLinkActive="active" routerLink="/responsable/registro-actividad">
+        <i class="fas fa-link"></i>
+        <span>Registro Actividades</span>
+    </a>
+   </li> -->
+<li>
+    <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active" routerLink="/coordinador/registro-empresa">
         <i class="fas fa-link"></i>
         <span>Registro de Empresa</span>
     </a>
+</li>
+
+<li>
+    <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active" routerLink="/coordinador/registro-convenio">
+        <i class="fas fa-link"></i>
+        <span>Registro Convenio</span>
+    </a>
+</li>
+  
     
 </div>

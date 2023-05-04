@@ -7,10 +7,11 @@ import { EmpresaService } from 'src/app/services/empresa.service';
 import { Convenio } from 'src/app/models/convenio'; 
 import { ConvenioService } from 'src/app/services/convenio.service'; 
 import Swal from 'sweetalert2';
-// import { DetalleConvenio } from 'src/app/models/detalleconvenio'; 
+import { DetalleConvenio } from 'src/app/models/detalleConvenio'; 
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { DocumentoConvenio } from 'src/app/models/documentoConvenio';
 import { DocumentoconvenioService } from 'src/app/services/documentoconvenio.service';
+import { CarreraService } from 'src/app/services/carrera.service';
 
 
 
@@ -25,6 +26,10 @@ export class RegisterConvenioComponent  {
   loading: boolean = true;
 
   empresa: Empresa = new Empresa;
+
+  convvenio: Convenio = new Convenio();
+
+  detalleconvenio: DetalleConvenio = new DetalleConvenio();
 
   public searchControl = new FormControl();
 //TABLA
@@ -49,21 +54,36 @@ export class RegisterConvenioComponent  {
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+  
 
   isEditable = false;
 
-  convenio: Convenio = new Convenio();
-  documentoConvenio: DocumentoConvenio = new DocumentoConvenio();
-  // detalleConvenio: DetalleConvenio = new DetalleConvenio();
-  
-  constructor(private _formBuilder: FormBuilder, private empresaService: EmpresaService, private convenioService: ConvenioService, private detalleConvenioService: DetalleconvenioService, private documentoConvenioService: DocumentoconvenioService) {}
+  convenio: Convenio = new Convenio;
+  documentoConvenio: DocumentoConvenio = new DocumentoConvenio;
+  detalleConvenio: DetalleConvenio = new DetalleConvenio;
 
+  constructor(private _formBuilder: FormBuilder, private empresaService: EmpresaService, private convenioService: ConvenioService, private detalleConvenioService: DetalleconvenioService, private documentoConvenioService: DocumentoconvenioService, private carrera: CarreraService) {
+    this.traercarreras();
+  }
   ngOnInit(): void {
     this.obtenerEmpresas();
     this.searchControl.valueChanges.subscribe(value => {
       this.dataSource.filter = value.trim().toLowerCase();
     });
   }
+
+  empresacreada:any;
+   obtenerCedulaSeleccionada(idempresa: number){
+    this.empresaService.getPorId(idempresa).subscribe(
+      data =>{
+        this.empresa = data;
+        this.empresacreada = data;
+        console.log(this.empresa);
+        
+      });
+
+  }
+
 
   obtenerEmpresas() {
     this.empresaService.listarEmpresas().subscribe(
@@ -84,23 +104,70 @@ export class RegisterConvenioComponent  {
           data.rucEmpresa.includes(filter);
         this.dataSource.data = this.listaEmpresa;
         this.loading = false;
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Datos ingresados correctamente',
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     )
   }
 
-  // guardarConvenioCompleto() {
-  //   this.convenioService.crearConvenio(this.convenio).subscribe(() => {
-  //     // this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe(() => {
-  //       this.documentoConvenioService.subirdocumentoConvenio(this.documentoConvenio).subscribe(() => {
-  //         Swal.fire({
-  //           position: 'top',
-  //           icon: 'success',
-  //           title: 'Convenio creado satisfactoriamente.',
-  //           showConfirmButton: false,
-  //           timer: 2000,
-  //         });
-  //       });
-  //     });
-  //   });
-  // }
+
+  carrera_nombre : any [] = [];
+traercarreras() {
+  this.carrera.getCarreras().subscribe(data => {
+    this.carrera_nombre = data;
+    console.log(this.carrera_nombre);
+  });
+}
+carreraSeleccionada:any;
+seleccionarCarrera() {
+console.log(this.carreraSeleccionada);
+
+}
+
+  conveniocreado:any;
+crearconvenio(){
+  this.convenio.estado = true;
+this.convenioService.crearConvenio(this.convenio).subscribe(data =>{
+  this.conveniocreado = data;
+  this.detalleConvenio.convenio =this.conveniocreado;
+  this.detalleConvenio.empresa = this.empresacreada;
+  this.detalleConvenio.nombre_carrera = this.carreraSeleccionada;
+  this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe({
+
+  });
+});
+
+}
+
+//   guardadoFull(){
+//     this.documentoConvenioService.subirdocumentoConvenio(documentoConvenio).subscribe(
+//       data=>{
+//         this.documentoConvenio = data;
+//         this.convenio.documentoConvenio = this.documentoConvenio
+//         this.convenioService.crearConvenio(this.convenio).subscribe(
+//           data =>{
+//             this.convenio = data;
+//             this.detalleConvenio.convenio = this.convenio
+//             this.detalleConvenio.empresa = this.empresa
+//             this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe(
+//               data =>{
+//                 Swal.fire({
+//                   position: 'top',
+//                   icon: 'success',
+//                   title: 'Convenio registrado satisfactoriamente.',
+//                   showConfirmButton: false,
+//                   timer: 2000,
+//                 });
+//               }
+//             )
+//           }
+//         )
+//       }
+//     )
+//   }
 }

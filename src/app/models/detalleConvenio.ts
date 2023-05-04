@@ -5,8 +5,8 @@ export class DetalleConvenio {
 
     idDetalleConvenio?: number;
     fechaAprobacion?: Date;
-    fechaCaducidad?: Date;
-    nombreCarrera?: string;
+    fecha_caducidad?: Date;
+    nombre_carrera?: string;
     convenio?: Convenio;
     empresa?: Empresa;
 }
