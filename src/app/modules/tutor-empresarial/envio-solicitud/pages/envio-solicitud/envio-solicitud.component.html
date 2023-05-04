@@ -65,15 +65,9 @@
               "
             >
               <mat-form-field appearance="fill" style="width: 43%">
-                <mat-label>Responsable de Practicas de la Carrera</mat-label>
-                <input
-                  id="tutor"
-                  name="teacher"
-                  [(ngModel)]="solicitudPractica.fechaEnvioSolicitud"
-                  matInput
-                  formControlName="firstCtrl"
-                  readonly
-                />
+                <mat-label>Responsable de Practicas</mat-label>
+                <input id="tutor" name="teacher" matInput
+                 formControlName="firstCtrl" [ngModel]="cargarCarrera()" required />
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">

@@ -19,6 +19,8 @@ import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
+import { responsablePpp } from 'src/app/services/responsablePpp.service';
+import { CarreraService } from 'src/app/services/carrera.service';
 
 export interface PeriodicElement {
   name: string;
@@ -84,17 +86,20 @@ export class EnvioSolicitudComponent implements OnInit {
   convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
-  mivariable!: string;
 
-  constructor(
-    private _formBuilder: FormBuilder,
-    private solicitud: SolicitudpracticasService,
-    private router: Router,
-    private convenioService: ConveniosService,
-    private detalleService: DetalleconvenioService
-  ) {}
+
+
+  mivariable!:string;
+
+  constructor(private _formBuilder: FormBuilder, private solicitud:SolicitudpracticasService,
+    private router:Router, private convenioService: ConveniosService,
+    private detalleService: DetalleconvenioService,
+    private responsableppp:responsablePpp) {
+    }
 
   ngOnInit(): void {
+
+    this.cargarCarrera();
     this.listar();
     this.listarDetalles();
 
@@ -125,9 +130,10 @@ export class EnvioSolicitudComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  //Metodo para guardar en el sessionStorage lo que se selecciona en la tabla con el boton
-  seleccionarDetalle(detalles: any) {
-    sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
+
+  //Metodo para sacar tutor desde el nombre de la carrera
+  public cargarCarrera(){
+    return this.responsableppp.getCarrera(this.mivariable);
   }
 
 
