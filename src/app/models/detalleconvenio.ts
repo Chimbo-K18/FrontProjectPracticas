@@ -1,35 +1,12 @@
-import { Byte } from "@angular/compiler/src/util";
+import { Convenio } from "./convenio";
+import { Empresa } from "./empresa";
 
-export class DetalleConvenio{
+export class DetalleConvenio {
 
-    idDetalleConvenio !: number;
-    fechaAprobacion !: number;
-    fecha_caducidad !: string;
-    nombre_carrera !: string;
-
-    convenio: Convenio | undefined; 
-
-
-    documentoConvenio: DocumentoConvenio | undefined; 
-
+    idDetalleConvenio?: number;
+    fechaAprobacion?: String;
+    fecha_caducidad?: String;
+    nombre_carrera?: string;
+    convenio?: Convenio;
+    empresa?: Empresa;
 }
-
-interface DocumentoConvenio {
-
-    id_documentoCnv: number;
-    documentoConvenio: Byte;
-
-}
-
-
-interface Convenio {
-
-    idConvenio : number;
-    numero_convenio : number;
-    fecha_elaboracion : string;
-    numero_itv : string;
-    descripcion : string;
-    estado : boolean;
-    documentoConvenio: DocumentoConvenio | undefined; 
-}
-
