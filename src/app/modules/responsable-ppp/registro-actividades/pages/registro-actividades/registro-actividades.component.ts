@@ -40,7 +40,7 @@ export class RegistroActividadesComponent implements OnInit {
   public vercarrera: verCarreras = new verCarreras();
 
   constructor(private carrera: CarreraService, private materia: MateriaService){
-    
+
     // this.traercarreras();
   }
   Carrera:any;
@@ -50,7 +50,7 @@ export class RegistroActividadesComponent implements OnInit {
     data.materia_nombre;
     console.log(data.materia_nombre);
   } );
- } 
+ }
  materias: any[] = [];
 
 
@@ -86,7 +86,7 @@ seleccionarCarrera() {
 
 
 
- 
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

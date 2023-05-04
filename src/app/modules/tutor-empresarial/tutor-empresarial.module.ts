@@ -1,9 +1,10 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TutorEmpresarialRoutingModule } from './tutor-empresarial-routing.module';
 import { WelcomeEmpresarialComponent } from './welcome-empresarial/welcome-empresarial.component';
-import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    TutorEmpresarialRoutingModule
-    ]
+    TutorEmpresarialRoutingModule,
+    FormsModule
+  ]
 })
 export class TutorEmpresarialModule { }

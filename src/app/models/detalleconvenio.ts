@@ -4,8 +4,8 @@ import { Empresa } from "./empresa";
 export class DetalleConvenio {
 
     idDetalleConvenio?: number;
-    fechaAprobacion?: Date;
-    fecha_caducidad?: Date;
+    fechaAprobacion?: String;
+    fecha_caducidad?: String;
     nombre_carrera?: string;
     convenio?: Convenio;
     empresa?: Empresa;

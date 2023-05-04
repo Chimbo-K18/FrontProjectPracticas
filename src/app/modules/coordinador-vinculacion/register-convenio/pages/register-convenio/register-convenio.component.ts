@@ -4,14 +4,15 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa.service';
-import { Convenio } from 'src/app/models/convenio'; 
-import { ConvenioService } from 'src/app/services/convenio.service'; 
+import { Convenio } from 'src/app/models/convenio';
+import { ConvenioService } from 'src/app/services/convenio.service';
 import Swal from 'sweetalert2';
-import { DetalleConvenio } from 'src/app/models/detalleConvenio'; 
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { DocumentoConvenio } from 'src/app/models/documentoConvenio';
 import { DocumentoconvenioService } from 'src/app/services/documentoconvenio.service';
 import { CarreraService } from 'src/app/services/carrera.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 
 
 
@@ -44,17 +45,13 @@ export class RegisterConvenioComponent  {
 
   //FINTABLA
 
-
-
-
-
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
-  
+
 
   isEditable = false;
 
@@ -79,7 +76,7 @@ export class RegisterConvenioComponent  {
         this.empresa = data;
         this.empresacreada = data;
         console.log(this.empresa);
-        
+
       });
 
   }
@@ -129,9 +126,54 @@ console.log(this.carreraSeleccionada);
 
 }
 
-  conveniocreado:any;
+fechaela:any;
+fechaini:any;
+fechacaduca:any;
+onDateChange(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechaela = event.value.toISOString().slice(0, 10);
+    this.convenio.fecha_elaboracion = this.fechaela;
+    console.log(this.convenio.fecha_elaboracion);
+  } else {
+    console.log("entro a null");
+    this.fechaela = null;
+  }
+}
+
+onDateChange2(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechaini = event.value.toISOString().slice(0, 10);
+    this.detalleConvenio.fechaAprobacion = this.fechaini;
+    console.log(this.detalleConvenio.fechaAprobacion);
+  } else {
+    console.log("entro a null");
+    this.fechaini = null;
+  }
+}
+
+onDateChange3(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechacaduca = event.value.toISOString().slice(0, 10);
+    this.detalleConvenio.fecha_caducidad = this.fechacaduca;
+    console.log(this.detalleConvenio.fecha_caducidad);
+  } else {
+    console.log("entro a null");
+    this.fechacaduca = null;
+  }
+}
+
+conveniocreado:any;
+numcon:any;
+numitv:any;
 crearconvenio(){
   this.convenio.estado = true;
+  console.log(this.numcon);
+  console.log(this.numitv);
+  this.convenio.numero_convenio = this.numcon;
+  this.convenio.numero_itv = this.numitv;
 this.convenioService.crearConvenio(this.convenio).subscribe(data =>{
   this.conveniocreado = data;
   this.detalleConvenio.convenio =this.conveniocreado;

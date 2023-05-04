@@ -39,7 +39,7 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     FormsModule
-    ],
+  ],
   exports: [
     EnvioSolicitudComponent
   ]

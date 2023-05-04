@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatIconModule,
     MatTableModule,
-    RegistroActividadesRoutingModule
+    RegistroActividadesRoutingModule,
+    FormsModule
   ],
   exports:[
     RegistroActividadesComponent
