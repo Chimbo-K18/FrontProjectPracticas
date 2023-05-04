@@ -14,5 +14,9 @@ export class EmpresaService {
     return this.http.post<Empresa>(this.url+'/crear',empresa);
   }
   
+  listarEmpresa(): Observable<Empresa[]>{
+    return this.http.get<Empresa[]>(this.url+'/listar')
+  }
+
 
 }

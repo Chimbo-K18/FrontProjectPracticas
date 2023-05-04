@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Empresa } from 'src/app/models/empresa';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 export interface PeriodicElement {
   name: string;
@@ -29,10 +31,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./listado-empresas.component.css']
 })
 export class ListadoEmpresasComponent implements OnInit {
-
+empresa: Empresa[]=[];
   //TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+ // displayedColumns: string[] = ['rucEmpresa', 'nombreEmpresa', 'correo', 'numeroTelefono'];
+  displayedColumns: string[] = ['idEmpresa', 'rucEmpresa', 'nombreEmpresa', 'correo','direccion','numeroTelefono'];
+  dataSource = new MatTableDataSource<Empresa>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -49,9 +53,13 @@ export class ListadoEmpresasComponent implements OnInit {
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private empresaServices:EmpresaService) { }
 
   ngOnInit(): void {
-  }
+   
+    this.empresaServices.listarEmpresa().subscribe(response=> this.dataSource.data = this.empresa=response);
 
+   
+  }
+  
 }

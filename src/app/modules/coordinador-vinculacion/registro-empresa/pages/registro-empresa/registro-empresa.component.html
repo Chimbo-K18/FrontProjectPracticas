@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,9 +23,9 @@
       <div>
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Ruc:</mat-label>
-          <input [(ngModel)]="empresa.rucEmpresa" matInput>
+          <input [(ngModel)]="empresa.rucEmpresa" matInput maxlength="13" (keypress)="onKeyPress($event)">
         </mat-form-field>
-
+        
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Correo:</mat-label>
           <input [(ngModel)]="empresa.correo" matInput >
@@ -32,33 +33,33 @@
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Ciudad:</mat-label>
-          <input [(ngModel)]="empresa.ciudad" matInput>
+          <input [(ngModel)]="empresa.ciudad" matInput maxlength="50">
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Nombre:</mat-label>
-          <input [(ngModel)]="empresa.nombreEmpresa" matInput >
+          <input [(ngModel)]="empresa.nombreEmpresa" matInput maxlength="100">
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Telefono:</mat-label>
-          <input [(ngModel)]="empresa.numeroTelefono"  matInput>
+          <input [(ngModel)]="empresa.numeroTelefono"  matInput  maxlength="10" (keypress)="onKeyPress($event)">
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Direccion:</mat-label>
-          <input [(ngModel)]="empresa.direccion" matInput>
+          <input [(ngModel)]="empresa.direccion" matInput maxlength="200" >
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Codigo:</mat-label>
-          <input [(ngModel)]="empresa.codigoPostal" matInput>
+          <input [(ngModel)]="empresa.codigoPostal" matInput maxlength="6" (keypress)="onKeyPress($event)">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width" style="margin-right: 20px; width: 300px;">
           <mat-label>Descripcion:</mat-label>
-          <textarea [(ngModel)]="empresa.descripcion" matInput placeholder="Descripcion..."></textarea>
+          <textarea [(ngModel)]="empresa.descripcion" matInput maxlength="300" placeholder="Descripcion..."></textarea>
         </mat-form-field>
 
       </div>
@@ -66,11 +67,11 @@
     </div>
 
     <div style="text-align: center;">
-      <button mat-raised-button color="primary" (click)="crearEmpresa()">Registrar Empresa</button>
+      <button mat-raised-button color="primary" (click)="crearEmpresa()" (click)="LimpiarCampos()">Registrar Empresa</button>
     </div>
 
     <div style="text-align: center;">
-      <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas">Listados</button>
+      <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas" >Listados</button>
     </div>
 
   </mat-card>
@@ -82,7 +83,7 @@
 
 
 
-
 </body>
 
 </html>
+
