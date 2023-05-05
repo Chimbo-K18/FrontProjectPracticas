@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user.service';
 import { PermisosService } from 'src/app/services/permisos.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
+import { FotoService } from 'src/app/services/foto.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-registro-tut-empresarial',
@@ -99,6 +100,7 @@ idusuariotutor:any
     private CreateAccountService:CreateAccountService,
     private permisoservice: PermisosService,
     private empresaService: EmpresaService,
+    private FotoService:FotoService,
   ) {}
 
   ngOnInit(): void {
@@ -364,7 +366,9 @@ this.userService.getuscedula(this.usuarios.cedula).subscribe((usuarios) => {
     this.foto_usuario = this.cap_nombre_archivo.slice(12);
     console.log('Nombre imagen original => ' + this.foto_usuario);
   }
-
+  cargarImagen() {
+    this.FotoService.guararImagenes(this.selectedFile);
+  }
 
   //VALIDACIONES
   ValidarCampos() {
