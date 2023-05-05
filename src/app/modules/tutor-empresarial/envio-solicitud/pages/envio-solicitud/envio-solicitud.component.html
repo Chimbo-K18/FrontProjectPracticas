@@ -154,7 +154,7 @@
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Subir Documento</ng-template>
             <div class="file-upload">
-              <input type="file" name="file" />
+              <input type="file" (change)="onFileSelected($event)">
               <mat-icon>cloud_upload</mat-icon>
               <br />
               <span
@@ -162,9 +162,10 @@
               >
               <div class="file-name"></div>
             </div>
+      
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext (click)="subirArchivo()">Next</button>
             </div>
           </form>
         </mat-step>

@@ -25,6 +25,9 @@ import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
+import { Observable, Subscriber } from 'rxjs';
+import { error } from 'console';
+import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';
 
 export interface PeriodicElement {
   name: string;
@@ -62,7 +65,7 @@ export class EnvioSolicitudComponent implements OnInit {
   nombre: any;
   idRes: any;
 
-
+ 
 
   //myForm: FormGroup;
 
@@ -93,6 +96,9 @@ export class EnvioSolicitudComponent implements OnInit {
 
   //llamado a la clase
   public solicitudPractica: SolicitudPracticas = new SolicitudPracticas();
+
+  //llamada a la clase donde se guarda el documento
+  public guardarSolicitud:DocumentoSolicitudPracticas=new DocumentoSolicitudPracticas();
   convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
@@ -105,8 +111,10 @@ export class EnvioSolicitudComponent implements OnInit {
   mitutor !: string;
   tutorEmpre !: any;
   solicitudGenerada !: any;
-
+  selectedFile!:any;
+  public archivos:any=[];
   respon!: ResponsablePpp;
+  private fileTmp:any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -116,13 +124,14 @@ export class EnvioSolicitudComponent implements OnInit {
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
     private empresarialService : tutorempresarialService,
-    private documentoSolService: DocumentoSolPracticasService
+    private documentoSolService: DocumentoSolPracticasService,
+    private documentoSpService:DocumentoSolicitudPracticaService
   ) {}
 
   ngOnInit(): void {
     //this.listar();
 
-
+    this.subirArchivo();
     this.listarDetalles();
     this.extraerEmpresarial();
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
@@ -284,11 +293,91 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-
+  //Metodo para descargar la solicitud de practicas 
   descargarPDF() {
   const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
   const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
-  window.open(url, '_blank');
+  window.open(url, '_blank'); 
+  }
+
+
+
+  getFile($event:any):void{
+    const [file]=$event.target.files;
+    console.log(file);
+    this.fileTmp={
+      fileRaw:file,
+      fileName:file.name
+    }
+  }
+
+  onFileSelected(event:any) {
+    const archivosCapturados = event.target.files;
+    for (let i = 0; i < archivosCapturados.length; i++) {
+        const archivoCapturado = archivosCapturados[i];
+        this.archivos.push(archivoCapturado);
+    }
 }
+
+subirArchivo(): void {
+    for (let i = 0; i < this.archivos.length; i++) {
+        const archivo = this.archivos[i];
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            const arrayBuffer = fileReader.result as ArrayBuffer;
+            const bytes = new Uint8Array(arrayBuffer);
+            const documentoSP = new DocumentoSolicitudPracticas();
+            documentoSP.documento_solicitud_practicas = bytes;
+
+            this.documentoSpService.saveDocumentoSP(documentoSP).subscribe(
+                respuesta => console.log(respuesta),
+                error => console.log(error)
+            );
+        };
+        fileReader.readAsArrayBuffer(archivo);
+    }
+}
+
+
+  
+  /*
+
+  //Metodo para cargar la solicitud de practicas
+  onFileSelected(event:any) {
+   const archivoCapturado = event.target.files[0];
+    this.archivos.push(archivoCapturado);
+    console.log(event.target.files);
+    
+  }
+
+  
+  onChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+      this.convertToBase64(file);
+    }
+  }
+
+  convertToBase64(file: File) {
+    this.myimage = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    };
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
+  }
+*/
 
 }
