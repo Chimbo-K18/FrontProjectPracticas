@@ -22,23 +22,3 @@ export class SolicitudPracticas {
    empresa?: Empresa;
 }
 
-
-
-export interface Usuarios {
-  idUsuario: number;
-  cedula: string;
-  nombres: string;
-  apellidos: string;
-
-  correo: string;
-  carrera: string;
-  contrasenia: string;
-
-  roles: Rol;
-}
-
-export interface Rol {
-
-  idRol: number;
-  rolNombre: string;
-}

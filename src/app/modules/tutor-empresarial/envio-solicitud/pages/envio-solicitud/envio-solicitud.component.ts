@@ -24,6 +24,7 @@ import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
+import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
 
 export interface PeriodicElement {
   name: string;
@@ -122,7 +123,6 @@ export class EnvioSolicitudComponent implements OnInit {
     //this.listar();
 
 
-    this.generarReporte();
     this.listarDetalles();
     this.extraerEmpresarial();
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
@@ -284,9 +284,11 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-  generarReporte(){
 
+  descargarPDF() {
+  const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
+  const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
+  window.open(url, '_blank');
+}
 
-    this.documentoSolService.generarDocumento(this.solicitudGenerada);
-  }
 }
