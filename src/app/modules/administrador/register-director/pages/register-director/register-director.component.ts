@@ -49,7 +49,7 @@ export class RegisterDirectorComponent implements OnInit {
   listadocentes: any[] = [];
   Verdocentef: Verdocentef = new Verdocentef();
   ceduladoc: any;
-  contraseniaDefecto: string = 'Directorl123';
+  contraseniaDefecto: string = 'Director123';
 
   seleccionarDirector(Verdocentef: any) {
     console.log('Se seleccionó :', Verdocentef);
@@ -95,7 +95,7 @@ export class RegisterDirectorComponent implements OnInit {
             position: 'top',
             icon: 'success',
             title: 'Usuario Registrado Exitosamente.',
-            text: '¡Recuerde que la contraseña por defecto es "Directorl123" !',
+            text: '¡Recuerde que la contraseña por defecto es "Director123" !',
             showConfirmButton: false,
             timer: 4000,
           });
