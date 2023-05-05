@@ -1,5 +1,8 @@
 
 import { ResponsablePpp } from './ResponsablePPP';
+import { DocumentoSolicitudPracticas } from './documentoPracticas';
+import { Empresa } from './empresa';
+import { tutorempresarial } from './tutorempresarial';
 
 
 export class SolicitudPracticas {
@@ -13,10 +16,10 @@ export class SolicitudPracticas {
   estadoConvocatoria!: boolean;
   estadoActividad!: boolean;
   descripcionActividades!: string;
-  // documentoSolicitudPractica?: DocumentoSolicitudPracticas;
-  // tutorEmpresarial: tutorempresarial;
+   documentoSolicitudPractica?: DocumentoSolicitudPracticas;
+   tutorEmpresarial?: tutorempresarial;
   responsablePPP ?: ResponsablePpp;
-  // empresa: Empresa;
+   empresa?: Empresa;
 }
 
 

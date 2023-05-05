@@ -22,6 +22,8 @@ import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
+import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
+import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 
 export interface PeriodicElement {
   name: string;
@@ -58,7 +60,11 @@ export class EnvioSolicitudComponent implements OnInit {
   detalles: any;
   nombre: any;
   idRes: any;
+
+
+
   //myForm: FormGroup;
+
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -91,11 +97,13 @@ export class EnvioSolicitudComponent implements OnInit {
 
   mivariable!: string;
   micarrera!: string;
-  mifecha!: string;
   micarrera2!: string;
   responsable!: ResponsablePpp;
   responsable2!: any;
   responsableKO!: any;
+  mitutor !: string;
+  tutorEmpre !: any;
+  solicitudGenerada !: any;
 
   respon!: ResponsablePpp;
 
@@ -105,17 +113,18 @@ export class EnvioSolicitudComponent implements OnInit {
     private router: Router,
     private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
-    private responsableService: responsablePpp
+    private responsableService: responsablePpp,
+    private empresarialService : tutorempresarialService,
+    private documentoSolService: DocumentoSolPracticasService
   ) {}
 
   ngOnInit(): void {
     //this.listar();
 
 
-
+    this.generarReporte();
     this.listarDetalles();
-
-
+    this.extraerEmpresarial();
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;
     const input = dropArea.querySelector<HTMLInputElement>('input')!;
@@ -152,12 +161,18 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public create() {
+
+
     this.solicitudPractica.nombre_carrera = this.mivariable;
     this.solicitudPractica.fechaEnvioSolicitud = this.getCurrentDate();
     this.solicitudPractica.responsablePPP = this.responsableKO;
+    this.solicitudPractica.tutorEmpresarial = this. tutorEmpre;
+
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
       (res) => {
         //this.router.navigate(['/administrador/lista-vehiculos'])
+        this.solicitudGenerada = res.idSolicitudPracticas;
+        console.log(this.solicitudGenerada)
         console.log(res);
         Swal.fire({
           position: 'top-end',
@@ -187,10 +202,6 @@ export class EnvioSolicitudComponent implements OnInit {
       .getConvenios()
       .subscribe((res) => (this.convenios = res));
   }
-
-
-
-
 
   public listarDetalles() {
     this.detalleService
@@ -224,6 +235,26 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
+  extraerEmpresarial(){
+
+    const valorEmpresarial = JSON.parse(
+      sessionStorage.getItem('auth-user') || '{}'
+    );
+    this.mitutor = valorEmpresarial.id;
+
+    console.log(this.mitutor)
+
+    this.empresarialService.extraerEmpresarialIdUsuario(this.mitutor).subscribe(
+      (data) => {
+
+        this.tutorEmpre = data;
+        console.log(this.tutorEmpre)
+      }
+    )
+
+
+  }
+
   obtenerID() {
     const valCarrera = JSON.parse(
       sessionStorage.getItem('detalleSeleccionado') || '{}'
@@ -251,5 +282,11 @@ export class EnvioSolicitudComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  generarReporte(){
+
+
+    this.documentoSolService.generarDocumento(this.solicitudGenerada);
   }
 }

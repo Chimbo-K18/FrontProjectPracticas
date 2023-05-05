@@ -2,11 +2,13 @@ import { Usuarios } from 'src/app/models/usuarios';
 import { Empresa } from "./empresa";
 
 export class tutorempresarial {
-    idtutorempresarial!: number;
+
+
+    idTutorEmpresarial!: number;
     cargo!: string;
     departamento!: string;
     titulo!: string;
-    numerocontacto!: string;
+    numeroContacto!: string;
     Empresa?: Empresa;
     usuario?: Usuarios;
 

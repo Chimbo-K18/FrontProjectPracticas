@@ -119,7 +119,7 @@
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Imprimir Archivo</ng-template>
             <div class="download-container">
-              <button mat-raised-button color="primary">
+              <button mat-raised-button color="primary" (click)="generarReporte()">
                 <mat-icon>get_app</mat-icon> Descargar Archivo
               </button>
               <div class="instructions">
