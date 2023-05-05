@@ -1,13 +1,10 @@
-import { Byte } from "@angular/compiler/src/util";
-import { Usuarios } from "./usuarios";
-import { Empresa } from "./empresa";
-import { ResponsablePpp } from "./ResponsablePPP";
-import { tutorempresarial } from "./tutorempresarial";
-import { DocumentoSolicitudPracticas } from "./documentoPracticas";
+
+import { ResponsablePpp } from './ResponsablePPP';
+
 
 export class SolicitudPracticas {
-  idSolicitudPracticas!: number;
-  fechaEnvioSolicitud!: string;
+  idSolicitudPracticas !: number;
+  fechaEnvioSolicitud !: string;
   numeroEstudiantes!: number;
   nombreSolicitud!: string;
   fechaAceptacion!: string;
@@ -16,9 +13,29 @@ export class SolicitudPracticas {
   estadoConvocatoria!: boolean;
   estadoActividad!: boolean;
   descripcionActividades!: string;
-  documentoSolicitudPracticas!: DocumentoSolicitudPracticas;
-  tutorEmpresarial?: tutorempresarial;
-  responsablePracticas?: ResponsablePpp;
-  empresa?: Empresa;
+  // documentoSolicitudPractica?: DocumentoSolicitudPracticas;
+  // tutorEmpresarial: tutorempresarial;
+  responsablePPP ?: ResponsablePpp;
+  // empresa: Empresa;
 }
 
+
+
+export interface Usuarios {
+  idUsuario: number;
+  cedula: string;
+  nombres: string;
+  apellidos: string;
+
+  correo: string;
+  carrera: string;
+  contrasenia: string;
+
+  roles: Rol;
+}
+
+export interface Rol {
+
+  idRol: number;
+  rolNombre: string;
+}

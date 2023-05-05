@@ -109,12 +109,11 @@ export class EnvioSolicitudComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listar();
-    // this.listarDetalles();
+    //this.listar();
 
-    const valor =JSON.parse(sessionStorage.getItem('detalleSeleccionado')||'{}');
-    this.mivariable=valor.nombre_carrera;
 
+
+    this.listarDetalles();
 
 
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
@@ -131,6 +130,17 @@ export class EnvioSolicitudComponent implements OnInit {
 
   seleccionarDetalle(detalles: any) {
     sessionStorage.setItem('detalleSeleccionado', JSON.stringify(detalles));
+    this.obtenerCarrera();
+
+    const valor = JSON.parse(
+      sessionStorage.getItem('detalleSeleccionado') || '{}'
+    );
+    this.mivariable = valor.nombre_carrera;
+
+
+    this.getCurrentDate();
+    this.obtenerID();
+
   }
 
   getCurrentDate() {
@@ -144,7 +154,7 @@ export class EnvioSolicitudComponent implements OnInit {
   public create() {
     this.solicitudPractica.nombre_carrera = this.mivariable;
     this.solicitudPractica.fechaEnvioSolicitud = this.getCurrentDate();
-    this.solicitudPractica.responsablePracticas = this.responsableKO;
+    this.solicitudPractica.responsablePPP = this.responsableKO;
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
       (res) => {
         //this.router.navigate(['/administrador/lista-vehiculos'])
@@ -178,16 +188,23 @@ export class EnvioSolicitudComponent implements OnInit {
       .subscribe((res) => (this.convenios = res));
   }
 
+
+
+
+
   public listarDetalles() {
     this.detalleService
       .getDetalleConvenio()
       .subscribe((res) => (this.listaDetalles = res));
+
+
   }
 
   public nombreResponsable: string = '';
   public nombreResponsable2: any;
 
   obtenerCarrera() {
+
     const valorCarrera = JSON.parse(
       sessionStorage.getItem('detalleSeleccionado') || '{}'
     );
@@ -199,8 +216,6 @@ export class EnvioSolicitudComponent implements OnInit {
         console.log(data);
 
         this.nombreResponsable = data.nombreCompleto; // Asignar el valor a la variable de clase
-
-        this.obtenerID();
         // Llamar al método getIdResp con el parámetro
       },
       (error) => {
@@ -226,8 +241,9 @@ export class EnvioSolicitudComponent implements OnInit {
           .getResponsable(this.responsable2)
           .subscribe((data01) => {
 
-            this.responsableKO = data;
+            this.responsableKO = data01;
             console.log(data01);
+
           });
         // Llamar al método getIdResp con el parámetro
       },
