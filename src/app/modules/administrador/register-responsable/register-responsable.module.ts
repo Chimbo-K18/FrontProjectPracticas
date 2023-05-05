@@ -35,7 +35,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatFormFieldModule,
     MatAutocompleteModule,
 
-
     RegisterResponsableRoutingModule
   ],
   exports:[

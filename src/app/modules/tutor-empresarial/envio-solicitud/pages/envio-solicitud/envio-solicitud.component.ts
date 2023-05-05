@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
-import { DetalleConvenio } from 'src/app/models/detalleconvenio';
+import { DetalleConvenio } from 'src/app/models/detalleConvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';

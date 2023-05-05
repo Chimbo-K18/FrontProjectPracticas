@@ -24,7 +24,7 @@ export class UserService {
     return this.http.get<UsuarioRol>(API_URL + `/search/ ${idUsuario}`)
   }
   getUsuarioporId(idUsuario: any):Observable<Usuarios>{
-    return this.http.get<Usuarios>(API_URL + `/search/ ${idUsuario}`)
+    return this.http.get<Usuarios>(API_URL + `/buscar/ ${idUsuario}`)
   }
   getUsuariocedula(cedula: any):Observable<Usuarios>{
     return this.http.get<Usuarios>(API_URL + `/${cedula}`)
@@ -33,6 +33,9 @@ export class UserService {
   getcedula(cedula: any):Observable<UsuarioRol>{
     return this.http.get<UsuarioRol>(API_URL + `/buscarcedula/${cedula}`)
   }
+  getuscedula(cedula: any):Observable<Usuarios>{
+    return this.http.get<Usuarios>(API_URL + `/buscarcedula/${cedula}`)
+  }
 
-
+  // http://localhost:8080/api/user/buscarcedula/
 }
