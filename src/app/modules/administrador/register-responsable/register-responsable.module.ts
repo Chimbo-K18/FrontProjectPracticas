@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterResponsableRoutingModule } from './register-responsable-routing.module';
 import { RegisterResponsableComponent } from './pages/register-responsable/register-responsable.component';
 
-import {FormControl} from '@angular/forms';
+import {FormControl, FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
+    MatCheckboxModule,
+    FormsModule,
 
     RegisterResponsableRoutingModule
   ],
