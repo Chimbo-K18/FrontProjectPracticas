@@ -42,8 +42,6 @@
                     matStepperNext
                     class="btn btn-light"
                     (click)="seleccionarDetalle(detalles)"
-                    (click)="obtenerCarrera()"
-                    (click)="getCurrentDate()"
                   >
                     Seleccionar
                   </button>
@@ -71,14 +69,12 @@
                 <input
                   id="tutor"
                   name="teacher"
-                  [(ngModel)]="solicitudPractica.responsablePracticas"
-                  formControlName="firstCtrl"
                   matInput
                   readonly
                   [disabled]="true"
+                  [value]="responsable"
                 />
 
-                <p>{{ responsable }}</p>
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
@@ -89,7 +85,6 @@
                   matInput
                   [value]="mivariable"
                 />
-
               </mat-form-field>
 
               <mat-form-field appearance="fill" style="width: 43%">
