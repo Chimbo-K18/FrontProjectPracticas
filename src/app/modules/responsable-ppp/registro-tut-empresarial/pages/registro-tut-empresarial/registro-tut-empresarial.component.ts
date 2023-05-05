@@ -1,6 +1,4 @@
 import { CreateAccountService } from 'src/app/services/createaccount.service';
-import { ActivatedRoute } from '@angular/router';
-import { rolService } from './../../../../../services/rol.service';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { tutorempresarial } from 'src/app/models//tutorempresarial';
 import { personasemp } from 'src/app/models/personaemp';
@@ -28,7 +26,7 @@ export class RegistroTutEmpresarialComponent {
   selectedEmpresa: any;
 
   //TABLA empresa
-  displayedColumns: string[] = ['idEmpresa', 'nombreEmpresa', 'direccion'];
+  displayedColumns: string[] = ['rucEmpresa','nombreEmpresa', 'direccion','agg'];
   dataSource = new MatTableDataSource<Empresa>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -90,7 +88,8 @@ export class RegistroTutEmpresarialComponent {
   idpersonaempresa: any;
   ROLE_TUTOREMPRESARIAL: boolean = false;
 contraseniaDefecto: string="Empresarial123";
-
+codigoempresa:any;
+idusuariotutor:any
   constructor(
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
@@ -100,13 +99,11 @@ contraseniaDefecto: string="Empresarial123";
     private CreateAccountService:CreateAccountService,
     private permisoservice: PermisosService,
     private empresaService: EmpresaService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.personasemp = new personasemp(); // Inicializar la propiedad 'personasemp' con una instancia de PersonasEmp
     this.personasemp.genero = '';
-    // this.obtenerUsuario();
   }
   // para seleccionar la empresa
   seleccionarEmpresa(empresa: any) {
@@ -118,7 +115,8 @@ contraseniaDefecto: string="Empresarial123";
     if (codigoEmp && nombreEmp) {
       codigoEmp.value = empresa.idEmpresa;
       nombreEmp.value = empresa.nombreEmpresa;
-      console.log(codigoEmp);
+      this.codigoempresa=empresa.idEmpresa;
+      console.log("este el idempresa para tutor" +  this.codigoempresa);
     }
   }
   //obtener empresas
@@ -238,32 +236,7 @@ contraseniaDefecto: string="Empresarial123";
       
     });
 }
-//crear tutor
-tutorregistrado:any;
-  creartutoremp() {
-    this.tutorempresarial.numerocontacto=this.celulartutor;
-    this.tutorempresarialService
-      .creartutoremp(this.tutorempresarial)
-      .subscribe(data =>{
-        this.tutorregistrado = data;
-        this.tutorempresarial.Empresa = this.empresacreada;
-        this.tutorempresarial.usuario=this.usuariocreada;
-        console.log("usuario del tutor"+ this.empresacreada)
-        console.log("usuario del tutor"+ this.usuariocreada)
-        console.log(("Exito al registrar el tutor"));
-        this.tutorempresarialService.creartutoremp(this.tutorempresarial).subscribe({
-        });
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Tutor Empresarial Registrado Exitosamente.',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-   
-      });
-      this.recargarPagina();   
-      } 
+
 //capturar persona
 
   idper!:any;
@@ -277,18 +250,18 @@ tutorregistrado:any;
 
 
   // para crear el usuario
+
   crearusuario() {
     this.usuarios.idpersonaemp=this.idper;
     this.usuarios.contrasenia=this.contraseniaDefecto;
     this.usuarios.nombres= this.nombresCompleto;
     this.usuarios.apellidos=this.apellidosCompletos
-    console.log("new"+ this.usuarios.contrasenia)
+
+    console.log("new"+ this.usuarios.contrasenia);
     console.log(this.usuarios.idpersonaemp);
     this.CreateAccountService.createUserempresa(this.usuarios).subscribe(response => {
       console.log('Exito al Registrar usuario');
       response.cedula;
-      response.idUsuario;
-      console.log("estas es la contrase;a"+ response.contrasenia);
       this.Agregarrol(response.cedula);
       Swal.fire({
         position: 'top',
@@ -324,6 +297,40 @@ tutorregistrado:any;
       });
     });
   }
+  //crear tutor
+// codigoempresa
+tutorregistrado:any;
+creartutoremp() {
+  //buscar la empresa
+  this.idEmpresa = localStorage.getItem('idEmpresa');
+  this.empresaService.getPorId(this.idEmpresa).subscribe((empresa)=> {
+    console.log("data de empresa");
+  console.log(empresa);
+  this.tutorempresarial.Empresa = empresa;
+  this.tutorempresarial.numerocontacto=this.celulartutor;
+  console.log("numero" + this.tutorempresarial.numerocontacto);
+  ///
+//  buscar usuario
+this.userService.getuscedula(this.usuarios.cedula).subscribe((usuarios) => {
+  this.tutorempresarial.usuario=usuarios;
+  console.log("data de usuario");
+  console.log(usuarios);
+  /////
+  this.tutorempresarialService.creartutoremp(this.tutorempresarial).subscribe((response) =>{
+      console.log(("Exito al registrar el tutor"));
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Tutor Empresarial Registrado Exitosamente.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+ 
+    }
+  );
+});
+  });
+    } 
 
   // imageeeeeeeeeeeeeeeeeeeeen
   file: any = '';
@@ -359,11 +366,54 @@ tutorregistrado:any;
   }
 
 
-  recargarPagina() {
-    this.router.navigateByUrl('responsable/registro-empresarial', { skipLocationChange: true }).then(() => {
-      this.router.navigate([this.router.url]);
+  //VALIDACIONES
+  ValidarCampos() {
+    console.log("ya esta activo")
+    document.addEventListener('DOMContentLoaded', () => {
+      const forms = document.querySelectorAll('.needs-validation') as NodeListOf<HTMLFormElement>;
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', (event: Event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        });
+      });
     });
   }
+  limpiarFormulario() {
+    const forms = document.querySelectorAll('.needs-validation') as NodeListOf<HTMLFormElement>;
+    Array.from(forms).forEach(form => {
+      form.classList.remove('was-validated');
+      form.querySelectorAll('.ng-invalid, .ng-dirty').forEach((input) => {
+        input.classList.remove('ng-invalid', 'ng-dirty');
+      });
+      form.reset();
+    });
+  }
+  limpiarCampos() {
+    this.personasemp.cedula = '';
+    this.personasemp.primer_nombre = '';
+    this.personasemp.segundo_nombre = '';
+    this.personasemp.primer_apellido = '';
+    this.personasemp.segundo_apellido = '';
+    this.personasemp.genero = '';
+    this.personasemp.correo='';
+    this.file = '';
+    this.limpiarFormulario();
+  }
+// letras y espacios
+letras: RegExp = /^[a-zA-Z\s.,ñÑáéíóúÁÉÍÓÚ]+$/;
+letrasnumeros: RegExp = /^[a-zA-Z0-9\s]+$/;
+letrasEspeciales: RegExp = /^[a-zA-Z0-9\s.,ñÑáéíóúÁÉÍÓÚ]+$/;
+numeros: RegExp = /^[0-9\s]+$/;
+email:RegExp=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+
+
+
+
 
 
 }
