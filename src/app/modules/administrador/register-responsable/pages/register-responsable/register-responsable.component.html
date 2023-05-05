@@ -25,29 +25,22 @@
     
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-    
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-    
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element">DATO 1</td>
-      </ng-container>
-    
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> DATO 2</td>
-
-      </ng-container>
+      <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.idResponsablePPP}} </td>
+    </ng-container>
+    <ng-container matColumnDef="carrera">
+      <th mat-header-cell *matHeaderCellDef> Carrera </th>
+      <td mat-cell *matCellDef="let element"> {{element.carrera}} </td>
+    </ng-container>
+    <ng-container matColumnDef="usuario_responsable.nombres">
+      <th mat-header-cell *matHeaderCellDef> Nombres </th>
+      <td mat-cell *matCellDef="let element"> {{element.usuario_responsable.nombres}} </td>
+    </ng-container>
+    <ng-container matColumnDef="usuario_responsable.apellidos">
+      <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+      <td mat-cell *matCellDef="let element"> {{element.usuario_responsable.apellidos}} </td>
+    </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -102,46 +95,57 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef>No.</th>
-              <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+   
+          <table mat-table [dataSource]="dataSource2">
+
+            <ng-container matColumnDef="seleccionar">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox [checked]="cedulasSeleccionadas.includes(element.cedula, element.nombres)" (change)="capturarCheckbox($event.source, element.cedula, element.nombres, element.apellidos)"></mat-checkbox>
+              </td>
             </ng-container>
-    
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>Name</th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            
+            <ng-container matColumnDef="cedula">
+              <th mat-header-cell *matHeaderCellDef> Cedula </th>
+              <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
             </ng-container>
-    
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef>Weight</th>
-              <td mat-cell *matCellDef="let element">DATO1</td>
+            <ng-container matColumnDef="nombres">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
             </ng-container>
-    
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef>Symbol</th>
-              <td mat-cell *matCellDef="let element">DATO 2</td>
+            <ng-container matColumnDef="apellidos">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
             </ng-container>
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <ng-container matColumnDef="correo_institucional">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.correo_institucional}} </td>
+            </ng-container>
+            <ng-container matColumnDef="carrera">
+              <th mat-header-cell *matHeaderCellDef> Carrera </th>
+              <td mat-cell *matCellDef="let element"> {{element.carrera}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
           </table>
+      
+          <mat-paginator
+          [pageSizeOptions]="[2, 4, 6]"
+          showFirstLastButtons
+          aria-label="Select page of empresas"
+        >
+        </mat-paginator>
           
           <div style="color: black;">
-            <h3 style="display: inline-block; margin-top: 25px;margin-right:350px;"><strong>Nombre del Docente:</strong> Jose David Naula Quezada</h3>
-            <select id="country" name="country" style="display: inline-block; width: 300px;">
-              <option value="australia">Seleccione una carrera</option>
-              <option value="dato1">DATO 1</option>
-              <option value="dato2">DATO 2</option>
+            <h3 style="display: inline-block; margin-top: 25px;margin-right:350px;"><strong>Nombre del Docente:</strong>{{nombresSeleccionadas}}</h3>
+            <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada" (ngModelChange)="seleccionarCarrera()">
+              <option value="">Seleccione una carrera</option>
+              <option *ngFor="let carrera of carrera_nombre" [value]="carrera">{{ carrera }}</option>
             </select>
           </div>
 
            <div style="text-align: center;">
-    <button style="margin-right: 25px;" mat-flat-button color="primary">Asignar</button>
+    <button style="margin-right: 25px;" mat-flat-button color="primary" (click)="obtenerCedulaSeleccionada()">Asignar</button>
 
     <button mat-flat-button color="warn">Revertir</button>
 
