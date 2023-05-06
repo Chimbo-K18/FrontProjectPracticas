@@ -163,9 +163,11 @@ cedulapersonass:any;
             .crearpersonaemp(this.personasemp)
             .subscribe((response) => {
   this.personaced=this.personasemp.cedula;
-  console.log("capturamos ela cedula")
+  localStorage.setItem("localIdPersona", String(response.idpersonaemp));
+  localStorage.setItem("localCedPersona", String(response.cedula));
+  // console.log("capturamos ela cedula")
   console.log(this.personaced);
-              console.log('Exito al Registrar persona empresa',this.idpersonaempresa);
+              // console.log('Exito al Registrar persona empresa',this.idpersonaempresa);
               this.copy_address();
               Swal.fire({
                 position: 'top',
@@ -175,7 +177,6 @@ cedulapersonass:any;
                 timer: 2000,
               });
             });
-        
       // }
     // });
   }
@@ -274,9 +275,13 @@ cedulapersonass:any;
 
 
   // para crear el usuario
-  users:any;
+  cedusers:any;
   crearusuario() {
-   this.personaempService.buscarcedulapersona(this.personaced).subscribe((data)=> {
+    // localCedPersona
+    this.cedusers= localStorage.getItem("localCedPersona");
+    console.log('Exito al cargar la foto',this.cedusers);
+   this.personaempService.buscarcedulapersona(this.cedusers).subscribe((data)=> {
+    console.log("esta es la data")
     console.log(data)
     this.usuarios.personasemp=data;
     this.usuarios.contrasenia=this.contraseniaDefecto;
@@ -287,6 +292,8 @@ cedulapersonass:any;
     this.CreateAccountService.createUserempresa(this.usuarios).subscribe(response => {
       console.log('Exito al Registrar usuario');
       response.cedula;
+      localStorage.setItem("localIdUsuario", String(response.cedula));
+      // this.cargarImagen();
       this.Agregarrol(response.cedula);
       Swal.fire({
         position: 'top',
@@ -296,7 +303,8 @@ cedulapersonass:any;
         showConfirmButton: false,
         timer: 4000,
       });
-    });});
+    });
+  });
   }
   
   idemp:any;
@@ -318,15 +326,17 @@ cedulapersonass:any;
       console.log(this.roltouser);
       this.permisoservice.addRoleToUser(this.roltouser).subscribe((x) => {
         this.roles = new Array<string>();
-        this.closeModal();
+ 
       });
     });
   }
   //crear tutor
 // codigoempresa
 tutorregistrado:any;
+tutorus:any;
 creartutoremp() {
   //buscar la empresa
+
   this.empresaService.getPorId(this.codigoempresa).subscribe((empresa)=> {
     console.log("data de empresa");
   console.log(empresa);
@@ -335,7 +345,8 @@ creartutoremp() {
   console.log("numero" + this.tutorempresarial.numerocontacto);
   ///
 //  buscar usuario
-this.userService.getuscedula(this.usuarios.cedula).subscribe((usuarios) => {
+this.tutorus= localStorage.getItem("localIdUsuario");
+this.userService.getuscedula(this.tutorus).subscribe((usuarios) => {
   this.tutorempresarial.usuario=usuarios;
   console.log("data de usuario");
   console.log(usuarios);
@@ -355,6 +366,24 @@ this.userService.getuscedula(this.usuarios.cedula).subscribe((usuarios) => {
 });
   });
     } 
+    //cargar foto a personA EMPRESA
+    codbuscar:any;
+updatepersona(){
+  this.codbuscar= localStorage.getItem("localIdPersona");
+  console.log('Exito al cargar la foto',this.codbuscar);
+
+  this.personaempService.actualizarpersona(this.codbuscar).subscribe((response) => {
+    this.personasemp.foto = this.foto_usuario;
+      console.log('Exito al cargar la foto',this.idper);
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Registro existosp.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    });
+  }
 
   // imageeeeeeeeeeeeeeeeeeeeen
   file: any = '';
@@ -368,13 +397,26 @@ this.userService.getuscedula(this.usuarios.cedula).subscribe((usuarios) => {
     const file = event.target.files[0];
     const extension = file.name.split('.').pop().toLowerCase();
     const fileSize = file.size / 1024;
-
     if (!allowedExtensions.includes(extension)) {
     } else if (fileSize > 1000) {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title:   'La imagen seleccionada es demasiado grande. El tamaño máximo permitido es de 1000 KB.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
       return;
     }
 
     if (!allowedExtensions.includes(extension)) {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title:   'Solo se permiten imágenes en formato JPG, PNG o GIF.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
       return;
     }
     this.selectedFile = event.target.files[0];
@@ -389,7 +431,9 @@ this.userService.getuscedula(this.usuarios.cedula).subscribe((usuarios) => {
     console.log('Nombre imagen original => ' + this.foto_usuario);
   }
   cargarImagen() {
-    this.FotoService.guararImagenes(this.selectedFile);
+    this.FotoService.guardarImagenes(this.selectedFile);
+    console.log(this.selectedFile);
+    this.updatepersona();
   }
 
   //VALIDACIONES

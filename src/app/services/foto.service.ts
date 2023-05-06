@@ -14,10 +14,10 @@ export class FotoService {
   private urlApiFoto: string = 'http://localhost:8080/api/imagen';
 
 
-  guararImagenes(file: File) {
+  guardarImagenes(file: File) {
     const formData = new FormData();
     formData.append('image', file);
-    this.http.post(this.urlApiFoto + '/crear', formData).subscribe();
+    this.http.post(this.urlApiFoto +'/crear',formData).subscribe();
   }
 
 }
