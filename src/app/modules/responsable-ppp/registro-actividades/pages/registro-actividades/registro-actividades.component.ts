@@ -14,7 +14,6 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -34,8 +33,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class RegistroActividadesComponent implements OnInit {
 
-  displayedColumns: string[] = ['idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'nombre_carrera', 'empresa'];
-  dataSource = new MatTableDataSource<SolicitudPracticas>([]);
+  displayedColumns1: string[] = ['idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial'];
+  dataSource1 = new MatTableDataSource<SolicitudPracticas>([]);
+
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public vercarrera: verCarreras = new verCarreras();
@@ -88,7 +90,7 @@ listassolicitudes:any []=[];
 listarSolicitudes(){
   this.solicitudpracticas.getSolicitudes().subscribe(data=>{
 this.listassolicitudes = data;
-this.dataSource.data= this.listassolicitudes;
+this.dataSource1.data= this.listassolicitudes;
   })
 }
 
@@ -97,6 +99,7 @@ this.dataSource.data= this.listassolicitudes;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource1.paginator = this.paginator;
     
   }
 
