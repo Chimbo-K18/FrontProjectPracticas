@@ -1,4 +1,5 @@
 export class DocumentoSolicitudPracticas {
-  id_documentoSolicitudPrc!: string;
+
+  id_documentoSolicitudPrc!: number;
   documento_solicitud_practicas !: any;
 }
