@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'lista-soli-convocatorias',
     loadChildren: () => import("./lista-sol-convocatorias/lista-sol-convocatorias.module").then(m => m.ListaSolConvocatoriasModule)
 
   }
