@@ -22,4 +22,8 @@ export class EmpresaService {
     return this.http.get<Empresa>(this.url+ '/buscar/'+idEmpresa);
   }
 
+  existeEmpresa(rucEmpresa: any){
+    return this.http.get<Empresa>(this.url + '/byRuc/'+rucEmpresa);
+  }
+
 }

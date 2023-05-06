@@ -20,51 +20,52 @@
       <div>
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Ruc:</mat-label>
-          <input [(ngModel)]="empresa.rucEmpresa" matInput>
+          <input  [(ngModel)]="empresa.rucEmpresa" (keypress)="validarSoloNumeros($event)" maxlength="13" matInput required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Correo:</mat-label>
-          <input [(ngModel)]="empresa.correo" matInput >
+          <input [(ngModel)]="empresa.correo" [ngStyle]="{'color': validarCorreo(empresa.correo) ? 'black' : 'red'}" matInput required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Ciudad:</mat-label>
-          <input [(ngModel)]="empresa.ciudad" matInput>
+          <input [(ngModel)]="empresa.ciudad" (keypress)="validarSoloLetras($event)" matInput>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
           <mat-label>Nombre:</mat-label>
-          <input [(ngModel)]="empresa.nombreEmpresa" matInput >
+          <input [(ngModel)]="empresa.nombreEmpresa" (keypress)="validarSoloLetras($event)" matInput required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-          <mat-label>Telefono:</mat-label>
-          <input [(ngModel)]="empresa.numeroTelefono"  matInput>
+          <mat-label>Teléfono:</mat-label>
+          <input [(ngModel)]="empresa.numeroTelefono" (keypress)="validarSoloNumeros($event)" maxlength="7" matInput required>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-          <mat-label>Direccion:</mat-label>
-          <input [(ngModel)]="empresa.direccion" matInput>
+          <mat-label>Dirección:</mat-label>
+          <input [(ngModel)]="empresa.direccion" matInput required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
-          <mat-label>Codigo:</mat-label>
+          <mat-label>Código:</mat-label>
           <input [(ngModel)]="empresa.codigoPostal" matInput>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width" style="margin-right: 20px; width: 300px;">
-          <mat-label>Descripcion:</mat-label>
-          <textarea [(ngModel)]="empresa.descripcion" matInput placeholder="Descripcion..."></textarea>
+          <mat-label>Descripción:</mat-label>
+          <textarea [(ngModel)]="empresa.descripcion"  matInput placeholder="Descripcion..."></textarea>
         </mat-form-field>
 
       </div>
 
     </div>
 
-    <div style="text-align: center;">
-      <button mat-raised-button color="primary" (click)="crearEmpresa()">Registrar Empresa</button>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px">
+      <button mat-raised-button color="primary" (click)="crearEmpresa()">Registrar</button>
+      <button mat-raised-button color="warn" (click)="limpiarCampos()">Cancelar</button>
     </div>
 
   </mat-card>
