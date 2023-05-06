@@ -8,5 +8,5 @@ export class Usuarios {
 	correo: string='';
 	carrera: string='';
 	contrasenia: string='';
-  	idpersonaemp?:personasemp;
+	personasemp?:personasemp;
 }
