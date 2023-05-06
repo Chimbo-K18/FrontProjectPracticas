@@ -49,7 +49,7 @@ export class RegisterDirectorComponent implements OnInit {
   listadocentes: any[] = [];
   Verdocentef: Verdocentef = new Verdocentef();
   ceduladoc: any;
-  contraseniaDefecto: string = 'Directorl123';
+  contraseniaDefecto: string = 'Director123';
 
   seleccionarDirector(Verdocentef: any) {
     console.log('Se seleccionó :', Verdocentef);
@@ -77,6 +77,7 @@ export class RegisterDirectorComponent implements OnInit {
   }
   //buscar usuario
   // para crear el usuario
+  users:any;
   crearusuario() {
     this.basefenix.consultarUserDocente(this.ceduladoc).subscribe((data) => {
       console.log(data);
@@ -86,23 +87,50 @@ export class RegisterDirectorComponent implements OnInit {
       this.usuario.cedula = data.cedula;
       this.usuario.correo = data.correo_institucional;
       this.usuario.carrera = data.carrera;
-      this.CreateAccountService.createUserempresa(this.usuario).subscribe(
-        (response) => {
-          console.log('Exito al Registrar usuario');
-          response.cedula;
-          this.Agregarrol(response.cedula);
+
+      this.userService.getuscedula(this.usuario.cedula).subscribe((usuarioss)=> {
+      console.log(usuarioss);
+      this.users = usuarioss.cedula;
+      if( this.users == this.usuario.cedula){
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'El usuario ya tiene el Rol Director de Carrera.',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    });
+          try {
+          this.CreateAccountService.createUserempresa(this.usuario).subscribe(
+            (response) => {
+              console.log('Exito al Registrar usuario');
+              response.cedula;
+              this.Agregarrol(response.cedula);
+              Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Usuario Registrado Exitosamente.',
+                text: '¡Recuerde que la contraseña por defecto es "Director123" !',
+                showConfirmButton: false,
+                timer: 4000,
+              });
+            }
+          );
+        } catch (error) {
           Swal.fire({
             position: 'top',
             icon: 'success',
-            title: 'Usuario Registrado Exitosamente.',
-            text: '¡Recuerde que la contraseña por defecto es "Directorl123" !',
+            title: 'Existe un problema con el docente.',
             showConfirmButton: false,
             timer: 4000,
           });
         }
-      );
-    });
+          
+   
+  });
   }
+
   Agregarrol(cedula: any) {
     this.userService.getcedula(this.usuario.cedula).subscribe((usuarios) => {
       this.usuariosrol = usuarios;
