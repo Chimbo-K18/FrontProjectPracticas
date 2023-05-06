@@ -26,8 +26,13 @@ import { tutorempresarialService } from 'src/app/services/tutorempresarial.servi
 import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
 import { Observable, Subscriber } from 'rxjs';
-import { error } from 'console';
+import { error, log } from 'console';
 import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { URL } from 'url';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Output, EventEmitter, Input, ElementRef } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -111,10 +116,11 @@ export class EnvioSolicitudComponent implements OnInit {
   mitutor !: string;
   tutorEmpre !: any;
   solicitudGenerada !: any;
-  selectedFile!:any;
   public archivos:any=[];
   respon!: ResponsablePpp;
   private fileTmp:any;
+  selectedFile!: File;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -125,20 +131,24 @@ export class EnvioSolicitudComponent implements OnInit {
     private responsableService: responsablePpp,
     private empresarialService : tutorempresarialService,
     private documentoSolService: DocumentoSolPracticasService,
-    private documentoSpService:DocumentoSolicitudPracticaService
+    private documentoSpService:DocumentoSolicitudPracticaService,
+    private http: HttpClient
   ) {}
 
-  ngOnInit(): void {
-    //this.listar();
 
-    this.subirArchivo();
+
+
+
+
+
+  ngOnInit(): void {
     this.listarDetalles();
     this.extraerEmpresarial();
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;
     const input = dropArea.querySelector<HTMLInputElement>('input')!;
 
-    let file: File;
+   
     let filename: string;
 
     button.onclick = () => {
@@ -222,6 +232,7 @@ export class EnvioSolicitudComponent implements OnInit {
 
   public nombreResponsable: string = '';
   public nombreResponsable2: any;
+   public filesToUpload!: Array<File>;
 
   obtenerCarrera() {
 
@@ -300,84 +311,53 @@ export class EnvioSolicitudComponent implements OnInit {
   window.open(url, '_blank'); 
   }
 
-
-
-  getFile($event:any):void{
-    const [file]=$event.target.files;
-    console.log(file);
-    this.fileTmp={
-      fileRaw:file,
-      fileName:file.name
-    }
+  fileUrl!:SafeResourceUrl;
+ 
+  fileChangeEvent(fileInput:any){
+    this.filesToUpload=<Array<File>> fileInput.target.files;
   }
 
-  onFileSelected(event:any) {
-    const archivosCapturados = event.target.files;
-    for (let i = 0; i < archivosCapturados.length; i++) {
-        const archivoCapturado = archivosCapturados[i];
-        this.archivos.push(archivoCapturado);
+  onLoad(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoSpService.uploadFile(file)
+        .subscribe(res => {
+          console.log(res);
+        });
     }
-}
-
-subirArchivo(): void {
-    for (let i = 0; i < this.archivos.length; i++) {
-        const archivo = this.archivos[i];
-        const fileReader = new FileReader();
-        fileReader.onload = () => {
-            const arrayBuffer = fileReader.result as ArrayBuffer;
-            const bytes = new Uint8Array(arrayBuffer);
-            const documentoSP = new DocumentoSolicitudPracticas();
-            documentoSP.documento_solicitud_practicas = bytes;
-
-            this.documentoSpService.saveDocumentoSP(documentoSP).subscribe(
-                respuesta => console.log(respuesta),
-                error => console.log(error)
-            );
-        };
-        fileReader.readAsArrayBuffer(archivo);
-    }
-}
-
-
-  
-  /*
-
-  //Metodo para cargar la solicitud de practicas
-  onFileSelected(event:any) {
-   const archivoCapturado = event.target.files[0];
-    this.archivos.push(archivoCapturado);
-    console.log(event.target.files);
-    
   }
 
   
-  onChange(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) {
-      const file = inputElement.files[0];
-      this.convertToBase64(file);
+  public upload(event:any) {
+
+    console.log("subiendo archivo");
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.documentoSpService.uploadFile(file).subscribe(
+        data=> {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                console.log("progreso....");
+                
+                break;
+              case HttpEventType.Response:
+                this.inputFile.nativeElement.value = '';
+                break;
+            }
+          }
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          console.log("Error");
+          
+        }
+      );
     }
   }
 
-  convertToBase64(file: File) {
-    this.myimage = new Observable((subscriber: Subscriber<any>) => {
-      this.readFile(file, subscriber);
-    });
-  }
+  
 
-  readFile(file: File, subscriber: Subscriber<any>) {
-    const filereader = new FileReader();
-    filereader.readAsDataURL(file);
-
-    filereader.onload = () => {
-      subscriber.next(filereader.result);
-      subscriber.complete();
-    };
-    filereader.onerror = (error) => {
-      subscriber.error(error);
-      subscriber.complete();
-    };
-  }
-*/
 
 }
