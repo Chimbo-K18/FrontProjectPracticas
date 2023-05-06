@@ -6,32 +6,22 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
-import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
-import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
-import { Observable, Subscriber } from 'rxjs';
-import { error, log } from 'console';
 import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { URL } from 'url';
-import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import { Output, EventEmitter, Input, ElementRef } from '@angular/core';
 
 export interface PeriodicElement {
@@ -69,10 +59,9 @@ export class EnvioSolicitudComponent implements OnInit {
   detalles: any;
   nombre: any;
   idRes: any;
-
+  @Input() public disabled!: boolean;
  
 
-  //myForm: FormGroup;
 
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -125,14 +114,12 @@ export class EnvioSolicitudComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private solicitud: SolicitudpracticasService,
-    private router: Router,
     private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
     private empresarialService : tutorempresarialService,
-    private documentoSolService: DocumentoSolPracticasService,
     private documentoSpService:DocumentoSolicitudPracticaService,
-    private http: HttpClient
+   
   ) {}
 
 
@@ -331,7 +318,7 @@ export class EnvioSolicitudComponent implements OnInit {
   
   public upload(event:any) {
 
-    console.log("subiendo archivo");
+    
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       this.documentoSpService.uploadFile(file).subscribe(
@@ -347,6 +334,13 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
             }
           }
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Documento guardado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         },
         error => {
           this.inputFile.nativeElement.value = '';
