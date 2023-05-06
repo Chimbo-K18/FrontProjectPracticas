@@ -122,11 +122,11 @@
                       style="margin-right: 20px; width: 300px"
                     >
                       <mat-label>Número Convocatoria:</mat-label>
-                      <input matInput />
+                      <input  matInput placeholder="numeroConvenio:" formControlName="secondCtrl" required [(ngModel)]="numcon" name="numeroConvenio"/>
                     </mat-form-field>
                     <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
                       <mat-label>Fecha de Elaboración:</mat-label>
-                      <input matInput [matDatepicker]="picker">
+                      <input matInput [matDatepicker]="picker"  [(ngModel)]="fechaela" name="fechaElaboracion" (dateChange)="onDateChange($event)">
                       <mat-hint>MM/DD/YYYY</mat-hint>
                       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
@@ -138,7 +138,7 @@
                     style="margin-right: 20px; width: 300px"
                   >
                     <mat-label>Número de ITV:</mat-label>
-                    <input matInput />
+                    <input matInput placeholder="numeroItv:" formControlName="secondCtrl" required [(ngModel)]="numitv" name="numeroItv"/>
                   </mat-form-field>
                 </div>
 
@@ -152,7 +152,7 @@
                       matInput
                       placeholder="Descripción:"
                       formControlName="secondCtrl"
-                      required
+                      required [(ngModel)]="convenio.descripcion" name="descripcionConvenio"
                     />
                   </mat-form-field>
 
@@ -184,19 +184,27 @@
           <mat-card class="example-card">
             <h1 style="text-align: left">Datos Personales</h1>
             <div style="display: flex">
-              <div style="margin-right: 150px">
-                <h3><strong>Fecha de Inicialización:</strong></h3>
-                <p style="font-size: 15px">27/04/2023</p>
-              </div>
-              <div>
-                <h3><strong>Fecha Caducidad:</strong></h3>
-                <p style="font-size: 15px">27/04/2023</p>
-              </div>
+              <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
+                <mat-label>Fecha de Inilizacion:</mat-label>
+                <input matInput [matDatepicker]="picker1" [(ngModel)]="fechaini" name="fechaAprobacion" (dateChange)="onDateChange2($event)">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div>
+
+
+              <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
+                <mat-label>Fecha de Caducación:</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="fechacaduca" name="fechaCaducidad" (dateChange)="onDateChange3($event)">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
             </div>
 
-            <h3><strong>Fecha de Inicialización:</strong></h3>
-
-            <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada">
+            <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada" (ngModelChange)="seleccionarCarrera()">
               <option value="">Seleccione una carrera</option>
               <option *ngFor="let carrera of carrera_nombre" [value]="carrera">{{ carrera }}</option>
             </select>
@@ -210,7 +218,7 @@
               >
                 Back
               </button>
-              <button style="margin-right: 12px" mat-raised-button color="warn">
+              <button style="margin-right: 12px" mat-raised-button color="warn" (click)="crearconvenio()">
                 Aceptar
               </button>
               <button

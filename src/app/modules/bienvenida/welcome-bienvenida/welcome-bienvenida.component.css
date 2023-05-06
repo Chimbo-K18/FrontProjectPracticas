@@ -1,0 +1,10 @@
+.home-all{
+    background-color: rgb(250, 3, 3);
+    border: 1ch;
+    width: 1230px;
+    height: 580px;
+    top: 80%;
+    left: 80%;
+    transform: translate(24%, 25%);
+  
+}

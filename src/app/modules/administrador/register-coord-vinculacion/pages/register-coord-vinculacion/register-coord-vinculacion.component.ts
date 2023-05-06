@@ -52,13 +52,19 @@ export class RegisterCoordVinculacionComponent implements OnInit {
   }
   @ViewChild('checkbox') checkbox!: MatCheckbox;
 
-  constructor(public dialog: MatDialog, private basefenix: BaseFenixService, private router: Router, public activatedRoute: ActivatedRoute,private permisoservice: PermisosService, private createAccountService: CreateAccountService, private userService: UserService){
+  constructor(public dialog: MatDialog, private basefenix: BaseFenixService, 
+    private router: Router, public activatedRoute: ActivatedRoute,
+    private permisoservice: PermisosService, private createAccountService: CreateAccountService, 
+    private userService: UserService){
 
     this.traerdocente();
   }
 
-  
 
+
+  traermaterias(){
+
+  }
   openModal(): void {
     const dialogRef = this.dialog.open(this.modal);
 
@@ -107,6 +113,8 @@ export class RegisterCoordVinculacionComponent implements OnInit {
     }
     console.log(`Cédulas seleccionadas: ${this.cedulasSeleccionadas}`);
   }
+
+  
 
   cedulastra:any;
   obtenerCedulaSeleccionada() {

@@ -8,6 +8,7 @@ export class UsuarioRol{
 	contrasenia: string='';
 	roles: Rol[]=[];
 
+
 }
 class Rol{
 

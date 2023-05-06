@@ -21,5 +21,5 @@ export class EmpresaService {
   getPorId(idEmpresa: number){
     return this.http.get<Empresa>(this.url+ '/buscar/'+idEmpresa);
   }
-  
+
 }

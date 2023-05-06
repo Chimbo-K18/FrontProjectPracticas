@@ -19,6 +19,12 @@ const routes: Routes = [
     path: 'registro-empresa',
     loadChildren: () => import("./registro-empresa/registro-empresa.module").then(m => m.RegistroEmpresaModule)
 
+  },
+
+  {
+    path: 'listado-empresas',
+    loadChildren: () => import("./listado-empresas/listado-empresas.module").then(m => m.ListadoEmpresasModule)
+
   }
 ];
 
