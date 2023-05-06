@@ -19,5 +19,9 @@ export class personaempService {
   buscarpersona(idpersona: any):Observable<personasemp>{
     return this.http.get<personasemp>(this.url + `/buscar/ ${idpersona}`)
   }
+  
+  buscarcedulapersona(cedula: any):Observable<personasemp>{
+    return this.http.get<personasemp>(this.url + `/buscarcedula/ ${cedula}`)
+  }
 
 }

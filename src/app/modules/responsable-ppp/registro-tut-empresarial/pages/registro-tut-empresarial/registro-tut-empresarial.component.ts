@@ -91,6 +91,7 @@ export class RegistroTutEmpresarialComponent {
 contraseniaDefecto: string="Empresarial123";
 codigoempresa:any;
 idusuariotutor:any
+cedulapersonass:any;
   constructor(
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
@@ -141,22 +142,42 @@ idusuariotutor:any
   }
 
   //registrar la persona empresa
-  crearpersonaemp() {
-    this.personaempService
-      .crearpersonaemp(this.personasemp)
-      .subscribe((response) => {
-        this.idpersonaempresa=response.idpersonaemp;
-        this.capturarpersona(response.idpersonaemp);
-        console.log('Exito al Registrar persona empresa',this.idpersonaempresa);
-        this.copy_address();
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Registro Exitoso.',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      });
+
+  personaced:any;
+  crearpersonaemp(){
+  
+    // this.personaempService.buscarcedulapersona(this.cedulapersonass).subscribe((personasss)=> {
+    //   console.log(personasss);
+    //   this.personaced = personasss.cedula;
+    //   if( this.personaced == this.personasemp.cedula){
+    //     Swal.fire({
+    //       position: 'top',
+    //       icon: 'success',
+    //       title: 'La cedula ya esta registrada.',
+    //       showConfirmButton: false,
+    //       timer: 2000,
+    //     });
+    //   }else{
+        
+          this.personaempService
+            .crearpersonaemp(this.personasemp)
+            .subscribe((response) => {
+  this.personaced=this.personasemp.cedula;
+  console.log("capturamos ela cedula")
+  console.log(this.personaced);
+              console.log('Exito al Registrar persona empresa',this.idpersonaempresa);
+              this.copy_address();
+              Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Registro Exitoso.',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            });
+        
+      // }
+    // });
   }
   //funcion para copiar datos a diferentes forms
   copy_address() {
@@ -211,6 +232,7 @@ idusuariotutor:any
       this.nombresCompleto = first_name.value.toUpperCase() + ' ' + second_name.value.toUpperCase();
       this.apellidosCompletos= last_name.value.toUpperCase() + ' ' + secondlast_name.value.toUpperCase();
       this.celulartutor= celular.value;
+      this.cedulapersonass=cedulaPersona.value;
       console.log(this.celulartutor);
     }
   }
@@ -252,15 +274,16 @@ idusuariotutor:any
 
 
   // para crear el usuario
-
+  users:any;
   crearusuario() {
-    this.usuarios.idpersonaemp=this.idper;
+   this.personaempService.buscarcedulapersona(this.personaced).subscribe((data)=> {
+    console.log(data)
+    this.usuarios.personasemp=data;
     this.usuarios.contrasenia=this.contraseniaDefecto;
     this.usuarios.nombres= this.nombresCompleto;
     this.usuarios.apellidos=this.apellidosCompletos
-
     console.log("new"+ this.usuarios.contrasenia);
-    console.log(this.usuarios.idpersonaemp);
+    console.log(this.usuarios.personasemp);
     this.CreateAccountService.createUserempresa(this.usuarios).subscribe(response => {
       console.log('Exito al Registrar usuario');
       response.cedula;
@@ -273,7 +296,7 @@ idusuariotutor:any
         showConfirmButton: false,
         timer: 4000,
       });
-    });
+    });});
   }
   
   idemp:any;
@@ -304,8 +327,7 @@ idusuariotutor:any
 tutorregistrado:any;
 creartutoremp() {
   //buscar la empresa
-  this.idEmpresa = localStorage.getItem('idEmpresa');
-  this.empresaService.getPorId(this.idEmpresa).subscribe((empresa)=> {
+  this.empresaService.getPorId(this.codigoempresa).subscribe((empresa)=> {
     console.log("data de empresa");
   console.log(empresa);
   this.tutorempresarial.Empresa = empresa;
