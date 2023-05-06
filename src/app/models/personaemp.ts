@@ -1,5 +1,5 @@
-export class personasemp {
-    idpersonaemp: number=0;
+export class Personas_empresa {
+    idpersonaemp!: number;
     cedula!: string;
     correo!: string;
     genero?:string;

@@ -1,4 +1,4 @@
-import { personasemp } from 'src/app/models/personaemp';
+import { Personas_empresa } from 'src/app/models/personaemp';
 import { Injectable } from '@angular/core';
 import {Usuarios} from '../models/usuarios';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -44,7 +44,7 @@ public createUserempresa(nuevoUsuario: Usuarios): Observable<Usuarios> {
   return this.http.post<Usuarios>(urlEndPoint + '/crear', nuevoUsuario);
 }
 
-registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string): Observable<any> {
+registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string, persona: Personas_empresa): Observable<any> {
   return this.http.post(
     urlEndPoint + '/crear',
     {
@@ -54,6 +54,7 @@ registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: 
       correo,
       carrera,
       contrasenia,
+      persona,
     },
     httpOptions );
   }
@@ -62,7 +63,7 @@ registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: 
     return this.http.post<Usuarios>(urlEndPoint + '/signupdocente', nuevoUsuario);
   }
 
-  registerUserdocente(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string, idpersonaemp:number): Observable<any> {
+  registerUserdocente(cedula: string, nombres: string, apellidos: string, correo: string, carrera: string, contrasenia: string): Observable<any> {
     return this.http.post(
       urlEndPoint + '/signupdocente',
       {
@@ -71,8 +72,7 @@ registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: 
         apellidos,
         correo,
         carrera,
-        contrasenia,
-        personasemp,
+        contrasenia
       },
       httpOptions
     );
