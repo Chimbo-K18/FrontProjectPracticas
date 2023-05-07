@@ -6,32 +6,22 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
-import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
-import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
-import { Observable, Subscriber } from 'rxjs';
-import { error, log } from 'console';
 import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { URL } from 'url';
-import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import { Output, EventEmitter, Input, ElementRef } from '@angular/core';
 
 export interface PeriodicElement {
@@ -69,10 +59,9 @@ export class EnvioSolicitudComponent implements OnInit {
   detalles: any;
   nombre: any;
   idRes: any;
+  @Input() public disabled!: boolean;
 
- 
 
-  //myForm: FormGroup;
 
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -103,7 +92,7 @@ export class EnvioSolicitudComponent implements OnInit {
   public solicitudPractica: SolicitudPracticas = new SolicitudPracticas();
 
   //llamada a la clase donde se guarda el documento
-  public guardarSolicitud:DocumentoSolicitudPracticas=new DocumentoSolicitudPracticas();
+  public guardarSolicitud: DocumentoSolicitudPracticas = new DocumentoSolicitudPracticas();
   convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
@@ -116,29 +105,22 @@ export class EnvioSolicitudComponent implements OnInit {
   mitutor !: string;
   tutorEmpre !: any;
   solicitudGenerada !: any;
-  public archivos:any=[];
+  public archivos: any = [];
   respon!: ResponsablePpp;
-  private fileTmp:any;
+  private fileTmp: any;
   selectedFile!: File;
   @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private _formBuilder: FormBuilder,
     private solicitud: SolicitudpracticasService,
-    private router: Router,
     private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
-    private empresarialService : tutorempresarialService,
-    private documentoSolService: DocumentoSolPracticasService,
-    private documentoSpService:DocumentoSolicitudPracticaService,
-    private http: HttpClient
-  ) {}
+    private empresarialService: tutorempresarialService,
+    private documentoSpService: DocumentoSolicitudPracticaService,
 
-
-
-
-
+  ) { }
 
 
   ngOnInit(): void {
@@ -148,7 +130,7 @@ export class EnvioSolicitudComponent implements OnInit {
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;
     const input = dropArea.querySelector<HTMLInputElement>('input')!;
 
-   
+
     let filename: string;
 
     button.onclick = () => {
@@ -180,12 +162,10 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public create() {
-
-
     this.solicitudPractica.nombre_carrera = this.mivariable;
     this.solicitudPractica.fechaEnvioSolicitud = this.getCurrentDate();
     this.solicitudPractica.responsablePPP = this.responsableKO;
-    this.solicitudPractica.tutorEmpresarial = this. tutorEmpre;
+    this.solicitudPractica.tutorEmpresarial = this.tutorEmpre;
 
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
       (res) => {
@@ -223,16 +203,27 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public listarDetalles() {
-    this.detalleService
-      .getDetalleConvenio()
-      .subscribe((res) => (this.listaDetalles = res));
+    console.log("entro al metodo");
 
-
+    const valorEmpresarial = JSON.parse(
+      sessionStorage.getItem('auth-user') || '{}'
+    );
+    this.mitutor = valorEmpresarial.id;
+    this.detalleService.getDetalleConvenioxEmpresa(this.mitutor)
+      .subscribe(
+        detallesConvenio => {
+          this.listaDetalles = detallesConvenio;
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
+
 
   public nombreResponsable: string = '';
   public nombreResponsable2: any;
-   public filesToUpload!: Array<File>;
+  public filesToUpload!: Array<File>;
 
   obtenerCarrera() {
 
@@ -255,7 +246,7 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-  extraerEmpresarial(){
+  extraerEmpresarial() {
 
     const valorEmpresarial = JSON.parse(
       sessionStorage.getItem('auth-user') || '{}'
@@ -306,15 +297,15 @@ export class EnvioSolicitudComponent implements OnInit {
 
   //Metodo para descargar la solicitud de practicas 
   descargarPDF() {
-  const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
-  const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
-  window.open(url, '_blank'); 
+    const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
+    window.open(url, '_blank');
   }
 
-  fileUrl!:SafeResourceUrl;
- 
-  fileChangeEvent(fileInput:any){
-    this.filesToUpload=<Array<File>> fileInput.target.files;
+  fileUrl!: SafeResourceUrl;
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
   onLoad(event: Event): void {
@@ -328,36 +319,43 @@ export class EnvioSolicitudComponent implements OnInit {
     }
   }
 
-  
-  public upload(event:any) {
 
-    console.log("subiendo archivo");
+  public upload(event: any) {
+
+
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       this.documentoSpService.uploadFile(file).subscribe(
-        data=> {
+        data => {
           if (data) {
             switch (data.type) {
               case HttpEventType.UploadProgress:
                 console.log("progreso....");
-                
+
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
                 break;
             }
           }
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Documento guardado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         },
         error => {
           this.inputFile.nativeElement.value = '';
           console.log("Error");
-          
+
         }
       );
     }
   }
 
-  
+
 
 
 }
