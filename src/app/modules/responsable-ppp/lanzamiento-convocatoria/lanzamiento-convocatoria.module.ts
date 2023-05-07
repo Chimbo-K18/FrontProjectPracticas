@@ -18,6 +18,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatPaginatorModule,
     MatIconModule,
     MatDatepickerModule,
+    MatSlideToggleModule,
     LanzamientoConvocatoriaRoutingModule
   ],
   exports:[

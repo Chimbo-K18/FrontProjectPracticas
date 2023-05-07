@@ -220,6 +220,7 @@ variableencontrada:any;
       this.usuarios.usuario_persona_empresa= databus;
       this.usuarios.nombres = this.nombresCompleto;
       this.usuarios.apellidos=this.apellidosCompletos;
+      this.usuarios.contrasenia = this.contraseniaDefecto;
       this.CreateAccountService.createUserempresa(this.usuarios).subscribe(datausu =>{
         this.Agregarrol(databus.cedula);
       });

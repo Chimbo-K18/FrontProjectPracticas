@@ -28,5 +28,12 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
   }
 
+  
+  updateSolicitud(solicitud: SolicitudPracticas, idSolicitudPracticas: any) {
+    console.log("servicio");
+    console.log(solicitud);
+    return this.http.put<SolicitudPracticas>(this.URL + `actualizar/${idSolicitudPracticas}`, solicitud);
+  }
+
 
 }

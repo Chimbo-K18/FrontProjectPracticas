@@ -12,6 +12,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -30,7 +31,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatTableModule,
     RegistroActividadesRoutingModule,
-    FormsModule
+    FormsModule,
+    MatCheckboxModule,
+    FormsModule,
   ],
   exports:[
     RegistroActividadesComponent

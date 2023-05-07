@@ -3,6 +3,6 @@ import { SolicitudPracticas } from "./solicitudpracticas";
 
 export class Requerimientos {
     idRequerimientos!: number;
-    solicitudpracticas!: SolicitudPracticas;
+    solicitudPracticas!: SolicitudPracticas;
     actividades!:Actividades;
 }
