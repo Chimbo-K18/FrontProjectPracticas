@@ -28,8 +28,23 @@ export class RegisterDirectorComponent implements OnInit {
     'correo_institucional',
     'opciones',
   ];
-  dataSource = new MatTableDataSource<Verdocentef>([]);
-
+  listadocentes: any[] = [];
+  // dataSource = new MatTableDataSource<Verdocentef>([]);
+  dataSource = new MatTableDataSource<Verdocentef>(this.listadocentes);
+  // buscarPorCedula() {
+  //   const resultados = this.dataSource.data.filter(item => item.cedula === this.cedulaBuscada);
+  //   this.resultadosBusqueda = resultados;
+  // }
+  buscarPorCedula() {
+  this.resultadosBusqueda = [];
+  this.listadocentes.forEach((Verdocentef) => {
+    if (Verdocentef.cedula === this.cedulaBuscada) {
+      this.resultadosBusqueda.push(Verdocentef);
+    }
+  });
+  this.dataSource = new MatTableDataSource<Verdocentef>(this.resultadosBusqueda);
+  this.dataSource.paginator = this.paginator;
+}
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -46,11 +61,12 @@ export class RegisterDirectorComponent implements OnInit {
   apellido: any;
   ROLE_DIRECTOR: boolean = false;
   selectedDirector: any;
-  listadocentes: any[] = [];
+  // listadocentes: any[] = [];
   Verdocentef: Verdocentef = new Verdocentef();
   ceduladoc: any;
   contraseniaDefecto: string = 'Director123';
-
+  resultadosBusqueda: any[] = [];
+  cedulaBuscada: string = '';
   seleccionarDirector(Verdocentef: any) {
     console.log('Se seleccionó :', Verdocentef);
     const NombreCompletoDirector = document.getElementById(
@@ -76,6 +92,12 @@ export class RegisterDirectorComponent implements OnInit {
     this.Obtenerdocente();
   }
   //buscar usuario
+  onInputKeyup() {
+    if (!this.cedulaBuscada) {
+      this.dataSource.data = this.listadocentes;
+      this.dataSource.paginator = this.paginator;
+    }
+  }
   // para crear el usuario
   users:any;
   crearusuario() {
@@ -92,13 +114,11 @@ export class RegisterDirectorComponent implements OnInit {
       console.log(usuarioss);
       this.users = usuarioss.cedula;
       if( this.users == this.usuario.cedula){
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'El usuario ya tiene el Rol Director de Carrera.',
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        Swal.fire(
+          'Error',
+          'El usuario ya tiene el Rol Director de Carrera.',
+          'error'
+              );
       }
     });
           try {
