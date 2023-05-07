@@ -9,6 +9,7 @@ import { WelcomeEstudianteComponent } from './modules/estudiante/welcome-estudia
 import { WelcomeResponsableComponent } from './modules/responsable-ppp/welcome-responsable/welcome-responsable.component';
 import { WelcomeEmpresarialComponent } from './modules/tutor-empresarial/welcome-empresarial/welcome-empresarial.component';
 import { WelcomeAcademicoComponent } from './modules/tutor-academico/welcome-academico/welcome-academico.component';
+import { WelcomeHomeComponent } from './modules/home/welcome-home/welcome-home.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,11 @@ const routes: Routes = [
     loadChildren: () => import("./modules/bienvenida/bienvenida.module").then(m => m.BienvenidaModule)
   },
 
+  {
+    path: 'home',
+    component: WelcomeHomeComponent,
+    loadChildren: () => import("./modules/home/home.module").then(m => m.HomeModule)
+  },
 
   {
     path: 'auth',

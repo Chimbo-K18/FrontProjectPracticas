@@ -57,7 +57,7 @@ this.listarSolicitudes();
 
 
 
- 
+
 
   idSeleccionadas: string[] = [];
   materiaSeleccionadas: string[] = [];
@@ -104,7 +104,7 @@ obtenerdatostable(){
     carrera.value = carreraselect;
     this.materia.getlistarmateriascarrera(carreraselect).subscribe((data: any) => {
           this.materias = data;
-        }); 
+        });
 
     const empreselect = this.empresaSeleccionadas[this.empresaSeleccionadas.length - 1];
     console.log(`Empresa seleccionada: ${empreselect}`);
@@ -144,15 +144,15 @@ getCurrentDate() {
 idsoli:any;
 crearActividades(){
   Swal.fire({
-    title: 'Esta seguro de asignar este requermiento',
-    text: "Sus actividade no podran modificarse",
+    title: 'Esta seguro de asignar esta actividad?',
+    text: "Recuerde que esta actividad podra solo ser modificada, no podra ser eliminada",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, Continuar!'
   }).then((result) => {
-    if (result.isConfirmed) {     
+    if (result.isConfirmed) {
       this.actividad.nombre_materia = this.carreraSeleccionada;
       const detalle = document.getElementById(
         'detalle'
@@ -180,7 +180,7 @@ crearActividades(){
 
           });
         });
-        
+
       });
       Swal.fire(
         'PROCESO',
@@ -204,7 +204,7 @@ procesoterminado(){
   ngAfterViewInit() {
     this.dataSource2.paginator = this.paginator;
     this.dataSource1.paginator = this.paginator;
-    
+
   }
 
 
