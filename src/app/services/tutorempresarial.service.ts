@@ -16,8 +16,6 @@ export class tutorempresarialService {
     return this.http.post<tutorempresarial>(this.url+'/crear',tutorempresarial1);
   }
 
-
-
   extraerEmpresarialIdUsuario(idUsuario: any): Observable<tutorempresarial> {
     return this.http.get<tutorempresarial>(
       this.url + `/extraer/ ${idUsuario}`

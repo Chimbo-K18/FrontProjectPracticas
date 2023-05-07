@@ -17,7 +17,8 @@ import { UserService } from 'src/app/services/user.service';
 import { PermisosService } from 'src/app/services/permisos.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { FotoService } from 'src/app/services/foto.service';
-import { Router } from '@angular/router';
+import { MatStepper } from '@angular/material/stepper';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-registro-tut-empresarial',
   templateUrl: './registro-tut-empresarial.component.html',
@@ -31,6 +32,7 @@ export class RegistroTutEmpresarialComponent {
   dataSource = new MatTableDataSource<Empresa>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -70,8 +72,6 @@ export class RegistroTutEmpresarialComponent {
   tutorempresarial: tutorempresarial = new tutorempresarial();
   usuarios: Usuarios = new Usuarios();
   rol: RolToUser = new RolToUser();
-
-
   cedulafi: any;
   correo: any;
   carrera: any;
@@ -84,10 +84,11 @@ export class RegistroTutEmpresarialComponent {
   celulartutor: any;
   idpersonaempresa: any;
   ROLE_TUTOREMPRESARIAL: boolean = false;
-contraseniaDefecto: string="Empresarial123";
-codigoempresa:any;
-idusuariotutor:any
-cedulapersonass:any;
+  contraseniaDefecto: string="Empresarial123";
+  codigoempresa:any;
+  idusuariotutor:any
+  cedulapersonass:any;
+  correoconsulta:any;
   constructor(
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
@@ -117,6 +118,16 @@ cedulapersonass:any;
       this.codigoempresa=empresa.idEmpresa;
       console.log("este el idempresa para tutor" +  this.codigoempresa);
     }
+  }
+  verficarcedula(){
+    const correoPersona = document.getElementById(
+      'correoPersona'
+    ) as HTMLInputElement;
+    const cedulaPersona = document.getElementById(
+      'cedulaPersona'
+    ) as HTMLInputElement;
+    this.cedulapersonass=cedulaPersona.value;
+    this.correoconsulta=correoPersona.value;
   }
 
   //funcion para copiar datos a diferentes forms
@@ -171,12 +182,9 @@ cedulapersonass:any;
       NombreCompleto2.value = first_name.value + ' ' + last_name.value;
       this.nombresCompleto = first_name.value.toUpperCase() + ' ' + second_name.value.toUpperCase();
       this.apellidosCompletos= last_name.value.toUpperCase() + ' ' + secondlast_name.value.toUpperCase();
-      this.celulartutor= celular.value;
-      this.cedulapersonass=cedulaPersona.value;
-      console.log(this.celulartutor);
+      this.celulartutor=celular.value;
     }
   }
-
   //obtener empresas
   obtenerEmpresas() {
     this.empresaService.listarEmpresas().subscribe((data) => {
@@ -192,26 +200,47 @@ cedulapersonass:any;
       });
       this.dataSource.data = this.listaEmpresa;
       this.loading = false;
-    
+
     });
   }
-
-
   cedulausu:any;
   correousu:any;
   nombresusu:any;
   apellidosusu:any;
   crearpersona(){
+this.verficarcedula();
+this.personaempService.buscarcedulapersona(this.cedulapersonass).subscribe(buscarpersona =>{
+  if(buscarpersona.cedula==this.cedulapersonass){
+    Swal.fire(
+      'Error',
+      'La cedula ya esta registrada.',
+      'error'
+            );
+  }
+    });
+  this.personaempService.buscarcorreopersona(this.correoconsulta).subscribe(buscarpersona =>{
+    if(buscarpersona.correo== this.correoconsulta){
+      Swal.fire(
+        'Error',
+        'El correo ya esta registrado.',
+        'error'
+            );
+    }
+    });
     this.personaempService.crearpersonaemp(this.personasemp).subscribe(data =>{
       localStorage.setItem("cedulapersona", String(data.cedula));
-      this.cargardatoseninput(); 
-      Swal.fire("bien hecho");
+      this.cargardatoseninput();
+      this.stepperNext();
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Registro Exitoso.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
     })
-  }
+    }
 
-  cargarusuario(){
-    
-  }
 variableencontrada:any;
   crearusuario(){
     this.variableencontrada = localStorage.getItem("cedulapersona");
@@ -220,9 +249,17 @@ variableencontrada:any;
       this.usuarios.usuario_persona_empresa= databus;
       this.usuarios.nombres = this.nombresCompleto;
       this.usuarios.apellidos=this.apellidosCompletos;
-      this.usuarios.contrasenia = this.contraseniaDefecto;
+      this.usuarios.contrasenia=this.contraseniaDefecto;
       this.CreateAccountService.createUserempresa(this.usuarios).subscribe(datausu =>{
         this.Agregarrol(databus.cedula);
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Usuario Registrado Exitosamente.',
+          text: '¡Recuerde que la contraseña por defecto es "Empresarial123"!',
+          showConfirmButton: false,
+          timer: 4000,
+        });
       });
     });
   }
@@ -236,46 +273,90 @@ variableencontrada:any;
       this.userService.getuscedula(this.variableencontradatuto).subscribe(datausututo =>{
         console.log(datausututo);
         this.tutorempresarial.usuario_empresarial = datausututo;
+        this.tutorempresarial.numeroContacto=this.celulartutor;
+        console.log("este el celular" + this.tutorempresarial.numeroContacto);
         this.tutorempresarialService.creartutoremp(this.tutorempresarial).subscribe(datatutor =>{
           console.log(datatutor);
+          Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Tutor Empresarial Registrado Exitosamente.',
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          this.resetStepper();
         })
       })
     })
-
   }
-
   Agregarrol(cedula: any) {
-
     this.userService.getcedula(cedula).subscribe((usuarios) => {
       this.usuariosrol = usuarios;
       this.roltouser.cedula = this.usuariosrol.cedula;
-      
       // Buscar si el usuario ya tiene el rol "ROLE_CORDINADOR"
-      const tieneRolCordinador = this.usuariosrol.roles.some(r => r.rolNombre === 'ROLE_RESPONSABLEPP');
-      
+      const tieneRolCordinador = this.usuariosrol.roles.some(r => r.rolNombre === 'ROLE_TUTOREMPRESARIAL');
       // Si el usuario no tiene el rol, se agrega
       if (!tieneRolCordinador) {
         this.roles.push('ROLE_TUTOREMPRESARIAL');
       }
-  
       this.roltouser.roles = this.roles;
       console.log(this.roltouser);
-  
       this.permisoservice.addRoleToUser(this.roltouser).subscribe(x => {
         this.roles = new Array<string>();
-  
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Datos Creados Correctamente',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-     
       });
     });
   }
+// imageeeeeeeeeeeeeeeeeeeeen
+file: any = '';
+image!: any;
+retrievedImage: any;
+foto_usuario: string = 'nodisponible.png';
+cap_nombre_archivo: any;
+selectedFile!: File;
+public imageSelected(event: any) {
+  const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+  const file = event.target.files[0];
+  const extension = file.name.split('.').pop().toLowerCase();
+  const fileSize = file.size / 1024;
+  if (!allowedExtensions.includes(extension)) {
+  } else if (fileSize > 1000) {
+    Swal.fire(
+      'Error',
+      'La imagen seleccionada es demasiado grande. El tamaño máximo permitido es de 1000 KB.',
+      'error'
+          );
+    return;
+  }
 
-  //registrar la persona empresa
-
+  if (!allowedExtensions.includes(extension)) {
+    Swal.fire(
+      'Error',
+      'Solo se permiten imágenes en formato JPG, PNG o GIF.',
+      'error'
+          );
+    return;
+  }
+  this.selectedFile = event.target.files[0];
+  this.image = this.selectedFile;
+  const reader = new FileReader();
+  reader.readAsDataURL(this.selectedFile);
+  reader.onload = () => {
+    this.file = reader.result;
+  };
+  this.cap_nombre_archivo = event.target.value;
+  this.foto_usuario = this.cap_nombre_archivo.slice(12);
+  console.log('Nombre imagen original => ' + this.foto_usuario);
+}
+cargarImagen() {
+  this.FotoService.guardarImagenes(this.selectedFile);
+  console.log(this.selectedFile);
+  // this.updatepersona();
+}
+ ////controlador botones xd
+resetStepper() {
+  this.stepper.reset();
+}
+stepperNext() {
+  this.stepper.next();
+}
 }
