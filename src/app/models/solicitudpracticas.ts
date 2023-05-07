@@ -19,6 +19,5 @@ export class SolicitudPracticas {
    documentoSolicitudPractica?: DocumentoSolicitudPracticas;
    tutorEmpresarial?: tutorempresarial;
   responsablePPP ?: ResponsablePpp;
-   empresa?: Empresa;
 }
 

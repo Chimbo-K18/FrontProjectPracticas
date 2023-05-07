@@ -24,12 +24,12 @@
                   style="margin-right: 20px; width: 300px"
                 >
                   <mat-label>Cedula:</mat-label>
-                  <input maxlength="10" minlength="10"
+                  <input maxlength="10"
                     id="cedulaPersona"
                     [(ngModel)]="personasemp.cedula"  [(ngModel)]="usuarios.cedula"
                     matInput
                     formControlName="firstCtrl" 
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -39,13 +39,13 @@
                 >
                   <mat-label>Primer Nombre:</mat-label>
                   <input
-                  maxlength="30"
+      
                     id="first_name" style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.primer_nombre"
               
                     matInput
                     formControlName="firstCtrl" 
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -55,12 +55,12 @@
                 >
                   <mat-label>Segundo Nombre:</mat-label>
                   <input   id="second_name"
-                  maxlength="30"
+        
                   style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.segundo_nombre"
                     matInput
                     formControlName="firstCtrl" 
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -70,12 +70,12 @@
                 >
                   <mat-label>Primer Apellido:</mat-label>
                   <input
-                  maxlength="30"
+                
                     id="last_name" style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.primer_apellido"
                     matInput
                     formControlName="firstCtrl"
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -85,12 +85,12 @@
                 >
                   <mat-label>Segundo Apellido:</mat-label>
                   <input id="secondlast_name"
-                  maxlength="30"
+            
                   style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.segundo_apellido"
                     matInput
                     formControlName="firstCtrl"
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -100,10 +100,10 @@
                 >
                   <mat-label>Celular:</mat-label>
                   <input id="celular"
-                  maxlength="10" minlength="10"
+                  maxlength="10"
                     matInput
                     formControlName="firstCtrl"
-                    required
+                    
                   />
                 </mat-form-field>
                 <mat-form-field
@@ -112,11 +112,11 @@
                 >
                   <mat-label>Departamento:</mat-label>
                   <input 
-                  maxlength="50"
+      
                     [(ngModel)]="tutorempresarial.departamento"
                     matInput
                     formControlName="firstCtrl"
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -126,11 +126,11 @@
                 >
                   <mat-label>Titulo:</mat-label>
                   <input 
-                    maxlength="50"
+           
                     [(ngModel)]="tutorempresarial.titulo"
                     matInput
                     formControlName="firstCtrl" 
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -140,14 +140,13 @@
                 >
                   <mat-label>Correo:</mat-label>
                   <input
-          
+     
                     id="correoPersona"
                     name="correoPersona"
-                    maxlength="50"
                     [(ngModel)]="personasemp.correo" [(ngModel)]="usuarios.correo"
                     matInput
                     formControlName="firstCtrl" 
-                    required
+                    
                   />
                 </mat-form-field>
 
@@ -158,11 +157,11 @@
                 >
                   <mat-label>Cargo:</mat-label>
                   <input 
-                    maxlength="50"
+             
                     [(ngModel)]="tutorempresarial.cargo"
                     matInput
                     formControlName="firstCtrl" 
-                    required
+                    
                   />
                 </mat-form-field>
                 <select
@@ -179,13 +178,12 @@
                 </select>
               </div>
             </div>
-
             <div style="text-align: center">
               <button
                 mat-raised-button
                 color="primary"
                 matStepperNext
-                (click)="crearpersonaemp()"
+                (click)="crearpersona()"
               >
                 <!-- <button mat-raised-button color="primary" matStepperNext (click)=" copy_address()"> -->
                 Siguiente
@@ -267,7 +265,7 @@
                     <div class="conten">
                       <label class="label">
                         <figure class="recipiente">
-                          <img class="fotico" *ngIf="file" [src]="file" />
+                          <!-- <img class="fotico" *ngIf="file" [src]="file" /> -->
                         </figure>
                       </label>
                     </div>
@@ -287,13 +285,13 @@
 
                 <label class="dsboton"
                   >Subir Foto
-                  <input
+                  <!-- <input
                     type="file"
                     class="uploadFile img"
                     value="Upload Photo"
                     (change)="imageSelected($event)"
                     style="width: 0px; height: 0px; overflow: hidden"
-                  />
+                  /> -->
                 </label>
 
 
@@ -335,7 +333,7 @@
             <div class="conten">
               <label class="label">
                 <figure class="recipiente">
-                  <img class="fotico" *ngIf="file" [src]="file" />
+                  <!-- <img class="fotico" *ngIf="file" [src]="file" /> -->
                 </figure>
               </label>
             </div>
@@ -366,7 +364,7 @@
               >
                 Back
               </button>
-              <button style="margin-right: 12px" mat-raised-button color="warn" (click)="creartutoremp()">
+              <button style="margin-right: 12px" mat-raised-button color="warn" (click)="creartutor()">
                 Finalizar
               </button>
               <button

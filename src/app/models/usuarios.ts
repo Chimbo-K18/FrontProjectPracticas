@@ -1,4 +1,6 @@
-import { personasemp } from 'src/app/models/personaemp';
+import { Personas_empresa } from "./personaemp";
+
+
 
 export class Usuarios {
     idUsuario: number=0;
@@ -8,5 +10,5 @@ export class Usuarios {
 	correo: string='';
 	carrera: string='';
 	contrasenia: string='';
-    personasemp?:personasemp;
+	usuario_persona_empresa?: Personas_empresa;
 }

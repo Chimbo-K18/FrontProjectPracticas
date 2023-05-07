@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { verCarreras } from 'src/app/models/verCarreras';
 import { vermateriasf } from 'src/app/models/vermateriasf';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MateriaService } from 'src/app/services/materias.service';
-
+import{SolicitudpracticasService} from 'src/app/services/solicitudpracticas.service';
 
 export interface PeriodicElement {
   name: string;
@@ -13,7 +14,6 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -33,14 +33,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class RegistroActividadesComponent implements OnInit {
 
+  displayedColumns1: string[] = ['idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial'];
+  dataSource1 = new MatTableDataSource<SolicitudPracticas>([]);
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public vercarrera: verCarreras = new verCarreras();
 
-  constructor(private carrera: CarreraService, private materia: MateriaService){
-
+  constructor(private carrera: CarreraService, private materia: MateriaService, private solicitudpracticas:SolicitudpracticasService){
+this.listarSolicitudes();
     // this.traercarreras();
   }
   Carrera:any;
@@ -83,13 +86,21 @@ seleccionarCarrera() {
 //   console.log(this.carreraSeleccionada);
 // }
 
-
+listassolicitudes:any []=[];
+listarSolicitudes(){
+  this.solicitudpracticas.getSolicitudes().subscribe(data=>{
+this.listassolicitudes = data;
+this.dataSource1.data= this.listassolicitudes;
+  })
+}
 
 
 
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource1.paginator = this.paginator;
+    
   }
 
 
