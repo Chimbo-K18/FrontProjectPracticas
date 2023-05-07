@@ -23,4 +23,9 @@ export class DetalleconvenioService {
     return this.http.get<DetalleConvenio[]>(`${this.url}/listar`);
   }
 
+  getDetalleConvenioxEmpresa(idTutor: any): Observable<DetalleConvenio[]> {
+    return this.http.get<DetalleConvenio[]>(`${this.url}/listarXempresa/${idTutor}`);
+  }
+  
+
 }
