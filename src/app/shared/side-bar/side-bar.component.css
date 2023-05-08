@@ -13,6 +13,7 @@
   height: 100%;
   background: #153F99;
   transition: all .5s ease;
+  bottom: 0;
 }
 
 .profile {

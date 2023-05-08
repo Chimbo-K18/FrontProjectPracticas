@@ -70,7 +70,18 @@ a {
 
 
 
-li:hover, a:hover {
+li:hover {
+	background-color: white;
+	background-size: 100% 100%;
+	color: black;
+	animation: spring 300ms ease-out;
+	text-shadow: 0 -1px 0 #ffff;
+	font-weight: bold;
+    text-decoration: none;
+
+}
+
+a:hover {
 	background-color: white;
 	background-size: 100% 100%;
 	color: #27262c;
@@ -78,6 +89,7 @@ li:hover, a:hover {
 	text-shadow: 0 -1px 0 #ffff;
 	font-weight: bold;
     text-decoration: none;
+	
 }
 
 li:active {
