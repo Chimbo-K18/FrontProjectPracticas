@@ -14,6 +14,14 @@
     width: 100%;
   }
 
+        .download-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 2rem;
+        }
+
+
   .mat-date-range-input {
     display: none;
   }
@@ -39,7 +47,7 @@
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
 
   }
-  
+
   .mat-mdc-form-field {
     margin-top: 16px;
   }
@@ -50,17 +58,17 @@
   margin-right: auto;
   background-color: rgba(0, 0, 0, 0);
 
-  
-  
+
+
 
 
   }
-  
+
 
   .mat-tab-group {
     margin-bottom: 48px;
   }
-  
+
   mat-card{
     position: fixed;
     top: 50%;
@@ -83,9 +91,9 @@
   .example-card {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 
-   
+
   }
-  
+
 
 
 
@@ -115,7 +123,7 @@
       align-items: center;
       color: var(--white);
     background-color: #102770;
-  
+
   }
   .hh {
     margin-top: 20px;
@@ -129,7 +137,7 @@
       letter-spacing: 1px;
       transition: 0.3s;
   }
-  
+
   /* ///////////////// */
   .bodyL{
       font-family: 'Poppins', sans-serif;
@@ -155,7 +163,7 @@
       text-decoration: none;
   }
   .link {
-   
+
     color: #c4c3ca;
   }
   .link:hover {
@@ -205,7 +213,7 @@
   }
   .checkbox:checked + label,
   .checkbox:not(:checked) + label{
-  
+
     position: absolute;
     display: block;
     text-align: center;
@@ -240,8 +248,8 @@
   .checkbox:checked + label:before {
     transform: translateX(44px) rotate(-270deg);
   }
-  
-  
+
+
   .card-3d-wrap {
     position: relative;
     width: 440px;
@@ -255,12 +263,12 @@
   .card-3d-wrapper {
     width: 100%;
     height: 100%;
-    position:absolute;    
+    position:absolute;
     top: 0;
-    left: 0;  
+    left: 0;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    transition: all 600ms ease-out; 
+    transition: all 600ms ease-out;
   }
   .card-front, .card-back {
     width: 100%;
@@ -307,8 +315,8 @@
     z-index: 20;
     display: block;
   }
-  
-  .form-group{ 
+
+  .form-group{
     position: relative;
     display: block;
       margin: 0;
@@ -369,7 +377,7 @@
     -webkit-transition: all 200ms linear;
       transition: all 200ms linear;
   }
-  
+
   .form-group input:-ms-input-placeholder  {
     color: #fff;
     font-size: 20px;
@@ -415,8 +423,8 @@
     -webkit-transition: all 200ms linear;
       transition: all 200ms linear;
   }
-  
-  .btn{  
+
+  .btn{
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
@@ -447,22 +455,22 @@
     box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
   }
   .btn:active,
-  .btn:focus{  
+  .btn:focus{
     background-color: #102770;
     color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
   }
-  .btn:hover{  
+  .btn:hover{
     background-color: #102770;
     color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
   }
-  
+
   .example-form-field {
     margin: 0 8px 16px 0;
   }
-  
-  
+
+
   .logo {
       position: absolute;
       top: 30px;

@@ -26,4 +26,7 @@ export class personaempService {
  actualizarpersona(idpersona: any):Observable<Personas_empresa>{
   return this.http.put<Personas_empresa>(this.url +`/actualizar/${idpersona}`,Personas_empresa);
  }
+ buscarcorreopersona(correo: any):Observable<Personas_empresa>{
+  return this.http.get<Personas_empresa>(this.url +`/buscarcorreo/${correo}`);
+ }
 }

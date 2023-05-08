@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DetalleConvenio } from '../models/detalleconvenio'; 
+import { DetalleConvenio } from '../models/detalleconvenio';
 
 
 @Injectable({
@@ -23,5 +23,10 @@ export class DetalleconvenioService {
   getDetalleConvenio(): Observable<DetalleConvenio[]> {
     return this.http.get<DetalleConvenio[]>(`${this.url}/listar`);
   }
+
+  getDetalleConvenioxEmpresa(idEmpresa: any): Observable<DetalleConvenio[]> {
+    return this.http.get<DetalleConvenio[]>(`${this.url}/listarXempresa/${idEmpresa}`);
+  }
+
 
 }
