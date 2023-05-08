@@ -3,6 +3,11 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {FormGroup, FormControl} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
+import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
+import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
+import { Convocatorias } from 'src/app/models/convocatorias';
 
 
 
@@ -35,38 +40,93 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class LanzamientoConvocatoriaComponent   {
 
-  
+
+  solicitudesCompletas: SolicitudPracticas[] | undefined;
+  solicitudID: any;
+
   //TABLA
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  
+
     @ViewChild(MatPaginator) paginator!: MatPaginator;
-  
+
     ngAfterViewInit() {
       this.dataSource.paginator = this.paginator;
     }
-  
+
     //FINTABLA
-  
-  
-  
-  
-  
+
     firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
     });
     secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required],
     });
-  
+
     isEditable = false;
-  
-    constructor(private _formBuilder: FormBuilder) {}
-  
+
+    public convocatoria: Convocatorias = new Convocatorias();
+
+    constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
+                private convocatoriaService: ConvocatoriasService) {}
+
     ngOnInit(): void {
+
+      this.listarAsignadoActividades();
     }
 
-    
-  
+    seleccionarSolicitud(solicitud: any){
+
+      sessionStorage.setItem('solicitudSeleccionada', JSON.stringify(solicitud));
+
+      const valor = JSON.parse(
+        sessionStorage.getItem('solicitudSeleccionada') || '{}'
+      );
+      this.solicitudID = valor;
+      console.log(this.solicitudID)
+      this.getFechaActual();
+    }
+
+
+    listarAsignadoActividades(){
+
+      this.solicitudService.getSolicitudesActividades()
+      .subscribe((res) => (this.solicitudesCompletas = res));
+
+    }
+
+
+    public crearConvocatoria(){
+
+      this.convocatoria.fechaPublicacion = this.getFechaActual();
+      this.convocatoria.solicitudPracticas = this.solicitudID;
+
+      return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
+        (res) => {
+
+          console.log(res);
+        },
+
+        (err) => console.error(err)
+      );
+    }
+
+    verificarID(){
+
+      if(!this.convocatoriaService.getRequest(this.convocatoria.idConvocatorias)){
+
+        console.log('Convocatoria Encontrada');
+      }else {
+        this.crearConvocatoria();
+      }
+    }
+
+  getFechaActual() {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
-  
+
+  }
