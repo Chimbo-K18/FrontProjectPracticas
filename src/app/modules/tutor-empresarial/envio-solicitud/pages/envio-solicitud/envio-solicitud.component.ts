@@ -361,20 +361,25 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
                 break;
             }
           }
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Documento guardado correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+         
         },
         error => {
           this.inputFile.nativeElement.value = '';
-          console.log("Error");
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+                );
 
         }
       );
