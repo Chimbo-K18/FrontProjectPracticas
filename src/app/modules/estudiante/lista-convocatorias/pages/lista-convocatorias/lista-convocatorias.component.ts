@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { convocatorias } from 'src/app/models/convocatorias';
-import { convocatoriasService } from 'src/app/services/convocatorias.service';
+import { Convocatorias } from 'src/app/models/convocatorias';
+import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 @Component({
   selector: 'app-lista-convocatorias',
   templateUrl: './lista-convocatorias.component.html',
@@ -19,10 +19,10 @@ export class ListaConvocatoriasComponent {
     'documento_convocatoria',
     'opciones',
   ];
-  listaConvocatoria: convocatorias[] = [];
-  convocatorias: convocatorias= new convocatorias();
+  listaConvocatoria: Convocatorias[] = [];
+  convocatorias: Convocatorias= new Convocatorias();
   loading: boolean = true;
-    dataSource  = new MatTableDataSource<convocatorias>([]);
+    dataSource  = new MatTableDataSource<Convocatorias>([]);
   
     @ViewChild(MatPaginator) paginator!: MatPaginator;
   
@@ -42,7 +42,7 @@ export class ListaConvocatoriasComponent {
   
     isEditable = false;
   
-    constructor(private _formBuilder: FormBuilder,    private convocatoriaService: convocatoriasService,) {}
+    constructor(private _formBuilder: FormBuilder,    private convocatoriaService: ConvocatoriasService,) {}
   
     ngOnInit(): void {
     }
@@ -50,12 +50,12 @@ export class ListaConvocatoriasComponent {
     obtenerConvocatorias() {
       this.convocatoriaService.listarConvocatorias().subscribe((data) => {
         this.listaConvocatoria = data.map((result) => {
-          let convo = new convocatorias();
+          let convo = new Convocatorias();
           convo.idConvocatorias = result.idConvocatorias;
           convo.nombreConvocatoria = result.nombreConvocatoria;
           convo.fechaPublicacion = result.fechaPublicacion
           convo.fechaExpiracion = result.fechaExpiracion;
-          convo.documento_convocatoria = result.documento_convocatoria;
+          convo.documentoConvatoria= result.documentoConvatoria;
      
           return convo;
         });
