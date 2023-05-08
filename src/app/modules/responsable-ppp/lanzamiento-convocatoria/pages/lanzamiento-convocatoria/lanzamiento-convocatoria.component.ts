@@ -3,14 +3,14 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {FormGroup, FormControl} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpEventType } from '@angular/common/http';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
-
-
-
+import { DocumentoLanzamientoConvocatoria} from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
+import { ElementRef } from '@angular/core';
+import Swal from 'sweetalert2';
 
 
 
@@ -63,13 +63,19 @@ export class LanzamientoConvocatoriaComponent   {
     secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required],
     });
+    thirdFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
 
     isEditable = false;
+    @ViewChild('inputFile') inputFile!: ElementRef;
 
     public convocatoria: Convocatorias = new Convocatorias();
+    public filesToUpload!: Array<File>;
 
     constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
-                private convocatoriaService: ConvocatoriasService) {}
+                private convocatoriaService: ConvocatoriasService,
+                private documentoLcService:DocumentoLanzamientoConvocatoria) {}
 
     ngOnInit(): void {
 
@@ -138,5 +144,55 @@ export class LanzamientoConvocatoriaComponent   {
     window.open(url, '_blank');
   }
 
+  fileChangeEvent(fileInput:any){
+    this.filesToUpload=<Array<File>> fileInput.target.files;
+  }
+
+  onLoad(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoLcService.uploadFile(file)
+        .subscribe(res => {
+          console.log(res);
+        });
+    }
+  }
+
+
+  public upload(event: any) {
+
+
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.documentoLcService.uploadFile(file).subscribe(
+        data => {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                console.log("progreso....");
+
+                break;
+              case HttpEventType.Response:
+                this.inputFile.nativeElement.value = '';
+                break;
+            }
+          }
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Documento guardado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          console.log("Error");
+
+        }
+      );
+    }
+  }
 
   }
