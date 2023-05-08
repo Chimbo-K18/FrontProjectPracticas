@@ -20,6 +20,14 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listar`);
   }
 
+  getSolicitudesEstado(): Observable<SolicitudPracticas[]>{
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestado`);
+  }
+
+  getSolicitudesEstadofalse(): Observable<SolicitudPracticas[]>{
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestadofalse`);
+  }
+
   saveSolicitud(solicitud : SolicitudPracticas) : Observable<SolicitudPracticas> {
     return this.http.post<SolicitudPracticas>(`${this.URL}crear`, solicitud, {headers:this.httpHeaders});
   }
