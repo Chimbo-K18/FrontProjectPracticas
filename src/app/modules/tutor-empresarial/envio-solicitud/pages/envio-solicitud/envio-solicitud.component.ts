@@ -32,7 +32,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 import { URL } from 'url';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Output, EventEmitter, Input, ElementRef } from '@angular/core';
+import { ElementRef } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
