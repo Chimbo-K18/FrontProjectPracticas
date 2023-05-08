@@ -43,6 +43,7 @@ export class LanzamientoConvocatoriaComponent   {
 
   solicitudesCompletas: SolicitudPracticas[] | undefined;
   solicitudID: any;
+  convocatoriaGenerada: any;
 
   //TABLA
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -104,6 +105,7 @@ export class LanzamientoConvocatoriaComponent   {
       return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
         (res) => {
 
+          this.convocatoriaGenerada = res.idConvocatorias
           console.log(res);
         },
 
@@ -128,5 +130,13 @@ export class LanzamientoConvocatoriaComponent   {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   }
+
+
+  descargarPDF() {
+    const idConvocatoria = this.convocatoriaGenerada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/generar/${idConvocatoria}`;
+    window.open(url, '_blank');
+  }
+
 
   }
