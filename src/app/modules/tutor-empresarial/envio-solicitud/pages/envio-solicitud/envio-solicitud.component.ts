@@ -70,7 +70,7 @@ export class EnvioSolicitudComponent implements OnInit {
   nombre: any;
   idRes: any;
 
- 
+
 
   //myForm: FormGroup;
 
@@ -108,6 +108,7 @@ export class EnvioSolicitudComponent implements OnInit {
   listaDetalles: DetalleConvenio[] | undefined;
 
   mivariable!: string;
+  numerodeempresarial !: any;
   micarrera!: string;
   micarrera2!: string;
   responsable!: ResponsablePpp;
@@ -142,13 +143,12 @@ export class EnvioSolicitudComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.listarDetalles();
     this.extraerEmpresarial();
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;
     const input = dropArea.querySelector<HTMLInputElement>('input')!;
 
-   
+
     let filename: string;
 
     button.onclick = () => {
@@ -223,11 +223,18 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public listarDetalles() {
-    this.detalleService
-      .getDetalleConvenio()
-      .subscribe((res) => (this.listaDetalles = res));
+    console.log("entro al metodo");
 
 
+    this.detalleService.getDetalleConvenioxEmpresa(1)
+      .subscribe(
+        detallesConvenio => {
+          this.listaDetalles = detallesConvenio;
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
 
   public nombreResponsable: string = '';
@@ -268,7 +275,18 @@ export class EnvioSolicitudComponent implements OnInit {
       (data) => {
 
         this.tutorEmpre = data;
-        console.log(this.tutorEmpre)
+        this.numerodeempresarial = data.empresa.idEmpresa
+        console.log(data)
+
+        this.detalleService.getDetalleConvenioxEmpresa(data.empresa.idEmpresa)
+          .subscribe(
+            detallesConvenio => {
+              this.listaDetalles = detallesConvenio;
+            },
+            error => {
+              console.error(error);
+            }
+          );
       }
     )
 
@@ -304,15 +322,15 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-  //Metodo para descargar la solicitud de practicas 
+  //Metodo para descargar la solicitud de practicas
   descargarPDF() {
   const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
   const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
-  window.open(url, '_blank'); 
+  window.open(url, '_blank');
   }
 
   fileUrl!:SafeResourceUrl;
- 
+
   fileChangeEvent(fileInput:any){
     this.filesToUpload=<Array<File>> fileInput.target.files;
   }
@@ -328,36 +346,39 @@ export class EnvioSolicitudComponent implements OnInit {
     }
   }
 
-  
-  public upload(event:any) {
+  public upload(event: any) {
 
-    console.log("subiendo archivo");
+
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       this.documentoSpService.uploadFile(file).subscribe(
-        data=> {
+        data => {
           if (data) {
             switch (data.type) {
               case HttpEventType.UploadProgress:
                 console.log("progreso....");
-                
+
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
                 break;
             }
           }
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Documento guardado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         },
         error => {
           this.inputFile.nativeElement.value = '';
           console.log("Error");
-          
+
         }
       );
     }
   }
-
-  
-
 
 }

@@ -9,7 +9,7 @@ import { SolicitudPracticas } from '../models/solicitudpracticas';
 export class SolicitudpracticasService {
 
 
-  
+
   URL: string = "http://localhost:8080/api/solicitudPractica/";
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
@@ -20,6 +20,10 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listar`);
   }
 
+  getSolicitudesActividades(): Observable<SolicitudPracticas[]> {
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}activas`);
+  }
+
   saveSolicitud(solicitud : SolicitudPracticas) : Observable<SolicitudPracticas> {
     return this.http.post<SolicitudPracticas>(`${this.URL}crear`, solicitud, {headers:this.httpHeaders});
   }
@@ -28,7 +32,7 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
   }
 
-  
+
   updateSolicitud(solicitud: SolicitudPracticas, idSolicitudPracticas: any) {
     console.log("servicio");
     console.log(solicitud);

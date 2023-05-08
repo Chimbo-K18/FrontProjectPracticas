@@ -7,9 +7,9 @@
     <title>Director de Carrera</title>
   </head>
   <body class="bodyL">
-    <div style="display: flex; flex-direction: column; align-items: center">
-      <mat-card style="margin-top: 25px; width: 900px">
-        <h1>
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 80px;">
+      <mat-card style="margin-top: 25px; width: 900px;     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);">
+        <h1 style="width:100%; text-align: center;">
           <strong
             >Asignación de Rol "Director de Carrera"</strong
           >
@@ -18,7 +18,8 @@
           <div style="display: flex; justify-content: center">
             <mat-form-field class="example-full-width" style="width: 650px">
               <mat-label>Cédula </mat-label>
-              <input matInput placeholder="Ingrese nombre o cedula" />
+              <input (keyup)="onInputKeyup()" [(ngModel)]="cedulaBuscada" (ngModelChange)="buscarPorCedula()" matInput placeholder="Ingrese la Cédula" />
+
             </mat-form-field>
           </div>
         </mat-card>
