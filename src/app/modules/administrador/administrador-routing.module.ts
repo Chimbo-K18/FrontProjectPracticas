@@ -21,6 +21,11 @@ const routes: Routes = [
     path: 'register-director',
     loadChildren: () => import('./register-director/register-director.module').then((m) => m.RegisterDirectorModule),
   },
+
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile-admin/profile-admin.module').then((m) => m.ProfileAdminModule),
+  }
 ];
 
 @NgModule({
