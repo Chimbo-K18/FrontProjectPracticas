@@ -28,6 +28,7 @@ export class ListaConvocatoriasComponent {
     'opciones',
   ];
   listaConvocatoria: Convocatorias[] = [];
+  solicitudConvocatoriaGenerada: any;
   convocatorias: Convocatorias = new Convocatorias();
   solicitudconvocatorias: SolicitudConvocatoria = new SolicitudConvocatoria();
   loading: boolean = true;
@@ -111,6 +112,13 @@ export class ListaConvocatoriasComponent {
       });
 
     });
+  }
+
+
+  descargarPDF() {
+    const idSolicitud = this.solicitudConvocatoriaGenerada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/obtener/${idSolicitud}`;
+    window.open(url, '_blank');
   }
 
 
@@ -198,7 +206,15 @@ export class ListaConvocatoriasComponent {
             'contacto'
           ) as HTMLInputElement;
           this.solicitudconvocatorias.numero_contacto = contacto.value;
-          this.solicitudconvoservice.crearSolicitudConvocatoria(this.solicitudconvocatorias).subscribe({
+          this.solicitudconvoservice.crearSolicitudConvocatoria(this.solicitudconvocatorias).subscribe(
+
+            data =>
+
+            {
+
+              console.log(data.idSolicitudConvocatoria)
+              this.solicitudConvocatoriaGenerada = data.idSolicitudConvocatoria
+
 
           });
 

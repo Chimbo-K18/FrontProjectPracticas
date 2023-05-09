@@ -11,6 +11,13 @@
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
 
+    .download-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -82,7 +89,7 @@ h1{
 .example-card {
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 
- 
+
 }
 
 
@@ -154,7 +161,7 @@ a:hover {
     text-decoration: none;
 }
 .link {
- 
+
   color: #c4c3ca;
 }
 .link:hover {
@@ -254,12 +261,12 @@ margin-left: 20%;
 .card-3d-wrapper {
   width: 100%;
   height: 100%;
-  position:absolute;    
+  position:absolute;
   top: 0;
-  left: 0;  
+  left: 0;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  transition: all 600ms ease-out; 
+  transition: all 600ms ease-out;
 }
 .card-front, .card-back {
   width: 100%;
@@ -307,7 +314,7 @@ margin-left: 20%;
   display: block;
 }
 
-.form-group{ 
+.form-group{
   position: relative;
   display: block;
     margin: 0;
@@ -415,7 +422,7 @@ margin-left: 20%;
     transition: all 200ms linear;
 }
 
-.btn{  
+.btn{
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -446,12 +453,12 @@ margin-left: 20%;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
 }
 .btn:active,
-.btn:focus{  
+.btn:focus{
   background-color: #102770;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
-.btn:hover{  
+.btn:hover{
   background-color: #102770;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
