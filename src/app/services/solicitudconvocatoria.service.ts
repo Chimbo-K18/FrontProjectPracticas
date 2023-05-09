@@ -26,4 +26,8 @@ export class SolicitudConvocatoriasService {
     return this.http.get<SolicitudConvocatoria[]>(this.API_URL+'/listar');
   }
 
+  updateSolicitudCnv(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  }
+
 }

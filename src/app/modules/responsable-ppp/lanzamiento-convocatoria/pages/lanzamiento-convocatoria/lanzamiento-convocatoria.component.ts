@@ -11,6 +11,7 @@ import { Convocatorias } from 'src/app/models/convocatorias';
 import { DocumentoLanzamientoConvocatoria} from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
 import { ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
+import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 
 
 
@@ -44,6 +45,7 @@ export class LanzamientoConvocatoriaComponent   {
   solicitudesCompletas: SolicitudPracticas[] | undefined;
   solicitudID: any;
   convocatoriaGenerada: any;
+  idDocumento!: any;
 
   //TABLA
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -73,9 +75,12 @@ export class LanzamientoConvocatoriaComponent   {
     public convocatoria: Convocatorias = new Convocatorias();
     public filesToUpload!: Array<File>;
 
+
+
     constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
                 private convocatoriaService: ConvocatoriasService,
-                private documentoLcService:DocumentoLanzamientoConvocatoria) {}
+                private documentoLcService:DocumentoLanzamientoConvocatoria,
+      private solicitud: SolicitudConvocatoriasService) {}
 
     ngOnInit(): void {
 
@@ -113,6 +118,7 @@ export class LanzamientoConvocatoriaComponent   {
 
           this.convocatoriaGenerada = res.idConvocatorias
           console.log(res);
+          console.log(this.convocatoriaGenerada)
         },
 
         (err) => console.error(err)
@@ -162,7 +168,6 @@ export class LanzamientoConvocatoriaComponent   {
 
   public upload(event: any) {
 
-
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       this.documentoLcService.uploadFile(file).subscribe(
@@ -175,24 +180,48 @@ export class LanzamientoConvocatoriaComponent   {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
+                sessionStorage.setItem('ArchivoLanzamientoCnv', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+                this.actualizarDocumento();
                 break;
             }
           }
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Documento guardado correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-          });
         },
         error => {
           this.inputFile.nativeElement.value = '';
-          console.log("Error");
-
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+          );
         }
       );
     }
   }
 
+  actualizarDocumento() {
+    const idDoc = JSON.parse(
+      sessionStorage.getItem('ArchivoLanzamientoCnv') || '{}'
+    );
+    this.idDocumento = idDoc.id_documentoConvocatoria;
+
+    console.log(this.idDocumento);
+
+    this.solicitud.updateSolicitudCnv(this.convocatoriaGenerada, this.idDocumento).subscribe(
+
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        console.error('Error al actualizar el documento');
+      }
+    );
+  }
   }

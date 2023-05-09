@@ -377,7 +377,6 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
-                this.actualizarDocumento();
                 sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
                 Swal.fire({
                   position: 'top-end',
@@ -386,6 +385,8 @@ export class EnvioSolicitudComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+
+                this.actualizarDocumento();
 
                 break;
             }
