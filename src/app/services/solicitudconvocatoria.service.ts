@@ -30,4 +30,10 @@ export class SolicitudConvocatoriasService {
     return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
+  updateSolicitudConvocatoria(solicitud: SolicitudConvocatoria, idSolicitudConvocatoria: any) {
+    console.log("servicio");
+    console.log(solicitud);
+    return this.http.put<SolicitudConvocatoria>(this.API_URL + `/actualizar/${idSolicitudConvocatoria}`, solicitud);
+  }
+
 }
