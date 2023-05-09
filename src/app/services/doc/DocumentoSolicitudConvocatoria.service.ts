@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 
-export class DocumentoSolicitudPracticaService{
-    urlPost: string = 'http://localhost:8080/api/documentoSolicitudPracticas/upload';
-  
+export class DocumentoSolicitudConvocatoria{
 
+    urlPost: string = 'http://localhost:8080/api/documentoSolicitudConvocatoria/upload';
+  
     constructor(private http: HttpClient) { }
     
     public uploadFile(file: Blob): Observable<HttpEvent<any>> {

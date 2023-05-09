@@ -129,14 +129,12 @@ export class EnvioSolicitudComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private solicitud: SolicitudpracticasService,
-    private router: Router,
     private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
     private empresarialService: tutorempresarialService,
-    private documentoSolService: DocumentoSolPracticasService,
     private documentoSpService: DocumentoSolicitudPracticaService,
-    private http: HttpClient
+   
   ) { }
 
 
@@ -209,7 +207,7 @@ export class EnvioSolicitudComponent implements OnInit {
 
   actualizarDocumento() {
     const idDoc = JSON.parse(
-      sessionStorage.getItem('archivoSubido') || '{}'
+      sessionStorage.getItem('ArchivoSolicitudPrc') || '{}'
     );
     this.idDocumento = idDoc.id_documentoSolicitudPrc;
     console.log(this.idDocumento);
@@ -346,7 +344,6 @@ export class EnvioSolicitudComponent implements OnInit {
     window.open(url, '_blank');
   }
 
-  fileUrl!: SafeResourceUrl;
 
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
@@ -377,7 +374,7 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
-                sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
+                sessionStorage.setItem('ArchivoSolicitudPrc', JSON.stringify(data.body));
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',

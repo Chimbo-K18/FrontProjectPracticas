@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpEventType } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,9 +9,12 @@ import { ActividadService } from 'src/app/services/actividad.service';
 import { BaseFenixService } from 'src/app/services/base-fenix.service';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
+import { DocumentoSolicitudConvocatoria } from 'src/app/services/doc/DocumentoSolicitudConvocatoria.service';
 import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-lista-convocatorias',
   templateUrl: './lista-convocatorias.component.html',
@@ -33,8 +37,10 @@ export class ListaConvocatoriasComponent {
   solicitudconvocatorias: SolicitudConvocatoria = new SolicitudConvocatoria();
   loading: boolean = true;
   dataSource = new MatTableDataSource<Convocatorias>([]);
-
+  idDocumento!: any;
+  @ViewChild('inputFile') inputFile!: ElementRef;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -50,13 +56,16 @@ export class ListaConvocatoriasComponent {
     secondCtrl: ['', Validators.required],
   });
 
+  public filesToUpload!: Array<File>;
   isEditable = false;
 
   constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService,
     private actividadservice: ActividadService, private userservice: UserService,
     private solicitudconvoservice: SolicitudConvocatoriasService,
     private estudianteService: EstudiantePracticanteService,
-    private DocumentoLanzamientoConvocatoria: DocumentoLanzamientoConvocatoria) { }
+    private DocumentoLanzamientoConvocatoria: DocumentoLanzamientoConvocatoria,
+    private documentoScService: DocumentoSolicitudConvocatoria,
+    private solicitud: SolicitudpracticasService) { }
 
   ngOnInit(): void {
   }
@@ -190,6 +199,7 @@ export class ListaConvocatoriasComponent {
       this.estudianteService.getRequestEstudiante(dataestudiante).subscribe(dataestu => {
         console.log(dataestu);
         this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
+          
           this.solicitudconvocatorias.convocatoria = dataconvo;
           this.solicitudconvocatorias.fechaEnvio = this.fechaenvio;
           this.solicitudconvocatorias.estudiantePracticante = dataestu;
@@ -224,6 +234,82 @@ export class ListaConvocatoriasComponent {
       });
 
     });
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+
+  onLoad(event: Event): void {
+    
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoScService.uploadFile(file)
+        .subscribe(res => {
+          console.log(res);
+        });
+    }
+  }
+
+
+  public upload(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.documentoScService.uploadFile(file,).subscribe(
+        data => {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                console.log("progreso....");
+
+                break;
+              case HttpEventType.Response:
+                this.inputFile.nativeElement.value = '';
+                sessionStorage.setItem('ArchivoSolicitudCnv', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+                this.actualizarDocumento();
+
+                break;
+            }
+          }
+
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+          );
+
+        }
+      );
+    }
+  }
+
+  actualizarDocumento() {
+    const idDoc = JSON.parse(
+      sessionStorage.getItem('ArchivoSolicitudCnv') || '{}'
+    );
+    this.idDocumento = idDoc.id_documentoSolicitudConvocatoria;
+    console.log(this.idDocumento);
+    this.solicitud.updateSolicitud1(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        console.error('Error al actualizar el documento');
+      }
+    );
   }
 
 
