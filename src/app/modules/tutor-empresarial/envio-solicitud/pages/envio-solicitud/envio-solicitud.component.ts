@@ -203,6 +203,9 @@ export class EnvioSolicitudComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+
+
+
       },
 
       (err) => console.error(err)
@@ -210,11 +213,8 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   actualizarDocumento() {
-    const idDoc = JSON.parse(
-      sessionStorage.getItem('archivoSubido') || '{}'
-    );
-    this.idDocumento = idDoc.id_documentoSolicitudPrc;
-    console.log(this.idDocumento);
+
+
     this.solicitud.updateSolicitud(this.solicitudGenerada, this.idDocumento).subscribe(
       response => {
         console.log('Documento actualizado correctamente');
@@ -379,7 +379,6 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
-                this.actualizarDocumento();
                 sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
                 Swal.fire({
                   position: 'top-end',
@@ -389,10 +388,19 @@ export class EnvioSolicitudComponent implements OnInit {
                   timer: 1500,
                 });
 
+
+                const idDoc = JSON.parse(
+                  sessionStorage.getItem('archivoSubido') || '{}'
+                );
+                this.idDocumento = idDoc.id_documentoSolicitudPrc;
+                console.log(this.idDocumento);
+
+
+                this.actualizarDocumento();
                 break;
             }
           }
-          
+
         },
         error => {
           this.inputFile.nativeElement.value = '';
@@ -407,6 +415,6 @@ export class EnvioSolicitudComponent implements OnInit {
     }
   }
 
- 
+
 
 }
