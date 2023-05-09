@@ -18,6 +18,10 @@ import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 
+import { HttpClientModule } from '@angular/common/http';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     ListadoEmpresasComponent
@@ -33,7 +37,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatPaginatorModule,
     MatIconModule,
-    ListadoEmpresasRoutingModule
+    ListadoEmpresasRoutingModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    FormsModule
   ],
   exports:[
     ListadoEmpresasComponent

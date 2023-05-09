@@ -139,7 +139,7 @@
                 <mat-icon>get_app</mat-icon> Descargar Archivo
               </button>
               <div class="instructions">
-                Haz clic en el botón para descargar el archivo
+                Haz clic en el botón para descargar el documento
               </div>
             </div>
             <div class="stepper-buttons">
@@ -153,23 +153,25 @@
         <mat-step [stepControl]="thirdFormGroup" optional>
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Subir Documento</ng-template>
-            <div class="file-upload">
-              <input type="file" name="file" />
-              <mat-icon>cloud_upload</mat-icon>
-              <br />
-              <span
-                >Arrastre y suelte un archivo aquí o haga clic para cargar</span
-              >
-              <div class="file-name"></div>
+            <div class="download-container">
+              <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
+              <button mat-raised-button color="primary"(click)="inputFile.click()" >
+                <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
+              </button>
+              <div class="instructions">
+                Haz clic en el botón para cargar el documento
+              </div>
             </div>
+            
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext>Finalizar</button>
             </div>
           </form>
         </mat-step>
       </mat-stepper>
     </div>
+    
   </body>
 </html>
 <!-- ruta: http://localhost:4200/empresarial/solicitud-practicas -->

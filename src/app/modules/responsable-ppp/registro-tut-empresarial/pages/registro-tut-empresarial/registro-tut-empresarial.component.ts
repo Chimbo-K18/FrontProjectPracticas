@@ -187,7 +187,7 @@ export class RegistroTutEmpresarialComponent {
   }
   //obtener empresas
   obtenerEmpresas() {
-    this.empresaService.listarEmpresas().subscribe((data) => {
+    this.empresaService.listarEmpresa().subscribe((data) => {
       this.listaEmpresa = data.map((result) => {
         let empresa = new Empresa();
         empresa.idEmpresa = result.idEmpresa;
@@ -200,7 +200,7 @@ export class RegistroTutEmpresarialComponent {
       });
       this.dataSource.data = this.listaEmpresa;
       this.loading = false;
-    
+
     });
   }
   cedulausu:any;
@@ -229,7 +229,7 @@ this.personaempService.buscarcedulapersona(this.cedulapersonass).subscribe(busca
     });
     this.personaempService.crearpersonaemp(this.personasemp).subscribe(data =>{
       localStorage.setItem("cedulapersona", String(data.cedula));
-      this.cargardatoseninput(); 
+      this.cargardatoseninput();
       this.stepperNext();
       Swal.fire({
         position: 'top',
@@ -267,7 +267,7 @@ variableencontrada:any;
   creartutor(){
     this.variableencontradatuto = localStorage.getItem("cedulapersona");
     console.log(this.variableencontradatuto);
-    this.empresaService.getPorId(this.codigoempresa).subscribe(dataempre =>{
+    this.empresaService.buscarId(this.codigoempresa).subscribe(dataempre =>{
       console.log(dataempre);
       this.tutorempresarial.empresa = dataempre;
       this.userService.getuscedula(this.variableencontradatuto).subscribe(datausututo =>{

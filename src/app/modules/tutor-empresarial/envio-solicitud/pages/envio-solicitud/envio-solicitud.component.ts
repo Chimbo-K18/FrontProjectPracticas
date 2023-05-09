@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Convenio } from 'src/app/models/convenios';
 import { ConveniosService } from 'src/app/services/convenios.service';
-import { DetalleConvenio } from 'src/app/models/detalleConvenio';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
 import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
@@ -25,6 +25,15 @@ import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
+import { Observable, Subscriber } from 'rxjs';
+import { error, log } from 'console';
+import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { URL } from 'url';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { ElementRef } from '@angular/core';
+
 
 export interface PeriodicElement {
   name: string;
@@ -93,10 +102,15 @@ export class EnvioSolicitudComponent implements OnInit {
 
   //llamado a la clase
   public solicitudPractica: SolicitudPracticas = new SolicitudPracticas();
+  actividad : DocumentoSolicitudPracticas = new DocumentoSolicitudPracticas();
+
+  //llamada a la clase donde se guarda el documento
+  public guardarSolicitud:DocumentoSolicitudPracticas=new DocumentoSolicitudPracticas();
   convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
   mivariable!: string;
+  numerodeempresarial !: any;
   micarrera!: string;
   micarrera2!: string;
   responsable!: ResponsablePpp;
@@ -105,8 +119,12 @@ export class EnvioSolicitudComponent implements OnInit {
   mitutor !: string;
   tutorEmpre !: any;
   solicitudGenerada !: any;
-
+  public archivos:any=[];
   respon!: ResponsablePpp;
+  private fileTmp:any;
+  selectedFile!: File;
+  idDocumento!:any;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -116,20 +134,24 @@ export class EnvioSolicitudComponent implements OnInit {
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
     private empresarialService : tutorempresarialService,
-    private documentoSolService: DocumentoSolPracticasService
+    private documentoSolService: DocumentoSolPracticasService,
+    private documentoSpService:DocumentoSolicitudPracticaService,
+    private http: HttpClient
   ) {}
 
+
+
+
+
+
+
   ngOnInit(): void {
-    //this.listar();
-
-
-    this.listarDetalles();
     this.extraerEmpresarial();
     const dropArea = document.querySelector<HTMLElement>('.drop_box')!;
     const button = dropArea.querySelector<HTMLButtonElement>('button')!;
     const input = dropArea.querySelector<HTMLInputElement>('input')!;
 
-    let file: File;
+
     let filename: string;
 
     button.onclick = () => {
@@ -181,9 +203,25 @@ export class EnvioSolicitudComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+
+
+
       },
 
       (err) => console.error(err)
+    );
+  }
+
+  actualizarDocumento() {
+
+
+    this.solicitud.updateSolicitud(this.solicitudGenerada, this.idDocumento).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        console.error('Error al actualizar el documento');
+      }
     );
   }
 
@@ -204,15 +242,23 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public listarDetalles() {
-    this.detalleService
-      .getDetalleConvenio()
-      .subscribe((res) => (this.listaDetalles = res));
+    console.log("entro al metodo");
 
 
+    this.detalleService.getDetalleConvenioxEmpresa(1)
+      .subscribe(
+        detallesConvenio => {
+          this.listaDetalles = detallesConvenio;
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
 
   public nombreResponsable: string = '';
   public nombreResponsable2: any;
+   public filesToUpload!: Array<File>;
 
   obtenerCarrera() {
 
@@ -248,7 +294,18 @@ export class EnvioSolicitudComponent implements OnInit {
       (data) => {
 
         this.tutorEmpre = data;
-        console.log(this.tutorEmpre)
+        this.numerodeempresarial = data.empresa.idEmpresa
+        console.log(data)
+
+        this.detalleService.getDetalleConvenioxEmpresa(data.empresa.idEmpresa)
+          .subscribe(
+            detallesConvenio => {
+              this.listaDetalles = detallesConvenio;
+            },
+            error => {
+              console.error(error);
+            }
+          );
       }
     )
 
@@ -284,11 +341,80 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-
+  //Metodo para descargar la solicitud de practicas
   descargarPDF() {
   const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
   const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
   window.open(url, '_blank');
-}
+  }
+
+  fileUrl!:SafeResourceUrl;
+
+  fileChangeEvent(fileInput:any){
+    this.filesToUpload=<Array<File>> fileInput.target.files;
+  }
+
+  onLoad(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoSpService.uploadFile(file)
+        .subscribe(res => {
+          console.log(res);
+        });
+    }
+  }
+
+  public upload(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.documentoSpService.uploadFile(file,).subscribe(
+        data => {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                console.log("progreso....");
+
+                break;
+              case HttpEventType.Response:
+                this.inputFile.nativeElement.value = '';
+                sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+
+                const idDoc = JSON.parse(
+                  sessionStorage.getItem('archivoSubido') || '{}'
+                );
+                this.idDocumento = idDoc.id_documentoSolicitudPrc;
+                console.log(this.idDocumento);
+
+
+                this.actualizarDocumento();
+                break;
+            }
+          }
+
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+                );
+
+        }
+      );
+    }
+  }
+
+
 
 }

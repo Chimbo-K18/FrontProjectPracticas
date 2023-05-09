@@ -8,11 +8,11 @@ import { Convenio } from 'src/app/models/convenio';
 import { ConvenioService } from 'src/app/services/convenio.service';
 import Swal from 'sweetalert2';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
-import { DocumentoConvenio } from 'src/app/models/documentoconvenio';
 import { DocumentoconvenioService } from 'src/app/services/documentoconvenio.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { DetalleConvenio } from 'src/app/models/detalleConvenio';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
+import { DocumentoConvenio } from 'src/app/models/documentoconvenio';
 
 
 
@@ -71,7 +71,7 @@ export class RegisterConvenioComponent  {
 
   empresacreada:any;
    obtenerCedulaSeleccionada(idempresa: number){
-    this.empresaService.getPorId(idempresa).subscribe(
+    this.empresaService.buscarId(idempresa).subscribe(
       data =>{
         this.empresa = data;
         this.empresacreada = data;
@@ -83,7 +83,7 @@ export class RegisterConvenioComponent  {
 
 
   obtenerEmpresas() {
-    this.empresaService.listarEmpresas().subscribe(
+    this.empresaService.listarEmpresa().subscribe(
       data => {
         this.listaEmpresa = data.map(
           result => {

@@ -8,4 +8,5 @@ export class Empresa {
     direccion!: string;
     codigoPostal!: string;
     descripcion!: string;
+    status!: boolean;
 }

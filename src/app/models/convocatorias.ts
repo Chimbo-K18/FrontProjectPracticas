@@ -1,11 +1,13 @@
-export class convocatorias {
+import { DocumentoConvocatoria } from "./documentoConvocatoria";
+import { SolicitudPracticas } from "./solicitudpracticas";
 
-    idConvocatorias!: number;
-    documento_convocatoria!: string;
-    fechaPublicacion!: Date;
-    fechaExpiracion!: Date;
-    nombreConvocatoria!:string;
-    estadoConvocatoria!: boolean;
-    idSolicitudPracticas!:number;
+export class Convocatorias{
 
+  idConvocatorias !: number;
+  nombreConvocatoria !: string;
+  fechaPublicacion !: string;
+  fechaExpiracion !: string;
+  estadoConvocatoria !: boolean;
+  solicitudPracticas ?: SolicitudPracticas;
+  documentoConvatoria ?: DocumentoConvocatoria;
 }
