@@ -33,12 +33,7 @@
     
                 <mat-card style="width: 750px; margin-top: 25px;">
                   <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
-                    <ng-container matColumnDef="seleccionar">
-                      <th mat-header-cell *matHeaderCellDef></th>
-                      <td mat-cell *matCellDef="let element">
-                        <mat-checkbox [checked]="idSeleccionadas.includes(element.idSolicitudPracticas, element.nombres)" (change)="capturarCheckbox($event.source, element.idSolicitudPracticas, element.nombre_carrera, element.tutorEmpresarial.empresa.nombreEmpresa)"></mat-checkbox>
-                      </td>
-                    </ng-container>
+          
                     <!-- Position Column -->
                     <ng-container matColumnDef="idSolicitudPracticas">
                       <th mat-header-cell *matHeaderCellDef>ID</th>

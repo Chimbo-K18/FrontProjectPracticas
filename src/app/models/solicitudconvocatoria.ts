@@ -5,6 +5,10 @@ import { tutorempresarial } from "./tutorempresarial";
 import { Usuarios } from "./usuarios";
 
 export class SolicitudConvocatoria{
+    forEach(arg0: (solicitud: SolicitudConvocatoria) => void) {
+      throw new Error('Method not implemented.');
+    }
+
 
     idSolicitudConvocatoria !: number;
     fechaEnvio !: string;

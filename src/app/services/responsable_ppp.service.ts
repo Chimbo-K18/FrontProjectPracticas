@@ -19,4 +19,12 @@ export class Responsable_PPPService {
     return this.http.get<Responsable_PPP[]>(this.url + '/listar');
   }
 
+  getBuscarcedula(cedula: any): Observable<Responsable_PPP> {
+    return this.http.get<Responsable_PPP>(`${this.url}/cedularesponsable/${cedula}`)
+  }
+
+  getporid(idresponsable: any): Observable<Responsable_PPP> {
+    return this.http.get<Responsable_PPP>(`${this.url}/buscar/${idresponsable}`)
+  }
+
 }
