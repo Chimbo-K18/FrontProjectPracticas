@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {FormGroup, FormControl} from '@angular/forms';
+import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
+import { Convocatorias } from 'src/app/models/convocatorias';
 
 export interface PeriodicElement {
   name: string;
@@ -75,6 +77,8 @@ const AP: Aprobados[] = [
 })
 export class AprobacionEstudiantesComponent implements AfterViewInit{
 
+
+  convocatorias: Convocatorias | any ;
   //TABLA
   displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -108,9 +112,22 @@ export class AprobacionEstudiantesComponent implements AfterViewInit{
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService) { }
 
   ngOnInit(): void {
+
+    this.listaConvocatorias();
+  }
+
+
+
+  listaConvocatorias() {
+    this.convocatoriaService.getConvocatorias().subscribe(
+      (res) => {
+        this.convocatorias = res;
+        console.log(this.convocatorias);
+      }
+    );
   }
 
 }
