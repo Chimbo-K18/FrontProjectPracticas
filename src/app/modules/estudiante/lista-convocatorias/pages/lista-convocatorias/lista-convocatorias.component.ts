@@ -107,11 +107,11 @@ idencontrado:any;
   //Metodo para descargar la solicitud de convocatorias
   // getPdf
 
-  downloadPdf(id: number) {
-    this.DocumentoLanzamientoConvocatoria.getPdf(id).subscribe((pdfBlob: Blob) => {
-      this.downloadFile(pdfBlob);
-    });
-  }
+  // downloadPdf(id: number) {
+  //   this.DocumentoLanzamientoConvocatoria.getPdf(id).subscribe((pdfBlob: Blob) => {
+  //     this.downloadFile(pdfBlob);
+  //   });
+  // }
 
   downloadFile(data: Blob) {
     const blob = new Blob([data], { type: 'application/pdf' });
