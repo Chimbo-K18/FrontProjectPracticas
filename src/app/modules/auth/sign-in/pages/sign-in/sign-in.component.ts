@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateAccountService } from 'src/app/services/createaccount.service';
+import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,7 +23,7 @@ roles: string[] = [];
 
 constructor(
     private authService: CreateAccountService,
-    private storageService: StorageService,
+    private storageService: StorageService, private usuarios:UserService, private estudianteservice: EstudiantePracticanteService,
     private router: Router
 ) { }
 
@@ -37,6 +39,12 @@ onSubmit(): void {
     const { correo, contrasenia } = this.form;
 
     console.log('Em --> ' + correo + '  pa --> ' + contrasenia);
+    this.usuarios.getcorreo(correo).subscribe(datausu=>{
+        localStorage.setItem("idusuario", String(datausu.cedula));
+        this.estudianteservice.getRequestEstudianteCedula(datausu.cedula).subscribe(dataestu=>{
+            localStorage.setItem("estudianteid", String(dataestu.idEstudiantePracticas));
+        })
+    });
     this.authService.login(correo, contrasenia).subscribe({
         next: (data) => {
             this.storageService.saveUser(data);

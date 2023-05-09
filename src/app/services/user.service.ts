@@ -37,5 +37,9 @@ export class UserService {
     return this.http.get<Usuarios>(API_URL + `/buscarcedula/${cedula}`)
   }
 
+  getcorreo(correo: any):Observable<Usuarios>{
+    return this.http.get<Usuarios>(API_URL + `/correo/${correo}`)
+  }
+
   // http://localhost:8080/api/user/buscarcedula/
 }

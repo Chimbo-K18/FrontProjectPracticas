@@ -19,4 +19,10 @@ export class ConvocatoriasService {
   getRequest(idConvocatorias: any): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/buscar/${idConvocatorias}`)
   }
+
+
+  listarConvocatorias(){
+    return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
+  }
+
 }
