@@ -1,0 +1,4 @@
+app-side-bar {
+    position: relative; /* asegura que la posición del elemento se base en su posición original */
+    z-index: 9999; /* establece un valor alto para asegurar que el elemento aparezca encima de otros elementos */
+  }
