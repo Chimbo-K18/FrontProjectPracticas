@@ -18,6 +18,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatIconModule,
     ListadoEmpresasRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSlideToggleModule,
+    FormsModule
   ],
   exports:[
     ListadoEmpresasComponent

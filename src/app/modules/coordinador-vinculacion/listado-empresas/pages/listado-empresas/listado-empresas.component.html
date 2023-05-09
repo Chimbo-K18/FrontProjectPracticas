@@ -2,83 +2,179 @@
 
 
 
-    <h1> <strong>Registro Convenio </strong></h1>
 
+
+  <h1> <strong>Registro Convenio </strong></h1>
+
+  <div class="conatiner">
 
     <mat-stepper linear #stepper class="headerxd">
 
-        <mat-step>
-            <form [formGroup]="firstFormGroup">
-                <mat-form-field class="example-full-width" style="width: 600px; color: #000;">
-                    <mat-label>Buscar cedula </mat-label>
-                    <input matInput placeholder="Buscar...">
-                </mat-form-field>
+      <mat-step>
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field class="example-full-width" style="width: 600px; color: #000;">
+            <mat-label>Buscar cedula </mat-label>
+            <input matInput placeholder="Buscar...">
+          </mat-form-field>
+
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="idEmpresa">
+              <th mat-header-cell *matHeaderCellDef>IdEmpresa</th>
+              <td mat-cell *matCellDef="let element"> {{element.idEmpresa}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="rucEmpresa">
+              <th mat-header-cell *matHeaderCellDef>RUC</th>
+              <td mat-cell *matCellDef="let element"> {{element.rucEmpresa}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="nombreEmpresa">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombreEmpresa}}</td>
+            </ng-container>
+
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="correo">
+              <th mat-header-cell *matHeaderCellDef> correo </th>
+              <td mat-cell *matCellDef="let element">{{element.correo}}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef> direccion </th>
+              <td mat-cell *matCellDef="let element">{{element.direccion}}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="numeroTelefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let element"> {{element.numeroTelefono}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+              <td mat-cell *matCellDef="let element"> <button mat-raised-button (click)="traerEmpresa(element.idEmpresa)" data-bs-toggle="modal" data-bs-target="#modal-formulario"
+                   color="primary" 
+                  matStepperNext>Modificar</button>
+              </td>
+
+            </ng-container>
+            <!-- routerLinkActive="active" -->
+            <!-- routerLink="/coordinador/registro-empresa" -->
+            <!-- (click)="traerEmpresa(element.idEmpresa)" -->
+
+            <!-- data-bs-toggle="modal" data-bs-target="#modal-formulario" -->
 
 
 
-
-
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="idEmpresa">
-                        <th mat-header-cell *matHeaderCellDef>IdEmpresa</th>
-                        <td mat-cell *matCellDef="let element"> {{element.idEmpresa}} </td>
-                    </ng-container>
-
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="rucEmpresa">
-                        <th mat-header-cell *matHeaderCellDef>RUC</th>
-                        <td mat-cell *matCellDef="let element"> {{element.rucEmpresa}} </td>
-                    </ng-container>
-
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="nombreEmpresa">
-                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombreEmpresa}}</td>
-                    </ng-container>
-
-
-                      <!-- Weight Column -->
-                      <ng-container matColumnDef="correo">
-                        <th mat-header-cell *matHeaderCellDef> correo </th>
-                        <td mat-cell *matCellDef="let element"> {{element.correo}}</td>
-                    </ng-container>
-
-                     <!-- Weight Column -->
-                     <ng-container matColumnDef="direccion">
-                        <th mat-header-cell *matHeaderCellDef> direccion </th>
-                        <td mat-cell *matCellDef="let element"> {{element.direccion}}</td>
-                    </ng-container>
-
-                     <!-- Weight Column -->
-                     <ng-container matColumnDef="numeroTelefono">
-                        <th mat-header-cell *matHeaderCellDef> Telefono </th>
-                        <td mat-cell *matCellDef="let element"> {{element.numeroTelefono}}</td>
-                    </ng-container>
-
-                      
-
-                   
-                    <!-- Symbol Column 
-                    <ng-container matColumnDef="symbol">
+            <!-- <ng-container matColumnDef="delete">
                         <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-                                matStepperNext>Asignacion</button></td>
+                        <td mat-cell *matCellDef="let element"> 
+                            <mat-slide-toggle label="Toggle" [(ngModel)]="empre.status" (click)="updateStatus(empre)"></mat-slide-toggle>
+                        </td>
+                    </ng-container>
+                     -->
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-slide-toggle label="Toggle" [checked]="element.status" (click)="traerEstado(element.idEmpresa)"
+                  (change)="cambiarEstado($event, element)" class="toggle">
+                </mat-slide-toggle>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </form>
 
-                    </ng-container>-->
+      </mat-step>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-                <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons
-                    aria-label="Select page of periodic elements">
-                </mat-paginator>
-
-
-
-
-            </form>
-        </mat-step>
     </mat-stepper>
+  </div>
+
+
+  <!-- Modal con Boostrap -->
+  <div>
+    <div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="container">
+
+          <div class="modal-content">
+            <!-- <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div> -->
+            <div class="container">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <p style="font-size:16px;"> <strong>Ingrese los siguientes datos:</strong> </p>
+
+              <div style="display: flex;">
+          
+                <div>
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Ruc:</mat-label>
+                    <input [(ngModel)]="empre.rucEmpresa"  matInput maxlength="13" >
+                  </mat-form-field>
+                  
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Correo:</mat-label>
+                    <input [(ngModel)]="empre.correo"  matInput >
+                  </mat-form-field>
+          
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Ciudad:</mat-label>
+                    <input [(ngModel)]="empre.ciudad"  matInput maxlength="50">
+                  </mat-form-field>
+          
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Nombre:</mat-label>
+                    <input [(ngModel)]="empre.nombreEmpresa" matInput maxlength="100">
+                  </mat-form-field>
+          
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Telefono:</mat-label>
+                    <input [(ngModel)]="empre.numeroTelefono"  matInput  maxlength="10" >
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                  </mat-form-field>
+          
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Direccion:</mat-label>
+                    <input [(ngModel)]="empre.direccion" matInput maxlength="200" >
+                  </mat-form-field>
+          
+                  <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Codigo:</mat-label>
+                    <input [(ngModel)]="empre.codigoPostal" matInput maxlength="6" >
+                  </mat-form-field>
+          
+                  <mat-form-field appearance="fill" class="example-full-width" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Descripcion:</mat-label>
+                    <textarea [(ngModel)]="empre.descripcion" matInput maxlength="300" placeholder="Descripcion..."></textarea>
+                  </mat-form-field>
+          
+                </div>
+          
+              </div>
+          
+              <div style="text-align: center;">
+                <button mat-raised-button color="primary" (click)="onActualizarClick()" (click)="actualizarPagina()" >ModificarEmpresa</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 
 </body>
