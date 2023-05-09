@@ -103,11 +103,11 @@
                                 </ng-container>
                                 <tr mat-header-row *matHeaderRowDef="['id','nombres', 'apellidos', 'carrera','fecha','solis','opciones']"></tr>
                                 <tr mat-row *matRowDef="let row; columns: ['id','nombres', 'apellidos', 'carrera','fecha','solis','opciones']"></tr>
-                              
+                                <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
+                                </mat-paginator>
                             </table>
                         </ng-container>
-                            <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
-                            </mat-paginator>
+                        
                         </div>
 
                         <div>
@@ -142,8 +142,11 @@
                                     
                                     <tr mat-header-row *matHeaderRowDef="['id','nombres', 'apellidos', 'carrera','fecha']"></tr>
                                     <tr mat-row *matRowDef="let row; columns: ['id','nombres', 'apellidos', 'carrera','fecha']"></tr>
+                                   
                                   
                                 </table>
+                                <mat-paginator #paginator3 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
+                                </mat-paginator>
                             </ng-container>
                         </div>
                         <div style="margin-top:25px; text-align: center;">
