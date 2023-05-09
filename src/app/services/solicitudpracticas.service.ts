@@ -24,6 +24,14 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas[]>(`${this.URL}activas`);
   }
 
+  getSolicitudesEstado(): Observable<SolicitudPracticas[]>{
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestado`);
+  }
+
+  getSolicitudesEstadofalse(): Observable<SolicitudPracticas[]>{
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestadofalse`);
+  }
+
   saveSolicitud(solicitud : SolicitudPracticas) : Observable<SolicitudPracticas> {
     return this.http.post<SolicitudPracticas>(`${this.URL}crear`, solicitud, {headers:this.httpHeaders});
   }
@@ -32,11 +40,8 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
   }
 
-
-  updateSolicitud(solicitud: SolicitudPracticas, idSolicitudPracticas: any) {
-    console.log("servicio");
-    console.log(solicitud);
-    return this.http.put<SolicitudPracticas>(this.URL + `actualizar/${idSolicitudPracticas}`, solicitud);
+  updateSolicitud(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.URL}updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
 

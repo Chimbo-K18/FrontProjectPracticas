@@ -125,35 +125,26 @@
 
 
 
-        <mat-step>
-            <ng-template matStepLabel>Fase 3</ng-template>
-            <div class="container">
-
-
-                <mat-card class="example-card">
-
-                    <h1> <strong>SUBIR EL OFICIO FIRMADO</strong> </h1>
-                    <p style="text-align: center;">Auna vez se descargue el oficio, posteriormente debera firmarlo y <br> nuevamente la subira en el formato pdf. </p>
-
-                    <div style="text-align: center;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/6574/6574576.png" alt="" style="width: 25%;">
-                    </div>
-
-                    <div style="margin-top: 25px; text-align: center; max-width: 600px; margin-block-end: 25px;">
-                        <button mat-button> <strong>SUBIR EL ARCHIVO PDF</strong> </button>
-
-                    </div>
-
-                    <div style="text-align: center;">
-                        <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                        <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
-                    </div>
-
-                </mat-card>
-
-
+        <mat-step [stepControl]="thirdFormGroup" optional>
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Subir Documento</ng-template>
+            <div class="download-container">
+              <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
+              <button mat-raised-button color="primary"(click)="inputFile.click()" >
+                <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
+              </button>
+              <div class="instructions">
+                Haz clic en el botón para cargar el documento
+              </div>
             </div>
+            
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Finalizar</button>
+            </div>
+          </form>
         </mat-step>
+        
 
 
     </mat-stepper>

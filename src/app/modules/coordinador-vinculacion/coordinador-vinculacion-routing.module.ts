@@ -25,6 +25,12 @@ const routes: Routes = [
     path: 'listado-empresas',
     loadChildren: () => import("./listado-empresas/listado-empresas.module").then(m => m.ListadoEmpresasModule)
 
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () => import("./profile-coord/profile-coord.module").then(m => m.ProfileCoordModule)
+
   }
 ];
 

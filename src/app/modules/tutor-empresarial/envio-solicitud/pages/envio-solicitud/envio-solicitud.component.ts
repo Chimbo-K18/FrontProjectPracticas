@@ -32,7 +32,8 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 import { URL } from 'url';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Output, EventEmitter, Input, ElementRef } from '@angular/core';
+import { ElementRef } from '@angular/core';
+
 
 export interface PeriodicElement {
   name: string;
@@ -101,6 +102,7 @@ export class EnvioSolicitudComponent implements OnInit {
 
   //llamado a la clase
   public solicitudPractica: SolicitudPracticas = new SolicitudPracticas();
+  actividad : DocumentoSolicitudPracticas = new DocumentoSolicitudPracticas();
 
   //llamada a la clase donde se guarda el documento
   public guardarSolicitud:DocumentoSolicitudPracticas=new DocumentoSolicitudPracticas();
@@ -121,6 +123,7 @@ export class EnvioSolicitudComponent implements OnInit {
   respon!: ResponsablePpp;
   private fileTmp:any;
   selectedFile!: File;
+  idDocumento!:any;
   @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
@@ -200,9 +203,25 @@ export class EnvioSolicitudComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+
+
+
       },
 
       (err) => console.error(err)
+    );
+  }
+
+  actualizarDocumento() {
+
+
+    this.solicitud.updateSolicitud(this.solicitudGenerada, this.idDocumento).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        console.error('Error al actualizar el documento');
+      }
     );
   }
 
@@ -347,11 +366,10 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public upload(event: any) {
-
-
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.documentoSpService.uploadFile(file).subscribe(
+
+      this.documentoSpService.uploadFile(file,).subscribe(
         data => {
           if (data) {
             switch (data.type) {
@@ -361,24 +379,42 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
+                sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+
+                const idDoc = JSON.parse(
+                  sessionStorage.getItem('archivoSubido') || '{}'
+                );
+                this.idDocumento = idDoc.id_documentoSolicitudPrc;
+                console.log(this.idDocumento);
+
+
+                this.actualizarDocumento();
                 break;
             }
           }
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Documento guardado correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+
         },
         error => {
           this.inputFile.nativeElement.value = '';
-          console.log("Error");
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+                );
 
         }
       );
     }
   }
+
+
 
 }

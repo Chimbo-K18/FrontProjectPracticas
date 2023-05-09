@@ -118,14 +118,17 @@ obtenerdatostable(){
 
 listassolicitudes:any []=[];
 listarSolicitudes(){
-  this.solicitudpracticas.getSolicitudes().subscribe(data=>{
+
+  this.solicitudpracticas.getSolicitudesEstado().subscribe(data=>{
 this.listassolicitudes = data;
+console.log(this.listassolicitudes);
 this.dataSource1.data= this.listassolicitudes;
   })
 }
 
 listarrequerimientos:any []=[];
 listaRequerimientos(){
+
   this.requerimientoservice.getRequerimiento().subscribe(dataareque=>{
     this.listarrequerimientos = dataareque;
     this.dataSource2.data = this.listarrequerimientos;
@@ -169,11 +172,12 @@ crearActividades(){
           console.log(datasali);
           this.solicitudpractica = datasali;
           this.solicitudpractica.estadoActividad =true;
-          this.solicitudpractica.estadoSolicitud =true;
-          this.solicitudpractica.fechaAceptacion = this.getCurrentDate();
           this.solicitudpracticas.updateSolicitud(this.solicitudpractica, this.idsoli).subscribe(dataupdate =>{
             console.log(dataupdate);
-            this.requerimiento.solicitudPracticas = dataupdate;
+
+
+            //SE documento porque da error
+            //this.requerimiento.solicitudPracticas = dataupdate;
             this.requerimientoservice.crearRequerimiento(this.requerimiento).subscribe(datareque=>{
               this.listaRequerimientos();
             });

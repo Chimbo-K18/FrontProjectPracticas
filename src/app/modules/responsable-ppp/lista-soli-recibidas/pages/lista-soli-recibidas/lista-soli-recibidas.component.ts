@@ -1,7 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
+import Swal from 'sweetalert2';
 
 export interface PeriodicElement {
   name: string;
@@ -29,19 +34,88 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListaSoliRecibidasComponent {
   //TABLA
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  solicitudpractica : SolicitudPracticas = new SolicitudPracticas();
+
+  displayedColumns1: string[] = ['seleccionar','idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial.empresa.nombreEmpresa','name','weight'];
+  dataSource1 = new MatTableDataSource<SolicitudPracticas>([]);
   
     @ViewChild(MatPaginator) paginator!: MatPaginator;
   
     ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
+      this.dataSource1.paginator = this.paginator;
+    }
+    constructor(private _formBuilder: FormBuilder, private solicitudpracticas:SolicitudpracticasService) {
+      this.listarSolicitudes();
+    }
+  
+    ngOnInit(): void {
     }
   
     //FINTABLA
   
-  
-  
+  idsoli:any;
+    capturarid(id:any){
+      this.idsoli = id;
+      console.log(this.idsoli);
+      localStorage.setItem("idsolicitud", String(this.idsoli));
+      
+
+    }
+apruebaid:any;
+
+    aprobarsolicitud(){
+      Swal.fire({
+        title: 'Estas seguro que deseas asignar',
+        text: "Esta asignación sera permanente",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Continuar!'
+      }).then((result) => {
+        if (result.isConfirmed) {     
+          this.apruebaid = localStorage.getItem("idsolicitud");
+          this.solicitudpracticas.getRequest(this.apruebaid).subscribe(datasali =>{
+            console.log(datasali);
+            this.solicitudpractica = datasali;
+            const nombresolicitud = document.getElementById(
+              'nombresolicitud'
+            ) as HTMLInputElement;
+            this.solicitudpractica.nombreSolicitud = nombresolicitud.value;
+            this.solicitudpractica.fechaAceptacion = this.fechaela;
+            this.solicitudpractica.estadoSolicitud =true;
+            this.solicitudpracticas.updateSolicitud(this.solicitudpractica, this.idsoli).subscribe(dataupdate =>{
+              console.log(dataupdate);
+              this.listarSolicitudes();
+            });
+          });
+          Swal.fire(
+            'APROVADO',
+            'CON EXITO',
+            'success'
+          )
+        }
+      })
+    
+
+
+
+      
+      
+    }
+
+    fechaela:any;
+onDateChange(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechaela = event.value.toLocaleDateString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric'});
+    this.solicitudpractica.fechaAceptacion = this.fechaela;
+    console.log(this.solicitudpractica.fechaAceptacion );
+  } else {
+    console.log("entro a null");
+    this.fechaela = null;
+  }
+}
   
   
     firstFormGroup = this._formBuilder.group({
@@ -53,10 +127,38 @@ export class ListaSoliRecibidasComponent {
   
     isEditable = false;
   
-    constructor(private _formBuilder: FormBuilder) {}
-  
-    ngOnInit(): void {
+   
+
+    listassolicitudes:any []=[];
+listarSolicitudes(){
+
+this.solicitudpracticas.getSolicitudesEstadofalse().subscribe(data=>{
+this.listassolicitudes = data;
+console.log(this.listassolicitudes);
+this.dataSource1.data= this.listassolicitudes;
+  })
+}
+
+idSeleccionadas: string[] = [];
+  materiaSeleccionadas: string[] = [];
+  empresaSeleccionadas: string[] = [];
+capturarCheckbox(checkbox: MatCheckbox, id: string, carreras: string, empresa:string) {
+  if (checkbox.checked) {
+    console.log('El checkbox está seleccionado');
+    this.idSeleccionadas.push(id);
+    this.materiaSeleccionadas.push(carreras);
+    this.empresaSeleccionadas.push(empresa);
+  } else {
+    console.log('El checkbox no está seleccionado');
+    const index = this.idSeleccionadas.indexOf(id);
+    if (index > -1) {
+      this.idSeleccionadas.splice(index, 1);
     }
+  }
+  console.log(`Cédulas seleccionadas: ${this.idSeleccionadas}`);
+  console.log(`Cédulas seleccionadas: ${this.materiaSeleccionadas}`);
+  console.log(`Cédulas seleccionadas: ${this.empresaSeleccionadas}`);
+}
   
   }
   

@@ -110,20 +110,26 @@
 
 
                     <h3><strong>Registre nombre solicitud:</strong></h3>
-                    <p style="font-size: 16px;">FUTURA-SOL-001</p>
+                    <input
+                    matInput
+                    placeholder="Nombre:"
+                    formControlName="secondCtrl"
+                    required name="nombresolicitud" id="nombresolicitud"
+                  />
 
 
                 <h3><strong>Carrera Intervenida:</strong></h3>
 
                     <div style="display: flex; align-items: center; margin-top: 25px; ">
                     
-                    <mat-form-field class="example-full-width" style="width: 300px;">
-                      <mat-label>Seleccione una Empresa:</mat-label>
-                      <input matInput placeholder="Empresa">
-                    </mat-form-field>
+                      <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
+                        <mat-label>Fecha de Aceptación:</mat-label>
+                        <input matInput [matDatepicker]="picker"  [(ngModel)]="fechaela" name="fechaElaboracion" (dateChange)="onDateChange($event)">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
 
-                    <button mat-raised-button style="margin-left: 25px;" >Empresa<mat-icon>add</mat-icon></button>  
-                    
                   </div>
 
                 <div
@@ -150,7 +156,7 @@
   
                       <div style="margin-top:25px; text-align: center;">
                         <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                          <button mat-raised-button color="warn" >Finalizar</button>
+                          <button mat-raised-button color="warn" (click)="aprobarsolicitud()">Finalizar</button>
                           
                         </div>
                   
