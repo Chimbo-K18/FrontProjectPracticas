@@ -183,8 +183,6 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public create() {
-
-
     this.solicitudPractica.nombre_carrera = this.mivariable;
     this.solicitudPractica.fechaEnvioSolicitud = this.getCurrentDate();
     this.solicitudPractica.responsablePPP = this.responsableKO;
