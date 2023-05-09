@@ -30,4 +30,9 @@ export class ConvocatoriasService {
     return this.http.get<Convocatorias>(`${this.API_URL}/convocatoria/documento/${iddoc}`)
   }
 
+  updateDocumento(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  }
+
+
 }

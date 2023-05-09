@@ -80,7 +80,7 @@ export class LanzamientoConvocatoriaComponent   {
     constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
                 private convocatoriaService: ConvocatoriasService,
                 private documentoLcService:DocumentoLanzamientoConvocatoria,
-      private solicitud: SolicitudConvocatoriasService) {}
+              ) {}
 
     ngOnInit(): void {
 
@@ -214,7 +214,7 @@ export class LanzamientoConvocatoriaComponent   {
 
     console.log(this.idDocumento);
 
-    this.solicitud.updateSolicitudCnv(this.convocatoriaGenerada, this.idDocumento).subscribe(
+    this.convocatoriaService.updateDocumento(this.convocatoriaGenerada, this.idDocumento).subscribe(
 
       response => {
         console.log('Documento actualizado correctamente');
