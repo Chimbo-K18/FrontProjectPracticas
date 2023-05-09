@@ -32,6 +32,12 @@
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
 
   }
+  .download-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
   
   .mat-mdc-form-field {
     margin-top: 16px;

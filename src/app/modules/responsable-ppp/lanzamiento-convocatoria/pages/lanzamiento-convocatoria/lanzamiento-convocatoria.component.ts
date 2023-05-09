@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {FormGroup, FormControl} from '@angular/forms';
-import { HttpClient,HttpEventType } from '@angular/common/http';
+import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
-import { DocumentoLanzamientoConvocatoria} from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
+import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
 import { ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
@@ -23,23 +23,23 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
 ];
 @Component({
   selector: 'app-lanzamiento-convocatoria',
   templateUrl: './lanzamiento-convocatoria.component.html',
   styleUrls: ['./lanzamiento-convocatoria.component.css']
 })
-export class LanzamientoConvocatoriaComponent   {
+export class LanzamientoConvocatoriaComponent {
 
 
   solicitudesCompletas: SolicitudPracticas[] | undefined;
@@ -48,92 +48,92 @@ export class LanzamientoConvocatoriaComponent   {
   idDocumento!: any;
 
   //TABLA
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-    }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
-    //FINTABLA
+  //FINTABLA
 
-    firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
-    thirdFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  thirdFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
 
-    isEditable = false;
-    @ViewChild('inputFile') inputFile!: ElementRef;
+  isEditable = false;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
-    public convocatoria: Convocatorias = new Convocatorias();
-    public filesToUpload!: Array<File>;
-
-
-
-    constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
-                private convocatoriaService: ConvocatoriasService,
-                private documentoLcService:DocumentoLanzamientoConvocatoria,
-              ) {}
-
-    ngOnInit(): void {
-
-      this.listarAsignadoActividades();
-    }
-
-    seleccionarSolicitud(solicitud: any){
-
-      sessionStorage.setItem('solicitudSeleccionada', JSON.stringify(solicitud));
-
-      const valor = JSON.parse(
-        sessionStorage.getItem('solicitudSeleccionada') || '{}'
-      );
-      this.solicitudID = valor;
-      console.log(this.solicitudID)
-      this.getFechaActual();
-    }
+  public convocatoria: Convocatorias = new Convocatorias();
+  public filesToUpload!: Array<File>;
 
 
-    listarAsignadoActividades(){
 
-      this.solicitudService.getSolicitudesActividades()
+  constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
+    private convocatoriaService: ConvocatoriasService,
+    private documentoLcService: DocumentoLanzamientoConvocatoria,
+  ) { }
+
+  ngOnInit(): void {
+
+    this.listarAsignadoActividades();
+  }
+
+  seleccionarSolicitud(solicitud: any) {
+
+    sessionStorage.setItem('solicitudSeleccionada', JSON.stringify(solicitud));
+
+    const valor = JSON.parse(
+      sessionStorage.getItem('solicitudSeleccionada') || '{}'
+    );
+    this.solicitudID = valor;
+    console.log(this.solicitudID)
+    this.getFechaActual();
+  }
+
+
+  listarAsignadoActividades() {
+
+    this.solicitudService.getSolicitudesActividades()
       .subscribe((res) => (this.solicitudesCompletas = res));
 
+  }
+
+
+  public crearConvocatoria() {
+
+    this.convocatoria.fechaPublicacion = this.getFechaActual();
+    this.convocatoria.solicitudPracticas = this.solicitudID;
+
+    return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
+      (res) => {
+
+        this.convocatoriaGenerada = res.idConvocatorias
+        console.log(res);
+        console.log(this.convocatoriaGenerada)
+      },
+
+      (err) => console.error(err)
+    );
+  }
+
+  verificarID() {
+
+    if (!this.convocatoriaService.getRequest(this.convocatoria.idConvocatorias)) {
+
+      console.log('Convocatoria Encontrada');
+    } else {
+      this.crearConvocatoria();
     }
-
-
-    public crearConvocatoria(){
-
-      this.convocatoria.fechaPublicacion = this.getFechaActual();
-      this.convocatoria.solicitudPracticas = this.solicitudID;
-
-      return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
-        (res) => {
-
-          this.convocatoriaGenerada = res.idConvocatorias
-          console.log(res);
-          console.log(this.convocatoriaGenerada)
-        },
-
-        (err) => console.error(err)
-      );
-    }
-
-    verificarID(){
-
-      if(!this.convocatoriaService.getRequest(this.convocatoria.idConvocatorias)){
-
-        console.log('Convocatoria Encontrada');
-      }else {
-        this.crearConvocatoria();
-      }
-    }
+  }
 
   getFechaActual() {
     const date = new Date();
@@ -150,8 +150,8 @@ export class LanzamientoConvocatoriaComponent   {
     window.open(url, '_blank');
   }
 
-  fileChangeEvent(fileInput:any){
-    this.filesToUpload=<Array<File>> fileInput.target.files;
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
   onLoad(event: Event): void {
@@ -188,7 +188,6 @@ export class LanzamientoConvocatoriaComponent   {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-
                 this.actualizarDocumento();
                 break;
             }
@@ -224,4 +223,4 @@ export class LanzamientoConvocatoriaComponent   {
       }
     );
   }
-  }
+}

@@ -23,7 +23,6 @@ import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
-import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
 import { Observable, Subscriber } from 'rxjs';
 import { error, log } from 'console';
@@ -33,6 +32,7 @@ import { URL } from 'url';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
+import { DocumentoSolPracticasService } from 'src/app/services/doc/documento-sol-practicas.service';
 
 
 export interface PeriodicElement {

@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 
-export class DocumentoLanzamientoConvocatoria{
-    url: string = 'http://localhost:8080/api/documentoConvocatoria';
-    urlPost: string = 'http://localhost:8080/api/documentoConvocatoria/upload';
+export class DocumentoConvenioService {
+    url: string = 'http://localhost:8080/api/documentoConvenio';
+    urlPost: string = 'http://localhost:8080/api/documentoConvenio/upload';
 
 
     constructor(private http: HttpClient) { }
@@ -24,14 +24,4 @@ export class DocumentoLanzamientoConvocatoria{
           reportProgress: true
         }));
     }
-
-
-  //////traer docuemnto
-  getPdf(id: any) {
-    return this.http.get(this.url + `/download/${id}`, { responseType: 'blob' });
-  }
-
-
-
-
 }
