@@ -34,6 +34,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
 
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -101,9 +102,10 @@ export class EnvioSolicitudComponent implements OnInit {
 
   //llamado a la clase
   public solicitudPractica: SolicitudPracticas = new SolicitudPracticas();
+  actividad: DocumentoSolicitudPracticas = new DocumentoSolicitudPracticas();
 
   //llamada a la clase donde se guarda el documento
-  public guardarSolicitud:DocumentoSolicitudPracticas=new DocumentoSolicitudPracticas();
+  public guardarSolicitud: DocumentoSolicitudPracticas = new DocumentoSolicitudPracticas();
   convenios: Convenio[] | undefined;
   listaDetalles: DetalleConvenio[] | undefined;
 
@@ -117,10 +119,11 @@ export class EnvioSolicitudComponent implements OnInit {
   mitutor !: string;
   tutorEmpre !: any;
   solicitudGenerada !: any;
-  public archivos:any=[];
+  public archivos: any = [];
   respon!: ResponsablePpp;
-  private fileTmp:any;
+  private fileTmp: any;
   selectedFile!: File;
+  idDocumento!: any;
   @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
@@ -130,11 +133,11 @@ export class EnvioSolicitudComponent implements OnInit {
     private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
-    private empresarialService : tutorempresarialService,
+    private empresarialService: tutorempresarialService,
     private documentoSolService: DocumentoSolPracticasService,
-    private documentoSpService:DocumentoSolicitudPracticaService,
+    private documentoSpService: DocumentoSolicitudPracticaService,
     private http: HttpClient
-  ) {}
+  ) { }
 
 
 
@@ -180,12 +183,10 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public create() {
-
-
     this.solicitudPractica.nombre_carrera = this.mivariable;
     this.solicitudPractica.fechaEnvioSolicitud = this.getCurrentDate();
     this.solicitudPractica.responsablePPP = this.responsableKO;
-    this.solicitudPractica.tutorEmpresarial = this. tutorEmpre;
+    this.solicitudPractica.tutorEmpresarial = this.tutorEmpre;
 
     return this.solicitud.saveSolicitud(this.solicitudPractica).subscribe(
       (res) => {
@@ -203,6 +204,22 @@ export class EnvioSolicitudComponent implements OnInit {
       },
 
       (err) => console.error(err)
+    );
+  }
+
+  actualizarDocumento() {
+    const idDoc = JSON.parse(
+      sessionStorage.getItem('archivoSubido') || '{}'
+    );
+    this.idDocumento = idDoc.id_documentoSolicitudPrc;
+    console.log(this.idDocumento);
+    this.solicitud.updateSolicitud1(this.solicitudGenerada, this.idDocumento).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        console.error('Error al actualizar el documento');
+      }
     );
   }
 
@@ -239,7 +256,7 @@ export class EnvioSolicitudComponent implements OnInit {
 
   public nombreResponsable: string = '';
   public nombreResponsable2: any;
-   public filesToUpload!: Array<File>;
+  public filesToUpload!: Array<File>;
 
   obtenerCarrera() {
 
@@ -262,7 +279,7 @@ export class EnvioSolicitudComponent implements OnInit {
     );
   }
 
-  extraerEmpresarial(){
+  extraerEmpresarial() {
 
     const valorEmpresarial = JSON.parse(
       sessionStorage.getItem('auth-user') || '{}'
@@ -324,15 +341,15 @@ export class EnvioSolicitudComponent implements OnInit {
 
   //Metodo para descargar la solicitud de practicas
   descargarPDF() {
-  const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
-  const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
-  window.open(url, '_blank');
+    const idSolicitud = this.solicitudGenerada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/descargar/${idSolicitud}`;
+    window.open(url, '_blank');
   }
 
-  fileUrl!:SafeResourceUrl;
+  fileUrl!: SafeResourceUrl;
 
-  fileChangeEvent(fileInput:any){
-    this.filesToUpload=<Array<File>> fileInput.target.files;
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
   onLoad(event: Event): void {
@@ -347,11 +364,10 @@ export class EnvioSolicitudComponent implements OnInit {
   }
 
   public upload(event: any) {
-
-
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.documentoSpService.uploadFile(file).subscribe(
+
+      this.documentoSpService.uploadFile(file,).subscribe(
         data => {
           if (data) {
             switch (data.type) {
@@ -361,24 +377,34 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
+                this.actualizarDocumento();
+                sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
                 break;
             }
           }
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Documento guardado correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+
         },
         error => {
           this.inputFile.nativeElement.value = '';
-          console.log("Error");
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+          );
 
         }
       );
     }
   }
+
+
 
 }
