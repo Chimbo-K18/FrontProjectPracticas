@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Convocatorias } from '../models/convocatorias';
 import { Observable } from 'rxjs';
 import { SolicitudConvocatoria } from '../models/solicitudconvocatoria';
+import { SolicitudPracticas } from '../models/solicitudpracticas';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,9 @@ export class SolicitudConvocatoriasService {
     return this.http.get<SolicitudConvocatoria[]>(this.API_URL+'/listar');
   }
 
-  
+
+  listarCheckResponsable(idSolicitudPractica: any): Observable<SolicitudPracticas> {
+    return this.http.get<SolicitudPracticas>(`${this.API_URL}/aprobados/${idSolicitudPractica}`)
+  }
 
 }
