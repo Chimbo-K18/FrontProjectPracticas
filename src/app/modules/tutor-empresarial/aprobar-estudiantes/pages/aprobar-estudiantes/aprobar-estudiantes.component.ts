@@ -110,6 +110,9 @@ export class AprobarEstudiantesComponent implements AfterViewInit{
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+  tresFormGroup = this._formBuilder.group({
+    tresCtrl: ['', Validators.required],
+  });
 
   isEditable = false;
 
