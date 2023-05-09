@@ -19,4 +19,9 @@ export class ActividadService {
     return this.http.get<Actividades[]>(this.url+`/listar`);
   }
 
+  obtenerActividadesPorConvocatoria(convocatoriaId: number): Observable<Actividades[]> {
+    const url = `${this.url}/convocatoriasid/${convocatoriaId}`;
+    return this.http.get<Actividades[]>(url);
+  }
+
 }

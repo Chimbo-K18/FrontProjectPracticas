@@ -123,7 +123,7 @@
               <form action="#" class="login-form" ngNativeValidate (ngSubmit)="create()">
     
                 <input type="text" maxlength="10" placeholder="CEDULA" class="form-control, text" required
-                    [(ngModel)]="usuario.cedula" name="cedula" (input)="escribirInput($event)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    [(ngModel)]="usuario.cedula" name="cedula" (input)="escribirInput($event)" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="cedulausu">
     
                 <input type="text" id="nombres" placeholder="NOMBRES" class="form-control, text" required
                     [(ngModel)]="usuario.nombres" name="nombres" disabled>
