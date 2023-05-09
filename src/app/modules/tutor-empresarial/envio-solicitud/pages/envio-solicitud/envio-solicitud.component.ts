@@ -201,6 +201,9 @@ export class EnvioSolicitudComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+
+
+
       },
 
       (err) => console.error(err)

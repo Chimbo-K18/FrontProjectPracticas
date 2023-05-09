@@ -187,7 +187,7 @@ export class RegistroTutEmpresarialComponent {
   }
   //obtener empresas
   obtenerEmpresas() {
-    this.empresaService.listarEmpresas().subscribe((data) => {
+    this.empresaService.listarEmpresa().subscribe((data) => {
       this.listaEmpresa = data.map((result) => {
         let empresa = new Empresa();
         empresa.idEmpresa = result.idEmpresa;
@@ -267,7 +267,7 @@ variableencontrada:any;
   creartutor(){
     this.variableencontradatuto = localStorage.getItem("cedulapersona");
     console.log(this.variableencontradatuto);
-    this.empresaService.getPorId(this.codigoempresa).subscribe(dataempre =>{
+    this.empresaService.buscarId(this.codigoempresa).subscribe(dataempre =>{
       console.log(dataempre);
       this.tutorempresarial.empresa = dataempre;
       this.userService.getuscedula(this.variableencontradatuto).subscribe(datausututo =>{

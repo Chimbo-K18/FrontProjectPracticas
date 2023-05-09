@@ -13,6 +13,24 @@ const routes: Routes = [
     path: 'lista-soli-enviadas',
     loadChildren: () => import("./lista-soli-enviadas/lista-soli-enviadas.module").then(m => m.ListaSoliEnviadasModule)
 
+  },
+
+  {
+    path: 'ultima-aprobacion',
+    loadChildren: () => import("./aprobar-estudiantes/aprobar-estudiantes.module").then(m => m.AprobarEstudiantesModule)
+
+  },
+
+  {
+    path: 'asginar-horario',
+    loadChildren: () => import("./asignar-horario/asignar-horario.module").then(m => m.AsignarHorarioModule)
+
+  },
+
+  {
+    path: 'aprobar-estudiante',
+    loadChildren: () => import("./aprobar-estudiantes/aprobar-estudiantes.module").then(m => m.AprobarEstudiantesModule)
+
   }
 ];
 

@@ -14,12 +14,29 @@ export class EmpresaService {
     return this.http.post<Empresa>(this.url+'/crear',empresa);
   }
 
-  listarEmpresas(){
-    return this.http.get<Empresa[]>(this.url+'/listar');
+  listarEmpresa(): Observable<Empresa[]>{
+    return this.http.get<Empresa[]>(this.url+'/listar')
   }
 
-  getPorId(idEmpresa: number){
-    return this.http.get<Empresa>(this.url+ '/buscar/'+idEmpresa);
+  buscarId(id: any):Observable<Empresa>{
+    return this.http.get<Empresa>(this.url + `/buscar/${id}`);
   }
+
+  UpdateEmpresa(empresa: Empresa, idEmpresa:any){
+    return this.http.put<Empresa>(this.url+`/actualizar/${idEmpresa}`, empresa);
+  }
+
+  // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{
+  //   return this.http.put<Empresa>(this.url + `/actualizar/${id}`, empresa);
+  // }
+
+  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
+  //   return this.http.put<Empresa>(this.url + `/actualizar/${empresa.idEmpresa}`, empresa);
+  // }
+
+  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
+  //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
+  // }
+
 
 }

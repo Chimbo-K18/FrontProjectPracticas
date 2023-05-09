@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista Productos</title>
+</head>
+
+<body class="bodyL">
+  <h1><strong>APROBACIÓN DE ESTUDIANTES </strong></h1>
+
+  <mat-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Fase 1</ng-template>
+      <table id="keywords" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha Publicación</th>
+            <th>Fecha Expiración</th>
+            <th></th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let convocatoria of convocatorias">
+            <td>{{ convocatoria.idConvocatorias}} </td>
+            <td>{{ convocatoria.nombreConvocatoria}} </td>
+            <td>{{ convocatoria.fechaPublicacion}} </td>
+            <td>{{ convocatoria.fechaExpiracion}} </td>
+
+            <td>
+              <button matStepperNext class="btn btn-light" (click)="seleccionarConvocatoria(convocatoria)">
+                Seleccionar
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fase 2</ng-template>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <mat-card>
+            <div>
+              <h1 style="text-align: center;"> Listado de Estudiantes </h1>
+              <table mat-table [dataSource]="data" class="mat-elevation-z8">
+                <!-- Position Column -->
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre Estudiante</th>
+                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.nombre}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Envio </th>
+                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.fecha}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="carrera">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Carrera </th>
+                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.carrera}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="esta">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitud </th>
+                  <td mat-cell *matCellDef="let estudiante"> APROBADO</td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="sy" bol>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Aprobar </th>
+                  <td mat-cell *matCellDef="let estudiante"> <button mat-raised-button color="primary" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#modal-formulario">
+                    <mat-icon>add</mat-icon>Agregar Usuario</button>  </td>
+
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
+                <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
+              </table>
+              <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons
+                aria-label="Select page of solicitudes">
+              </mat-paginator>
+            </div>
+
+            
+            <div style="margin-top:25px; text-align: center;">
+              <button mat-raised-button color="primary">IR A LISTADO FINAL</button>
+            </div>
+          </mat-card>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="tresFormGroup">
+<!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
+      <form [formGroup]="tresFormGroup">
+        <ng-template matStepLabel>Fase 3</ng-template>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <mat-card>
+            <div>
+              <h1 style="text-align: center;"> Listado tabla final </h1>
+              <table mat-table [dataSource]="data" class="mat-elevation-z8">
+                <!-- Position Column -->
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre Estudiante</th>
+                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.nombre}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Envio </th>
+                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.fecha}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="carrera">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Carrera </th>
+                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.carrera}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="esta">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitud </th>
+                  <td mat-cell *matCellDef="let estudiante"> APROBADO</td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="sy" bol>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Aprobar </th>
+                  <td mat-cell *matCellDef="let estudiante"> DATO 5  </td>
+
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
+                <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
+              </table>
+              <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons
+                aria-label="Select page of solicitudes">
+              </mat-paginator>
+            </div>
+
+            
+            <div style="margin-top:25px; text-align: center;">
+              <button mat-raised-button color="primary">IR A LISTADO FINAL</button>
+            </div>
+          </mat-card>
+        </div>
+      </form>
+      
+    </mat-step>
+  </mat-stepper>
+
+  
+
+
+  
+
+<div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="container">
+
+      <div class="modal-content">
+
+        
+
+
+        
+        <!-- <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> -->
+        <div class="container">
+          <h1>Docente</h1>
+          <div class="modal-header">
+
+            
+
+            <div style="display: flex; flex-direction: column;">
+              <mat-form-field class="example-full-width" style="width: 900px;">
+                <mat-label>Buscar</mat-label>
+                <input style="color: black;" matInput placeholder="Ingrese nombre o cedula">
+              </mat-form-field>
+            
+              <div style="color: black;">
+                <h3> <strong>LISTA DE DOCENTES</strong> </h3>
+                <select id="materias" name="materias">
+                  <option value="">Seleccione una carrera</option>
+                  <option value="">Seleccione una carrera</option>
+                  <option value="">Seleccione una carrera</option>
+                </select>
+                <h3> <strong>ROL</strong> </h3> 
+                <p>ESTE ES UN ROL</p>
+                <h3> <strong> TUTOR ACADEMICO</strong> </h3>
+                <p>David Naula</p>
+              </div>
+            </div>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+   
+          
+          
+          
+
+           <div style="text-align: center;">
+
+    <button mat-flat-button color="warn">GENERAR CREDENCIALES</button>
+
+  </div>
+
+
+
+          
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+  
+
+
+</body>
+
+</html>
