@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 export class DocumentoLanzamientoConvocatoria{
     url: string = 'http://localhost:8080/api/documentoConvocatoria';
     urlPost: string = 'http://localhost:8080/api/documentoConvocatoria/upload';
-  
+
 
     constructor(private http: HttpClient) { }
-    
+
     public uploadFile(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
@@ -26,10 +26,14 @@ export class DocumentoLanzamientoConvocatoria{
           reportProgress: true
         }));
     }
-  
 
-      
-      
 
-      
+  //////traer docuemnto
+  getPdf(id: any) {
+    return this.http.get(this.url + `/download/${id}`, { responseType: 'blob' });
+  }
+
+
+
+
 }

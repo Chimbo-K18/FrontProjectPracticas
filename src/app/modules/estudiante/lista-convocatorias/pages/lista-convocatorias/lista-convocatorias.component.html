@@ -37,13 +37,13 @@
                   </td>
                 </ng-container>
 
-    
+
                 <ng-container matColumnDef="fechapublicacion">
                   <th mat-header-cell *matHeaderCellDef>Fecha Publicación</th>
                   <td mat-cell *matCellDef="let convocatorias">{{ convocatorias.fechaPublicacion }}</td>
                 </ng-container>
 
-  
+
                 <ng-container matColumnDef="fechaexpiracion">
                   <th mat-header-cell *matHeaderCellDef>Fecha Expiración</th>
                   <td mat-cell *matCellDef="let convocatorias">{{ convocatorias.fechaExpiracion }}</td>
@@ -58,11 +58,12 @@
                   </td>
                 </ng-container>
 
-   
+
                 <ng-container matColumnDef="opciones">
                   <th mat-header-cell *matHeaderCellDef>Opciones</th>
                   <td mat-cell *matCellDef="let convocatorias">
-                    <button mat-raised-button color="primary" matStepperNext (click)="capturarid(convocatorias.idConvocatorias)">
+                    <button mat-raised-button color="primary" matStepperNext (click)="capturarid(convocatorias.idConvocatorias)"
+                    (click)="seleccionarConvocatoria(convocatorias)">
                   Postular
                     </button>
                   </td>

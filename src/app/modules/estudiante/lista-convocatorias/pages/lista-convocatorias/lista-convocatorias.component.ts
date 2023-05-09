@@ -7,6 +7,7 @@ import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { BaseFenixService } from 'src/app/services/base-fenix.service';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
+import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
 import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { UserService } from 'src/app/services/user.service';
@@ -50,7 +51,11 @@ export class ListaConvocatoriasComponent {
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService, private actividadservice: ActividadService, private userservice: UserService, private solicitudconvoservice: SolicitudConvocatoriasService, private estudianteService: EstudiantePracticanteService) { }
+  constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService,
+    private actividadservice: ActividadService, private userservice: UserService,
+    private solicitudconvoservice: SolicitudConvocatoriasService,
+    private estudianteService: EstudiantePracticanteService,
+    private DocumentoLanzamientoConvocatoria: DocumentoLanzamientoConvocatoria) { }
 
   ngOnInit(): void {
   }
@@ -64,6 +69,7 @@ export class ListaConvocatoriasComponent {
   }
 
   //obtener convocatorias
+  //obtener convocatorias
   obtenerConvocatorias() {
     this.convocatoriaService.listarConvocatorias().subscribe((data) => {
       this.listaConvocatoria = data.map((result) => {
@@ -73,13 +79,51 @@ export class ListaConvocatoriasComponent {
         convo.fechaPublicacion = result.fechaPublicacion
         convo.fechaExpiracion = result.fechaExpiracion;
         convo.documentoConvatoria = result.documentoConvatoria;
-
         return convo;
       });
       this.dataSource.data = this.listaConvocatoria;
       this.loading = false;
 
     });
+  }
+  ///obtener el id de la convocatoria de la tabla
+  selectedConvo: any;
+  // para seleccionar la convocatoria
+  seleccionarConvocatoria(convocatorias: any) {
+    console.log('Se seleccionó la empresa:', convocatorias);
+    this.selectedConvo = convocatorias.idConvocatorias;
+    this.buscarConvocatoria();
+  }
+
+  idencontrado: any;
+  buscarConvocatoria() {
+    this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria => {
+      // console.log(dataconvocatoria);
+    });
+
+
+    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento => {
+      console.log(datadocumento)
+
+
+      this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
+        this.downloadFile(pdfBlob);
+      });
+
+    });
+  }
+
+
+  downloadFile(data: Blob) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'file.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   }
 
   idconvo: any;
