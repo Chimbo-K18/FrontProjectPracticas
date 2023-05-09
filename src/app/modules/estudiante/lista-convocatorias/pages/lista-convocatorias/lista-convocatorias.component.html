@@ -23,7 +23,13 @@
                 [dataSource]="dataSource"
                 class="mat-elevation-z8"
               >
-      
+              <ng-container matColumnDef="idConvocatorias">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let convocatorias">
+                  {{ convocatorias.idConvocatorias}}
+                </td>
+              </ng-container>
+
                 <ng-container matColumnDef="nombreconvocatoria">
                   <th mat-header-cell *matHeaderCellDef>Nombre Convocatoria</th>
                   <td mat-cell *matCellDef="let convocatorias">
@@ -43,6 +49,7 @@
                   <td mat-cell *matCellDef="let convocatorias">{{ convocatorias.fechaExpiracion }}</td>
                 </ng-container>
 
+
                 <ng-container matColumnDef="documento_convocatoria">
                   <th mat-header-cell *matHeaderCellDef>Documento</th>
                   <td mat-cell *matCellDef="let convocatorias">
@@ -55,7 +62,7 @@
                 <ng-container matColumnDef="opciones">
                   <th mat-header-cell *matHeaderCellDef>Opciones</th>
                   <td mat-cell *matCellDef="let convocatorias">
-                    <button mat-raised-button color="primary" matStepperNext>
+                    <button mat-raised-button color="primary" matStepperNext (click)="capturarid(convocatorias.idConvocatorias)">
                   Postular
                     </button>
                   </td>
@@ -99,12 +106,12 @@
                     <div style="margin-right: 65px">
                       <h4><strong>Nombre de Convocatoria:</strong></h4>
                       <p style="font-size: 15px">
-                        CONVOCATORIA – TSDS -PPP-2023-007
+                        {{nombreconvo}}
                       </p>
                     </div>
                     <div>
                       <h4><strong>Fecha de Envio:</strong></h4>
-                      <p style="font-size: 15px">28/04/2023</p>
+                      <p style="font-size: 15px">{{fechaenvio}}</p>
                     </div>
                   </div>
 
@@ -113,17 +120,48 @@
                   <div style="display: flex">
                     <div style="margin-right: 250px">
                       <h4><strong>Cedula:</strong></h4>
-                      <p style="font-size: 15px">0105465512</p>
+                      <p style="font-size: 15px">{{cedula}}</p>
                     </div>
                     <div>
                       <h4><strong>Nombre:</strong></h4>
-                      <p style="font-size: 15px">Kevin Mateo Chimbo Sacta</p>
+                      <p style="font-size: 15px">{{nombreusuario}}</p>
                     </div>
                   </div>
 
-                  <div>
+                  <div style="display: flex">
+                  <div style="margin-right: 110px">
                     <h4><strong>Correo:</strong></h4>
-                    <p style="font-size: 15px">kevin.chimbo.est@tecazuay</p>
+                    <p style="font-size: 15px">{{correo}}</p>
+                  </div>
+                  <div>
+                    <h4><strong>Ciclo:</strong></h4>
+                    <input
+                    matInput
+                    placeholder="Ciclo:"
+                    formControlName="secondCtrl"
+                    required name="nombresolicitud" id="ciclo"
+                  />
+                  </div>
+                </div>
+              </div>
+                <div style="display: flex">
+                  <div style="margin-right: 110px">
+                    <h4><strong>Periodo:</strong></h4>
+                    <input
+                    matInput
+                    placeholder="Periodo:"
+                    formControlName="secondCtrl"
+                    required name="nombresolicitud" id="periodo"
+                  />
+                  </div>
+                  <div>
+                    <h4><strong>Numero de contacto:</strong></h4>
+                    <input
+                    matInput
+                    placeholder="Contacto:"
+                    formControlName="secondCtrl"
+                    required name="nombresolicitud" id="contacto"
+                  />
                   </div>
                 </div>
               </mat-card>
@@ -131,9 +169,7 @@
               <mat-card style="width: 700px">
                 <H3><strong>Requisitos:</strong> </H3>
                 <div style="text-align: center">
-                  <p style="font-size: 15px">• Metodologias de Software</p>
-                  <p style="font-size: 15px">• Programacion Web</p>
-                  <p style="font-size: 15px">• Programacion Movil</p>
+                  <p style="font-size: 15px" *ngFor="let materia of requisitos">• {{ materia }}</p>
                 </div>
               </mat-card>
 
@@ -152,7 +188,7 @@
               >
                 Back
               </button>
-                <button mat-raised-button color="primary" matStepperNext>
+                <button mat-raised-button color="primary" matStepperNext (click)=" crearconvocatoria()">
                   Siguiente
                 </button>
               </div>

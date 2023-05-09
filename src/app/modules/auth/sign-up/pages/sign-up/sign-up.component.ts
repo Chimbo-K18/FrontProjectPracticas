@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
+import { EstudiantePracticante } from 'src/app/models/estudiantepracticante';
 import { Usuarios } from 'src/app/models/usuarios';
 import { Verestudiantef } from 'src/app/models/verestudiantef';
 import { BaseFenixService } from 'src/app/services/base-fenix.service';
 import { CreateAccountService } from 'src/app/services/createaccount.service';
+import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -23,6 +26,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SignUpComponent implements OnInit {
 
   public usuario: Usuarios = new Usuarios();
+  estudiantepracticante: EstudiantePracticante = new EstudiantePracticante();
   estadoContra: boolean = false;
 
 
@@ -30,13 +34,14 @@ export class SignUpComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   constructor(
-    private router: Router,
-    private createAccountService: CreateAccountService,
+    private router: Router, private userservice: UserService,
+    private createAccountService: CreateAccountService, private estudiantepracticanteservice: EstudiantePracticanteService,
     private bd_fenix: BaseFenixService
   ) { }
 
   ngOnInit() { }
 
+  estupracti:any;
   public create(): void {
     if (this.estadoContra == false) {
       Swal.fire({
@@ -51,7 +56,8 @@ export class SignUpComponent implements OnInit {
 
       if (dominio === 'tecazuay.edu.ec') {
         this.createAccountService.createUserestudiante(this.usuario).subscribe(
-          (data) => {
+          data=> {
+           
             Swal.fire({
               position: 'top',
               icon: 'success',
@@ -59,6 +65,7 @@ export class SignUpComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000,
             });
+            this.crearestudiantepracticante();
             this.router.navigate(['/auth/sign-in']);
           },
           (err) => {
@@ -99,6 +106,21 @@ export class SignUpComponent implements OnInit {
         );
       }
     }
+  }
+variableencontrada:any;
+  crearestudiantepracticante(){
+    const cedulausu = document.getElementById(
+      'cedulausu'
+    ) as HTMLInputElement;
+    this.variableencontrada = cedulausu.value;
+    this.userservice.getcedula(this.variableencontrada).subscribe(datace=>{
+      console.log(datace);
+      this.estudiantepracticante.estado =true;
+      this.estudiantepracticante.usuario_estudiante_practicante =datace;
+      this.estudiantepracticanteservice.crearEstudiantePracticante(this.estudiantepracticante).subscribe(dataestu=>{
+      });
+    });
+
   }
 
   validarCoontra(evento: any) {
@@ -147,6 +169,7 @@ export class SignUpComponent implements OnInit {
 
   escribirInput(evento: any) {
     let cedulaF = evento.target.value;
+  
 
     if (cedulaF.length == 10) {
       console.log('paso con 10');
