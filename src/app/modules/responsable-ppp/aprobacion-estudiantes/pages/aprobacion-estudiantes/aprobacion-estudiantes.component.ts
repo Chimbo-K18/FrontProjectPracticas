@@ -79,6 +79,7 @@ export class AprobacionEstudiantesComponent implements AfterViewInit{
 
 
   convocatorias: Convocatorias | any ;
+  mivariable !: any;
   //TABLA
   displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -119,8 +120,6 @@ export class AprobacionEstudiantesComponent implements AfterViewInit{
     this.listaConvocatorias();
   }
 
-
-
   listaConvocatorias() {
     this.convocatoriaService.getConvocatorias().subscribe(
       (res) => {
@@ -128,6 +127,20 @@ export class AprobacionEstudiantesComponent implements AfterViewInit{
         console.log(this.convocatorias);
       }
     );
+  }
+
+
+
+  seleccionarConvocatoria(convocatoria: any) {
+    sessionStorage.setItem('convocatoriaSeleccionada', JSON.stringify(convocatoria));
+
+    const valor = JSON.parse(
+      sessionStorage.getItem('convocatoriaSeleccionada') || '{}'
+    );
+
+    this.mivariable = valor.idConvocatorias;
+    console.log(this.mivariable)
+
   }
 
 }
