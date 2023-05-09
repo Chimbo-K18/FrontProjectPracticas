@@ -6,10 +6,12 @@ import { Convocatorias } from 'src/app/models/convocatorias';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { BaseFenixService } from 'src/app/services/base-fenix.service';
-import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { UserService } from 'src/app/services/user.service';
+import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
 @Component({
   selector: 'app-lista-convocatorias',
   templateUrl: './lista-convocatorias.component.html',
@@ -81,6 +83,7 @@ export class ListaConvocatoriasComponent {
 
     });
   }
+  
 
   idconvo: any;
   capturarid(id: any) {
