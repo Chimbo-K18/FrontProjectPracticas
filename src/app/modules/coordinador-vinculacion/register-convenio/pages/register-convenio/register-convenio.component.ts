@@ -71,7 +71,7 @@ export class RegisterConvenioComponent  {
 
   empresacreada:any;
    obtenerCedulaSeleccionada(idempresa: number){
-    this.empresaService.getPorId(idempresa).subscribe(
+    this.empresaService.buscarId(idempresa).subscribe(
       data =>{
         this.empresa = data;
         this.empresacreada = data;
@@ -83,7 +83,7 @@ export class RegisterConvenioComponent  {
 
 
   obtenerEmpresas() {
-    this.empresaService.listarEmpresas().subscribe(
+    this.empresaService.listarEmpresa().subscribe(
       data => {
         this.listaEmpresa = data.map(
           result => {
