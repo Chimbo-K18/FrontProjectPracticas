@@ -34,6 +34,13 @@ export class ListaConvocatoriasComponent {
   loading: boolean = true;
   dataSource = new MatTableDataSource<Convocatorias>([]);
 
+  public filesToUpload!: Array<File>;
+  solicitudGenerada !: any;
+
+  
+
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -52,7 +59,12 @@ export class ListaConvocatoriasComponent {
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService, private actividadservice: ActividadService, private userservice: UserService, private solicitudconvoservice: SolicitudConvocatoriasService, private estudianteService: EstudiantePracticanteService) { }
+  constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService, 
+    private actividadservice: ActividadService, private userservice: UserService, 
+    private solicitudconvoservice: SolicitudConvocatoriasService, 
+    private estudianteService: EstudiantePracticanteService,
+    private DocumentoLanzamientoConvocatoria: DocumentoLanzamientoConvocatoria
+    ) { }
 
   ngOnInit(): void {
   }
@@ -66,24 +78,60 @@ export class ListaConvocatoriasComponent {
   }
 
   //obtener convocatorias
-  obtenerConvocatorias() {
-    this.convocatoriaService.listarConvocatorias().subscribe((data) => {
-      this.listaConvocatoria = data.map((result) => {
-        let convo = new Convocatorias();
-        convo.idConvocatorias = result.idConvocatorias;
-        convo.nombreConvocatoria = result.nombreConvocatoria;
-        convo.fechaPublicacion = result.fechaPublicacion
-        convo.fechaExpiracion = result.fechaExpiracion;
-        convo.documentoConvatoria = result.documentoConvatoria;
-
-        return convo;
-      });
-      this.dataSource.data = this.listaConvocatoria;
-      this.loading = false;
-
+//obtener convocatorias
+obtenerConvocatorias() {
+  this.convocatoriaService.listarConvocatorias().subscribe((data) => {
+    this.listaConvocatoria = data.map((result) => {
+      let convo = new Convocatorias();
+      convo.idConvocatorias = result.idConvocatorias;
+      convo.nombreConvocatoria = result.nombreConvocatoria;
+      convo.fechaPublicacion = result.fechaPublicacion
+      convo.fechaExpiracion = result.fechaExpiracion;
+      convo.documentoConvatoria = result.documentoConvatoria;
+       return convo;
     });
-  }
+    this.dataSource.data = this.listaConvocatoria;
+    this.loading = false;
   
+  });
+}
+///obtener el id de la convocatoria de la tabla
+selectedConvo: any;
+// para seleccionar la convocatoria
+seleccionarConvocatoria(convocatorias: any) {
+console.log('Se seleccionó la empresa:', convocatorias);
+this.selectedConvo = convocatorias.idConvocatorias;
+this.buscarConvocatoria();
+}
+
+idencontrado:any;
+buscarConvocatoria(){
+this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
+  // console.log(dataconvocatoria);
+});
+
+
+  this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
+    console.log(datadocumento)
+
+  
+      this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
+        this.downloadFile(pdfBlob);
+      });
+    
+});
+}
+downloadFile(data: Blob) {
+const blob = new Blob([data], { type: 'application/pdf' });
+const url = window.URL.createObjectURL(blob);
+const link = document.createElement('a');
+link.href = url;
+link.download = 'file.pdf';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+window.URL.revokeObjectURL(url);
+}
 
   idconvo: any;
   capturarid(id: any) {
