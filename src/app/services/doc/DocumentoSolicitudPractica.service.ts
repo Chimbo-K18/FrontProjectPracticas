@@ -1,7 +1,8 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest,HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { DocumentoSolicitudPracticas } from '../../models/documentoPracticas';
+
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,7 @@ export class DocumentoSolicitudPracticaService{
   
 
     constructor(private http: HttpClient) { }
-    
+         
     public uploadFile(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
@@ -27,10 +28,8 @@ export class DocumentoSolicitudPracticaService{
           reportProgress: true
         }));
     }
-  
+    
 
-      
-      
 
       
 }

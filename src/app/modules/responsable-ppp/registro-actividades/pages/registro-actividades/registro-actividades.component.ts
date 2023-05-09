@@ -174,7 +174,10 @@ crearActividades(){
           this.solicitudpractica.estadoActividad =true;
           this.solicitudpracticas.updateSolicitud(this.solicitudpractica, this.idsoli).subscribe(dataupdate =>{
             console.log(dataupdate);
-            this.requerimiento.solicitudPracticas = dataupdate;
+
+
+            //SE documento porque da error
+            //this.requerimiento.solicitudPracticas = dataupdate;
             this.requerimientoservice.crearRequerimiento(this.requerimiento).subscribe(datareque=>{
               this.listaRequerimientos();
             });
