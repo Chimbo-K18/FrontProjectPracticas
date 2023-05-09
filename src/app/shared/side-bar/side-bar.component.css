@@ -1,4 +1,4 @@
-/*/neew/*/
+/* //neew// */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
 *{
   margin: 0;
@@ -11,8 +11,9 @@
   width: 240px;
   left: -240px;
   height: 100%;
-  background: #10558d;
+  background: #153F99;
   transition: all .5s ease;
+  bottom: 0;
 }
 
 .profile {
@@ -20,9 +21,10 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #10558d;
+  background-color: #153F99;
   border-bottom: 1px solid black;
   color: #fff;
+  
 }
 
 .profile img {
@@ -38,7 +40,7 @@
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #10558d;
+  background: #153F99;
   user-select: none;
   font-family: 'Montserrat', sans-serif;
 }
@@ -86,9 +88,9 @@ label #btn,label #cancel{
   color: white;
   border-radius: 5px;
   border: 1px solid #262626;
-  margin: 15px 30px;
+  margin: -80px 30px;
   font-size: 29px;
-  background: #10558d;
+  background: #153F99;
   height: 45px;
   width: 45px;
   text-align: center;

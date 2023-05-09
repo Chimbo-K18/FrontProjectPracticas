@@ -74,6 +74,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div> -->
         <div class="container">
+
+         
           <div class="modal-header">
 
             <mat-form-field class="example-full-width" style="width: 1100px;">
@@ -132,11 +134,9 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-      
-          <mat-paginator [pageSizeOptions]="[2,4,6]"
+          <mat-paginator [pageSizeOptions]="[6]"
           showFirstLastButtons
-          aria-label="Select page of periodic elements">
-</mat-paginator>
+          aria-label="Select page of periodic elements"></mat-paginator>
           <div style="text-align:center;margin-top: 20px;">
             <button style="margin-right: 25px" mat-raised-button color="warn" (click)="obtenerCedulaSeleccionada()">
               Seleccionar
