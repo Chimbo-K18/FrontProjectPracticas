@@ -32,4 +32,19 @@ export class SolicitudConvocatoriasService {
     return this.http.get<SolicitudPracticas>(`${this.API_URL}/aprobados/${idSolicitudPractica}`)
   }
 
+
+  Solicitudestudiantes(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/porconvocatoria/${idConvocatoriasSolicitud}`)
+  }
+
+  Solicitudestudiantestrue(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/porconvocatoriatrue/${idConvocatoriasSolicitud}`)
+  }
+
+  updateSolicitudConvocatoria(solicitud: SolicitudConvocatoria, idSolicitudConvocatoria: any) {
+    console.log("servicio");
+    console.log(solicitud);
+    return this.http.put<SolicitudConvocatoria>(this.API_URL + `/actualizar/${idSolicitudConvocatoria}`, solicitud);
+  }
+
 }
