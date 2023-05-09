@@ -191,6 +191,7 @@ export class RegisterConvenioComponent {
     this.convenioService.crearConvenio(this.convenio).subscribe(data => {
       this.conveniocreado = data;
       this.idconvenio=data.idConvenio;
+      console.log(this.idconvenio);
       this.detalleConvenio.convenio = this.conveniocreado;
       this.detalleConvenio.empresa = this.empresacreada;
       this.detalleConvenio.nombre_carrera = this.carreraSeleccionada;
@@ -239,7 +240,7 @@ export class RegisterConvenioComponent {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                //this.actualizarDocumento();
+                this.actualizarDocumento();
                 break;
             }
           }
