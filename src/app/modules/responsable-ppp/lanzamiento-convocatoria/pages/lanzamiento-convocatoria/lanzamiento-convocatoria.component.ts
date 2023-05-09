@@ -67,6 +67,8 @@ export class LanzamientoConvocatoriaComponent   {
       secondCtrl: ['', Validators.required],
     });
 
+    idDocumento!:any;
+
     isEditable = false;
     @ViewChild('inputFile') inputFile!: ElementRef;
 
@@ -75,7 +77,8 @@ export class LanzamientoConvocatoriaComponent   {
 
     constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
                 private convocatoriaService: ConvocatoriasService,
-                private documentoLcService:DocumentoLanzamientoConvocatoria) {}
+                private documentoLcService:DocumentoLanzamientoConvocatoria,
+                private solicitud: SolicitudpracticasService) {}
 
     ngOnInit(): void {
 
@@ -119,6 +122,24 @@ export class LanzamientoConvocatoriaComponent   {
       );
     }
 
+    actualizarDocumento() {
+      const idDoc = JSON.parse(
+        sessionStorage.getItem('ArchivoLanzamientoCnv') || '{}'
+      );
+      this.idDocumento = idDoc.id_documentoConvocatoria;
+
+      console.log(this.idDocumento);
+      this.solicitud.updateSolicitud(this.convocatoriaGenerada, this.idDocumento).subscribe(
+        response => {
+          console.log('Documento actualizado correctamente');
+        },
+        error => {
+          console.error('Error al actualizar el documento');
+        }
+      );
+    }
+
+
     verificarID(){
 
       if(!this.convocatoriaService.getRequest(this.convocatoria.idConvocatorias)){
@@ -159,9 +180,8 @@ export class LanzamientoConvocatoriaComponent   {
     }
   }
 
-
+  
   public upload(event: any) {
-
 
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -172,24 +192,30 @@ export class LanzamientoConvocatoriaComponent   {
               case HttpEventType.UploadProgress:
                 console.log("progreso....");
 
-                break;
+              break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
+                this.actualizarDocumento();
+                sessionStorage.setItem('ArchivoLanzamientoCnv', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
                 break;
             }
           }
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Documento guardado correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-          });
         },
         error => {
           this.inputFile.nativeElement.value = '';
-          console.log("Error");
-
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+                );
         }
       );
     }
