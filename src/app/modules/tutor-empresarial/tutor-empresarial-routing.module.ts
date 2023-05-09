@@ -25,6 +25,12 @@ const routes: Routes = [
     path: 'asginar-horario',
     loadChildren: () => import("./asignar-horario/asignar-horario.module").then(m => m.AsignarHorarioModule)
 
+  },
+
+  {
+    path: 'aprobar-estudiante',
+    loadChildren: () => import("./aprobar-estudiantes/aprobar-estudiantes.module").then(m => m.AprobarEstudiantesModule)
+
   }
 ];
 
