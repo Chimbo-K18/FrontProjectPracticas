@@ -23,7 +23,6 @@ import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
-import { DocumentoSolPracticasService } from 'src/app/services/documento-sol-practicas.service';
 import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
 import { Observable, Subscriber } from 'rxjs';
 import { error, log } from 'console';
@@ -33,6 +32,7 @@ import { URL } from 'url';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
+import { DocumentoSolPracticasService } from 'src/app/services/doc/documento-sol-practicas.service';
 
 
 export interface PeriodicElement {
@@ -129,14 +129,12 @@ export class EnvioSolicitudComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private solicitud: SolicitudpracticasService,
-    private router: Router,
     private convenioService: ConveniosService,
     private detalleService: DetalleconvenioService,
     private responsableService: responsablePpp,
     private empresarialService: tutorempresarialService,
-    private documentoSolService: DocumentoSolPracticasService,
     private documentoSpService: DocumentoSolicitudPracticaService,
-    private http: HttpClient
+   
   ) { }
 
 
@@ -212,7 +210,7 @@ export class EnvioSolicitudComponent implements OnInit {
 
   actualizarDocumento() {
     const idDoc = JSON.parse(
-      sessionStorage.getItem('archivoSubido') || '{}'
+      sessionStorage.getItem('ArchivoSolicitudPrc') || '{}'
     );
     this.idDocumento = idDoc.id_documentoSolicitudPrc;
     console.log(this.idDocumento);
@@ -349,7 +347,6 @@ export class EnvioSolicitudComponent implements OnInit {
     window.open(url, '_blank');
   }
 
-  fileUrl!: SafeResourceUrl;
 
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
@@ -381,7 +378,7 @@ export class EnvioSolicitudComponent implements OnInit {
                 break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
-                sessionStorage.setItem('archivoSubido', JSON.stringify(data.body));
+                sessionStorage.setItem('ArchivoSolicitudPrc', JSON.stringify(data.body));
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',
