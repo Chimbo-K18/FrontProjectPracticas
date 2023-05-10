@@ -72,7 +72,7 @@ datosTablaAprobados: any[] = [];
   ) {}
 
   ngOnInit(): void {}
-  
+
   //obtener convocatorias
   obtenerConvocatorias() {
     this.convocatoriaService.listarConvocatorias().subscribe((data) => {
@@ -143,7 +143,7 @@ datosTablaAprobados: any[] = [];
             'warning'
                 );
         }
-    
+
     });
 }
 idestudentapro: any;
@@ -178,7 +178,7 @@ buscarAprobados(id: any) {
         });
       }else{
       }
-  
+
   });
 }
 //checkdirector
@@ -207,8 +207,8 @@ selectedestudinate(id: number) {
             this.resetStepper();
           });
       });
-  
-   
+
+
   });
 }
 resetStepper() {

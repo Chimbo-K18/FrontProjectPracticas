@@ -85,6 +85,13 @@ export class ListaConvocatoriasComponent {
     return `${day}/${month}/${year}`;
   }
 
+
+  descargarPDF() {
+    const idSolicitud = this.solicitudConvocatoriaGenerada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/obtener/${idSolicitud}`;
+    window.open(url, '_blank');
+  }
+
   //obtener convocatorias
   //obtener convocatorias
   obtenerConvocatorias() {
@@ -127,7 +134,7 @@ this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocator
         // const url = `http://localhost:8080/api/documentoConvocatoria/download/${datadocumento}`;
         // window.open(url, '_blank');
       });
-    
+
 });
 }
 
@@ -309,14 +316,14 @@ window.URL.revokeObjectURL(url);
       );
     }
   }
-  
+
   actualizarDocumento() {
     const idDoc = JSON.parse(
       sessionStorage.getItem('ArchivoSolicitudCnv') || '{}'
     );
     this.idDocumento = idDoc.id_documentoSolicitudConvocatoria;
     console.log(this.idDocumento);
-    this.solicitudconvoservice.updateSolicitudConvocatoria(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
+    this.solicitudconvoservice.updateSolicitudConvocatoriaS(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
       response => {
         console.log('Documento actualizado correctamente');
       },
