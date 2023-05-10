@@ -4,7 +4,7 @@ export class Convenio{
 
     idConvenio !: number;
     numero_convenio !: number;
-    fecha_elaboracion !: string;
+    fecha_elaboracion !: Date;
     numero_itv !: string;
     descripcion !: string;
     estado !: boolean;

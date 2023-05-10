@@ -222,6 +222,8 @@
                 mat-raised-button
                 color="primary"
                 (click)="stepper.reset()"
+                (click)="limpiarCampos()"
+                (click)="clearDate($event)"
               >
                 Cancelar
               </button>
