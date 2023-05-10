@@ -29,12 +29,8 @@ export class RegisterDirectorComponent implements OnInit {
     'opciones',
   ];
   listadocentes: any[] = [];
-  // dataSource = new MatTableDataSource<Verdocentef>([]);
   dataSource = new MatTableDataSource<Verdocentef>(this.listadocentes);
-  // buscarPorCedula() {
-  //   const resultados = this.dataSource.data.filter(item => item.cedula === this.cedulaBuscada);
-  //   this.resultadosBusqueda = resultados;
-  // }
+
   buscarPorCedula() {
   this.resultadosBusqueda = [];
   this.listadocentes.forEach((Verdocentef) => {
@@ -87,8 +83,10 @@ export class RegisterDirectorComponent implements OnInit {
     private permisoservice: PermisosService,
     private CreateAccountService: CreateAccountService,
     private userService: UserService
+
   ) {}
   ngOnInit(): void {
+    this.traercarreras();
     this.Obtenerdocente();
   }
   //buscar usuario
@@ -98,6 +96,19 @@ export class RegisterDirectorComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     }
   }
+    ///carrera
+    carrera_nombre : any [] = [];
+    traercarreras() {
+      this.carrera.getCarreras().subscribe(data => {
+        this.carrera_nombre = data;
+        console.log(this.carrera_nombre);
+      });
+    }
+    carreraSeleccionada:any;
+    seleccionarCarrera() {
+    console.log(this.carreraSeleccionada);
+    
+    }
   // para crear el usuario
   users:any;
   crearusuario() {
@@ -108,7 +119,7 @@ export class RegisterDirectorComponent implements OnInit {
       this.usuario.apellidos = data.apellidos;
       this.usuario.cedula = data.cedula;
       this.usuario.correo = data.correo_institucional;
-      this.usuario.carrera = data.carrera;
+      this.usuario.carrera = this.carreraSeleccionada;
 
       this.userService.getuscedula(this.usuario.cedula).subscribe((usuarioss)=> {
       console.log(usuarioss);
@@ -190,4 +201,5 @@ export class RegisterDirectorComponent implements OnInit {
       this.dataSource.data = this.listadocentes;
     });
   }
+
 }
