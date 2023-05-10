@@ -9,11 +9,12 @@ import { DocumentoSolicitudPracticas } from '../../models/documentoPracticas';
 })
 
 export class DocumentoSolicitudPracticaService{
+    url: string = 'http://localhost:8080/api/documentoSolicitudPracticas';
     urlPost: string = 'http://localhost:8080/api/documentoSolicitudPracticas/upload';
 
 
     constructor(private http: HttpClient) { }
-    
+
     public uploadFileDocumentoSolicitudPractica(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
@@ -25,6 +26,12 @@ export class DocumentoSolicitudPracticaService{
           reportProgress: true
         }));
     }
+
+    descargarDocumentoSoliPractica(id: any) {
+      const url = `${this.url}/download/${id}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
+
 
 
 

@@ -86,12 +86,6 @@ export class ListaConvocatoriasComponent {
   }
 
 
-  descargarPDF() {
-    const idSolicitud = this.solicitudConvocatoriaGenerada; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/obtener/${idSolicitud}`;
-    window.open(url, '_blank');
-  }
-
   //obtener convocatorias
   //obtener convocatorias
   obtenerConvocatorias() {
@@ -119,49 +113,36 @@ export class ListaConvocatoriasComponent {
     this.buscarConvocatoria();
   }
 
-idencontrado:any;
-buscarConvocatoria(){
-this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
-  console.log(dataconvocatoria);
-});
-  this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
-    console.log(datadocumento)
-    // const namePDF = 'convocatoria.pdf';
-    //     this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe(response => {
-//       this.downloadPDF(response,namePDF);
-      this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
-        this.downloadFile(pdfBlob);
-        // const url = `http://localhost:8080/api/documentoConvocatoria/download/${datadocumento}`;
-        // window.open(url, '_blank');
-      });
+  idencontrado:any;
+  buscarConvocatoria(){
+  this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
+    console.log(dataconvocatoria);
+  });
+    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
+      console.log(datadocumento)
+      this.downloadDocumentoConvocatoria(datadocumento);
 
-});
-}
+  });
+  }
 
-// downloadPDF(response:any, namePDF:string):void{
-// // debugger;
-// const dataType=response.type;
-// const binaryData=[];
-// binaryData.push(response);
-// const filtePath = window.URL.createObjectURL(new Blob(binaryData,{type: dataType}));
-// const downloadlink=document.createElement('a');
-// downloadlink.href= filtePath;
-// downloadlink.setAttribute('dowload',namePDF);
-// document.body.appendChild(downloadlink);
-// downloadlink.click();
+  descargarPDF() {
+    const idSolicitud = this.solicitudConvocatoriaGenerada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/obtener/${idSolicitud}`;
+    window.open(url, '_blank');
+  }
 
-// }
-downloadFile(data: Blob) {
-const blob = new Blob([data], { type: 'application/pdf' });
-const url = window.URL.createObjectURL(blob);
-const link = document.createElement('a');
-link.href = url;
-link.download = 'Convocatoria.pdf';
-document.body.appendChild(link);
-link.click();
-document.body.removeChild(link);
-window.URL.revokeObjectURL(url);
-}
+
+  downloadFile(data: Blob) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'file.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  }
 
   idconvo: any;
   capturarid(id: any) {
@@ -174,6 +155,7 @@ window.URL.revokeObjectURL(url);
 
   cargar: any;
   nombreconvo: any;
+  idConvocatoria:any;
   fechaenvio: any;
   requisitos: any;
   usuarioid: any;
@@ -195,6 +177,7 @@ window.URL.revokeObjectURL(url);
           this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
             console.log(dataconvo);
             this.nombreconvo = dataconvo.nombreConvocatoria;
+
             this.fechaenvio = this.getCurrentDate();
 
 
@@ -333,8 +316,21 @@ window.URL.revokeObjectURL(url);
     );
   }
 
-
-
+  public downloadDocumentoConvocatoria(id:any) {
+    this.DocumentoLanzamientoConvocatoria.descargarDocumentoConvocatoria(id).subscribe(
+      (data) => {
+        const file = new Blob([data], { type: 'application/pdf' }); // Cambiar el tipo MIME a pdf
+        const fileUrl = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'Documento-Convocatoria.pdf'; // Nombre del documento para cuando se descargue
+        link.click();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 
 }

@@ -50,5 +50,9 @@ export class SolicitudpracticasService {
     return this.http.put(`${this.URL}updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
+  buscarDocumentSolicitud(idDocument: any): Observable<SolicitudPracticas> {
+    return this.http.get<SolicitudPracticas>(`${this.URL}/convocatoria/documento/${idDocument}`)
+  }
+
 
 }
