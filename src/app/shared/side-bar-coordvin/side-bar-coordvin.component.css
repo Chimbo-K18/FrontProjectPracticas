@@ -1,4 +1,4 @@
-/*/neew/*/
+/* /neew/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
 *{
   margin: 0;
@@ -147,4 +147,77 @@ background: inherit;
 opacity: 1;
 visibility: visible;
 }
+} */
+
+
+* {
+  color: white;
+  box-sizing: border-box;
+}
+ 
+body {
+  background: #34495e;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+ 
+.bg {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-shadow: 3px 3px 0px #2c3e50;
+   
+}
+.bg img{
+    width:200px;
+    height: 200px;
+    border-radius: 50%;
+    border:5px solid #fff;
+}
+.menu {
+  position: fixed;
+  height: 100%;
+  width: 80px;
+  background: #262626;
+  transition:width 1s;
+  overflow: hidden;
+  font-family: Arial;
+  z-index: 99;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+ 
+.menu:hover {
+  width: 220px;
+}
+ 
+.menuitem span {
+  position: absolute;
+  left:80px;
+  top:20px;
+  transition:color 1s;
+  color:rgba(255,255,255,0);
+}
+ 
+.menu:hover .menuitem  span {
+ color:rgba(255,255,255,1);
+}
+ 
+.menuitem {
+  position: relative;
+  padding: 20px;
+  transition:border .5s, background .2s;  
+}
+ 
+.menuitem:hover {
+  background: #34495e;
+  cursor: pointer;
+}
+ 
+ 
+.text:hover{
+  border-left:20px solid #16a085;
 }

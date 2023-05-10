@@ -11,6 +11,8 @@ import { SideBarCoordvinComponent } from './side-bar-coordvin/side-bar-coordvin.
 import { SideBarEstudianteComponent } from './side-bar-estudiante/side-bar-estudiante.component';
 import { RouterModule } from '@angular/router';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 
 
@@ -24,10 +26,12 @@ import { RouterModule } from '@angular/router';
     SideBarDirectorComponent,
     SideBarResponsableComponent,
     SideBarCoordvinComponent,
+  
     SideBarEstudianteComponent
   ],
   imports: [
     CommonModule,
+    MatToolbarModule,
     RouterModule
   ], 
   exports:[
