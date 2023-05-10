@@ -31,7 +31,14 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import("./profile-coord/profile-coord.module").then(m => m.ProfileCoordModule)
 
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () => import("./dashboard/dashboard.module").then(m => m.DashboardModule)
+
   }
+
 ];
 
 @NgModule({

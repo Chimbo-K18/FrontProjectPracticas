@@ -12,10 +12,7 @@ const routes: Routes = [
 
   {
     path: 'register-coord-vinculacion',
-    loadChildren: () =>
-      import(
-        './register-coord-vinculacion/register-coord-vinculacion.module'
-      ).then((m) => m.RegisterCoordVinculacionModule),
+    loadChildren: () => import('./register-coord-vinculacion/register-coord-vinculacion.module').then((m) => m.RegisterCoordVinculacionModule),
   },
   {
     path: 'register-director',
@@ -25,6 +22,22 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile-admin/profile-admin.module').then((m) => m.ProfileAdminModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then((m) => m.AdminDashboardModule),
+  },
+  {
+    path: 'lista-coordinador',
+    loadChildren: () => import('./lista-coord/lista-coord.module').then((m) => m.ListaCoordModule),
+  },
+  {
+    path: 'lista-responsable',
+    loadChildren: () => import('./lista-responsable/lista-responsable.module').then((m) => m.ListaResponsableModule),
+  },
+  {
+    path: 'lista-director',
+    loadChildren: () => import('./lista-director/lista-director.module').then((m) => m.ListaDirectorModule),
   }
 ];
 

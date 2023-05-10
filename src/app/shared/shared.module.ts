@@ -37,7 +37,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     HeaderComponent,
     FooterComponent,
     SideBarComponent,
-    SideBarEstudianteComponent
+    SideBarEstudianteComponent,
+    SideBarAcademicoComponent,
+    SideBarCoordvinComponent,
+    SideBarDirectorComponent,
+    SideBarEmpresarialComponent,
+    SideBarResponsableComponent
   ]
 
 })

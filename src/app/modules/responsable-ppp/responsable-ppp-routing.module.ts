@@ -28,7 +28,26 @@ const routes: Routes = [
   {
     path: 'asignar-academico',
     loadChildren: () => import("./asigna-academico/asigna-academico.module").then(m => m.AsignaAcademicoModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import("./dashboard-responsable/dashboard-responsable.module").then(m => m.DashboardResponsableModule)
+  },
+  {
+    path: 'lista-solicitudes',
+    loadChildren: () => import("./solicitudes-aprobadas/solicitudes-aprobadas.module").then(m => m.SolicitudesAprobadasModule)
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () => import("./profile-responsable/profile-responsable.module").then(m => m.ProfileResponsableModule)
+  },
+
+  {
+    path: 'lista-empresariales',
+    loadChildren: () => import("./lista-empresariales/lista-empresariales.module").then(m => m.ListaEmpresarialesModule)
   }
+
 ];
 
 @NgModule({
