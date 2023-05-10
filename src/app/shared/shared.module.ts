@@ -26,18 +26,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     SideBarDirectorComponent,
     SideBarResponsableComponent,
     SideBarCoordvinComponent,
-  
     SideBarEstudianteComponent
   ],
   imports: [
     CommonModule,
     MatToolbarModule,
     RouterModule
-  ], 
+  ],
   exports:[
     HeaderComponent,
     FooterComponent,
-    SideBarComponent
+    SideBarComponent,
+    SideBarEstudianteComponent
   ]
 
 })

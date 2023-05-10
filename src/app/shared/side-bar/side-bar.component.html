@@ -21,7 +21,7 @@
     </li>
 
     <li class="dropdown">
-        <a href="#">Opción 1</a>
+        <a href="#">Registros</a>
         <ul class="submenu">
           <li><a href="#">Subopción 1</a></li>
           <li><a href="#">Subopción 2</a></li>
@@ -30,7 +30,7 @@
       </li>
 
     <li class="dropdown">
-        <a href="#">Opción 2</a>
+        <a href="#">Reportes</a>
         <ul class="submenu">
           <li><a href="#">Subopción 1</a></li>
           <li><a href="/administrador/register-coord-vinculacion">Subopción 2</a></li>
@@ -63,127 +63,3 @@
           <li><a href="#">Subopción 3</a></li>
         </ul>
       </li>
-
-   <!-- //////////////////Administrador -->    
- 
-   <li>
-    <a href="#"  *ngIf="rolAdmin == true"  routerLinkActive="active" routerLink="/administrador/register-responsable">
-        <i class="fas fa-link"></i>
-        <span>Registro Responsable PPP</span>
-    </a>
-   </li>  
-   <li>
-    <a href="#"  *ngIf="rolAdmin == true" routerLinkActive="active"routerLink="/administrador/register-coord-vinculacion">
-        <i class="fas fa-link"></i>
-        <span>Registrar Coordinador</span>
-    </a>
-   </li>
-   <li>
-    <a href="#"  *ngIf="rolAdmin == true" routerLinkActive="active"routerLink="/administrador/register-director">
-        <i class="fas fa-link"></i>
-        <span>Registrar Director de Carrera</span>
-    </a>
-   </li>
-
-   <!-- ////////////////// Estudiantes -->
-<li>
-    <a href="#"  *ngIf="rolEstudiante == true" routerLinkActive="active" routerLink="/estudiante/lista-convocatorias">
-        <i class="fas fa-link"></i>
-        <span>Lista de Convocatorias</span>
-    </a>
-</li>
-  
-<!-- ////////////////// Tutores academicos -->
-<li>
-    <a href="#"  *ngIf="rolTutoracademico == true" routerLinkActive="active" routerLink="/academico/lista-asignados">
-        <i class="fas fa-link"></i>
-        <span>Lista Asignados</span>
-    </a>
-</li>
-
- <!-- ////////////////// Tutor empreserial -->
- <li>
-    <a href="#"  *ngIf="rolTutorempresarial == true" routerLinkActive="active" routerLink="/empresarial/solicitud-practicas">
-        <i class="fas fa-link"></i>
-        <span>Envio Solicitudes Practicas</span>
-    </a>
-</li>
-<li>
-    <a href="#"  *ngIf="rolTutorempresarial == true" routerLinkActive="active" routerLink="/empresarial/lista-soli-enviadas">
-        <i class="fas fa-link"></i>
-        <span>Lista De solicitudes Enviadas</span>
-    </a>
-</li>
- <!-- ////////////////// Responsable PPP -->
- <li>
-    <a href="#"  *ngIf="rolResponsablepp == true" routerLinkActive="active" routerLink="/responsable/registro-empresarial">
-        <i class="fas fa-link"></i>
-        <span>Registro Tutor Empresarial</span>
-    </a>
-</li>
-<li>
-    <a href="#"  *ngIf="rolResponsablepp == true" routerLinkActive="active" routerLink="/responsable/registro-actividad">
-        <i class="fas fa-link"></i>
-        <span>Registro Actividades</span>
-    </a>
-</li>
-   <li>
-    <a href="#"  *ngIf="rolResponsablepp == true"  routerLinkActive="active" routerLink="/responsable/solicitud-recibida">
-        <i class="fas fa-link"></i>
-        <span>Lista Solicitudes Enviadas</span>
-    </a>
-   </li>
-   <li>
-    <a href="#"  *ngIf="rolResponsablepp == true"  routerLinkActive="active" routerLink="/responsable/lanzamiento-convocatoria">
-        <i class="fas fa-link"></i>
-        <span>Lanzamiento Convocatoria</span>
-    </a>
-   </li>
-   <li>
-    <a href="#"  *ngIf="rolResponsablepp == true"  routerLinkActive="active" routerLink="/responsable/aprobacion-estudiantes">
-        <i class="fas fa-link"></i>
-        <span>Aprobacion Estudinates</span>
-    </a>
-   </li>
- <!-- ////////////////// Director de carrera -->
- <li>
-    <a href="#"  *ngIf="rolDirector == true" routerLinkActive="active" routerLink="/director/lista-soli-convocatorias">
-        <i class="fas fa-link"></i>
-        <span>Lista Solicitudes de Convocatorias</span>
-    </a>
-</li>
-<li>
-    <a href="#"  *ngIf="rolDirector == true" routerLinkActive="active" routerLink="/director/aprobar-estudiantes">
-        <i class="fas fa-link"></i>
-        <span>Aprobar Estudiantes</span>
-    </a>
-</li>
-
- <!-- ////////////////// Coordinador de vinculacion -->
- <li>
-    <a href="#"  *ngIf="rolCordinador == true" routerLinkActive="active" routerLink="/coordinador/registro-convenio">
-        <i class="fas fa-link"></i>
-        <span>Registro Convenio</span>
-    </a>
-</li>
-<li>
-    <a href="#"  *ngIf="rolCordinador == true" routerLinkActive="active" routerLink="/coordinador/lista-convenios">
-        <i class="fas fa-link"></i>
-        <span>Lista Convenios</span>
-    </a>
-</li>
-<li>
-    <a href="#"  *ngIf="rolCordinador == true" routerLinkActive="active" routerLink="/coordinador/registro-empresa">
-        <i class="fas fa-link"></i>
-        <span>Registrar Empresa</span>
-    </a>
-</li>    
-<li>
-    <a href="#"  *ngIf="rolCordinador == true" routerLinkActive="active" routerLink="/coordinador/listado-empresas">
-        <i class="fas fa-link"></i>
-        <span>Lista Empresa</span>
-    </a>
-</li>    
-
-
-</div>
