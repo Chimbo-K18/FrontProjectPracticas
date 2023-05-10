@@ -210,7 +210,7 @@ export class RegisterConvenioComponent {
     const element = event.target as HTMLInputElement;
     const file = element.files?.item(0);
     if (file) {
-      this.documentoConvenioService.uploadFile(file)
+      this.documentoConvenioService.uploadFileDocumentoConvenio(file)
         .subscribe(res => {
           console.log(res);
         });
@@ -222,7 +222,7 @@ export class RegisterConvenioComponent {
 
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.documentoConvenioService.uploadFile(file).subscribe(
+      this.documentoConvenioService.uploadFileDocumentoConvenio(file).subscribe(
         data => {
           if (data) {
             switch (data.type) {
@@ -266,13 +266,13 @@ export class RegisterConvenioComponent {
 
     console.log(this.idDocumento);
 
-    this.convenioService.updateDocumento(this.idconvenio, this.idDocumento).subscribe(
+    this.convenioService.updateDocumentoConvenio(this.idconvenio, this.idDocumento).subscribe(
 
       response => {
         console.log('Documento actualizado correctamente');
       },
       error => {
-        console.error('Error al actualizar el documento');
+        //console.error('Error al actualizar el documento');
       }
     );
   }

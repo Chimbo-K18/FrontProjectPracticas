@@ -214,12 +214,12 @@ export class EnvioSolicitudComponent implements OnInit {
     );
     this.idDocumento = idDoc.id_documentoSolicitudPrc;
     console.log(this.idDocumento);
-    this.solicitud.updateSolicitud1(this.solicitudGenerada, this.idDocumento).subscribe(
+    this.solicitud.updateSolicitudPractica(this.solicitudGenerada, this.idDocumento).subscribe(
       response => {
         console.log('Documento actualizado correctamente');
       },
       error => {
-        console.error('Error al actualizar el documento');
+        //console.error('Error al actualizar el documento');
       }
     );
   }
@@ -356,7 +356,7 @@ export class EnvioSolicitudComponent implements OnInit {
     const element = event.target as HTMLInputElement;
     const file = element.files?.item(0);
     if (file) {
-      this.documentoSpService.uploadFile(file)
+      this.documentoSpService.uploadFileDocumentoSolicitudPractica(file)
         .subscribe(res => {
           console.log(res);
         });
@@ -368,7 +368,7 @@ export class EnvioSolicitudComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
 
-      this.documentoSpService.uploadFile(file,).subscribe(
+      this.documentoSpService.uploadFileDocumentoSolicitudPractica(file,).subscribe(
         data => {
           if (data) {
             switch (data.type) {

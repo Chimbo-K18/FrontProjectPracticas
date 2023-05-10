@@ -13,8 +13,8 @@ export class DocumentoSolicitudPracticaService{
 
 
     constructor(private http: HttpClient) { }
-
-    public uploadFile(file: Blob): Observable<HttpEvent<any>> {
+    
+    public uploadFileDocumentoSolicitudPractica(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
       return this.http.request(new HttpRequest(
