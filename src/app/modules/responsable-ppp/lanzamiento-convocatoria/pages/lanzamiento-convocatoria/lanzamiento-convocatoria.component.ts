@@ -80,6 +80,7 @@ export class LanzamientoConvocatoriaComponent   {
     constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
                 private convocatoriaService: ConvocatoriasService,
                 private documentoLcService:DocumentoLanzamientoConvocatoria,
+      private solicitud: SolicitudpracticasService
               ) {}
 
     ngOnInit(): void {
@@ -124,6 +125,9 @@ export class LanzamientoConvocatoriaComponent   {
         (err) => console.error(err)
       );
     }
+
+
+
 
     verificarID(){
 
@@ -177,7 +181,7 @@ export class LanzamientoConvocatoriaComponent   {
               case HttpEventType.UploadProgress:
                 console.log("progreso....");
 
-                break;
+              break;
               case HttpEventType.Response:
                 this.inputFile.nativeElement.value = '';
                 sessionStorage.setItem('ArchivoLanzamientoCnv', JSON.stringify(data.body));
@@ -224,4 +228,6 @@ export class LanzamientoConvocatoriaComponent   {
       }
     );
   }
+
+
   }

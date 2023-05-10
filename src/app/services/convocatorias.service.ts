@@ -20,7 +20,9 @@ export class ConvocatoriasService {
     return this.http.get<Convocatorias>(`${this.API_URL}/buscar/${idConvocatorias}`)
   }
 
-
+  getConvocatorias(): Observable<Convocatorias> {
+    return this.http.get<Convocatorias>(`${this.API_URL}/listar`)
+  }
   listarConvocatorias(){
     return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
   }
@@ -34,8 +36,4 @@ export class ConvocatoriasService {
     return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
-
-  getConvocatorias(): Observable<Convocatorias> {
-    return this.http.get<Convocatorias>(`${this.API_URL}/listar`)
-  }
 }

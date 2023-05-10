@@ -11,6 +11,7 @@ import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/Documento
 import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { UserService } from 'src/app/services/user.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-lista-convocatorias',
   templateUrl: './lista-convocatorias.component.html',
@@ -33,6 +34,13 @@ export class ListaConvocatoriasComponent {
   solicitudconvocatorias: SolicitudConvocatoria = new SolicitudConvocatoria();
   loading: boolean = true;
   dataSource = new MatTableDataSource<Convocatorias>([]);
+
+  public filesToUpload!: Array<File>;
+  solicitudGenerada !: any;
+
+
+
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

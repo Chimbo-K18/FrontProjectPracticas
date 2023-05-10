@@ -89,7 +89,7 @@
     </a>
    </li>
    <li>
-    <a href="#"  *ngIf="rolResponsablepp == true"  routerLinkActive="active" routerLink="/responsable/lanzamiento-convocatori">
+    <a href="#"  *ngIf="rolResponsablepp == true"  routerLinkActive="active" routerLink="/responsable/lanzamiento-convocatoria">
         <i class="fas fa-link"></i>
         <span>Lanzamiento Convocatoria</span>
     </a>
@@ -105,6 +105,12 @@
     <a href="#"  *ngIf="rolDirector == true" routerLinkActive="active" routerLink="/director/lista-soli-convocatorias">
         <i class="fas fa-link"></i>
         <span>Lista Solicitudes de Convocatorias</span>
+    </a>
+</li>
+<li>
+    <a href="#"  *ngIf="rolDirector == true" routerLinkActive="active" routerLink="/director/aprobar-estudiantes">
+        <i class="fas fa-link"></i>
+        <span>Aprobar Estudiantes</span>
     </a>
 </li>
 

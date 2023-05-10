@@ -27,13 +27,10 @@ export class DocumentoLanzamientoConvocatoria{
         }));
     }
 
-
-  //////traer docuemnto
-  getPdf(id: any) {
-    return this.http.get(this.url + `/download/${id}`, { responseType: 'blob' });
-  }
-
-
+//////traer docuemnto
+getPdf(id: any) {
+  return this.http.get(this.url + `/download/${id}`, { responseType: 'blob' });
+}
 
 
 }

@@ -40,6 +40,9 @@ export class SolicitudConvocatoriasService {
   Solicitudestudiantestrue(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/porconvocatoriatrue/${idConvocatoriasSolicitud}`)
   }
+  updateSolicitudCnv(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  }
 
   updateSolicitudConvocatoria(solicitud: SolicitudConvocatoria, idSolicitudConvocatoria: any) {
     console.log("servicio");
