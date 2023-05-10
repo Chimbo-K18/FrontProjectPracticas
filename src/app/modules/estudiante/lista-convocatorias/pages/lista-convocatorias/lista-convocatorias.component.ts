@@ -328,7 +328,7 @@ window.URL.revokeObjectURL(url);
         console.log('Documento actualizado correctamente');
       },
       error => {
-        console.error('Error al actualizar el documento');
+        //console.error('Error al actualizar el documento');
       }
     );
   }
