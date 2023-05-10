@@ -20,7 +20,6 @@ export class SignInComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  rolExtraido !: string;
 
   constructor(
     private authService: CreateAccountService,
@@ -52,7 +51,6 @@ export class SignInComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        console.log(this.rolExtraido)
         Swal.fire({
           position: 'top',
           icon: 'success',
@@ -62,13 +60,7 @@ export class SignInComponent implements OnInit {
         });
 
         // this.reloadPage();
-        if (this.rolExtraido = 'ROLE_ADMIN') {
           this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
-        }
-
-        if (this.rolExtraido = 'ROLE_ESTUDIANTE') {
-          this.router.navigate(['/estudiante']).then(() => { window.location.reload(); });
-        }
 
         // this.router.navigate(['/home']);
       },
