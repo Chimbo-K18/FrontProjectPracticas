@@ -40,15 +40,14 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
   }
 
-
   updateSolicitud(solicitud: SolicitudPracticas, idSolicitudPracticas: any) {
     console.log("servicio");
     console.log(solicitud);
     return this.http.put<SolicitudPracticas>(this.URL + `actualizar/${idSolicitudPracticas}`, solicitud);
   }
 
-  updateSolicitud1(idSolicitud: any, idDocumento: any) {
-    return this.http.put(`http://localhost:8080/api/solicitudConvocatoria/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  updateSolicitudPractica(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.URL}updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
 

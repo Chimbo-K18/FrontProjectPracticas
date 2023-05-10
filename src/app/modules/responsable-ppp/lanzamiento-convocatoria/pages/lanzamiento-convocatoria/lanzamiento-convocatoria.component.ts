@@ -158,7 +158,7 @@ export class LanzamientoConvocatoriaComponent {
     const element = event.target as HTMLInputElement;
     const file = element.files?.item(0);
     if (file) {
-      this.documentoLcService.uploadFile(file)
+      this.documentoLcService.uploadFileConvocatoria(file)
         .subscribe(res => {
           console.log(res);
         });
@@ -170,7 +170,7 @@ export class LanzamientoConvocatoriaComponent {
 
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.documentoLcService.uploadFile(file).subscribe(
+      this.documentoLcService.uploadFileConvocatoria(file).subscribe(
         data => {
           if (data) {
             switch (data.type) {
@@ -213,13 +213,13 @@ export class LanzamientoConvocatoriaComponent {
 
     console.log(this.idDocumento);
 
-    this.convocatoriaService.updateDocumento(this.convocatoriaGenerada, this.idDocumento).subscribe(
+    this.convocatoriaService.updateDocumentoConvocatoria(this.convocatoriaGenerada, this.idDocumento).subscribe(
 
       response => {
         console.log('Documento actualizado correctamente');
       },
       error => {
-        console.error('Error al actualizar el documento');
+        //console.error('Error al actualizar el documento');
       }
     );
   }

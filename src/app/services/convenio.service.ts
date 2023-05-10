@@ -14,7 +14,7 @@ export class ConvenioService {
     return this.http.post<Convenio>(this.url+'/crear',convenio);
   }
 
-  updateDocumento(idSolicitud: any, idDocumento: any) {
+  updateDocumentoConvenio(idSolicitud: any, idDocumento: any) {
     return this.http.put(`${this.url}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
   

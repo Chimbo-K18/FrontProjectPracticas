@@ -64,8 +64,7 @@ export class ListaConvocatoriasComponent {
     private solicitudconvoservice: SolicitudConvocatoriasService,
     private estudianteService: EstudiantePracticanteService,
     private DocumentoLanzamientoConvocatoria: DocumentoLanzamientoConvocatoria,
-    private documentoScService: DocumentoSolicitudConvocatoria,
-    private solicitud: SolicitudpracticasService) { }
+    private documentoScService: DocumentoSolicitudConvocatoria) { }
 
   ngOnInit(): void {
   }
@@ -245,7 +244,7 @@ export class ListaConvocatoriasComponent {
     const element = event.target as HTMLInputElement;
     const file = element.files?.item(0);
     if (file) {
-      this.documentoScService.uploadFile(file)
+      this.documentoScService.uploadFileSolicitudConvocatoria(file)
         .subscribe(res => {
           console.log(res);
         });
@@ -257,7 +256,7 @@ export class ListaConvocatoriasComponent {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
 
-      this.documentoScService.uploadFile(file,).subscribe(
+      this.documentoScService.uploadFileSolicitudConvocatoria(file,).subscribe(
         data => {
           if (data) {
             switch (data.type) {
@@ -276,7 +275,7 @@ export class ListaConvocatoriasComponent {
                   timer: 1500,
                 });
 
-                this.actualizarDocumento();
+               this.actualizarDocumento();
 
                 break;
             }
@@ -295,14 +294,14 @@ export class ListaConvocatoriasComponent {
       );
     }
   }
-
+  
   actualizarDocumento() {
     const idDoc = JSON.parse(
       sessionStorage.getItem('ArchivoSolicitudCnv') || '{}'
     );
     this.idDocumento = idDoc.id_documentoSolicitudConvocatoria;
     console.log(this.idDocumento);
-    this.solicitud.updateSolicitud1(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
+    this.solicitudconvoservice.updateSolicitudConvocatoria(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
       response => {
         console.log('Documento actualizado correctamente');
       },
