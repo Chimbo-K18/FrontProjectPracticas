@@ -10,6 +10,13 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
 
+.download-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
 table {
     width: 100%;
 }

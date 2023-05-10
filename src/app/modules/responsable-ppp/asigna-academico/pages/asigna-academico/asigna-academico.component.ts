@@ -74,6 +74,14 @@ export class AsignaAcademicoComponent  implements AfterViewInit{
     tresCtrl: ['', Validators.required],
   });
 
+  cuatroFormGroup = this._formBuilder.group({
+    cuatroCtrl: ['', Validators.required],
+  });
+
+  cincoFormGroup = this._formBuilder.group({
+    cincoCtrl: ['', Validators.required],
+  });
+
   isEditable = false;
 
   constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
