@@ -55,7 +55,7 @@ idnombrerol:any;
       localStorage.setItem("idusuario", String(datausu.cedula));
       this.estudianteservice.getRequestEstudianteCedula(datausu.cedula).subscribe(dataestu => {
         localStorage.setItem("estudianteid", String(dataestu.idEstudiantePracticas));
-        
+
       });
       this.userservice.getRolNombre(correo).subscribe(datarol=>{
         console.log(datarol);
@@ -77,10 +77,10 @@ idnombrerol:any;
           showConfirmButton: false,
           timer: 2000,
         });
-        
-        
+
+
         if (this.idnombrerol === 'ROLE_ADMIN') {
-            this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
+            this.router.navigate(['/administrador/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_CORDINADOR') {
             this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_DIRECTOR') {
@@ -92,7 +92,7 @@ idnombrerol:any;
           } else if (this.idnombrerol === 'ROLE_TUTORACADEMICO') {
             this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_ESTUDIANTE') {
-            this.router.navigate(['/estudiante']).then(() => { window.location.reload(); });
+            this.router.navigate(['/estudiante/dashboard']).then(() => { window.location.reload(); });
           }
 
       },
@@ -140,7 +140,7 @@ idnombrerol:any;
     location.reload();
   }
 
-  
+
 
 
 
