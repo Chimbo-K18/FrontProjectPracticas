@@ -26,12 +26,10 @@ export class DocumentoLanzamientoConvocatoria{
     }
 
 
-  //////traer docuemnto
-  getPdf(id: any) {
-    return this.http.get(this.url + `/download/${id}`, { responseType: 'blob' });
+  descargarDocumentoConvocatoria(id: any) {
+    const url = `${this.url}/download/${id}`;
+    return this.http.get(url, { responseType: 'blob' });
   }
-
-
 
 
 }

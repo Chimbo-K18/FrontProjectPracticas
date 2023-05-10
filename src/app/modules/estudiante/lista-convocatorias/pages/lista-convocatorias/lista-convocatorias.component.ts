@@ -92,7 +92,7 @@ export class ListaConvocatoriasComponent {
       });
       this.dataSource.data = this.listaConvocatoria;
       this.loading = false;
-
+     
     });
   }
   ///obtener el id de la convocatoria de la tabla
@@ -104,24 +104,17 @@ export class ListaConvocatoriasComponent {
     this.buscarConvocatoria();
   }
 
-  idencontrado: any;
-  buscarConvocatoria() {
-    this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria => {
-      // console.log(dataconvocatoria);
-    });
-
-
-    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento => {
+  idencontrado:any;
+  buscarConvocatoria(){
+  this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
+    console.log(dataconvocatoria);
+  });
+    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
       console.log(datadocumento)
-
-
-      this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
-        this.downloadFile(pdfBlob);
-      });
-
-    });
+      this.downloadDocumentoConvocatoria(datadocumento);
+  
+  });
   }
-
 
   descargarPDF() {
     const idSolicitud = this.solicitudConvocatoriaGenerada; // obtén el ID de la solicitud
@@ -152,6 +145,7 @@ export class ListaConvocatoriasComponent {
   }
   cargar: any;
   nombreconvo: any;
+  idConvocatoria:any;
   fechaenvio: any;
   requisitos: any;
   usuarioid: any;
@@ -173,6 +167,7 @@ export class ListaConvocatoriasComponent {
           this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
             console.log(dataconvo);
             this.nombreconvo = dataconvo.nombreConvocatoria;
+           
             this.fechaenvio = this.getCurrentDate();
 
 
@@ -306,13 +301,26 @@ export class ListaConvocatoriasComponent {
         console.log('Documento actualizado correctamente');
       },
       error => {
-        console.error('Error al actualizar el documento');
+        //console.error('Error al actualizar el documento');
       }
     );
   }
 
-
-
+  public downloadDocumentoConvocatoria(id:any) {
+    this.DocumentoLanzamientoConvocatoria.descargarDocumentoConvocatoria(id).subscribe(
+      (data) => {
+        const file = new Blob([data], { type: 'application/pdf' }); // Cambiar el tipo MIME a pdf
+        const fileUrl = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'Documento-Convocatoria.pdf'; // Nombre del documento para cuando se descargue
+        link.click();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 
 }

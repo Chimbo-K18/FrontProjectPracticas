@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class DocumentoSolicitudPracticaService{
+    url: string = 'http://localhost:8080/api/documentoSolicitudPracticas'; 
     urlPost: string = 'http://localhost:8080/api/documentoSolicitudPracticas/upload';
   
 
@@ -22,6 +23,11 @@ export class DocumentoSolicitudPracticaService{
         {
           reportProgress: true
         }));
+    }
+
+    descargarDocumentoSoliPractica(id: any) {
+      const url = `${this.url}/download/${id}`;
+      return this.http.get(url, { responseType: 'blob' });
     }
   
 
