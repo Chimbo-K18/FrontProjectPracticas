@@ -135,7 +135,7 @@ li:active {
   text-align: center;
   text-transform: uppercase;
   font-weight: 20;
-  background-color: #1E1D1D;
+  background-color: #213A70;
   margin-top: 20px;
 
 }
@@ -153,7 +153,7 @@ li:active {
 }
 .snip1143 a {
   padding: 0.3em 0;
-  color: rgba(255, 255, 255, 0.5);
+  color:white;
   position: relative;
   display: inline-block;
   letter-spacing: 1px;
@@ -195,7 +195,7 @@ body {
 	display: flex;
   align-items: center;
   justify-content: center;
-	background-color: #1E1D1D;
+	background-color: #213A70;
 }
 
 
@@ -203,7 +203,7 @@ html {
   height: 100%;
 }
 body {
-  background-color: #1E1D1D;
+  background-color: #213A70;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,7 +213,7 @@ body {
 }
 
 mat-toolbar{
-  background-color: #1E1D1D;
+  background-color: #213A70;
 }
 
 h1{

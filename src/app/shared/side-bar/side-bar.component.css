@@ -7,13 +7,25 @@
 }
 
 .sidebar{
+  /* position: fixed;
+  width: 240px;
+  left: -240px;
+  height: 100%;
+  width: 200px;
+  background: #213A70;
+  transition: all .5s ease;
+  bottom: 0; */
+
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 200px;
-  background-color: #1E1D1D;
+  background-color: #213A70;
   overflow-y: auto;
+
+
+
 }
 
 .profile {
@@ -21,7 +33,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #1E1D1D;
+  background-color: #213A70;
   border-bottom: 1px solid black;
   color: #fff;
   
@@ -40,7 +52,7 @@
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #1E1D1D;
+  background: #213A70;
   user-select: none;
   font-family: 'Raleway', Arial, sans-serif;
 }
@@ -63,10 +75,7 @@
   }
   
 
-a.active,a:hover{
-  border-left: 5px solid #b93632;
-  color: #b93632;
-}
+
 
 .sidebar a i{
   font-size: 10px;
@@ -90,10 +99,10 @@ label #btn,label #cancel{
   cursor: pointer;
   color: white;
   border-radius: 5px;
-  border: 1px solid #262626;
+  border: 1px solid #213A70;
   margin: -80px 30px;
   font-size: 20px;
-  background: #262626;
+  background: #213A70;
   height: 45px;
   width: 45px;
   text-align: center;
@@ -154,3 +163,4 @@ opacity: 1;
 visibility: visible;
 }
 }
+
