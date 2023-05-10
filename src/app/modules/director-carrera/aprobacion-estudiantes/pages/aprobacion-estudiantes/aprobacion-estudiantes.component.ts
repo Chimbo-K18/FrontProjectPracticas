@@ -204,7 +204,15 @@ selectedestudinate(id: number) {
         this.SolicitudConvocatoriasService.updateSolicitudConvocatoria(this.SolicitudConvocatoria, this.idsolienc).subscribe(
           (datasoliencontrada) => {
             console.log(datasoliencontrada);
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title: 'Estudiante Aprobado.',
+              showConfirmButton: false,
+              timer: 1000,
+            });
             this.resetStepper();
+            this.datosCargados = true;
           });
       });
 
