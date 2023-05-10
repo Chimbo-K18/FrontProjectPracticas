@@ -8,6 +8,7 @@ import { Convenio } from 'src/app/models/convenio';
 import { ConvenioService } from 'src/app/services/convenio.service';
 import Swal from 'sweetalert2';
 import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
+
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
@@ -61,7 +62,6 @@ export class RegisterConvenioComponent {
 
   isEditable = false;
   convenio: Convenio = new Convenio;
-  documentoConvenio: DocumentoConvenio = new DocumentoConvenio;
   detalleConvenio: DetalleConvenio = new DetalleConvenio;
   public filesToUpload!: Array<File>;
 
@@ -113,13 +113,7 @@ export class RegisterConvenioComponent {
           data.rucEmpresa.includes(filter);
         this.dataSource.data = this.listaEmpresa;
         this.loading = false;
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Datos ingresados correctamente',
-          showConfirmButton: false,
-          timer: 2000,
-        });
+       
       }
     )
   }
@@ -153,54 +147,51 @@ export class RegisterConvenioComponent {
     }
   }
 
-  onDateChange2(event: MatDatepickerInputEvent<Date>) {
-    if (event.value != null) {
-      console.log("entro a que si vale");
-      this.fechaini = event.value.toISOString().slice(0, 10);
-      this.detalleConvenio.fechaAprobacion = this.fechaini;
-      console.log(this.detalleConvenio.fechaAprobacion);
-    } else {
-      console.log("entro a null");
-      this.fechaini = null;
-    }
-  }
 
-  onDateChange3(event: MatDatepickerInputEvent<Date>) {
-    if (event.value != null) {
-      console.log("entro a que si vale");
-      this.fechacaduca = event.value.toISOString().slice(0, 10);
-      this.detalleConvenio.fecha_caducidad = this.fechacaduca;
-      console.log(this.detalleConvenio.fecha_caducidad);
-    } else {
-      console.log("entro a null");
-      this.fechacaduca = null;
-    }
-  }
-
-  conveniocreado: any;
-  numcon: any;
-  numitv: any;
-  idconvenio:any;
-
-  crearconvenio() {
-    this.convenio.estado = true;
-    console.log(this.numcon);
-    console.log(this.numitv);
-    this.convenio.numero_convenio = this.numcon;
-    this.convenio.numero_itv = this.numitv;
-    this.convenioService.crearConvenio(this.convenio).subscribe(data => {
-      this.conveniocreado = data;
-      this.idconvenio=data.idConvenio;
-      console.log(this.idconvenio);
-      this.detalleConvenio.convenio = this.conveniocreado;
-      this.detalleConvenio.empresa = this.empresacreada;
-      this.detalleConvenio.nombre_carrera = this.carreraSeleccionada;
-      this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe({
-
+onDateChange2(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechaini = event.value.toISOString().slice(0, 10);
+    this.detalleConvenio.fechaAprobacion = this.fechaini;
+    console.log(this.detalleConvenio.fechaAprobacion);
+    if (this.fechaela && this.fechaini< this.fechaela) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'La fecha de inicialización seleccionada es menor a la fecha de elaboración',
+        showConfirmButton: false,
+        timer: 2000,
       });
-    });
+    }
+  } else {
+    console.log("entro a null");
+    this.fechaini = null;
+  }
+
+
+onDateChange3(event: MatDatepickerInputEvent<Date>) {
+  if (event.value != null) {
+    console.log("entro a que si vale");
+    this.fechacaduca = event.value.toISOString().slice(0, 10);
+    this.detalleConvenio.fecha_caducidad = this.fechacaduca;
+    console.log(this.detalleConvenio.fecha_caducidad);
+
+    // Validar que la fecha de caducidad no sea menor a la fecha de inicialización
+    if (this.fechaini && this.fechacaduca < this.fechaini) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'La fecha de caducidad seleccionada es menor a la fecha de inicialización',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  } else {
+    console.log("entro a null");
+    this.fechacaduca = null;
 
   }
+
 
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
@@ -276,6 +267,78 @@ export class RegisterConvenioComponent {
       }
     );
   }
+
+conveniocreado:any;
+numcon:any;
+numitv:any;
+crearconvenio() {
+
+  if (!this.empresacreada) {
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Debe seleccionar una empresa antes de crear el convenio.',
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    return;
+  }
+  
+  if (!this.carreraSeleccionada) {
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Debe seleccionar una carrera antes de crear el convenio.',
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    return;
+  }
+
+  if (!this.fechaela || !this.fechaini || !this.fechacaduca) {
+    // Validar que las tres fechas se hayan seleccionado antes de crear el convenio
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Debe seleccionar las tres fechas antes de crear el convenio.',
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    return;
+  }
+
+  this.convenio.estado = true;
+  console.log(this.numcon);
+  console.log(this.numitv);
+  this.convenio.numero_convenio = this.numcon;
+  this.convenio.numero_itv = this.numitv;
+
+  this.convenioService.crearConvenio(this.convenio).subscribe(data => {
+    this.conveniocreado = data;
+    this.detalleConvenio.convenio = this.conveniocreado;
+    this.detalleConvenio.empresa = this.empresacreada;
+    this.detalleConvenio.nombre_carrera = this.carreraSeleccionada;
+    this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Convenio creado satisfactoriamente.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    });
+  });
+}
+
+clearDate(event:any) {
+  event.stopPropagation();
+  this.fechaela = null;
+}
+
+limpiarCampos() {
+  this.convenio.numero_convenio = '';
+  this.convenio.numero_itv = '';
+  this.convenio.descripcion = '';
 
 
   //   guardadoFull(){

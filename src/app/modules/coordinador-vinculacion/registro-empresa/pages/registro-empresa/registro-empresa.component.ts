@@ -29,16 +29,9 @@ export class RegistroEmpresaComponent implements OnInit {
       // });
 
       this.empresa = new Empresa;
-
-      this.empresa.ciudad = '';
-      this.empresa.correo = '';
-      this.empresa.codigoPostal = '';
-      this.empresa.descripcion = '';
-      this.empresa.direccion = '';
-      this.empresa.nombreEmpresa = '';
-      this.empresa.rucEmpresa = '';
-      this.empresa.numeroTelefono = '';
+    this.limpiarCampos();
   }
+  
 
   // crearEmpresa() {
   //   if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
@@ -69,64 +62,9 @@ export class RegistroEmpresaComponent implements OnInit {
   //   }
   // }
 
-  crearEmpresa() {
-    // this.empresa.status= true;
-
-    if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
-      Swal.fire(
-        'Campos Vacíos',
-        'Todos los campos deben ser ingresados.',
-        'error'
-      );
-    } else if (this.empresa.rucEmpresa.length !== 13) {
-      Swal.fire(
-        'Error',
-        'El RUC debe tener 13 dígitos.',
-        'error'
-      );
-    } else {
-      this.empresaServices.crearEmpresa(this.empresa)
-        .subscribe(response => {
-          console.log('Exito al Registrar la empresa');
-          Swal.fire({
-            position: 'top',
-            icon: 'success',
-            title: 'Empresa Creada Exitosamente',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }, error => {
-          console.log('Error al registrar la empresa:', error);
-          Swal.fire(
-            'Error',
-            'No se pudo registrar la empresa. Por favor, inténtelo nuevamente.',
-            'error'
-          );
-        });
-    }
-  }
+  
 
 
-
-  LimpiarCampos() {
-    this.empresa.ciudad = '';
-    this.empresa.correo = '';
-    this.empresa.codigoPostal = '';
-    this.empresa.descripcion = '';
-    this.empresa.direccion = '';
-    this.empresa.nombreEmpresa = '';
-    this.empresa.rucEmpresa = '';
-    this.empresa.numeroTelefono = '';
-  }
-
-  onKeyPress(event: any) {
-    const pattern = /[0-9]/;
-    const inputChar = String.fromCharCode(event.charCode);
-
-    if (!pattern.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
 
   //Capturar por local storas
   capturar: any;
@@ -174,6 +112,115 @@ export class RegistroEmpresaComponent implements OnInit {
   onActualizarClick() {
     this.actualizarEmpresa();
   }
+
+
+    
+
+  crearEmpresa() {
+    if (!this.empresa.rucEmpresa || !this.empresa.nombreEmpresa || !this.empresa.correo || !this.empresa.direccion || !this.empresa.numeroTelefono) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Por favor llene todos los campos requeridos.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+  
+    if (this.empresa.rucEmpresa.length !== 13) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'El RUC debe tener 13 dígitos.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+  
+    if (this.empresa.numeroTelefono.length !== 7) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'El número de teléfono debe tener 7 dígitos.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.empresa.correo)) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Por favor ingrese un correo válido.',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+  
+    this.empresaServices.existeEmpresa(this.empresa.rucEmpresa).subscribe(response => {
+      if (response != null) {
+        Swal.fire({
+          position: 'top',
+          icon: 'error',
+          title: 'Ya existe una empresa con este RUC.',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        return;
+      }
+  
+      this.empresaServices.crearEmpresa(this.empresa).subscribe(response => {
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Empresa creada satisfactoriamente.',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        this.limpiarCampos();
+      });
+    });
+  }
+
+  validarSoloNumeros(event: any) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
+  validarSoloLetras(event: any) {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && charCode != 32) {
+    event.preventDefault();
+    return false;
+  }
+  return true;
+}
+
+validarCorreo(correo: string): boolean {
+  const regex = /\S+@\S+\.\S+/; 
+  return regex.test(correo); 
+}
+
+limpiarCampos() {
+  this.empresa.rucEmpresa = '';
+  this.empresa.nombreEmpresa = '';
+  this.empresa.ciudad = '';
+  this.empresa.codigoPostal = '';
+  this.empresa.correo = '';
+  this.empresa.descripcion = '';
+  this.empresa.direccion = '';
+  this.empresa.numeroTelefono = '';
+
+}
 
 }
 

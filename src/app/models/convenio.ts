@@ -3,9 +3,9 @@ import { DocumentoConvenio } from "./documentoconvenio";
 export class Convenio {
 
     idConvenio?: number;
-    numero_convenio?: String;
-    fecha_elaboracion?: String;
-    numero_itv?: String;
+    numero_convenio?: string;
+    fecha_elaboracion?: Date;
+    numero_itv?: string;
     descripcion?: string;
     estado?: boolean;
     documentoConvenio?: DocumentoConvenio;

@@ -22,6 +22,7 @@ export class EmpresaService {
     return this.http.get<Empresa>(this.url + `/buscar/${id}`);
   }
 
+
   UpdateEmpresa(empresa: Empresa, idEmpresa:any){
     return this.http.put<Empresa>(this.url+`/actualizar/${idEmpresa}`, empresa);
   }
@@ -37,6 +38,11 @@ export class EmpresaService {
   // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
   //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
   // }
+
+
+  existeEmpresa(rucEmpresa: any){
+    return this.http.get<Empresa>(this.url + '/byRuc/'+rucEmpresa);
+  }
 
 
 }
