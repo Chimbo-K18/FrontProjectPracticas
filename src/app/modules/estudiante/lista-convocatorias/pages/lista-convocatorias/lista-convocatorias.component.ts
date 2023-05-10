@@ -207,7 +207,7 @@ export class ListaConvocatoriasComponent {
       this.estudianteService.getRequestEstudiante(dataestudiante).subscribe(dataestu => {
         console.log(dataestu);
         this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
-          
+
           this.solicitudconvocatorias.convocatoria = dataconvo;
           this.solicitudconvocatorias.fechaEnvio = this.fechaenvio;
           this.solicitudconvocatorias.estudiantePracticante = dataestu;
@@ -249,7 +249,7 @@ export class ListaConvocatoriasComponent {
   }
 
   onLoad(event: Event): void {
-    
+
     const element = event.target as HTMLInputElement;
     const file = element.files?.item(0);
     if (file) {
@@ -309,6 +309,8 @@ export class ListaConvocatoriasComponent {
       sessionStorage.getItem('ArchivoSolicitudCnv') || '{}'
     );
     this.idDocumento = idDoc.id_documentoSolicitudConvocatoria;
+    console.log('Valores')
+    console.log(this.solicitudConvocatoriaGenerada)
     console.log(this.idDocumento);
     this.solicitud.updateSolicitud1(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
       response => {
