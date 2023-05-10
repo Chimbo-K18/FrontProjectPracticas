@@ -23,9 +23,17 @@ export class personaempService {
   buscarcedulapersona(cedula: any):Observable<Personas_empresa>{
     return this.http.get<Personas_empresa>(this.url +`/buscarcedula/${cedula}`);
   }
- actualizarpersona(idpersona: any):Observable<Personas_empresa>{
-  return this.http.put<Personas_empresa>(this.url +`/actualizar/${idpersona}`,Personas_empresa);
- }
+//  actualizarpersona(idpersona: any):Observable<Personas_empresa>{
+//   return this.http.put<Personas_empresa>(this.url +`/actualizar/${idpersona}`,Personas_empresa);
+//  }
+
+ actualizarpersona(Personas_empresa: Personas_empresa, idpersonaemp: any) {
+  console.log("servicio persona y el ig");
+  console.log(Personas_empresa);console.log(idpersonaemp);
+  console.log("----------------");
+  return this.http.put<Personas_empresa>(this.url + `/actualizar/${idpersonaemp}`,Personas_empresa);
+  }
+
  buscarcorreopersona(correo: any):Observable<Personas_empresa>{
   return this.http.get<Personas_empresa>(this.url +`/buscarcorreo/${correo}`);
  }

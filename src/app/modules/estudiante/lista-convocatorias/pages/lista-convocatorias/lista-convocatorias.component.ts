@@ -107,26 +107,41 @@ this.buscarConvocatoria();
 idencontrado:any;
 buscarConvocatoria(){
 this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
-  // console.log(dataconvocatoria);
+  console.log(dataconvocatoria);
 });
-
-
   this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
     console.log(datadocumento)
-
-  
-      this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
-        this.downloadFile(pdfBlob);
-      });
+    // const namePDF = 'convocatoria.pdf';
+    //     this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe(response => {
+//       this.downloadPDF(response,namePDF);
+      // this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
+        // this.downloadFile(pdfBlob);
+        const url = `http://localhost:8080/api/documentoConvocatoria/download/${datadocumento}`;
+        window.open(url, '_blank');
+      // });
     
 });
 }
+
+// downloadPDF(response:any, namePDF:string):void{
+// // debugger;
+// const dataType=response.type;
+// const binaryData=[];
+// binaryData.push(response);
+// const filtePath = window.URL.createObjectURL(new Blob(binaryData,{type: dataType}));
+// const downloadlink=document.createElement('a');
+// downloadlink.href= filtePath;
+// downloadlink.setAttribute('dowload',namePDF);
+// document.body.appendChild(downloadlink);
+// downloadlink.click();
+
+// }
 downloadFile(data: Blob) {
 const blob = new Blob([data], { type: 'application/pdf' });
 const url = window.URL.createObjectURL(blob);
 const link = document.createElement('a');
 link.href = url;
-link.download = 'file.pdf';
+link.download = 'Convocatoria.pdf';
 document.body.appendChild(link);
 link.click();
 document.body.removeChild(link);
@@ -141,6 +156,7 @@ window.URL.revokeObjectURL(url);
     this.cargardatos();
 
   }
+
   cargar: any;
   nombreconvo: any;
   fechaenvio: any;
