@@ -175,6 +175,7 @@ dataUs:any;
 dataSolicitud:any;
 idsoliG:any;
 id:any;
+datatutorEmp:any
 selectedestudinate() {
   this.Cedus=localStorage.getItem("idusuario");
   console.log("id usuario "+this.Cedus)
@@ -186,9 +187,10 @@ selectedestudinate() {
       this.SolicitudConvocatoria.checkEmpresarial=true;
       this.userService.getuscedula(this.Cedus).subscribe(dataUserEncon =>{
         this.tutorempresarialService.extraerEmpresarialIdUsuario(dataUserEncon.idUsuario).subscribe(dataTutor =>{
-          console.log("esta es la dat del tuto");
-          console.log(dataTutor);
-        this.SolicitudConvocatoria.tutorEmpresarial=dataTutor;
+        console.log("esta es la dat del tuto");
+        console.log(dataTutor);
+        this.datatutorEmp =dataTutor;
+        this.SolicitudConvocatoria.tutorEmpresarial= this.datatutorEmp;
         this.SolicitudConvocatoriasService.updateSolicitudConvocatoria(this.SolicitudConvocatoria, this.idsolienc).subscribe(
           (datasoliencontrada) => {
             Swal.fire({
