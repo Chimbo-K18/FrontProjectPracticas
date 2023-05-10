@@ -113,43 +113,49 @@ export class ListaConvocatoriasComponent {
     this.buscarConvocatoria();
   }
 
-  idencontrado: any;
-  buscarConvocatoria() {
-    this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria => {
-      // console.log(dataconvocatoria);
-    });
-
-
-    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento => {
-      console.log(datadocumento)
-
-
+idencontrado:any;
+buscarConvocatoria(){
+this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
+  console.log(dataconvocatoria);
+});
+  this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
+    console.log(datadocumento)
+    // const namePDF = 'convocatoria.pdf';
+    //     this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe(response => {
+//       this.downloadPDF(response,namePDF);
       this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
         this.downloadFile(pdfBlob);
+        // const url = `http://localhost:8080/api/documentoConvocatoria/download/${datadocumento}`;
+        // window.open(url, '_blank');
       });
+    
+});
+}
 
-    });
-  }
+// downloadPDF(response:any, namePDF:string):void{
+// // debugger;
+// const dataType=response.type;
+// const binaryData=[];
+// binaryData.push(response);
+// const filtePath = window.URL.createObjectURL(new Blob(binaryData,{type: dataType}));
+// const downloadlink=document.createElement('a');
+// downloadlink.href= filtePath;
+// downloadlink.setAttribute('dowload',namePDF);
+// document.body.appendChild(downloadlink);
+// downloadlink.click();
 
-
-  descargarPDF() {
-    const idSolicitud = this.solicitudConvocatoriaGenerada; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/obtener/${idSolicitud}`;
-    window.open(url, '_blank');
-  }
-
-
-  downloadFile(data: Blob) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'file.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  }
+// }
+downloadFile(data: Blob) {
+const blob = new Blob([data], { type: 'application/pdf' });
+const url = window.URL.createObjectURL(blob);
+const link = document.createElement('a');
+link.href = url;
+link.download = 'Convocatoria.pdf';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+window.URL.revokeObjectURL(url);
+}
 
   idconvo: any;
   capturarid(id: any) {
@@ -159,6 +165,7 @@ export class ListaConvocatoriasComponent {
     this.cargardatos();
 
   }
+
   cargar: any;
   nombreconvo: any;
   fechaenvio: any;
