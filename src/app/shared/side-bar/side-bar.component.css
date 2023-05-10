@@ -8,21 +8,28 @@
 
 .sidebar{
   /* position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #1E1D1D;
+  overflow-y: auto; */
+
+  background-color: #213A70;
+  color: #fff;
+  /* width: 200px;
+  height: 100%; */
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 240px;
   left: -240px;
   height: 100%;
   width: 200px;
-  background: #213A70;
   transition: all .5s ease;
-  bottom: 0; */
+  bottom: 0; 
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 200px;
-  background-color: #213A70;
-  overflow-y: auto;
+
 
 
 
@@ -34,7 +41,7 @@
   align-items: center;
   padding: 20px;
   background-color: #213A70;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #213A70;
   color: #fff;
   
 }
@@ -48,7 +55,7 @@
 }
 
 .sidebar header{
-  font-size: 20px;
+  font-size: 28px;
   color: white;
   line-height: 70px;
   text-align: center;
@@ -59,26 +66,32 @@
 
 .sidebar a{
     display: block;
-    height: 65px;
+
     width: 100%;
     color: white;
     line-height: 65px;
     padding-left: 5px;
     box-sizing: border-box;
     border-bottom: 1px solid black;
-    border-top: 1px solid rgba(255,255,255,.1);
+    /* border-top: 1px solid rgba(255,255,255,.1); */
     border-left: 5px solid transparent;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', Arial, sans-serif;
     transition: all .5s ease;
     white-space: nowrap;
     word-wrap: break-word;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
   }
   
 
-
+a.active,a:hover{
+  border-left: 5px solid #b93632;
+  color: #b93632;
+}
 
 .sidebar a i{
-  font-size: 10px;
+  font-size: 15px;
   margin-right: 5px;
 }
 
@@ -86,9 +99,6 @@
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-
-
-
 
 #check{
   display: none;
@@ -101,7 +111,7 @@ label #btn,label #cancel{
   border-radius: 5px;
   border: 1px solid #213A70;
   margin: -80px 30px;
-  font-size: 20px;
+  font-size: 29px;
   background: #213A70;
   height: 45px;
   width: 45px;
@@ -131,10 +141,10 @@ label #cancel{
   visibility: visible;
 }
 
-@media(max-width : 500px){
+@media(max-width : 0px){
   .sidebar{
     height: auto;
-    width: 10px;
+    width: 70px;
     left: 0;
     margin: 100px 0;
   }
@@ -146,7 +156,6 @@ position: absolute;
 margin-left: 23px;
 opacity: 0;
 visibility: hidden;
-font-size: 10px;
 }
 .sidebar a{
 height: 60px;
@@ -164,3 +173,45 @@ visibility: visible;
 }
 }
 
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  text-decoration: none;
+  color: #213A70;
+}
+
+.menu li:hover {
+  background-color: #213A70;
+}
+
+.submenu {
+  display: none;
+}
+
+.dropdown:hover .submenu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 200px;
+  background-color: #213A70;
+}
+
+.submenu li a {
+
+  padding: 10px;
+  display: block;
+}
+
+.submenu li:hover {
+  background-color: #213A70;
+}
+
+li::marker{
+color: #213A70;
+
+}
