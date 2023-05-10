@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'aprobacion-estudiantes',
     loadChildren: () => import("./aprobacion-estudiantes/aprobacion-estudiantes.module").then(m => m.AprobacionEstudiantesModule)
+  },
+  {
+    path: 'asignar-academico',
+    loadChildren: () => import("./asigna-academico/asigna-academico.module").then(m => m.AsignaAcademicoModule)
   }
 ];
 
