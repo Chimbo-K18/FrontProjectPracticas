@@ -22,7 +22,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'asginar-horario',
+    path: 'asignar-horario',
     loadChildren: () => import("./asignar-horario/asignar-horario.module").then(m => m.AsignarHorarioModule)
 
   },
