@@ -104,7 +104,7 @@
         </mat-step>
 
 
-        <mat-step [stepControl]="secondFormGroup" optional>
+        <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Imprimir Archivo</ng-template>
             <div class="download-container">
@@ -125,7 +125,7 @@
 
 
 
-        <mat-step [stepControl]="thirdFormGroup" optional>
+        <mat-step [stepControl]="thirdFormGroup">
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Subir Documento</ng-template>
             <div class="download-container">

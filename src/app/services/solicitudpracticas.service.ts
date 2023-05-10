@@ -47,6 +47,8 @@ export class SolicitudpracticasService {
   }
 
   updateSolicitud1(idSolicitud: any, idDocumento: any) {
-    return this.http.put(`${this.URL}updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+    return this.http.put(`http://localhost:8080/api/solicitudConvocatoria/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
+
+
 }

@@ -16,8 +16,6 @@ export class DocumentoLanzamientoConvocatoria{
     public uploadFile(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
-      console.log("Servicio subir");
-      console.log(" this.apiUploadUrl");
       return this.http.request(new HttpRequest(
         'POST',
         this.urlPost ,
