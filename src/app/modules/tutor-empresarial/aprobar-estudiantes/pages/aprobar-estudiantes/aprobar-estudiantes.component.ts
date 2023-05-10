@@ -200,7 +200,10 @@ selectedestudinate() {
             });
           });
 
-        });  
+          this.SolicitudConvocatoria.tutorEmpresarial = dataTutor;
+
+
+        });
 
       });
   });
