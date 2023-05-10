@@ -114,11 +114,11 @@ this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocator
     // const namePDF = 'convocatoria.pdf';
     //     this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe(response => {
 //       this.downloadPDF(response,namePDF);
-      // this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
-        // this.downloadFile(pdfBlob);
-        const url = `http://localhost:8080/api/documentoConvocatoria/download/${datadocumento}`;
-        window.open(url, '_blank');
-      // });
+      this.DocumentoLanzamientoConvocatoria.getPdf(datadocumento).subscribe((pdfBlob: Blob) => {
+        this.downloadFile(pdfBlob);
+        // const url = `http://localhost:8080/api/documentoConvocatoria/download/${datadocumento}`;
+        // window.open(url, '_blank');
+      });
     
 });
 }
