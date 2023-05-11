@@ -37,7 +37,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatPaginatorModule,
     MatIconModule,
-    MatDatepickerModule, // import MatDatepickerModule
+    MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
     RegisterDirectorRoutingModule

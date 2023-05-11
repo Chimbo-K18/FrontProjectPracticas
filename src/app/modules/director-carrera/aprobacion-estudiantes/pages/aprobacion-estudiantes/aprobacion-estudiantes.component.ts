@@ -120,7 +120,7 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
         this.idsoli = datasoli.idSolicitudConvocatoria;
         this.fecha = datasoli.fechaEnvio;
         console.log(datasoli);
-        if (datasoli.checkDirector == false) {
+        if(datasoli.checkDirector==false && this.idsoli==this.selectedsolicitud){
           this.idestudent = datasoli.estudiantePracticante.idEstudiantePracticas;
           this.EstudiantePracticanteService.getRequestEstudiante(
             this.idestudent).subscribe((datapracticante) => {
@@ -149,27 +149,27 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
           );
         }
 
-      });
-  }
-  idestudentapro: any;
-  iduspracticanteApro: any;
-  fechaapro: any;
-  idsoliapro: any;
-  /////cargar estudinates aprobados
-  buscarAprobados(id: any) {
-    this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
-      (datasoliapro) => {
-        this.idsoliapro = datasoliapro.idSolicitudConvocatoria;
-        this.fechaapro = datasoliapro.fechaEnvio;
-        console.log(datasoliapro);
-        if (datasoliapro.checkDirector == true) {
-          this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
-          this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
-            console.log(datapracticanteApro);
-            this.iduspracticanteApro = datapracticanteApro.usuario_estudiante_practicante?.idUsuario;
-            console.log('este el id usuario');
-            console.log(this.iduspracticanteApro);
-            this.userService.getUsuarioporId(this.iduspracticanteApro).subscribe((datausuarioApro) => {
+    });
+}
+idestudentapro: any;
+iduspracticanteApro: any;
+fechaapro: any;
+idsoliapro:any;
+/////cargar estudinates aprobados
+buscarAprobados(id: any) {
+  this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
+    (datasoliapro) => {
+      this.idsoliapro=datasoliapro.idSolicitudConvocatoria;
+      this.fechaapro = datasoliapro.fechaEnvio;
+      console.log(datasoliapro);
+      if(datasoliapro.checkDirector==true  && this.idsoli==this.selectedsolicitud){
+        this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
+        this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
+          console.log(datapracticanteApro);
+          this.iduspracticanteApro =datapracticanteApro.usuario_estudiante_practicante?.idUsuario;
+          console.log('este el id usuario');
+          console.log(this.iduspracticanteApro);
+          this.userService.getUsuarioporId(this.iduspracticanteApro).subscribe((datausuarioApro) => {
               console.log(datausuarioApro);
               this.datosTablaAprobados.push({
                 id: this.idsoliapro,
