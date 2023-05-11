@@ -19,7 +19,7 @@
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
             <div>
-              <h1 style="text-align: center;"> Listado convoccatorias </h1>
+              <h1 style="text-align: center;"> Listado convocatorias </h1>
 
               <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
@@ -163,48 +163,37 @@
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
             <div>
-              <h1 style="text-align: center;"> Listado Estudiantes </h1>
-              <table mat-table [dataSource]="dataTabla" class="mat-elevation-z8">
-                <!-- Position Column -->
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NOMBRE ESTUDIANTE</th>
-                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.nombre}} </td>
-                </ng-container>
+              <h1 style="text-align: left;"> LISTADO  TUTOR ACADEMICO </h1>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="fecha">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> FECHA INICIO</th>
-                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.fecha}} </td>
-                </ng-container>
+              <select id="materias" name="materias">
+                <option value="">Seleccione una carrera</option>
+                <option value="">Seleccione una carrera</option>
+                <option value="">Seleccione una carrera</option>
+              </select>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="carrera">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">TUTOR </th>
-                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.carrera}}</td>
-                </ng-container>
+              
 
-                <ng-container matColumnDef="esta">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA </th>
-                  <td mat-cell *matCellDef="let estudiante"> APROBADO</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="sy" bol>
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA </th>
-                  <td mat-cell *matCellDef="let estudiante"> DATO 5 </td>
 
-                </ng-container>
+              
+              
+            </div>
 
-                <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
-                <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
-              </table>
-              <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-                aria-label="Select page of solicitudes">
-              </mat-paginator>
+            <div>
+              <h1 style="text-align: left;"> LISTADO DE DOCENTES </h1>
+
+              <select id="materias" name="materias">
+                <option value="">Seleccione una carrera</option>
+                <option value="">Seleccione una carrera</option>
+                <option value="">Seleccione una carrera</option>
+              </select>
+              
             </div>
 
 
             
           </mat-card>
+
+         
         </div>
       </form>
 
@@ -216,6 +205,13 @@
         <ng-template matStepLabel>Fase 4</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
+
+            <h1><strong>DESCARGAR EL OFICIO </strong></h1>
+              <p style="text-align: center">
+                Auna vez se descargue el oficio, posteriormente debera firmarlo y
+                <br />
+                nuevamente la subira en el formato pdf.
+              </p>
             <div class="download-container">
               <button mat-raised-button color="primary" >
                 <mat-icon>get_app</mat-icon> Descargar Archivo
@@ -224,10 +220,10 @@
                 Haz clic en el botón para descargar el documento
               </div>
             </div>
-            <div class="stepper-buttons">
-              <button mat-button matStepperPrevious>Anterior</button>
-              <button mat-button matStepperNext>Siguiente</button>
-            </div>
+            <div style="margin-top:25px; text-align: center;">
+              <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+          </div>
 
 
             
@@ -244,6 +240,12 @@
         <ng-template matStepLabel>Fase 5</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
+            <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
+            <p style="text-align: center">
+              Auna vez se descargue el oficio, posteriormente debera firmarlo y
+              <br />
+              nuevamente la subira en el formato pdf.
+            </p>
             <div class="download-container">
               <input name="file" id="file" type="file" #inputFile hidden>
               <button mat-raised-button color="primary"(click)="inputFile.click()" >
@@ -253,10 +255,15 @@
                 Haz clic en el botón para cargar el documento
               </div>
             </div>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Finalizar</button>
+
+            <div style="text-align: center">
+              
+              <button style="margin-right: 12px" mat-raised-button color="warn">
+                Finalizar
+              </button>
+              
             </div>
+            
 
 
             
