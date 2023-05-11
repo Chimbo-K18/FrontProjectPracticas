@@ -89,7 +89,7 @@
                 <ng-container matColumnDef="esta">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitud </th>
                   <td mat-cell *matCellDef="let listassolicitudesll"> <button mat-raised-button color="primary"
-                      matStepperNext>Descargar</button></td>
+                      matStepperNext (click)="seleccionarSolicitudC(listassolicitudesll)">Descargar</button></td>
                 </ng-container>
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="sy" bol>
@@ -106,40 +106,6 @@
               <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons
                 aria-label="Select page of solicitudes">
               </mat-paginator>
-            </div>
-
-            <div>
-              <h1 style="text-align: center;"> Estudiantes Aprobados </h1>
-              <table mat-table [dataSource]="datam" class="mat-elevation-z8">
-                <!-- Position Column -->
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre Estudiante</th>
-                  <td mat-cell *matCellDef="let listassolicitudeslltrue">
-                    {{listassolicitudeslltrue.estudiantePracticante.usuario_estudiante_practicante?.nombres}} </td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="fecha">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Envio </th>
-                  <td mat-cell *matCellDef="let listassolicitudeslltrue"> {{listassolicitudeslltrue.fechaEnvio}} </td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="carrera">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Carrera </th>
-                  <td mat-cell *matCellDef="let listassolicitudeslltrue">
-                    {{listassolicitudeslltrue.estudiantePracticante.usuario_estudiante_practicante?.carrera}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="esta">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitud </th>
-                  <td mat-cell *matCellDef="let listassolicitudeslltrue"> <button mat-raised-button color="primary"
-                      matStepperNext>Descargar</button></td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <tr mat-header-row *matHeaderRowDef="diColumns"></tr>
-                <tr mat-row *matRowDef="let rows; columns: diColumns;"></tr>
-              </table>
             </div>
             <div style="margin-top:25px; text-align: center;">
               <button mat-raised-button color="primary">Guardar Cambios</button>

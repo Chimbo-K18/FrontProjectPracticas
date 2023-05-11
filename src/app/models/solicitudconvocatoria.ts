@@ -8,8 +8,6 @@ export class SolicitudConvocatoria{
     forEach(arg0: (solicitud: SolicitudConvocatoria) => void) {
       throw new Error('Method not implemented.');
     }
-
-
     idSolicitudConvocatoria !: number;
     fechaEnvio !: string;
     fechaAprobacion !: string;
@@ -20,6 +18,7 @@ export class SolicitudConvocatoria{
     checkResponsable !: boolean;
     checkEmpresarial !: boolean;
     estadoSolicitudConvo !: boolean;
+    checkPractica!: boolean;
 
     convocatoria!: Convocatorias;
     estudiantePracticante!: EstudiantePracticante;

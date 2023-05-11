@@ -175,16 +175,16 @@ export class ListaSoliRecibidasComponent {
   ///obtener el id de la solicitud practicas de la tabla
   selectedSolicitud: any;
   // para seleccionar la convocatoria
-  seleccionarSolicitud(convocatorias: any) {
-    console.log('Se seleccionó la empresa:', convocatorias);
-    this.selectedSolicitud = convocatorias.idConvocatorias;
+  seleccionarSolicitud(solicitud: any) {
+    console.log('Se seleccionó la solicitud:', solicitud.idSolicitudPracticas);
+    this.selectedSolicitud = solicitud.idSolicitudPracticas;
     this.buscarConvocatoria();
   }
 
   idencontrado: any;
   buscarConvocatoria() {
-    this.solicitudpracticas.getRequest(this.selectedSolicitud).subscribe(dataconvocatoria => {
-      console.log(dataconvocatoria);
+    this.solicitudpracticas.getRequest(this.selectedSolicitud).subscribe(dataSolicitud => {
+      console.log(dataSolicitud);
     });
     this.solicitudpracticas.buscarDocumentSolicitud(this.selectedSolicitud).subscribe(datadocumento => {
       console.log(datadocumento)
