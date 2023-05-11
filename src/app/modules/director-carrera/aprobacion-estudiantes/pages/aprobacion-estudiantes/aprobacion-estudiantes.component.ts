@@ -231,7 +231,9 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   selectedSolicitud: any;
   seleccionarSolicitudC(solicitud: any) {
     console.log('Se seleccionó la solicitud:', solicitud);
-    this.selectedSolicitud = solicitud.idSolicitudConvocatoria;
+
+
+    this.selectedSolicitud = this.idsoliapro;
     this.buscarSolicitudC();
   }
 

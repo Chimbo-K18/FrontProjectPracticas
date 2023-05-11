@@ -177,7 +177,7 @@ export class ListaSoliRecibidasComponent {
   // para seleccionar la convocatoria
   seleccionarSolicitud(solicitud: any) {
     console.log('Se seleccionó la solicitud:', solicitud.idSolicitudPracticas);
-    this.selectedSolicitud = solicitud;
+    this.selectedSolicitud = solicitud.idSolicitudPracticas;
     this.buscarConvocatoria();
   }
 

@@ -18,6 +18,8 @@ export class SolicitudConvocatoria{
     checkResponsable !: boolean;
     checkEmpresarial !: boolean;
     estadoSolicitudConvo !: boolean;
+    checkPractica!: boolean;
+
     convocatoria!: Convocatorias;
     estudiantePracticante!: EstudiantePracticante;
     tutorEmpresarial!: tutorempresarial;

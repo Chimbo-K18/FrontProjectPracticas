@@ -10,6 +10,7 @@ import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { UserService } from 'src/app/services/user.service';
 import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { MatStepper } from '@angular/material/stepper';
+import Swal from 'sweetalert2';
 import { DocumentoSolicitudConvocatoria } from 'src/app/services/doc/DocumentoSolicitudConvocatoria.service';
 
 
@@ -187,6 +188,13 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
 
         this.solicitudconvocatoriaservice.updateSolicitudConvocatoria(this.solicitudconvocatoria, this.idsoli).subscribe(dataactual => {
           console.log(dataactual);
+          Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Datos Creados Correctamente',
+            showConfirmButton: false,
+            timer: 2000,
+          });
           this.resetStepper();
 
         })
