@@ -55,7 +55,7 @@
                 <ng-container matColumnDef="symbol" bol>
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Solicitudes</th>
                   <td mat-cell *matCellDef="let practicasSolicitud"> <button mat-raised-button color="primary"
-                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)">Seleccionar</button></td>
+                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)" (click)=" traerconvocatoria(practicasSolicitud.idSolicitudPracticas)">Seleccionar</button></td>
 
                 </ng-container>
  
@@ -95,20 +95,20 @@
 
 
                 <!-- Name Column -->
-                <ng-container matColumnDef="fecha">
+                <ng-container matColumnDef="nombre">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> {{listaSolicitudesAprobadas.fechaAprobacion}} </td>
+                  <td mat-cell *matCellDef="let listassolicitudesll"> {{listassolicitudesll.estudiantePracticante.usuario_estudiante_practicante?.nombres}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="carrera">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Jornada </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> DATO 1</td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Carrera </th>
+                  <td mat-cell *matCellDef="let listassolicitudesll"> {{listassolicitudesll.estudiantePracticante.usuario_estudiante_practicante?.carrera}}</td>
                 </ng-container>
 
-                <ng-container matColumnDef="esta">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Carrera </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas">DATO 1</td>
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha envio </th>
+                  <td mat-cell *matCellDef="let listassolicitudesll">{{listassolicitudesll.fechaEnvio}}</td>
                 </ng-container>
                 <!-- Symbol Column -->
 
@@ -120,15 +120,15 @@
 
                 <ng-container matColumnDef="sy" bol>
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Asignar Horario </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"><button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
+                  <td mat-cell *matCellDef="let listassolicitudesll"><button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario"  (click)="Captirarid(listassolicitudesll.idSolicitudConvocatoria)">
                     <mat-icon>edit</mat-icon> </button></td>
 
                 </ng-container>
 
                 
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA</th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> dato2 </td>
+                <ng-container matColumnDef="si">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ciclo</th>
+                  <td mat-cell *matCellDef="let listassolicitudesll"> {{listassolicitudesll.ciclo}} </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
                 <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
@@ -138,7 +138,7 @@
               </mat-paginator>
             </div>
             <div style="margin-top:25px; text-align: center;">
-                <button mat-raised-button color="primary">Siguiente</button>
+                <button mat-raised-button color="primary" matStepperNext (click)="listarpracticas()">Siguiente</button>
 
 
                 <!-- BOTON SI QUIERES PROVAR  EL MODAL  -->
@@ -163,38 +163,39 @@
           <mat-card>
             <div>
               <h1 style="text-align: center;">Detalles de estudiantes practicantes</h1>
-              <table mat-table [dataSource]="dataTabla" class="mat-elevation-z8">
+              <table mat-table [dataSource]="datam" class="mat-elevation-z8">
                 <!-- Position Column -->
                 <ng-container matColumnDef="nombre">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
-                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.nombre}} </td>
+                  <td mat-cell *matCellDef="let listaspracticastrue"> {{listaspracticastrue.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.nombres}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="fecha"> 
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Horario Inicio</th>
-                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.fecha}} </td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Inicio</th>
+                  <td mat-cell *matCellDef="let listaspracticastrue"> {{listaspracticastrue.fechaInicio}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="carrera">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Horario Fin</th>
-                  <td mat-cell *matCellDef="let estudiante"> {{estudiante.carrera}}</td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha Fin</th>
+                  <td mat-cell *matCellDef="let listaspracticastrue"> {{listaspracticastrue.fechaFin}}</td>
                 </ng-container>
 
-                <ng-container matColumnDef="esta">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA </th>
-                  <td mat-cell *matCellDef="let estudiante"> APROBADO</td>
+                <ng-container matColumnDef="estafin">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Hora Inicio </th>
+                  <td mat-cell *matCellDef="let listaspracticastrue"> {{listaspracticastrue.horaInicio}}</td>
                 </ng-container>
+
                 <!-- Symbol Column -->
-                <ng-container matColumnDef="sy" bol>
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA </th>
-                  <td mat-cell *matCellDef="let estudiante"> DATO 5 </td>
+                <ng-container matColumnDef="sy">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Hora Fin</th>
+                  <td mat-cell *matCellDef="let listaspracticastrue"> {{listaspracticastrue.horaSalida}} </td>
 
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
-                <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
+                <tr mat-header-row *matHeaderRowDef="diColumns"></tr>
+                <tr mat-row *matRowDef="let rows; columns: diColumns;"></tr>
               </table>
               <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
                 aria-label="Select page of solicitudes">
@@ -291,14 +292,31 @@
                       <h3><strong>FECHA INICIO</strong></h3>
                       <mat-form-field class="example-full-width" style="width: 200px; margin-right: 20px;">
                         <mat-label>Fecha inicio</mat-label>
-                        <input type="date" matInput>
+                        <input type="date" matInput id="fechainicio">
                       </mat-form-field>
                     </div>
                     <div style="text-align: center;">
                       <h3><strong>FECHA FIN</strong></h3>
                       <mat-form-field class="example-full-width" style="width: 200px;">
                         <mat-label>Fecha final</mat-label>
-                        <input type="date" matInput>
+                        <input type="date" matInput id="fechafinal">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div style="color: black; display: flex; justify-content: center; align-items: center;">
+                    <div style="text-align: center;">
+                      <h3><strong>HORA ENTRADA</strong></h3>
+                      <mat-form-field class="example-full-width" style="width: 200px; margin-right: 20px;">
+                        <mat-label>Hora inicio</mat-label>
+                        <input type="time" matInput id="horainicio">
+                      </mat-form-field>
+                    </div>
+                    <div style="text-align: center;">
+                      <h3><strong>HORA SALIDA</strong></h3>
+                      <mat-form-field class="example-full-width" style="width: 200px;">
+                        <mat-label>Hora final</mat-label>
+                        <input type="time" matInput id="horafin">
                       </mat-form-field>
                     </div>
                   </div>
@@ -306,7 +324,7 @@
 
             <div style="text-align: center;">
 
-              <button mat-flat-button color="warn">GENERAR </button>
+              <button mat-flat-button color="warn" (click)="Asignarhorario()">GENERAR </button>
 
             </div>
 
