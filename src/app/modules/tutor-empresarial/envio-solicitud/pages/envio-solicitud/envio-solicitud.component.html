@@ -155,6 +155,12 @@
             <ng-template matStepLabel>Imprimir Archivo</ng-template>
             <div style="display: flex; justify-content: center; align-items: center;">
             <mat-card>
+              <h1><strong>DESCARGAR EL OFICIO </strong></h1>
+              <p style="text-align: center">
+                Auna vez se descargue el oficio, posteriormente debera firmarlo y
+                <br />
+                nuevamente la subira en el formato pdf.
+              </p>
             <div class="download-container">
               <button mat-raised-button color="primary" (click)="descargarPDF()" >
                 <mat-icon>get_app</mat-icon> Descargar Archivo
@@ -178,6 +184,12 @@
             <ng-template matStepLabel>Subir Documento</ng-template>
             <div style="display: flex; justify-content: center; align-items: center;">
             <mat-card>
+              <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
+            <p style="text-align: center">
+              Auna vez se descargue el oficio, posteriormente debera firmarlo y
+              <br />
+              nuevamente la subira en el formato pdf.
+            </p>
             <div class="download-container">
               <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
               <button mat-raised-button color="primary"(click)="inputFile.click()" >

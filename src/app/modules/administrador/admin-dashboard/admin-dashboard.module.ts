@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -11,6 +11,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
   ],
   imports: [
     CommonModule,
+    MatCardModule,
     AdminDashboardRoutingModule
   ],
   exports:[
