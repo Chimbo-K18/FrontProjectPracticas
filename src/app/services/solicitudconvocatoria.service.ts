@@ -53,6 +53,10 @@ export class SolicitudConvocatoriasService {
     return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
+  buscarDocumentoSolicitudConv(iddoc: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscardocument/${iddoc}`)
+  }
+
   
 
 }

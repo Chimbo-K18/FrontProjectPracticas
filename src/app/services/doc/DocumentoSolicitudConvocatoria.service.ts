@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class DocumentoSolicitudConvocatoria{
-
+    url: string = 'http://localhost:8080/api/documentoSolicitudConvocatoria';
     urlPost: string = 'http://localhost:8080/api/documentoSolicitudConvocatoria/upload';
   
     constructor(private http: HttpClient) { }
@@ -24,8 +24,10 @@ export class DocumentoSolicitudConvocatoria{
         }));
     }
   
-
-      
+    descargarSolicitudConvocatoria(id: any) {
+      const url = `${this.url}/download/${id}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }  
       
 
       

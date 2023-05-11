@@ -11,6 +11,7 @@ import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import Swal from 'sweetalert2';
 import { MatStepper } from '@angular/material/stepper';
+import { DocumentoSolicitudConvocatoria } from 'src/app/services/doc/DocumentoSolicitudConvocatoria.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { MatStepper } from '@angular/material/stepper';
   styleUrls: ['./aprobacion-estudiantes.component.css'],
 })
 export class AprobacionEstudiantesComponent implements AfterViewInit {
-SolicitudConvocatoria: SolicitudConvocatoria= new SolicitudConvocatoria();
+  SolicitudConvocatoria: SolicitudConvocatoria = new SolicitudConvocatoria();
 
   //TABLA1
   //TABLA convocatorias
@@ -35,11 +36,11 @@ SolicitudConvocatoria: SolicitudConvocatoria= new SolicitudConvocatoria();
   loading: boolean = true;
   dataSource = new MatTableDataSource<Convocatorias>([]);
   //TABLA2
-datosCargados: boolean = false;
-datosTabla: any[] = [];
+  datosCargados: boolean = false;
+  datosTabla: any[] = [];
   // tabla3
   datosCargadosAprobados: boolean = false;
-datosTablaAprobados: any[] = [];
+  datosTablaAprobados: any[] = [];
 
 
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
@@ -68,10 +69,11 @@ datosTablaAprobados: any[] = [];
     private convocatoriaService: ConvocatoriasService,
     private SolicitudConvocatoriasService: SolicitudConvocatoriasService,
     private EstudiantePracticanteService: EstudiantePracticanteService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private DocumentConvocatoria:DocumentoSolicitudConvocatoria
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   //obtener convocatorias
   obtenerConvocatorias() {
@@ -97,135 +99,169 @@ datosTablaAprobados: any[] = [];
   // para seleccionar la convocatoria
   seleccionarConvocatoria(convocatorias: any) {
     console.log('Se seleccionó la convocatoria:', convocatorias);
-    this.selectedsolicitud =convocatorias.solicitudPracticas.idSolicitudPracticas;
+    this.selectedsolicitud = convocatorias.solicitudPracticas.idSolicitudPracticas;
     console.log(this.selectedsolicitud);
     this.buscarSolicitud(this.selectedsolicitud);
     this.buscarAprobados(this.selectedsolicitud);
   }
+
+
+
   ///buscar solicitudpractica
   idestudent: any;
   nombrestudent: any;
   carreraestudent: any;
   iduspracticante: any;
   fecha: any;
-  idsoli:any;
+  idsoli: any;
   buscarSolicitud(id: any) {
     this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
       (datasoli) => {
-        this.idsoli=datasoli.idSolicitudConvocatoria;
+        this.idsoli = datasoli.idSolicitudConvocatoria;
         this.fecha = datasoli.fechaEnvio;
         console.log(datasoli);
-        if(datasoli.checkDirector==false){
+        if (datasoli.checkDirector == false) {
           this.idestudent = datasoli.estudiantePracticante.idEstudiantePracticas;
           this.EstudiantePracticanteService.getRequestEstudiante(
             this.idestudent).subscribe((datapracticante) => {
-            console.log(datapracticante);
-            this.iduspracticante =datapracticante.usuario_estudiante_practicante?.idUsuario;
-            console.log('este el id usuario');
-            console.log(this.iduspracticante);
-            this.userService.getUsuarioporId(this.iduspracticante).subscribe((datausuario) => {
+              console.log(datapracticante);
+              this.iduspracticante = datapracticante.usuario_estudiante_practicante?.idUsuario;
+              console.log('este el id usuario');
+              console.log(this.iduspracticante);
+              this.userService.getUsuarioporId(this.iduspracticante).subscribe((datausuario) => {
                 console.log(datausuario);
-                    this.datosTabla.push({
-                      id:this.idsoli,
-                      fecha: this.fecha,
-                      nombres: datausuario.nombres,
-                      apellidos: datausuario.apellidos,
-                      carrera: datausuario.carrera
-                    });
-                      // Indicar que los datos ya están cargados
-      this.datosCargados = true;
+                this.datosTabla.push({
+                  id: this.idsoli,
+                  fecha: this.fecha,
+                  nombres: datausuario.nombres,
+                  apellidos: datausuario.apellidos,
+                  carrera: datausuario.carrera
+                });
+                // Indicar que los datos ya están cargados
+                this.datosCargados = true;
               });
-          });
-        }else{
+            });
+        } else {
           Swal.fire(
             'Advertencia',
             'Los estudiantes de esta Convocatoria ya han sido aprobados.',
             'warning'
-                );
+          );
         }
 
-    });
-}
-idestudentapro: any;
-iduspracticanteApro: any;
-fechaapro: any;
-idsoliapro:any;
-/////cargar estudinates aprobados
-buscarAprobados(id: any) {
-  this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
-    (datasoliapro) => {
-      this.idsoliapro=datasoliapro.idSolicitudConvocatoria;
-      this.fechaapro = datasoliapro.fechaEnvio;
-      console.log(datasoliapro);
-      if(datasoliapro.checkDirector==true){
-        this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
-        this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
-          console.log(datapracticanteApro);
-          this.iduspracticanteApro =datapracticanteApro.usuario_estudiante_practicante?.idUsuario;
-          console.log('este el id usuario');
-          console.log(this.iduspracticanteApro);
-          this.userService.getUsuarioporId(this.iduspracticanteApro).subscribe((datausuarioApro) => {
+      });
+  }
+  idestudentapro: any;
+  iduspracticanteApro: any;
+  fechaapro: any;
+  idsoliapro: any;
+  /////cargar estudinates aprobados
+  buscarAprobados(id: any) {
+    this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
+      (datasoliapro) => {
+        this.idsoliapro = datasoliapro.idSolicitudConvocatoria;
+        this.fechaapro = datasoliapro.fechaEnvio;
+        console.log(datasoliapro);
+        if (datasoliapro.checkDirector == true) {
+          this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
+          this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
+            console.log(datapracticanteApro);
+            this.iduspracticanteApro = datapracticanteApro.usuario_estudiante_practicante?.idUsuario;
+            console.log('este el id usuario');
+            console.log(this.iduspracticanteApro);
+            this.userService.getUsuarioporId(this.iduspracticanteApro).subscribe((datausuarioApro) => {
               console.log(datausuarioApro);
-                  this.datosTablaAprobados.push({
-                    id:this.idsoliapro,
-                    fecha: this.fechaapro,
-                    nombres: datausuarioApro.nombres,
-                    apellidos: datausuarioApro.apellidos,
-                    carrera: datausuarioApro.carrera
-                  });
-                  this.datosCargadosAprobados = true;
+              this.datosTablaAprobados.push({
+                id: this.idsoliapro,
+                fecha: this.fechaapro,
+                nombres: datausuarioApro.nombres,
+                apellidos: datausuarioApro.apellidos,
+                carrera: datausuarioApro.carrera
+              });
+              this.datosCargadosAprobados = true;
+            });
+          });
+        } else {
+        }
+
+      });
+  }
+  //checkdirector
+  estadosoli: any;
+  idsolienc: any;
+  Cedus: any;
+  dataUs: any;
+  dataSolicitud: any;
+  idsoliG: any;
+  selectedestudinate(id: number) {
+    this.Cedus = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.Cedus)
+    console.log("ID seleccionado:", id);
+    this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
+      (dataBuscarsoli) => {
+        this.idsolienc = dataBuscarsoli.idSolicitudConvocatoria;
+        this.SolicitudConvocatoria = dataBuscarsoli;
+        this.SolicitudConvocatoria.checkDirector = true;
+        this.userService.getuscedula(this.Cedus).subscribe(dataUserEncon => {
+          this.dataUs = dataUserEncon;
+          console.log(this.dataUs);
+          this.SolicitudConvocatoria.usuario = this.dataUs;
+          this.SolicitudConvocatoriasService.updateSolicitudConvocatoria(this.SolicitudConvocatoria, this.idsolienc).subscribe(
+            (datasoliencontrada) => {
+              console.log(datasoliencontrada);
+              Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Estudiante Aprobado.',
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              this.resetStepper();
+              this.datosCargados = true;
             });
         });
-      }else{
-      }
 
-  });
-}
-//checkdirector
-estadosoli:any;
-idsolienc:any;
-Cedus:any;
-dataUs:any;
-dataSolicitud:any;
-idsoliG:any;
-selectedestudinate(id: number) {
-  this.Cedus=localStorage.getItem("idusuario");
-  console.log("id usuario "+this.Cedus)
-  console.log("ID seleccionado:", id);
-  this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
-    (dataBuscarsoli) => {
-      this.idsolienc=dataBuscarsoli.idSolicitudConvocatoria;
-      this.SolicitudConvocatoria=dataBuscarsoli;
-      this.SolicitudConvocatoria.checkDirector=true;
-      this.userService.getuscedula(this.Cedus).subscribe(dataUserEncon =>{
-        this.dataUs=dataUserEncon;
-        console.log( this.dataUs);
-        this.SolicitudConvocatoria.usuario=this.dataUs;
-        this.SolicitudConvocatoriasService.updateSolicitudConvocatoria(this.SolicitudConvocatoria, this.idsolienc).subscribe(
-          (datasoliencontrada) => {
-            console.log(datasoliencontrada);
-            Swal.fire({
-              position: 'top',
-              icon: 'success',
-              title: 'Estudiante Aprobado.',
-              showConfirmButton: false,
-              timer: 1000,
-            });
-            this.resetStepper();
-            this.datosCargados = true;
-          });
+
       });
+  }
+  resetStepper() {
+    this.stepper.reset();
+  }
 
+  selectedSolicitud: any;
+  seleccionarSolicitudC(solicitud: any) {
+    console.log('Se seleccionó la solicitud:', solicitud);
+    this.selectedSolicitud = solicitud.idSolicitudConvocatoria;
+    this.buscarSolicitudC();
+  }
+
+  idencontrado:any;
+  buscarSolicitudC(){
+  this.SolicitudConvocatoriasService.getRequestSolicitudconvo(this.selectedSolicitud).subscribe(dataSolicitudes =>{
+    console.log(dataSolicitudes);
+  });
+    this.SolicitudConvocatoriasService.buscarDocumentoSolicitudConv(this.selectedSolicitud).subscribe(datadocumento =>{
+      console.log(datadocumento)
+      this.downloadDocumentoSolicitudConvocatoria(datadocumento);
 
   });
-}
-resetStepper() {
-  this.stepper.reset();
-}
+  }
 
-
-
-
+  public downloadDocumentoSolicitudConvocatoria(id:any) {
+    this.DocumentConvocatoria.descargarSolicitudConvocatoria(id).subscribe(
+      (data) => {
+        const file = new Blob([data], { type: 'application/pdf' }); // Cambiar el tipo MIME a pdf
+        const fileUrl = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'Documento-Solicitud-Convocatoria.pdf'; // Nombre del documento para cuando se descargue
+        link.click();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 
 }
