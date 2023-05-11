@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DirectorDashboardRoutingModule } from './director-dashboard-routing.module';
 import { DirectorDashboardComponent } from './pages/director-dashboard/director-dashboard.component';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { DirectorDashboardComponent } from './pages/director-dashboard/director-
   ],
   imports: [
     CommonModule,
-    DirectorDashboardRoutingModule
+    DirectorDashboardRoutingModule,
+    MatCardModule
   ],
   exports:[
     DirectorDashboardComponent
