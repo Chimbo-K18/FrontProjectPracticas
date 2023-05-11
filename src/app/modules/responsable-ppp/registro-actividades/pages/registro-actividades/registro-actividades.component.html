@@ -17,7 +17,7 @@
           <h3 style="margin-right: 20px"><STrong>Solicitud:</STrong></h3>
           <mat-form-field class="example-full-width" style="width: 300px">
             <mat-label>Solicitud</mat-label>
-            <input matInput placeholder="Empresa" id="solicitud"  readonly/>
+            <input matInput placeholder="Empresa" id="solicitud" readonly />
           </mat-form-field>
           <button mat-raised-button style="margin-left: 25px" data-bs-toggle="modal" data-bs-target="#modal-formulario">
             <mat-icon>add</mat-icon>
@@ -28,16 +28,16 @@
           <h3 style="margin-right: 20px"><STrong>Empresa:</STrong></h3>
           <mat-form-field class="example-full-width" style="width: 300px">
             <mat-label>Empresa:</mat-label>
-            <input matInput placeholder="Empresa" id="empresa" readonly/>
+            <input matInput placeholder="Empresa" id="empresa" readonly />
           </mat-form-field>
         </div>
 
         <div style="display: flex; align-items: center; margin-top: 28px">
           <h3 style="margin-right: 20px"><STrong>Carrera:</STrong></h3>
- <mat-form-field class="example-full-width" style="width: 300px">
-    <mat-label>Carrera</mat-label>
-    <input matInput placeholder="Carrera" id="carrera" readonly/>
-  </mat-form-field>
+          <mat-form-field class="example-full-width" style="width: 300px">
+            <mat-label>Carrera</mat-label>
+            <input matInput placeholder="Carrera" id="carrera" readonly />
+          </mat-form-field>
         </div>
       </mat-card>
 
@@ -65,12 +65,12 @@
         <div>
           <mat-form-field class="example-full-width" style="width: 340px; margin-right: 20px">
             <mat-label>Descripción de actividad:</mat-label>
-            <input matInput placeholder="Descripción" id="detalle"/>
+            <input matInput placeholder="Descripción" id="detalle" />
           </mat-form-field>
 
           <mat-form-field class="example-full-width" style="width: 340px">
             <mat-label>Herramienta Requerida:</mat-label>
-            <input matInput placeholder="Herramienta" id="herramienta"/>
+            <input matInput placeholder="Herramienta" id="herramienta" />
           </mat-form-field>
         </div>
       </mat-card>
@@ -86,15 +86,16 @@
             <option *ngFor="let carrera of carrera_nombre" [value]="carrera">{{ carrera }}</option>
           </select> -->
 
-          <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada" (ngModelChange)="seleccionarCarrera()">
+          <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada"
+            (ngModelChange)="seleccionarCarrera()">
             <option value="">Seleccione una materia</option>
             <option *ngFor="let materia of materias" [value]="materia">{{ materia }}</option>
           </select>
 
 
           <div style="text-align: center">
-            <button mat-raised-button color="warn"  (click)="crearActividades()">
-              <mat-icon >add</mat-icon>Agregar Actividad
+            <button mat-raised-button color="warn" (click)="crearActividades()">
+              <mat-icon>add</mat-icon>Agregar Actividad
             </button>
           </div>
         </div>
@@ -104,7 +105,8 @@
 
         <ng-container matColumnDef="solicitudPracticas.tutorEmpresarial.empresa.nombreEmpresa">
           <th mat-header-cell *matHeaderCellDef>Empresa.</th>
-          <td mat-cell *matCellDef="let element">{{ element.solicitudPracticas.tutorEmpresarial.empresa.nombreEmpresa}}</td>
+          <td mat-cell *matCellDef="let element">{{ element.solicitudPracticas.tutorEmpresarial.empresa.nombreEmpresa}}
+          </td>
         </ng-container>
 
         <!-- Position Column -->
@@ -142,7 +144,7 @@
 
 
 
-<!-- Modal con Boostrap -->
+  <!-- Modal con Boostrap -->
 
   <div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
     <div class="modal-dialog">
@@ -161,7 +163,8 @@
               <ng-container matColumnDef="seleccionar">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
-                  <mat-checkbox [checked]="idSeleccionadas.includes(element.idSolicitudPracticas, element.nombres)" (change)="capturarCheckbox($event.source, element.idSolicitudPracticas, element.nombre_carrera, element.tutorEmpresarial.empresa.nombreEmpresa)"></mat-checkbox>
+                  <mat-checkbox [checked]="idSeleccionadas.includes(element.idSolicitudPracticas, element.nombres)"
+                    (change)="capturarCheckbox($event.source, element.idSolicitudPracticas, element.nombre_carrera, element.tutorEmpresarial.empresa.nombreEmpresa)"></mat-checkbox>
                 </td>
               </ng-container>
               <!-- Position Column -->
@@ -196,7 +199,8 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns1"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons aria-label="Select page of periodic elements">
+            <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons
+              aria-label="Select page of periodic elements">
             </mat-paginator>
             <div style="text-align: right">
               <button style="margin-right: 25px" mat-raised-button color="warn" (click)="obtenerdatostable()">
@@ -211,4 +215,5 @@
     </div>
   </div>
 </body>
+
 </html>

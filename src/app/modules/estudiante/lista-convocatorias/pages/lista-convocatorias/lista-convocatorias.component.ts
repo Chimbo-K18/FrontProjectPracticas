@@ -14,6 +14,7 @@ import { EstudiantePracticanteService } from 'src/app/services/estudiantepractic
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { UserService } from 'src/app/services/user.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-lista-convocatorias',
@@ -37,9 +38,17 @@ export class ListaConvocatoriasComponent {
   solicitudconvocatorias: SolicitudConvocatoria = new SolicitudConvocatoria();
   loading: boolean = true;
   dataSource = new MatTableDataSource<Convocatorias>([]);
+
+  public filesToUpload!: Array<File>;
+  solicitudGenerada !: any;
   idDocumento!: any;
-  @ViewChild('inputFile') inputFile!: ElementRef;
+
+
+
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
 
   ngAfterViewInit() {
@@ -56,7 +65,6 @@ export class ListaConvocatoriasComponent {
     secondCtrl: ['', Validators.required],
   });
 
-  public filesToUpload!: Array<File>;
   isEditable = false;
 
   constructor(private _formBuilder: FormBuilder, private convocatoriaService: ConvocatoriasService,
@@ -77,6 +85,7 @@ export class ListaConvocatoriasComponent {
     return `${day}/${month}/${year}`;
   }
 
+
   //obtener convocatorias
   //obtener convocatorias
   obtenerConvocatorias() {
@@ -92,7 +101,7 @@ export class ListaConvocatoriasComponent {
       });
       this.dataSource.data = this.listaConvocatoria;
       this.loading = false;
-     
+
     });
   }
   ///obtener el id de la convocatoria de la tabla
@@ -112,7 +121,7 @@ export class ListaConvocatoriasComponent {
     this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
       console.log(datadocumento)
       this.downloadDocumentoConvocatoria(datadocumento);
-  
+
   });
   }
 
@@ -143,6 +152,7 @@ export class ListaConvocatoriasComponent {
     this.cargardatos();
 
   }
+
   cargar: any;
   nombreconvo: any;
   idConvocatoria:any;
@@ -167,7 +177,7 @@ export class ListaConvocatoriasComponent {
           this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
             console.log(dataconvo);
             this.nombreconvo = dataconvo.nombreConvocatoria;
-           
+
             this.fechaenvio = this.getCurrentDate();
 
 
@@ -193,7 +203,7 @@ export class ListaConvocatoriasComponent {
       this.estudianteService.getRequestEstudiante(dataestudiante).subscribe(dataestu => {
         console.log(dataestu);
         this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
-          
+
           this.solicitudconvocatorias.convocatoria = dataconvo;
           this.solicitudconvocatorias.fechaEnvio = this.fechaenvio;
           this.solicitudconvocatorias.estudiantePracticante = dataestu;
@@ -235,7 +245,7 @@ export class ListaConvocatoriasComponent {
   }
 
   onLoad(event: Event): void {
-    
+
     const element = event.target as HTMLInputElement;
     const file = element.files?.item(0);
     if (file) {
@@ -289,14 +299,14 @@ export class ListaConvocatoriasComponent {
       );
     }
   }
-  
+
   actualizarDocumento() {
     const idDoc = JSON.parse(
       sessionStorage.getItem('ArchivoSolicitudCnv') || '{}'
     );
     this.idDocumento = idDoc.id_documentoSolicitudConvocatoria;
     console.log(this.idDocumento);
-    this.solicitudconvoservice.updateSolicitudConvocatoria(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
+    this.solicitudconvoservice.updateSolicitudConvocatoriaS(this.solicitudConvocatoriaGenerada, this.idDocumento).subscribe(
       response => {
         console.log('Documento actualizado correctamente');
       },

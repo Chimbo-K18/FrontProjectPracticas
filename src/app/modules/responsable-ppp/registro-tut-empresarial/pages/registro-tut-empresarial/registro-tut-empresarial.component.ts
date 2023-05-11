@@ -187,7 +187,7 @@ export class RegistroTutEmpresarialComponent {
   }
   //obtener empresas
   obtenerEmpresas() {
-    this.empresaService.listarEmpresas().subscribe((data) => {
+    this.empresaService.listarEmpresa().subscribe((data) => {
       this.listaEmpresa = data.map((result) => {
         let empresa = new Empresa();
         empresa.idEmpresa = result.idEmpresa;
@@ -260,6 +260,7 @@ variableencontrada:any;
           showConfirmButton: false,
           timer: 4000,
         });
+        this.cargarImagen();
       });
     });
   }
@@ -267,7 +268,7 @@ variableencontrada:any;
   creartutor(){
     this.variableencontradatuto = localStorage.getItem("cedulapersona");
     console.log(this.variableencontradatuto);
-    this.empresaService.getPorId(this.codigoempresa).subscribe(dataempre =>{
+    this.empresaService.buscarId(this.codigoempresa).subscribe(dataempre =>{
       console.log(dataempre);
       this.tutorempresarial.empresa = dataempre;
       this.userService.getuscedula(this.variableencontradatuto).subscribe(datausututo =>{
@@ -285,6 +286,7 @@ variableencontrada:any;
             timer: 2000,
           });
           this.resetStepper();
+
         })
       })
     })
@@ -347,11 +349,27 @@ public imageSelected(event: any) {
   this.foto_usuario = this.cap_nombre_archivo.slice(12);
   console.log('Nombre imagen original => ' + this.foto_usuario);
 }
+variableFoto:any
+idpersonaencontrada:any
 cargarImagen() {
-  this.FotoService.guardarImagenes(this.selectedFile);
-  console.log(this.selectedFile);
-  // this.updatepersona();
+  // this.FotoService.guardarImagenes(this.selectedFile);
+  // console.log(this.selectedFile);
+  this.variableFoto = localStorage.getItem("cedulapersona");
+  this.personaempService.buscarcedulapersona(this.variableFoto).subscribe(datafoto=>{
+  this.idpersonaencontrada= datafoto.idpersonaemp;
+  console.log( this.idpersonaencontrada);
+  this.personasemp=datafoto;
+  this.personasemp.foto=this.foto_usuario;
+  this.personaempService.actualizarpersona(this.personasemp,this.idpersonaencontrada).subscribe(
+    (datapersencontrada) => {
+      console.log(datapersencontrada);
+    });
+  });
+ 
+
 }
+
+
  ////controlador botones xd
 resetStepper() {
   this.stepper.reset();

@@ -41,5 +41,8 @@ export class UserService {
     return this.http.get<Usuarios>(API_URL + `/correo/${correo}`)
   }
 
+  getRolNombre(correo: any):Observable<string>{
+    return this.http.get(API_URL + `/rolnombre/${correo}`, { responseType: 'text' });}
+
   // http://localhost:8080/api/user/buscarcedula/
 }

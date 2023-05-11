@@ -81,10 +81,10 @@ export class RegisterConvenioComponent {
     });
   }
 
-  empresacreada: any;
-  obtenerCedulaSeleccionada(idempresa: number) {
-    this.empresaService.getPorId(idempresa).subscribe(
-      data => {
+  empresacreada:any;
+   obtenerCedulaSeleccionada(idempresa: number){
+    this.empresaService.buscarId(idempresa).subscribe(
+      data =>{
         this.empresa = data;
         this.empresacreada = data;
         console.log(this.empresa);
@@ -95,7 +95,7 @@ export class RegisterConvenioComponent {
 
 
   obtenerEmpresas() {
-    this.empresaService.listarEmpresas().subscribe(
+    this.empresaService.listarEmpresa().subscribe(
       data => {
         this.listaEmpresa = data.map(
           result => {
@@ -257,7 +257,7 @@ export class RegisterConvenioComponent {
     }
   }
 
-  
+
   actualizarDocumento() {
     const idDoc = JSON.parse(
       sessionStorage.getItem('ArchivoConvenio') || '{}'

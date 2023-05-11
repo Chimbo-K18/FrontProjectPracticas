@@ -1,10 +1,13 @@
+
 .home-all{
-    background-color: rgb(250, 3, 3);
-    border: 1ch;
-    width: 1230px;
-    height: 580px;
-    top: 80%;
-    left: 80%;
-    transform: translate(24%, 25%);
-  
+    background-color: #153F99;
+    margin: 0;
+    padding: 0;
+
 }
+
+app-side-bar {
+    position: relative; /* asegura que la posición del elemento se base en su posición original */
+    z-index: 9999; /* establece un valor alto para asegurar que el elemento aparezca encima de otros elementos */
+  }
+

@@ -1,4 +1,4 @@
-/*/neew/*/
+/* //neew// */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
 *{
   margin: 0;
@@ -7,12 +7,32 @@
 }
 
 .sidebar{
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #1E1D1D;
+  overflow-y: auto; */
+
+  background-color: #213A70;
+  color: #fff;
+  /* width: 200px;
+  height: 100%; */
   position: fixed;
+  left: 0;
+  top: 0;
   width: 240px;
   left: -240px;
   height: 100%;
-  background: #10558d;
+  width: 200px;
   transition: all .5s ease;
+  bottom: 0; 
+
+
+
+
+
 }
 
 .profile {
@@ -20,9 +40,10 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #10558d;
-  border-bottom: 1px solid black;
+  background-color: #213A70;
+  border-bottom: 1px solid #213A70;
   color: #fff;
+  
 }
 
 .profile img {
@@ -38,26 +59,29 @@
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #10558d;
+  background: #213A70;
   user-select: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', Arial, sans-serif;
 }
 
 .sidebar a{
     display: block;
-    height: 65px;
+
     width: 100%;
     color: white;
     line-height: 65px;
     padding-left: 5px;
     box-sizing: border-box;
     border-bottom: 1px solid black;
-    border-top: 1px solid rgba(255,255,255,.1);
+    /* border-top: 1px solid rgba(255,255,255,.1); */
     border-left: 5px solid transparent;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', Arial, sans-serif;
     transition: all .5s ease;
     white-space: nowrap;
     word-wrap: break-word;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
   }
   
 
@@ -85,10 +109,10 @@ label #btn,label #cancel{
   cursor: pointer;
   color: white;
   border-radius: 5px;
-  border: 1px solid #262626;
-  margin: 15px 30px;
+  border: 1px solid #213A70;
+  margin: -80px 30px;
   font-size: 29px;
-  background: #10558d;
+  background: #213A70;
   height: 45px;
   width: 45px;
   text-align: center;
@@ -117,7 +141,7 @@ label #cancel{
   visibility: visible;
 }
 
-@media(max-width : 860px){
+@media(max-width : 0px){
   .sidebar{
     height: auto;
     width: 70px;
@@ -147,4 +171,47 @@ background: inherit;
 opacity: 1;
 visibility: visible;
 }
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  text-decoration: none;
+  color: #213A70;
+}
+
+.menu li:hover {
+  background-color: #213A70;
+}
+
+.submenu {
+  display: none;
+}
+
+.dropdown:hover .submenu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 200px;
+  background-color: #213A70;
+}
+
+.submenu li a {
+
+  padding: 10px;
+  display: block;
+}
+
+.submenu li:hover {
+  background-color: #213A70;
+}
+
+li::marker{
+color: #213A70;
+
 }

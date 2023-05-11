@@ -1,18 +1,39 @@
-/*/neew/*/
+/* //neew// */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
-*{
+
+* {
   margin: 0;
   padding: 0;
   text-decoration: none;
 }
 
-.sidebar{
+.sidebar {
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #1E1D1D;
+  overflow-y: auto; */
+
+  background-color: #213A70;
+  color: #fff;
+  /* width: 200px;
+  height: 100%; */
   position: fixed;
+  left: 0;
+  top: 0;
   width: 240px;
   left: -240px;
   height: 100%;
-  background: #10558d;
+  width: 200px;
   transition: all .5s ease;
+  bottom: 0;
+
+
+
+
+
 }
 
 .profile {
@@ -20,9 +41,10 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #10558d;
-  border-bottom: 1px solid black;
+  background-color: #213A70;
+  border-bottom: 1px solid #213A70;
   color: #fff;
+
 }
 
 .profile img {
@@ -33,62 +55,67 @@
   margin-bottom: 10px;
 }
 
-.sidebar header{
+.sidebar header {
   font-size: 28px;
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #10558d;
+  background: #213A70;
   user-select: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', Arial, sans-serif;
 }
 
-.sidebar a{
-    display: block;
-    height: 65px;
-    width: 100%;
-    color: white;
-    line-height: 65px;
-    padding-left: 5px;
-    box-sizing: border-box;
-    border-bottom: 1px solid black;
-    border-top: 1px solid rgba(255,255,255,.1);
-    border-left: 5px solid transparent;
-    font-family: 'Open Sans', sans-serif;
-    transition: all .5s ease;
-    white-space: nowrap;
-    word-wrap: break-word;
-  }
-  
+.sidebar a {
+  display: block;
 
-a.active,a:hover{
+  width: 100%;
+  color: white;
+  line-height: 65px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  /* border-top: 1px solid rgba(255,255,255,.1); */
+  border-left: 5px solid transparent;
+  font-family: 'Raleway', Arial, sans-serif;
+  transition: all .5s ease;
+  white-space: nowrap;
+  word-wrap: break-word;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+}
+
+
+a.active,
+a:hover {
   border-left: 5px solid #b93632;
   color: #b93632;
 }
 
-.sidebar a i{
+.sidebar a i {
   font-size: 15px;
   margin-right: 5px;
 }
 
-.sidebar a span{
+.sidebar a span {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-#check{
+#check {
   display: none;
 }
 
-label #btn,label #cancel{
+label #btn,
+label #cancel {
   position: absolute;
   cursor: pointer;
   color: white;
   border-radius: 5px;
-  border: 1px solid #262626;
-  margin: 15px 30px;
+  border: 1px solid #213A70;
+  margin: -80px 30px;
   font-size: 29px;
-  background: #10558d;
+  background: #213A70;
   height: 45px;
   width: 45px;
   text-align: center;
@@ -96,55 +123,106 @@ label #btn,label #cancel{
   transition: all .5s ease;
 }
 
-label #cancel{
+label #cancel {
   opacity: 0;
   visibility: hidden;
 }
 
-#check:checked ~ .sidebar{
+#check:checked~.sidebar {
   left: 0;
 }
 
-#check:checked ~ label #btn{
+#check:checked~label #btn {
   margin-left: 245px;
   opacity: 0;
   visibility: hidden;
 }
 
-#check:checked ~ label #cancel{
+#check:checked~label #cancel {
   margin-left: 245px;
   opacity: 1;
   visibility: visible;
 }
 
-@media(max-width : 860px){
-  .sidebar{
+@media(max-width : 0px) {
+  .sidebar {
     height: auto;
     width: 70px;
     left: 0;
     margin: 100px 0;
   }
-  header,#btn,#cancel{
+
+  header,
+  #btn,
+  #cancel {
     display: none;
+  }
+
+  span {
+    position: absolute;
+    margin-left: 23px;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .sidebar a {
+    height: 60px;
+  }
+
+  .sidebar a i {
+    margin-left: -10px;
+  }
+
+  a:hover {
+    width: 250px;
+    background: inherit;
+  }
+
+  .sidebar a:hover span {
+    opacity: 1;
+    visibility: visible;
+  }
 }
-span{
-position: absolute;
-margin-left: 23px;
-opacity: 0;
-visibility: hidden;
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.sidebar a{
-height: 60px;
+
+.menu li a {
+  display: block;
+  text-decoration: none;
+  color: #213A70;
 }
-.sidebar a i{
-margin-left: -10px;
+
+.menu li:hover {
+  background-color: #213A70;
 }
-a:hover {
-width: 250px;
-background: inherit;
+
+.submenu {
+  display: none;
 }
-.sidebar a:hover span{
-opacity: 1;
-visibility: visible;
+
+.dropdown:hover .submenu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 200px;
+  background-color: #213A70;
 }
+
+.submenu li a {
+
+  padding: 10px;
+  display: block;
+}
+
+.submenu li:hover {
+  background-color: #213A70;
+}
+
+li::marker {
+  color: #213A70;
+
 }

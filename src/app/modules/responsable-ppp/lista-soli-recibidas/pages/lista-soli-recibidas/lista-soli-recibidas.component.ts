@@ -37,7 +37,7 @@ export class ListaSoliRecibidasComponent {
   //TABLA
   solicitudpractica: SolicitudPracticas = new SolicitudPracticas();
 
-  displayedColumns1: string[] = ['seleccionar', 'idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial.empresa.nombreEmpresa', 'name', 'weight'];
+  displayedColumns1: string[] = ['idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial.empresa.nombreEmpresa','name','weight'];
   dataSource1 = new MatTableDataSource<SolicitudPracticas>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

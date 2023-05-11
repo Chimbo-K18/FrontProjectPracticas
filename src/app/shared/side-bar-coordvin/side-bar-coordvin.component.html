@@ -3,36 +3,46 @@
 
 <input type="checkbox" id="check">
 <label for="check">
-    <i class="fas fa-bars" id="btn"></i>
-    <i class="fas fa-times" id="cancel"></i>
+  <i class="fas fa-bars" id="btn"></i>
+  <i class="fas fa-times" id="cancel"></i>
 </label>
 
 <div class="sidebar">
-    <header>My Menu</header>
-    <div class="profile">
-        <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
-            alt="profile_picture">
-        
-    </div>
-    <a href="#" class="active">
-        <i class="fas fa-qrcode"></i>
-        <span>Dashboard</span>
+  <header>My Menu</header>
+  <div class="profile">
+    <img
+      src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
+      alt="profile_picture">
+    <h3>{{ user_final}}</h3>
+  </div>
+  <li>
+    <a href="/coordinador/dashboard" class="active">
+      <i class="fas fa-qrcode"></i>
+      <span style="font-size: 12px; font-family: 'Open Sans', sans-serif;">Dashboard</span>
     </a>
-    
-    <a href="#" [class.active]="selectedItem === 'registro-empresa'" (click)="selectItem('registro-empresa')">
-        <i class="fas fa-calendar"></i>
-        <span>Registro de Empresa</span>
-      </a>
-      <a href="#" [class.active]="selectedItem === 'asignar-responsable'" (click)="selectItem('asignar-responsable')">
-        <i class="far fa-question-circle"></i>
-        <span>Registrar Responsable</span>
-      </a>
-      <a href="#" [class.active]="selectedItem === 'asignar-coordinador'" (click)="selectItem('asignar-coordinador')">
-        <i class="fas fa-sliders-h"></i>
-        <span>Asignar Coordinador</span>
-      </a>
-      <a href="#" [class.active]="selectedItem === 'reports'" (click)="selectItem('reports')">
-        <i class="far fa-envelope"></i>
-        <span>Reportes</span>
-      </a>
-</div>
+  </li>
+
+  <li class="dropdown">
+    <a href="#">Registros</a>
+    <ul class="submenu">
+      <li><a href="/coordinador/registro-empresa">Nueva Empresa</a></li>
+      <li><a href="/coordinador/registro-convenio">Nuevo Convenio</a></li>
+    </ul>
+  </li>
+
+  <li class="dropdown">
+    <a href="#">Reportes</a>
+    <ul class="submenu">
+      <li><a href="/coordinador/listado-empresas">Lista Empresas</a></li>
+      <li><a href="/coordinador/lista-convenios">Lista Convenios</a></li>
+    </ul>
+  </li>
+
+
+  <li class="dropdown">
+    <a href="#">Cuenta</a>
+    <ul class="submenu">
+      <li><a href="/coordinador/profile">Mi Perfil</a></li>
+      <li><a href="/auth/sign-in">Cerrar Sesión</a></li>
+    </ul>
+  </li>
