@@ -203,7 +203,7 @@
             </div>
 
             <select id="materias" name="materias" [(ngModel)]="carreraSeleccionada" (ngModelChange)="seleccionarCarrera()">
-          
+
               <option value="">Seleccione una carrera</option>
               <option *ngFor="let carrera of carrera_nombre" [value]="carrera">{{ carrera }}</option>
             </select>
@@ -231,8 +231,8 @@
           </mat-card>
         </div>
     </mat-step>
-    
-    
+
+
     <mat-step  [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Subir Documento</ng-template>
@@ -245,15 +245,15 @@
             Haz clic en el botón para cargar el documento
           </div>
         </div>
-        
+
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Finalizar</button>
         </div>
       </form>
-  
+
     </mat-step>
-    
+
     </mat-stepper>
   </body>
 </html>

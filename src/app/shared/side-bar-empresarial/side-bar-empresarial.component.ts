@@ -17,8 +17,6 @@ import Swal from 'sweetalert2';
 })
 export class SideBarEmpresarialComponent implements OnInit {
 
-
-
   private roles: string[] = [];
   isLoggedIn = false;
 

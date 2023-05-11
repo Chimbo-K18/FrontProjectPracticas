@@ -32,7 +32,7 @@ export class RegistroActividadesComponent implements OnInit {
   requerimiento: Requerimientos = new Requerimientos();
   solicitudpractica: SolicitudPracticas = new SolicitudPracticas();
 
-  displayedColumns1: string[] = ['seleccionar', 'idSolicitudPracticas', 'numeroEstudiantes', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial.empresa.nombreEmpresa'];
+  displayedColumns1: string[] = ['seleccionar', 'idSolicitudPracticas', 'nombreSolicitud', 'nombre_carrera', 'tutorEmpresarial.empresa.nombreEmpresa', 'numeroEstudiantes'];
   dataSource1 = new MatTableDataSource<SolicitudPracticas>([]);
 
   displayedColumns2: string[] = ['solicitudPracticas.tutorEmpresarial.empresa.nombreEmpresa', 'actividades.detalleActividad', 'actividades.herramientas', 'actividades.nombre_materia'];

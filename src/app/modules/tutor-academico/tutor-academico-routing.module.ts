@@ -7,6 +7,18 @@ const routes: Routes = [
     path: 'lista-asignados',
     loadChildren: () => import("./lista-asignados/lista-asignados.module").then(m => m.ListaAsignadosModule)
 
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () => import("./dashboard-academico/dashboard-academico.module").then(m => m.DashboardAcademicoModule)
+
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () => import("./profile-academico/profile-academico.module").then(m => m.ProfileAcademicoModule)
+
   }
 ];
 

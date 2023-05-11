@@ -82,15 +82,15 @@ idnombrerol:any;
         if (this.idnombrerol === 'ROLE_ADMIN') {
             this.router.navigate(['/administrador/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_CORDINADOR') {
-            this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
+            this.router.navigate(['/coordinador/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_DIRECTOR') {
-            this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
+            this.router.navigate(['/director/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_RESPONSABLEPP') {
-            this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
+            this.router.navigate(['/responsable/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_TUTOREMPRESARIAL') {
-            this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
+            this.router.navigate(['/empresarial/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_TUTORACADEMICO') {
-            this.router.navigate(['/administrador']).then(() => { window.location.reload(); });
+            this.router.navigate(['/academico/dashboard']).then(() => { window.location.reload(); });
           } else if (this.idnombrerol === 'ROLE_ESTUDIANTE') {
             this.router.navigate(['/estudiante/dashboard']).then(() => { window.location.reload(); });
           }

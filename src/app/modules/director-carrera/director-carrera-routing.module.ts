@@ -13,6 +13,18 @@ const routes: Routes = [
     path: 'aprobar-estudiantes',
     loadChildren: () => import("./aprobacion-estudiantes/aprobacion-estudiantes.module").then(m => m.AprobacionEstudiantesModule)
 
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () => import("./director-dashboard/director-dashboard.module").then(m => m.DirectorDashboardModule)
+
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () => import("./profile-director/profile-director.module").then(m => m.ProfileDirectorModule)
+
   }
 
 ];
