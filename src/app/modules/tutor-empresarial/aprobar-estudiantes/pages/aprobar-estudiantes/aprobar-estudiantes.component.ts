@@ -15,21 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatStepper } from '@angular/material/stepper';
 import Swal from 'sweetalert2';
 
-export interface Aprobados {
-  nombre: string;
-  fecha: string;
-  carrera: string;
-  esta: string;
 
-}
-
-const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-];
 
 @Component({
   selector: 'app-aprobar-estudiantes',
@@ -50,9 +36,6 @@ export class AprobarEstudiantesComponent implements AfterViewInit{
 
   dColumns: string[] = ['fecha', 'carrera', 'esta', 'sy', 'nombre'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
-
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
 @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;

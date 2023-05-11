@@ -19,6 +19,9 @@ export class UserService {
   getAllUsers(): Observable<any> {
     return this.http.get(API_URL + '/all');
   }
+  listarUsuarios() {
+    return this.http.get<Usuarios[]>(API_URL+'/all');
+  }
 
   getUsuarioListar(idUsuario: any):Observable<UsuarioRol>{
     return this.http.get<UsuarioRol>(API_URL + `/search/ ${idUsuario}`)
@@ -43,6 +46,9 @@ export class UserService {
 
   getRolNombre(correo: any):Observable<string>{
     return this.http.get(API_URL + `/rolnombre/${correo}`, { responseType: 'text' });}
+/// listar usuario por rol
+ buscarUsuarioRol(idrol: any):Observable<Usuarios>{
+  return this.http.get<Usuarios>(API_URL + `/rol/ ${idrol}`)
+}
 
-  // http://localhost:8080/api/user/buscarcedula/
 }
