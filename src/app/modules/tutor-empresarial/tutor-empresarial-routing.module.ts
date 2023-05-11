@@ -61,6 +61,12 @@ const routes: Routes = [
     path: 'reporte-seleccion',
     loadChildren: () => import("./reporte-seleccion/reporte-seleccion.module").then(m => m.ReporteSeleccionModule)
 
+  },
+
+  {
+    path: 'asigna-tutor',
+    loadChildren: () => import("./asigna-especifico/asigna-especifico.module").then(m => m.AsignaEspecificoModule)
+
   }
 
 
