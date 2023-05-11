@@ -13,8 +13,8 @@
         <form [formGroup]="firstFormGroup">
 
           <ng-template matStepLabel>Fase 1</ng-template>
-
-          <mat-card class="example-card" style="margin-top: 60px; width: 700px">
+          <div style="display: flex; justify-content: center; align-items: center;">
+          <mat-card style="box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);" >
             <p style="font-size: 16px"><strong>Datos Personales</strong></p>
 
             <div style="display: flex">
@@ -187,6 +187,7 @@
               </button>
             </div>
           </mat-card>
+        </div>
         </form>
       </mat-step>
 
@@ -194,7 +195,7 @@
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>Fase 2</ng-template>
 
-          <div class="container">
+          <div style="display: flex; justify-content: center; align-items: center;">
             <mat-card class="example-card" style="width: 600px">
               <mat-card-content>
                 <p style="font-size: 16px">
@@ -320,7 +321,7 @@
 
       <mat-step>
         <ng-template matStepLabel>Fase 3</ng-template>
-        <div class="container">
+        <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card
             class="example-card"
             style="text-align: center; width: 500px"
