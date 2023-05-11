@@ -115,7 +115,7 @@ datosTablaAprobados: any[] = [];
         this.idsoli=datasoli.idSolicitudConvocatoria;
         this.fecha = datasoli.fechaEnvio;
         console.log(datasoli);
-        if(datasoli.checkDirector==false){
+        if(datasoli.checkDirector==false && this.idsoli==this.selectedsolicitud){
           this.idestudent = datasoli.estudiantePracticante.idEstudiantePracticas;
           this.EstudiantePracticanteService.getRequestEstudiante(
             this.idestudent).subscribe((datapracticante) => {
@@ -157,7 +157,7 @@ buscarAprobados(id: any) {
       this.idsoliapro=datasoliapro.idSolicitudConvocatoria;
       this.fechaapro = datasoliapro.fechaEnvio;
       console.log(datasoliapro);
-      if(datasoliapro.checkDirector==true){
+      if(datasoliapro.checkDirector==true  && this.idsoli==this.selectedsolicitud){
         this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
         this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
           console.log(datapracticanteApro);
