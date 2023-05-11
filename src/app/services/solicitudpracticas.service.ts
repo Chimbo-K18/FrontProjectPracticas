@@ -51,7 +51,7 @@ export class SolicitudpracticasService {
   }
 
   buscarDocumentSolicitud(idDocument: any): Observable<SolicitudPracticas> {
-    return this.http.get<SolicitudPracticas>(`${this.URL}/convocatoria/documento/${idDocument}`)
+    return this.http.get<SolicitudPracticas>(`${this.URL}buscardocument/documento/${idDocument}`)
   }
 
 
