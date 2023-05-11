@@ -11,6 +11,7 @@
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
 
+
     .download-container {
       display: flex;
       flex-direction: column;
@@ -70,14 +71,12 @@ background-color: rgba(0, 0, 0, 0);
 }
 
 mat-card{
-  width: 625px;
-  margin-block-end: 12px;
+  width: 690px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
-mat-card{
-  width: 625px;
-  margin-block-end: 12px;
-}
+
 
 
 h1{

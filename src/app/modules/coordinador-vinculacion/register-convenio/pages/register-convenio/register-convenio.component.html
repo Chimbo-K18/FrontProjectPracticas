@@ -14,7 +14,13 @@
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Fase 1</ng-template>
 
-          <mat-form-field
+          
+          <div style="display: flex; justify-content: center; align-items: center;">
+
+            <mat-card style="width: 750px; margin-top: 25px">
+
+
+              <mat-form-field
             class="example-full-width"
             style="width: 600px; color: #000"
           >
@@ -25,10 +31,6 @@
               [formControl]="searchControl"
             />
           </mat-form-field>
-          <div
-            style="display: flex; flex-direction: column; align-items: center"
-          >
-            <mat-card style="width: 750px; margin-top: 25px">
               <table
                 mat-table
                 [dataSource]="dataSource"
@@ -110,8 +112,8 @@
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>Fase 2</ng-template>
 
-          <div class="container">
-            <mat-card class="example-card" style="width: 700px">
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <mat-card class="example-card" style="width: 800px">
               <mat-card-content>
                 <h1 style="text-align: center">Datos Convenio</h1>
 
@@ -124,16 +126,9 @@
                       <mat-label>Número Convocatoria:</mat-label>
                       <input  matInput placeholder="numeroConvenio:" formControlName="secondCtrl" required [(ngModel)]="numcon" name="numeroConvenio"/>
                     </mat-form-field>
-                    <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
-                      <mat-label>Fecha de Elaboración:</mat-label>
-                      <input matInput [matDatepicker]="picker"  [(ngModel)]="fechaela" name="fechaElaboracion" (dateChange)="onDateChange($event)">
-                      <mat-hint>MM/DD/YYYY</mat-hint>
-                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                  </div>
 
-                  <mat-form-field
+
+                    <mat-form-field
                     appearance="fill"
                     style="margin-right: 20px; width: 300px"
                   >
@@ -141,11 +136,29 @@
                     <input matInput placeholder="numeroItv:" formControlName="secondCtrl" required [(ngModel)]="numitv" name="numeroItv"/>
                   </mat-form-field>
                 </div>
+                    
+                  </div>
+
+                  
+
+                 
+
+                
 
                 <div>
+
+                  <mat-form-field appearance="fill" style="margin-right: 10px; width: 300px">
+                    <mat-label>Fecha de Elaboración:</mat-label>
+                    <input matInput [matDatepicker]="picker"  [(ngModel)]="fechaela" name="fechaElaboracion" (dateChange)="onDateChange($event)">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+
+
                   <mat-form-field
                     appearance="fill"
-                    style="margin-right: 50px; width: 300px"
+                    style="margin-right: 50px; width: 600px"
                   >
                     <mat-label>Descripción:</mat-label>
                     <input
@@ -178,7 +191,7 @@
 
       <mat-step>
         <ng-template matStepLabel>Fase 3</ng-template>
-        <div class="container">
+        <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card class="example-card">
             <h1 style="text-align: left">Datos Personales</h1>
             <div style="display: flex">
@@ -217,26 +230,31 @@
               >
                 Back
               </button>
-              <button style="margin-right: 12px" mat-raised-button color="warn" (click)="crearconvenio()">
+              <button style="margin-right: 12px" mat-raised-button color="primary" (click)="crearconvenio()">
                 Aceptar
               </button>
-              <button
-                mat-raised-button
-                color="primary"
-                (click)="stepper.reset()"
-              >
-                Reset
-              </button>
+              
             </div>
           </mat-card>
         </div>
+
     </mat-step>
 
 
     <mat-step  [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Subir Documento</ng-template>
+        <div style="display: flex; justify-content: center; align-items: center;">
+        <mat-card>
         <div class="download-container">
+
+          
+          <h1><strong>DESCARGAR EL OFICIO </strong></h1>
+              <p style="text-align: center">
+                Auna vez se descargue el oficio, posteriormente debera firmarlo y
+                <br />
+                nuevamente la subira en el formato pdf.
+              </p>
           <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
           <button mat-raised-button color="primary"(click)="inputFile.click()" >
             <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
@@ -244,12 +262,19 @@
           <div class="instructions">
             Haz clic en el botón para cargar el documento
           </div>
+        
         </div>
-
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Finalizar</button>
+        <div style="text-align: center">
+              
+          <button style="margin-right: 12px" mat-raised-button color="warn">
+            Finalizar
+          </button>
+          
         </div>
+      </mat-card>
+        
+    </div>
+      
       </form>
 
     </mat-step>
