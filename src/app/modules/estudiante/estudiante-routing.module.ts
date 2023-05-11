@@ -13,6 +13,18 @@ const routes: Routes = [
     path: 'detalle-practica',
     loadChildren: () => import("./detalles-practica/detalles-practica.module").then(m => m.DetallesPracticaModule)
 
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () => import("./dashboard-estudiante/dashboard-estudiante.module").then(m => m.DashboardEstudianteModule)
+
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () => import("./profile-estudiante/profile-estudiante.module").then(m => m.ProfileEstudianteModule)
+
   }
 
 ];

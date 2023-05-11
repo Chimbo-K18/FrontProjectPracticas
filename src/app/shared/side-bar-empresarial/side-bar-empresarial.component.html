@@ -16,34 +16,42 @@
     <h3>{{ user_final}}</h3>
   </div>
   <li>
-    <a href="/admin/dashboard" class="active">
+    <a href="/empresarial/dashboard" class="active">
       <i class="fas fa-qrcode"></i>
       <span style="font-size: 12px; font-family: 'Open Sans', sans-serif;">Dashboard</span>
     </a>
   </li>
 
   <li class="dropdown">
-    <a href="#">Registros</a>
+    <a>Solicitud Prácticas</a>
     <ul class="submenu">
-      <li><a href="/administrador/register-coord-vinculacion">Coordinador Vinculación</a></li>
-      <li><a href="/administrador/register-responsable">Responsable PPP</a></li>
-      <li><a href="/administrador/register-director">Director Carrera</a></li>
+      <li><a href="/empresarial/solicitud-practicas">Enviar Solicitud</a></li>
     </ul>
   </li>
 
   <li class="dropdown">
-    <a href="#">Reportes</a>
+    <a>Reportes</a>
     <ul class="submenu">
-      <li><a href="/administrador/lista-coordinador">Lista Coordinadores</a></li>
-      <li><a href="/administrador/lista-responsable">Lista Responsables</a></li>
-      <li><a href="/administrador/lista-director">Lista Directores</a></li>
+      <li><a href="/empresarial/lista-soli-enviadas">Solicitudes Enviadas</a></li>
+      <li><a href="/empresarial/lista-aprobadas">Solicitudes Aprobadas</a></li>
     </ul>
   </li>
 
   <li class="dropdown">
-    <a href="#">Cuenta</a>
+    <a>Estudiantes</a>
     <ul class="submenu">
-      <li><a href="/administrador/profile">Mi Perfil</a></li>
+      <li><a href="/empresarial/estudiantes-aprobados">Aprobados</a></li>
+      <li><a href="/empresarial/reporte-seleccion">Generar Pre Selección</a></li>
+      <li><a href="/empresarial/asignar-horario">Asignar Horario</a></li>
+
+    </ul>
+  </li>
+
+
+  <li class="dropdown">
+    <a>Cuenta</a>
+    <ul class="submenu">
+      <li><a href="/empresarial/profile">Mi Perfil</a></li>
       <li><a href="/auth/sign-in">Cerrar Sesión</a></li>
     </ul>
   </li>

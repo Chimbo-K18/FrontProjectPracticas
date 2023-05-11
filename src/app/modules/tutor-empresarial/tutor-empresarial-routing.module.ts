@@ -37,7 +37,32 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import("./empresarial-dashboard/empresarial-dashboard.module").then(m => m.EmpresarialDashboardModule)
 
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () => import("./profile-empresarial/profile-empresarial.module").then(m => m.ProfileEmpresarialModule)
+
+  },
+
+  {
+    path: 'lista-aprobadas',
+    loadChildren: () => import("./lista-soli-aprobadas/lista-soli-aprobadas.module").then(m => m.ListaSoliAprobadasModule)
+
+  },
+
+  {
+    path: 'estudiantes-aprobados',
+    loadChildren: () => import("./lista-estudiantes-aprobados/lista-estudiantes-aprobados.module").then(m => m.ListaEstudiantesAprobadosModule)
+
+  },
+
+  {
+    path: 'reporte-seleccion',
+    loadChildren: () => import("./reporte-seleccion/reporte-seleccion.module").then(m => m.ReporteSeleccionModule)
+
   }
+
 
 ];
 
