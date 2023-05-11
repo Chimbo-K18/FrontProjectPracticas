@@ -10,7 +10,8 @@
 </head>
 
 <body class="bodyL">
-
+  <div style="display: flex; justify-content: center; align-items: center;">
+    
   <mat-card class="example-card" style="width: 700px;">
 
     <h1> <strong>Registro de Empresa </strong></h1>
@@ -60,20 +61,32 @@
           <textarea [(ngModel)]="empresa.descripcion" matInput maxlength="300" placeholder="Descripcion..."></textarea>
         </mat-form-field>
 
+        
+
       </div>
 
     </div>
 
-    <div style="text-align: center;">
-      <button mat-raised-button color="primary" (click)="crearEmpresa()"   (click)="LimpiarCampos()">Registrar Empresa</button>
-    </div>
+<div style="text-align: center;">
+  <button  mat-raised-button color="warn" (click)="crearEmpresa()"   (click)="LimpiarCampos()">Registrar Empresa</button>
 
-    <div style="text-align: center;">
-      <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas" >Listados</button>
-    </div>
+</div>
+
+
+<div style="text-align: center; margin-top: 10px;">
+  <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas" >Listados</button>
+
+</div>
+
+
+
+
+
+ 
 
 
   </mat-card>
+</div>
 
 
 

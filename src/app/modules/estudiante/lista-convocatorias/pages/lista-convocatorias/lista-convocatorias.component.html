@@ -199,10 +199,25 @@
       </mat-step>
 
 
-      <mat-step [stepControl]="secondFormGroup" optional>
+      <mat-step  >
         <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Imprimir Archivo</ng-template>
+          <ng-template matStepLabel>Fase 3</ng-template>
+          <div style="display: flex; justify-content: center; align-items: center;">
+
+          <mat-card>
+          
+
+
+          <h1><strong>DESCARGAR EL OFICIO </strong></h1>
+            <p style="text-align: center">
+              Auna vez se descargue el oficio, posteriormente debera firmarlo y
+              <br />
+              nuevamente la subira en el formato pdf.
+            </p>
           <div class="download-container">
+
+
+
             <button mat-raised-button color="primary" (click)="descargarPDF()">
               <mat-icon>get_app</mat-icon> Descargar Archivo
             </button>
@@ -210,16 +225,20 @@
               Haz clic en el botón para descargar el documento
             </div>
           </div>
-          <div class="stepper-buttons">
-            <button mat-button matStepperPrevious>Anterior</button>
-            <button mat-button matStepperNext>Siguiente</button>
+          <div style="text-align: center;">
+            <button mat-raised-button matStepperPrevious color="primary" style="margin-right: 20px;">Anterior</button>
+            <button mat-raised-button matStepperNext color="primary">Siguiente</button>
           </div>
+
+        </mat-card>
+      </div>
         </form>
 
       </mat-step>
 
       <mat-step>
-        <ng-template matStepLabel>Fase 3</ng-template>
+        <ng-template matStepLabel>Fase 4</ng-template>
+        <div style="display: flex; justify-content: center; align-items: center;">
 
           <mat-card>
             <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
@@ -239,16 +258,7 @@
               </div>
             </div>
 
-            <div
-              style="
-                margin-top: 5px;
-                text-align: center;
-                max-width: 600px;
-                margin-block-end: 25px;
-              "
-            >
-              <button mat-button><strong>SUBIR EL ARCHIVO PDF</strong></button>
-            </div>
+            
 
             <div style="text-align: center">
               <button
@@ -271,6 +281,7 @@
               </button>
             </div>
           </mat-card>
+        </div>
       </mat-step>
     </mat-stepper>
   </body>

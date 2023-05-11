@@ -173,6 +173,12 @@
 
               
 
+              <div style="text-align: center;">
+
+                <button mat-raised-button color="primary">Asignar</button>
+  
+              </div>
+
 
               
               
@@ -186,6 +192,15 @@
                 <option value="">Seleccione una carrera</option>
                 <option value="">Seleccione una carrera</option>
               </select>
+
+              <div style="text-align: center;">
+
+                <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario2">
+                  <mat-icon>add</mat-icon>Crear Usuario </button>
+  
+              </div>
+
+              
               
             </div>
 
@@ -318,6 +333,85 @@
             <div style="text-align: center;">
 
               <button mat-flat-button color="warn">GENERAR </button>
+
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- MODAL 2  -->
+
+  <div class="modal" id="modal-formulario2" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="container">
+
+        <div class="modal-content">
+          
+          <div class="container">
+           
+           
+            <div class="modal-header">
+                <h1> <strong>Creacion de usuario</strong> </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+            <div style="display: flex; flex-direction: column; margin-top: 20px;">
+                
+
+                <!-- <div style="color: black;">
+                  <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
+                    <mat-label>Nombre Usuario</mat-label>
+                    <input matInput type="username" name="username" placeholder="Ingrese su correo"required >
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;" >
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password"   name="username" placeholder="Ingrese su contraseña" required>
+                  </mat-form-field>
+                  <h3> <strong>Rol: </strong>Tutor Academico </h3>
+                </div>  -->
+
+
+         
+                <div style="display: flex; align-items: center;">
+                  <div style="color: black;" >
+                    <div><mat-form-field appearance="outline" class="example-full-width"style=" width: 300px;" >
+                      <mat-label>Nombre Usuario</mat-label>
+                      <input matInput type="username" name="username" placeholder="Ingrese su correo"required  >
+                    </mat-form-field>
+                    </div>
+                    <mat-form-field appearance="outline" class="example-full-width"  style=" width: 300px;">
+                      <mat-label>Password</mat-label>
+                      <input matInput type="password"   name="username" placeholder="Ingrese su contraseña" required >
+                    </mat-form-field>
+                    <h3 style="margin-top: 10px;" > <strong>Rol: </strong>Tutor Academico </h3>
+                  </div>
+                
+                  <div style="margin-left: 60px; color: black; text-align: center;">
+                    <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="Imagen de usuario" style="width: 200px; height: 200px; border-radius: 100px;">
+                    <h3 style="margin-top: 10px;"> <strong>Nombre: </strong>Pedro Ramirez </h3>
+                  </div>
+                </div>
+
+     
+
+                
+
+
+              </div>
+
+            <div style="text-align: center;">
+
+              <button mat-flat-button color="warn" >Crear </button>
 
             </div>
 
