@@ -27,11 +27,6 @@ const routes: Routes = [
 
   },
 
-  {
-    path: 'aprobar-estudiante',
-    loadChildren: () => import("./aprobar-estudiantes/aprobar-estudiantes.module").then(m => m.AprobarEstudiantesModule)
-
-  },
 
   {
     path: 'dashboard',

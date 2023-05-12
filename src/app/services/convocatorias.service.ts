@@ -27,6 +27,10 @@ export class ConvocatoriasService {
     return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
   }
 
+  listarPorestadoConvocatoria(){
+    return this.http.get<Convocatorias[]>(this.API_URL+'/practicas');
+  }
+
 
   buscardoc(iddoc: any): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/convocatoria/documento/${iddoc}`)
