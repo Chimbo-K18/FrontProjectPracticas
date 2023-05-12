@@ -15,15 +15,29 @@
         <mat-step>
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Fase 1</ng-template>
-                <div style="display: flex; justify-content: center; align-items: center;">
+                <div style="justify-content: center; align-items: center;">
                     <mat-card>
-                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <div class="tbConteiner">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+                        style="
+                          margin-top: 25px;
+                          width: 1350px;
+                          overflow-x: auto;
+                          white-space: nowrap;
+                        ">
                             <!-- Position Column -->
                             <ng-container matColumnDef="nombreconvocatoria">
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre Convocatoria </th>
                                 <td mat-cell *matCellDef="let convocatorias"> {{convocatorias.nombreConvocatoria}} </td>
                             </ng-container>
 
+                            <ng-container matColumnDef="nombresoli">
+                                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre Solicitud </th>
+                                <td mat-cell *matCellDef="let convocatorias"> {{convocatorias.solicitudPracticas.nombreSolicitud
+                                }}</td>
+                            </ng-container>
+
+                    
 
                             <ng-container matColumnDef="fechapublicacion">
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha publicación </th>
@@ -35,11 +49,14 @@
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Expiración </th>
                                 <td mat-cell *matCellDef="let convocatorias"> {{convocatorias.fechaExpiracion}}</td>
                             </ng-container>
-
+                     
                             <ng-container matColumnDef="estadoConvocatoria">
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-                                <td mat-cell *matCellDef="let convocatorias"> {{convocatorias.estadoConvocatoria}}</td>
-                            </ng-container>
+                                <td mat-cell *matCellDef="let convocatorias">
+                                  <span *ngIf="convocatorias.estadoConvocatoria; else noAprobado"> Aprobada</span>
+                                  <ng-template #noAprobado>Pendiente</ng-template>
+                                </td>
+                              </ng-container>
                             <!-- Symbol Column -->
                             <ng-container matColumnDef="opciones">
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitudes </th>
@@ -50,6 +67,7 @@
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
+                        </div>
                         <mat-paginator #paginator1 [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons aria-label="Select page of periodic elements">
                         </mat-paginator>
                     </mat-card>
@@ -98,14 +116,15 @@
                      
                                 <ng-container matColumnDef="opciones" bol>
                                     <th mat-header-cell *matHeaderCellDef style="text-align: center;">Aprobar</th>
-                                    <td mat-cell *matCellDef="let datosTabla"> <button mat-raised-button color="primary" matStepperNext (click)="selectedestudinate(datosTabla.id)">Aprobar</button></td>
+                                    <td mat-cell *matCellDef="let datosTabla"> <button mat-raised-button color="primary" (click)="selectedestudinate(datosTabla.id)">Aprobar</button></td>
 
                                 </ng-container>
                                 <tr mat-header-row *matHeaderRowDef="['id','nombres', 'apellidos', 'carrera','fecha','solis','opciones']"></tr>
                                 <tr mat-row *matRowDef="let row; columns: ['id','nombres', 'apellidos', 'carrera','fecha','solis','opciones']"></tr>
-                                <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
-                                </mat-paginator>
+                     
                             </table>
+                            <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
+                            </mat-paginator>
                         </ng-container>
                         
                         </div>
@@ -150,7 +169,7 @@
                             </ng-container>
                         </div>
                         <div style="margin-top:25px; text-align: center;">
-                            <button style="margin-right: 12px"mat-raised-button color="primary" matStepperPrevious>
+                            <button style="margin-right: 12px"mat-raised-button color="primary" matStepperPrevious (click)="refreshPage()">
                             Back </button>
                         </div>
                     </mat-card>
