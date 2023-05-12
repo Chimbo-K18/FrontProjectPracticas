@@ -18,4 +18,8 @@ export class CarreraService {
   getCarreras(){
     return this.http.get<verCarreras[]>(this.urlFenix + '/nombrescarrera');
   }
+
+  getDocentes(){
+    return this.http.get<Verdocentef[]>(this.urlFenix + '/nombresdocentes');
+  }
 }

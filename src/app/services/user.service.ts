@@ -23,6 +23,8 @@ export class UserService {
     return this.http.get<Usuarios[]>(API_URL+'/all');
   }
 
+
+
   getUsuarioListar(idUsuario: any):Observable<UsuarioRol>{
     return this.http.get<UsuarioRol>(API_URL + `/search/ ${idUsuario}`)
   }
@@ -49,6 +51,10 @@ export class UserService {
 /// listar usuario por rol
  buscarUsuarioRol(idrol: any):Observable<Usuarios>{
   return this.http.get<Usuarios>(API_URL + `/rol/ ${idrol}`)
+}
+
+buscarUsuarioPorRol(){
+  return this.http.get<Usuarios>(API_URL +`/rolacademico`)
 }
 
 }

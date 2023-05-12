@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, ViewChild } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {FormGroup, FormControl} from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
@@ -24,11 +24,11 @@ export interface Aprobados {
 }
 
 const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
+  { nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado' },
 ];
 
 @Component({
@@ -38,13 +38,14 @@ const AP: Aprobados[] = [
 })
 
 
-export class AsignarHorarioComponent  implements AfterViewInit{
+export class AsignarHorarioComponent implements AfterViewInit {
 
 
-  practicasSolicitud: SolicitudPracticas[] = [] ;
+
   mivariable !: any;
   listaSolicitudesAprobadas: any;
   practica: Practica = new Practica();
+  solicitudpractica: SolicitudPracticas = new SolicitudPracticas();
   solicitudconvocatoria: SolicitudConvocatoria = new SolicitudConvocatoria();
   //TABLA
   displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
@@ -56,8 +57,8 @@ export class AsignarHorarioComponent  implements AfterViewInit{
   diColumns: string[] = ['nombre', 'fecha', 'carrera', 'estafin', 'sy'];
   datam = new MatTableDataSource<Practica>([]);
 
-  @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
-@ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
+  @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -90,30 +91,57 @@ export class AsignarHorarioComponent  implements AfterViewInit{
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private userService: UserService ,private tutorempresarialService:tutorempresarialService, private solicitudPracticas : SolicitudpracticasService, private solicitudconvocatoriaservice: SolicitudConvocatoriasService, private practicaservice: PracticaService,
-    private solicitudService : SolicitudConvocatoriasService) { }
+  constructor(private _formBuilder: FormBuilder, private userService: UserService, private tutorempresarialService: tutorempresarialService, private solicitudPracticas: SolicitudpracticasService, private solicitudconvocatoriaservice: SolicitudConvocatoriasService, private practicaservice: PracticaService,
+    private solicitudService: SolicitudConvocatoriasService) { }
 
   ngOnInit(): void {
 
     this.listarSolicitudesAprobadasPracticas();
   }
 
+  estadosoli: any;
+  idsolienc: any;
+  Ceduss: any;
+  dataUs: any;
+  dataSolicitud: any;
+  idsoliG: any;
+  id: any;
+  datatutorEmps: any
+  practicasSolicitudesd: any[] = [];
   listarSolicitudesAprobadasPracticas() {
-    this.solicitudPracticas.getSolicitudesEstado().subscribe(
-      (res) => {
-        this.practicasSolicitud = res;
-        console.log(res);
+    this.Ceduss = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.Ceduss)
+    console.log("ID seleccionado:", this.mivariable);
+    this.userService.getuscedula(this.Ceduss).subscribe(dataUserEncon => {
+      this.tutorempresarialService.extraerEmpresarialIdUsuario(dataUserEncon.idUsuario).subscribe(dataTutor => {
+        console.log("esta es la dat del tuto");
+        console.log(dataTutor);
+        this.datatutorEmps = dataTutor.empresa.idEmpresa;
+        console.log(this.datatutorEmps);
+        this.solicitudPracticas.getBuscarPorEmpresa(this.datatutorEmps).subscribe(dataporempresa => {
+          console.log(dataporempresa);
+      this.practicasSolicitudesd = [];
+      dataporempresa.forEach((practica: Practica) => {
+        this.practicasSolicitudesd.push(practica);
+      });
+      // Asignar la lista al datasource de la tabla
+      this.dataF1.data = this.practicasSolicitudesd;
+      console.log(this.practicasSolicitudesd);
 
-        this.dataF1.data = this.practicasSolicitud
-      }
-    );
+        }
+        );
+      });
+    });
+
+
+
   }
 
 
-  listassolicitudesll:any []=[];
-  listassolicitudeslltrue:any []=[];
+  listassolicitudesll: any[] = [];
+  listassolicitudeslltrue: any[] = [];
   traerconvocatoria(idconvocatoria: any) {
-    this.solicitudconvocatoriaservice.Solicitudestudiantestruepractica(idconvocatoria).subscribe((dataconvo)  => {
+    this.solicitudconvocatoriaservice.Solicitudestudiantestruepractica(idconvocatoria).subscribe((dataconvo) => {
       // Guardar los datos en la lista
       this.listassolicitudesll = [];
       dataconvo.forEach((solicitud: SolicitudConvocatoria) => {
@@ -153,11 +181,11 @@ export class AsignarHorarioComponent  implements AfterViewInit{
 
   }
 
-  idsoli:any;
-  datasoli:any;
-  Captirarid(idsoliconvo: any){
-this.idsoli = idsoliconvo;
-console.log(this.idsoli);
+  idsoli: any;
+  datasoli: any;
+  Captirarid(idsoliconvo: any) {
+    this.idsoli = idsoliconvo;
+    console.log(this.idsoli);
     this.solicitudconvocatoriaservice.getRequestSolicitudconvo(idsoliconvo).subscribe(datasoliconvo => {
       console.log(datasoliconvo);
       this.datasoli = datasoliconvo;
@@ -165,16 +193,16 @@ console.log(this.idsoli);
 
     });
   }
-  Cedus:any;
-  datatutorEmp:any;
-  Asignarhorario(){
+  Cedus: any;
+  datatutorEmp: any;
+  Asignarhorario() {
     this.solicitudconvocatoriaservice.getRequestSolicitudconvo(this.idsoli).subscribe(datasoliconvo => {
       console.log(datasoliconvo);
       this.solicitudconvocatoria = datasoliconvo;
       this.solicitudconvocatoria.checkPractica = true;
-      this.solicitudconvocatoriaservice.updateSolicitudConvocatoria(this.solicitudconvocatoria, this.idsoli).subscribe(datasoliactu =>{
+      this.solicitudconvocatoriaservice.updateSolicitudConvocatoria(this.solicitudconvocatoria, this.idsoli).subscribe(datasoliactu => {
         console.log(datasoliactu);
-        this.datasoli= datasoliactu;
+        this.datasoli = datasoliactu;
         this.practica.solicitudConvocatoria = this.datasoli;
         this.practica.checkEmpresarial = true;
         const fechainicio = document.getElementById(
@@ -182,25 +210,25 @@ console.log(this.idsoli);
         ) as HTMLInputElement;
         this.practica.fechaInicio = fechainicio.value;
         console.log(this.practica.fechaInicio);
-    
+
         const fechafinal = document.getElementById(
           'fechafinal'
         ) as HTMLInputElement;
         this.practica.fechaFin = fechafinal.value;
         console.log(this.practica.fechaFin);
-    
+
         const horainicio = document.getElementById(
           'horainicio'
         ) as HTMLInputElement;
         this.practica.horaInicio = horainicio.value;
         console.log(this.practica.horaInicio);
-    
+
         const horafin = document.getElementById(
           'horafin'
         ) as HTMLInputElement;
         this.practica.horaSalida = horafin.value;
         console.log(this.practica.horaSalida);
-        this.practicaservice.crearPractica(this.practica).subscribe(datapractica =>{
+        this.practicaservice.crearPractica(this.practica).subscribe(datapractica => {
           console.log(datapractica);
           Swal.fire({
             position: 'top',
@@ -209,27 +237,27 @@ console.log(this.idsoli);
             showConfirmButton: false,
             timer: 2000,
           });
-          
+
         });
       });
 
 
     });
 
-    
+
   }
 
-  listaspracticastrue:any []=[];
-  listarpracticas(){
-    this.practicaservice.listarPracticaEstudiante().subscribe(datapracticaestu =>{
+  listaspracticastrue: any[] = [];
+  listarpracticas() {
+    this.practicaservice.listarPracticaEstudiante().subscribe(datapracticaestu => {
       this.listaspracticastrue = datapracticaestu;
       this.datam.data = this.listaspracticastrue;
       console.log(this.listaspracticastrue);
     });
-      
+
   }
 
-  
+
 
 
 

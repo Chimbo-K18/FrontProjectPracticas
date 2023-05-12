@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Convenio } from 'src/app/models/convenios';
+import { DetalleConvenio } from 'src/app/models/detalleconvenio';
+import { ConveniosService } from 'src/app/services/convenios.service';
+import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service';
+
+
 
 export interface PeriodicElement {
   name: string;
@@ -28,9 +34,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListaConveniosComponent implements  OnInit {
 
-  
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  convenios: DetalleConvenio[] = [];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'ab', 'colum'];
+  dataSource = new MatTableDataSource<DetalleConvenio>(this.convenios);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -38,9 +45,29 @@ export class ListaConveniosComponent implements  OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private convenioService: DetalleconvenioService) { }
 
   ngOnInit(): void {
+
+    this.obtenerConvenios();
+
+  }
+
+  obtenerConvenios() {
+    this.convenioService.getDetalleConvenio()
+      .subscribe(
+        (convenios: DetalleConvenio[]) => {
+          this.convenios = convenios;
+
+          console.log(this.convenios)
+          this.dataSource = new MatTableDataSource<DetalleConvenio>(this.convenios);
+
+
+        },
+        error => {
+          // Manejo de errores, si es necesario
+        }
+      );
   }
 
 }

@@ -23,6 +23,10 @@ export class PracticaService {
     return this.http.get<Practica>(this.url + `/buscar/${id}`);
   }
 
+  buscarPorconvocatoria(id: any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/convocatoriaspractica/${id}`);
+  }
+
   UpdatePractica(practica: Practica, idPractica:any){
     return this.http.put<Practica>(this.url+`/actualizar/${idPractica}`, practica);
   }
@@ -30,6 +34,11 @@ export class PracticaService {
   listarPracticaEstudiante(): Observable<Practica[]>{
     return this.http.get<Practica[]>(this.url+'/aprobadas')
   }
+
+  updateDocumentoAsigTutor(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.url}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  }
+
 
   // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{
   //   return this.http.put<Empresa>(this.url + `/actualizar/${id}`, empresa);

@@ -22,41 +22,44 @@
               <h1 style="text-align: center;"> Listado convocatorias </h1>
 
               <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
 
               <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-                <!-- Position Column --> 
+                <!-- Position Column -->
                 <ng-container matColumnDef="position">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Convocatoria</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.idSolicitudPracticas}} </td>
+                  <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.nombreConvocatoria}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Publicacion </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaEnvioSolicitud}} </td>
+                  <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.fechaPublicacion}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="weight">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaAceptacion}}</td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Actividades </th>
+                  <td mat-cell *matCellDef="let listaconvocatoria">
+                    {{listaconvocatoria.solicitudPracticas.descripcionActividades}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="estado">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitudes </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.estadoSolicitud}}</td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Empresa </th>
+                  <td mat-cell *matCellDef="let listaconvocatoria">
+                    {{listaconvocatoria.solicitudPracticas.tutorEmpresarial.empresa.nombreEmpresa}}</td>
                 </ng-container>
                 <!-- Symbol Column -->
 
                 <ng-container matColumnDef="symbol" bol>
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Solicitudes</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> <button mat-raised-button color="primary"
-                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)">Aprobar</button></td>
+                  <td mat-cell *matCellDef="let listaconvocatoria"> <button mat-raised-button color="primary"
+                      matStepperNext
+                      (click)="seleccionarConvocatoria(listaconvocatoria.idConvocatorias)">Seleccionar</button></td>
 
                 </ng-container>
 
@@ -86,30 +89,32 @@
               <h1 style="text-align: left;"> Listado de Solicitudes </h1>
 
               <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
               <table mat-table [dataSource]="dataTabla" class="mat-elevation-z8">
                 <!-- Position Column -->
 
 
                 <!-- Name Column -->
-                <ng-container matColumnDef="fecha">
+                <ng-container matColumnDef="nombre">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> {{listaSolicitudesAprobadas.fechaAprobacion}} </td>
+                  <td mat-cell *matCellDef="let listapraacticas">
+                    {{listapraacticas.solicitudConvocatoria?.estudiantePracticante.usuario_estudiante_practicante?.nombres}}
+                  </td>
                 </ng-container>
 
                 <!-- Weight Column -->
-                <ng-container matColumnDef="carrera">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Jornada </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> DATO 1</td>
+                <ng-container matColumnDef="fechainicio">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha inicio </th>
+                  <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.fechaInicio}}</td>
                 </ng-container>
 
-                <ng-container matColumnDef="esta">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas">DATO 1</td>
+                <ng-container matColumnDef="fechafin">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
+                  <td mat-cell *matCellDef="let listapraacticas">{{listapraacticas.fechaFin}}</td>
                 </ng-container>
                 <!-- Symbol Column -->
 
@@ -119,17 +124,22 @@
                 <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
                 <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
 
-                <ng-container matColumnDef="sy" bol>
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Asignar Tutor </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"><button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
-                    <mat-icon>edit</mat-icon> </button></td>
 
+                <ng-container matColumnDef="horainicio">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
+                  <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaInicio}} </td>
                 </ng-container>
 
-                
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Asignar Tutor</th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> dato2 </td>
+                <ng-container matColumnDef="horafin">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora fin</th>
+                  <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaSalida}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sy" bol>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Asignar Tutor </th>
+                  <td mat-cell *matCellDef="let llevarpracticas"><button mat-raised-button color="primary"
+                      matStepperNext (click)="llevarpractica(llevarpracticas.idPractica)">Asignar</button></td>
+
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
                 <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
@@ -139,17 +149,17 @@
               </mat-paginator>
             </div>
             <div style="margin-top:25px; text-align: center;">
-                <button mat-raised-button color="primary">IR A LISTADO FINAL</button>
+              <button mat-raised-button color="primary" matStepperPrevious>Regresar</button>
 
 
-                <!-- BOTON SI QUIERES PROVAR  EL MODAL  -->
-                <!-- <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
+              <!-- BOTON SI QUIERES PROVAR  EL MODAL  -->
+              <!-- <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
                     <mat-icon>edit</mat-icon> </button> -->
 
-                
-              </div>
+
+            </div>
           </mat-card>
-          
+
         </div>
       </form>
 
@@ -163,52 +173,55 @@
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
             <div>
-              <h1 style="text-align: left;"> LISTADO  TUTOR ACADEMICO </h1>
+              <h1 style="text-align: left;"> LISTADO TUTOR ACADEMICO </h1>
 
-              <select id="materias" name="materias">
-                <option value="">Seleccione una carrera</option>
-                <option value="">Seleccione una carrera</option>
-                <option value="">Seleccione una carrera</option>
+              <select id="docentes" name="docentes" [(ngModel)]="tutorrolselectRol" (change)="onSelectTutorRol($event)">
+                <option value="">Seleccione un Tutor</option>
+                <option *ngFor="let tutorrol of listadocentesporrol" [value]="tutorrol.cedula">{{tutorrol.nombres}}
+                  {{tutorrol.apellidos}}</option>
               </select>
 
-              
 
               <div style="text-align: center;">
 
-                <button mat-raised-button color="primary">Asignar</button>
-  
+                <button mat-raised-button color="primary" (click)="AsignarTutorAcademico()"
+                  matStepperNext>Asignar</button>
+
               </div>
 
 
-              
-              
+
+
             </div>
 
             <div>
               <h1 style="text-align: left;"> LISTADO DE DOCENTES </h1>
 
-              <select id="materias" name="materias">
-                <option value="">Seleccione una carrera</option>
-                <option value="">Seleccione una carrera</option>
-                <option value="">Seleccione una carrera</option>
+
+              <select id="materias" name="materias" [(ngModel)]="tutorselect" (change)="onSelectTutor($event)">
+                <option value="">Seleccione un Tutor</option>
+                <option *ngFor="let tutor of listadocentes" [value]="tutor.cedula">{{tutor.nombres}} {{tutor.apellidos}}
+                </option>
               </select>
+
 
               <div style="text-align: center;">
 
-                <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario2">
+                <button mat-raised-button color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario2"
+                  (click)="TraerUsuario()">
                   <mat-icon>add</mat-icon>Crear Usuario </button>
-  
+
               </div>
 
-              
-              
+
+
             </div>
 
 
-            
+
           </mat-card>
 
-         
+
         </div>
       </form>
 
@@ -222,13 +235,13 @@
           <mat-card>
 
             <h1><strong>DESCARGAR EL OFICIO </strong></h1>
-              <p style="text-align: center">
-                Auna vez se descargue el oficio, posteriormente debera firmarlo y
-                <br />
-                nuevamente la subira en el formato pdf.
-              </p>
+            <p style="text-align: center">
+              Auna vez se descargue el oficio, posteriormente debera firmarlo y
+              <br />
+              nuevamente la subira en el formato pdf.
+            </p>
             <div class="download-container">
-              <button mat-raised-button color="primary" >
+              <button mat-raised-button color="primary" (click)="descargarPDF()">
                 <mat-icon>get_app</mat-icon> Descargar Archivo
               </button>
               <div class="instructions">
@@ -238,10 +251,10 @@
             <div style="margin-top:25px; text-align: center;">
               <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
               <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
-          </div>
+            </div>
 
 
-            
+
           </mat-card>
         </div>
       </form>
@@ -262,8 +275,8 @@
               nuevamente la subira en el formato pdf.
             </p>
             <div class="download-container">
-              <input name="file" id="file" type="file" #inputFile hidden>
-              <button mat-raised-button color="primary"(click)="inputFile.click()" >
+              <input name="file" id="file" (change)="upload($event)" type="file" #inputFile hidden>
+              <button mat-raised-button color="primary" (click)="inputFile.click()">
                 <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
               </button>
               <div class="instructions">
@@ -272,16 +285,16 @@
             </div>
 
             <div style="text-align: center">
-              
+
               <button style="margin-right: 12px" mat-raised-button color="warn">
                 Finalizar
               </button>
-              
+
             </div>
-            
 
 
-            
+
+
           </mat-card>
         </div>
       </form>
@@ -291,44 +304,44 @@
 
 
 
-<!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
-<!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
-<!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
-<!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
+  <!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
+  <!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
+  <!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
+  <!-- EL MODAL EL BUSCAR NO ES NECESARIO PERO LO PUSE POR SI ACASO  -->
 
   <div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
     <div class="modal-dialog">
       <div class="container">
 
         <div class="modal-content">
-          
+
           <div class="container">
-           
-           
+
+
             <div class="modal-header">
-                <h1>Docente</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+              <h1>Docente</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
             <div style="display: flex; flex-direction: column; margin-top: 20px;">
-                <mat-form-field class="example-full-width" style="width: 500px;">
-                  <mat-label>Buscar</mat-label>
-                  <input style="color: black;" matInput placeholder="Ingrese nombre o cedula">
-                </mat-form-field>
+              <mat-form-field class="example-full-width" style="width: 500px;">
+                <mat-label>Buscar</mat-label>
+                <input style="color: black;" matInput placeholder="Ingrese nombre o cedula">
+              </mat-form-field>
 
-                <div style="color: black;">
-                  <h3> <strong>LISTA DE DOCENTES</strong> </h3>
-                  <select id="materias" name="materias">
-                    <option value="">Seleccione una carrera</option>
-                    <option value="">Seleccione una carrera</option>
-                    <option value="">Seleccione una carrera</option>
-                  </select>
-                  <h3> <strong>ROL</strong> </h3>
-                  <p>ESTE ES UN ROL</p>
-                  <h3> <strong> TUTOR ACADEMICO</strong> </h3>
-                  <p>David Naula</p>
-                </div> 
+              <div style="color: black;">
+                <h3> <strong>LISTA DE DOCENTES</strong> </h3>
+                <select id="materias" name="materias">
+                  <option value="">Seleccione una carrera</option>
+                  <option value="">Seleccione una carrera</option>
+                  <option value="">Seleccione una carrera</option>
+                </select>
+                <h3> <strong>ROL</strong> </h3>
+                <p>ESTE ES UN ROL</p>
+                <h3> <strong> TUTOR ACADEMICO</strong> </h3>
+                <p>David Naula</p>
               </div>
+            </div>
 
             <div style="text-align: center;">
 
@@ -356,19 +369,19 @@
       <div class="container">
 
         <div class="modal-content">
-          
+
           <div class="container">
-           
-           
+
+
             <div class="modal-header">
-                <h1> <strong>Creacion de usuario</strong> </h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+              <h1> <strong>Creacion de usuario</strong> </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
             <div style="display: flex; flex-direction: column; margin-top: 20px;">
-                
 
-                <!-- <div style="color: black;">
+
+              <!-- <div style="color: black;">
                   <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
                     <mat-label>Nombre Usuario</mat-label>
                     <input matInput type="username" name="username" placeholder="Ingrese su correo"required >
@@ -381,37 +394,41 @@
                 </div>  -->
 
 
-         
-                <div style="display: flex; align-items: center;">
-                  <div style="color: black;" >
-                    <div><mat-form-field appearance="outline" class="example-full-width"style=" width: 300px;" >
-                      <mat-label>Nombre Usuario</mat-label>
-                      <input matInput type="username" name="username" placeholder="Ingrese su correo"required  >
+
+              <div style="display: flex; align-items: center;">
+                <div style="color: black;">
+                  <div><mat-form-field appearance="outline" class="example-full-width" style=" width: 300px;">
+                      <mat-label>Email de acceso</mat-label>
+                      <input matInput type="username" name="username" placeholder="Ingrese su correo" required
+                        [ngModel]="usuario.correo">
                     </mat-form-field>
-                    </div>
-                    <mat-form-field appearance="outline" class="example-full-width"  style=" width: 300px;">
-                      <mat-label>Password</mat-label>
-                      <input matInput type="password"   name="username" placeholder="Ingrese su contraseña" required >
-                    </mat-form-field>
-                    <h3 style="margin-top: 10px;" > <strong>Rol: </strong>Tutor Academico </h3>
                   </div>
-                
-                  <div style="margin-left: 60px; color: black; text-align: center;">
-                    <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="Imagen de usuario" style="width: 200px; height: 200px; border-radius: 100px;">
-                    <h3 style="margin-top: 10px;"> <strong>Nombre: </strong>Pedro Ramirez </h3>
-                  </div>
+                  <mat-form-field appearance="outline" class="example-full-width" style=" width: 300px;">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" name="username" placeholder="Ingrese su contraseña" required
+                      [ngModel]="usuario.contrasenia">
+                  </mat-form-field>
+                  <h3 style="margin-top: 10px;"> <strong>Rol: </strong>Tutor Academico </h3>
                 </div>
 
-     
-
-                
-
-
+                <div style="margin-left: 60px; color: black; text-align: center;">
+                  <img
+                    src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
+                    alt="Imagen de usuario" style="width: 200px; height: 200px; border-radius: 100px;">
+                  <h3 style="margin-top: 10px;"> <strong>Nombre: </strong>{{usuario.nombres}} </h3>
+                </div>
               </div>
+
+
+
+
+
+
+            </div>
 
             <div style="text-align: center;">
 
-              <button mat-flat-button color="warn" >Crear </button>
+              <button mat-flat-button color="warn" (click)=" crearusuario()">Crear </button>
 
             </div>
 

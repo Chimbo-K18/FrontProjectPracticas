@@ -3,6 +3,8 @@ import { Personas_empresa } from "./personaemp";
 
 
 export class Usuarios {
+  [x: string]: any;
+ 
     idUsuario: number=0;
 	cedula: string='';
 	nombres: string='';
