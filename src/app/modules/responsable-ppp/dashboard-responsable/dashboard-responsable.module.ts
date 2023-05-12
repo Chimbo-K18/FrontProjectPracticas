@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardResponsableRoutingModule } from './dashboard-responsable-routing.module';
 import { DashboardResponsableComponent } from './pages/dashboard-responsable/dashboard-responsable.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DashboardResponsableComponent } from './pages/dashboard-responsable/das
   ],
   imports: [
     CommonModule,
-    DashboardResponsableRoutingModule
+    DashboardResponsableRoutingModule,
+    MatCardModule
   ],
   exports:[
     DashboardResponsableComponent

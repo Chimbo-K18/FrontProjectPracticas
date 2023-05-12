@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardAcademicoRoutingModule } from './dashboard-academico-routing.module';
 import { DashboardAcademicoComponent } from './pages/dashboard-academico/dashboard-academico.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DashboardAcademicoComponent } from './pages/dashboard-academico/dashboa
   ],
   imports: [
     CommonModule,
-    DashboardAcademicoRoutingModule
+    DashboardAcademicoRoutingModule,
+    MatCardModule
   ],
   exports:[
     DashboardAcademicoComponent

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardEstudianteRoutingModule } from './dashboard-estudiante-routing.module';
 import { DashboardEstudianteComponent } from './pages/dashboard-estudiante/dashboard-estudiante.component';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { DashboardEstudianteComponent } from './pages/dashboard-estudiante/dashb
   ],
   imports: [
     CommonModule,
-    DashboardEstudianteRoutingModule
+    DashboardEstudianteRoutingModule,
+    MatCardModule
   ],
   exports:[
     DashboardEstudianteComponent
