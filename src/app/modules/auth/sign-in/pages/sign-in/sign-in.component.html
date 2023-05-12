@@ -111,10 +111,11 @@
         <div style="flex-basis: 50%; flex-grow: 0; text-align: left; margin-right: 30px; display: flex; justify-content: center; align-items: center;">
           <img src="https://dev2020.tecazuay.edu.ec/wp-content/uploads/2022/11/cropped-LOGO-RECTANGULAR_SIN-FONDO.png" alt="" style="width: 100%;">
         </div>
+        
         <form action="#" class="login-form" ngNativeValidate (ngSubmit)="onSubmit()">
-        <div style="flex-basis: 50%; flex-grow: 0;">
+        <div style="flex-basis: 50%; flex-grow: 0;" >
           
-          <h1><strong>Iniciar Sesion</strong></h1>
+          <h1 style="text-align: left;"><strong>Iniciar Sesion</strong></h1>
 
           <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
             <mat-label>Nombre Usuario</mat-label>
@@ -132,9 +133,10 @@
 
 
 
-          <p>No tienes una cuenta <strong><a href="/auth/sign-up">Ingresa aqui</a></strong></p>
-
-          <button  style="text-align: center;" mat-raised-button color="primary" type="submit">Ingresar</button>
+          <p>¿No tienes una cuenta?<strong><a href="/auth/sign-up" style="margin-left:5px;">Ingresa aqui</a></strong> <br> 
+            <a   href="/auth/reset-password">¿Perdiste tu contraseña?</a></p>
+          
+          <button style="text-align: right;" mat-raised-button color="primary" type="submit">Ingresar</button>
         </div>
       </form>
       </mat-card-content>
