@@ -29,7 +29,7 @@
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
 
               <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-                <!-- Position Column --> 
+                <!-- Position Column -->
                 <ng-container matColumnDef="position">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Convocatoria</th>
                   <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.nombreConvocatoria}} </td>
@@ -119,7 +119,7 @@
                 <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
                 <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
 
-                
+
                 <ng-container matColumnDef="horainicio">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
                   <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaInicio}} </td>
@@ -150,10 +150,10 @@
                 <!-- <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
                     <mat-icon>edit</mat-icon> </button> -->
 
-                
+
               </div>
           </mat-card>
-          
+
         </div>
       </form>
 
@@ -173,17 +173,17 @@
                 <option value="">Seleccione un Tutor</option>
                 <option *ngFor="let tutorrol of listadocentesporrol" [value]="tutorrol.cedula">{{tutorrol.nombres}} {{tutorrol.apellidos}}</option>
               </select>
-              
+
 
               <div style="text-align: center;">
 
                 <button mat-raised-button color="primary" (click)="AsignarTutorAcademico()" matStepperNext>Asignar</button>
-  
+
               </div>
 
 
-              
-              
+
+
             </div>
 
             <div>
@@ -194,24 +194,24 @@
                 <option value="">Seleccione un Tutor</option>
                 <option *ngFor="let tutor of listadocentes" [value]="tutor.cedula">{{tutor.nombres}} {{tutor.apellidos}}</option>
               </select>
-            
+
 
               <div style="text-align: center;">
 
                 <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario2" (click)="TraerUsuario()">
                   <mat-icon>add</mat-icon>Crear Usuario </button>
-  
+
               </div>
 
-              
-              
+
+
             </div>
 
 
-            
+
           </mat-card>
 
-         
+
         </div>
       </form>
 
@@ -231,7 +231,7 @@
                 nuevamente la subira en el formato pdf.
               </p>
             <div class="download-container">
-              <button mat-raised-button color="primary" >
+              <button mat-raised-button color="primary" (click)="descargarPDF()">
                 <mat-icon>get_app</mat-icon> Descargar Archivo
               </button>
               <div class="instructions">
@@ -244,7 +244,7 @@
           </div>
 
 
-            
+
           </mat-card>
         </div>
       </form>
@@ -275,16 +275,16 @@
             </div>
 
             <div style="text-align: center">
-              
+
               <button style="margin-right: 12px" mat-raised-button color="warn">
                 Finalizar
               </button>
-              
+
             </div>
-            
 
 
-            
+
+
           </mat-card>
         </div>
       </form>
@@ -304,10 +304,10 @@
       <div class="container">
 
         <div class="modal-content">
-          
+
           <div class="container">
-           
-           
+
+
             <div class="modal-header">
                 <h1>Docente</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -330,7 +330,7 @@
                   <p>ESTE ES UN ROL</p>
                   <h3> <strong> TUTOR ACADEMICO</strong> </h3>
                   <p>David Naula</p>
-                </div> 
+                </div>
               </div>
 
             <div style="text-align: center;">
@@ -359,17 +359,17 @@
       <div class="container">
 
         <div class="modal-content">
-          
+
           <div class="container">
-           
-           
+
+
             <div class="modal-header">
                 <h1> <strong>Creacion de usuario</strong> </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
             <div style="display: flex; flex-direction: column; margin-top: 20px;">
-                
+
 
                 <!-- <div style="color: black;">
                   <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
@@ -384,7 +384,7 @@
                 </div>  -->
 
 
-         
+
                 <div style="display: flex; align-items: center;">
                   <div style="color: black;" >
                     <div><mat-form-field appearance="outline" class="example-full-width"style=" width: 300px;" >
@@ -398,16 +398,16 @@
                     </mat-form-field>
                     <h3 style="margin-top: 10px;" > <strong>Rol: </strong>Tutor Academico </h3>
                   </div>
-                
+
                   <div style="margin-left: 60px; color: black; text-align: center;">
                     <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="Imagen de usuario" style="width: 200px; height: 200px; border-radius: 100px;">
                     <h3 style="margin-top: 10px;"> <strong>Nombre: </strong>{{usuario.nombres}} </h3>
                   </div>
                 </div>
 
-     
 
-                
+
+
 
 
               </div>

@@ -47,6 +47,7 @@ export class AsignaAcademicoComponent  implements AfterViewInit{
 
 
   practicasSolicitud: SolicitudPracticas[] = [] ;
+  practicaSeleccionada: any;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
   convocatoria: Convocatorias = new Convocatorias();
@@ -107,8 +108,15 @@ export class AsignaAcademicoComponent  implements AfterViewInit{
      }
 
   ngOnInit(): void {
-this
-    this.listarConvocatorias();
+
+
+    setInterval(() => {
+
+      this.traerdocenteRolAcademico();
+      this.listarConvocatorias();
+
+    }, 2500);
+
   }
 
   listaconvocatoria:any []=[];
@@ -138,7 +146,7 @@ this
       data => {
         this.listadocentes = data;
         console.log(this.listadocentes);
-              
+
       }
     );
   }
@@ -204,8 +212,8 @@ this
           this.usuario.contrasenia = 'Academico123';
           this.usuariocompleto = this.usuario;
         });
-        
-  
+
+
       }else{
         Swal.fire({
           position: 'top',
@@ -248,7 +256,7 @@ this
             `Este docenete no se encuentra registrado en fenix.`,
             'error'
           );
-      
+
           break;
 
         case 'Error: Usted no puede ingresar un correo existente!':
@@ -260,7 +268,7 @@ this
           break;
       }
     }
-  
+
   );
   }
 
@@ -268,21 +276,21 @@ this
     this.userservice.getcedula(this.usuario.cedula).subscribe((usuarios) => {
       this.usuariosrol = usuarios;
       this.roltouser.cedula = this.usuariosrol.cedula;
-      
+
       // Buscar si el usuario ya tiene el rol "ROLE_CORDINADOR"
       const tieneRolCordinador = this.usuariosrol.roles.some(r => r.rolNombre === 'ROLE_TUTORACADEMICO');
-      
+
       // Si el usuario no tiene el rol, se agrega
       if (!tieneRolCordinador) {
         this.roles.push('ROLE_TUTORACADEMICO');
       }
-  
+
       this.roltouser.roles = this.roles;
       console.log(this.roltouser);
-  
+
       this.permisoservice.addRoleToUser(this.roltouser).subscribe(x => {
         this.roles = new Array<string>();
-  
+
         Swal.fire({
           position: 'top',
           icon: 'success',
@@ -290,7 +298,7 @@ this
           showConfirmButton: false,
           timer: 2000,
         });
-     
+
       });
     });
   }
@@ -298,6 +306,8 @@ this
   listapraacticas:any []=[];
   seleccionarConvocatoria(solicitud: any) {
     console.log(solicitud);
+
+    this.practicaSeleccionada = solicitud;
 
     this.practicaservice.buscarPorconvocatoria(solicitud).subscribe(datapracticalist => {
       console.log(datapracticalist);
@@ -320,7 +330,8 @@ this
     this.practica = this.llevarpracticadata;
     this.practica.checkAcademico = true;
     this.practicaservice.UpdatePractica(this.practica, this.llevarid).subscribe(dataactualizado =>{
-      console.log(dataactualizado);
+
+      console.log(dataactualizado)
       Swal.fire(
         'PROCESO',
         'TERMINADO CON EXITO',
@@ -329,4 +340,13 @@ this
     });
     });
   }
+
+  descargarPDF() {
+    const idPractica = this.practicaSeleccionada; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/academico/${idPractica}`;
+    window.open(url, '_blank');
+  }
+
+
+
 }
