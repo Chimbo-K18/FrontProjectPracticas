@@ -23,6 +23,10 @@ export class PracticaService {
     return this.http.get<Practica>(this.url + `/buscar/${id}`);
   }
 
+  buscarPorconvocatoria(id: any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/convocatoriaspractica/${id}`);
+  }
+
   UpdatePractica(practica: Practica, idPractica:any){
     return this.http.put<Practica>(this.url+`/actualizar/${idPractica}`, practica);
   }
