@@ -7,13 +7,21 @@
   </head>
 
   <body class="bodyL">
-    <div class="container">
+    
+    
       <h1>
         <strong>Envio de Solicitud de Practicas Pre-Profesionales</strong>
       </h1>
 
-      <mat-stepper labelPosition="bottom" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
+
+
+      <mat-stepper linear #stepper class="headerxd">
+        <mat-step >
+          <ng-template matStepLabel>Enviar una solicitud</ng-template>
+          <div style="display: flex; justify-content: center; align-items: center;">
+          <mat-card>
+
+          
           <table id="keywords" cellspacing="0" cellpadding="0">
             <thead>
               <tr>
@@ -38,7 +46,7 @@
                 <td>{{ detalles?.nombre_carrera }}</td>
 
                 <td>
-                  <button
+                  <button mat-raised-button color="primary"
                     matStepperNext
                     class="btn btn-light"
                     (click)="seleccionarDetalle(detalles)"
@@ -49,13 +57,16 @@
               </tr>
             </tbody>
           </table>
+        </mat-card>
+      </div>
         </mat-step>
 
-        <mat-step [stepControl]="firstFormGroup">
+        <mat-step >
           <br />
           <form [formGroup]="firstFormGroup" (ngSubmit)="validaRequest()">
             <ng-template matStepLabel>Ingrese datos de solicitud</ng-template>
-
+            <div style="display: flex; justify-content: center; align-items: center;">
+            <mat-card>
             <div
               style="
                 display: flex;
@@ -127,13 +138,29 @@
 
             </div>
             <br />
-            <button mat-button matStepperNext>Next</button>
+            <div style="text-align: center;">
+
+            
+            <button mat-raised-button color="primary" matStepperPrevious style="margin-right: 20px;">Back</button>
+
+            <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+          </div>
+          </mat-card>
+        </div>
           </form>
         </mat-step>
 
-        <mat-step [stepControl]="secondFormGroup" optional>
+        <mat-step>
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Imprimir Archivo</ng-template>
+            <div style="display: flex; justify-content: center; align-items: center;">
+            <mat-card>
+              <h1><strong>DESCARGAR EL OFICIO </strong></h1>
+              <p style="text-align: center">
+                Auna vez se descargue el oficio, posteriormente debera firmarlo y
+                <br />
+                nuevamente la subira en el formato pdf.
+              </p>
             <div class="download-container">
               <button mat-raised-button color="primary" (click)="descargarPDF()" >
                 <mat-icon>get_app</mat-icon> Descargar Archivo
@@ -142,17 +169,27 @@
                 Haz clic en el botón para descargar el documento
               </div>
             </div>
-            <div class="stepper-buttons">
-              <button mat-button matStepperPrevious>Anterior</button>
-              <button mat-button matStepperNext>Siguiente</button>
+            <div style="text-align: center; ">
+              <button mat-raised-button color="primary" matStepperPrevious style="margin-right: 20px;">Anterior</button>
+              <button mat-raised-button color="primary"  matStepperNext>Siguiente</button>
             </div>
+          </mat-card>
+        </div>
           </form>
 
         </mat-step>
 
-        <mat-step [stepControl]="thirdFormGroup" optional>
+        <mat-step >
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Subir Documento</ng-template>
+            <div style="display: flex; justify-content: center; align-items: center;">
+            <mat-card>
+              <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
+            <p style="text-align: center">
+              Auna vez se descargue el oficio, posteriormente debera firmarlo y
+              <br />
+              nuevamente la subira en el formato pdf.
+            </p>
             <div class="download-container">
               <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
               <button mat-raised-button color="primary"(click)="inputFile.click()" >
@@ -163,14 +200,18 @@
               </div>
             </div>
             
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Finalizar</button>
+            <div style="text-align: center;">
+              <button mat-raised-button color="primary" matStepperPrevious style="margin-right: 20px;">Back</button>
+              <button mat-raised-button color="warn" matStepperNext>Finalizar</button>
             </div>
+          </mat-card>
+        </div>
           </form>
+          
         </mat-step>
+        
       </mat-stepper>
-    </div>
+
     
   </body>
 </html>

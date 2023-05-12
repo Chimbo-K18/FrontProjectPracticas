@@ -112,7 +112,7 @@
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Imprimir Archivo</ng-template>
-
+            <div style="display: flex; justify-content: center; align-items: center;">
             <mat-card >
 
               <h1><strong>DESCARGAR EL OFICIO </strong></h1>
@@ -137,6 +137,7 @@
             <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
         </div>
           </mat-card>
+        </div>
           </form>
           
 
@@ -147,6 +148,7 @@
         <mat-step [stepControl]="thirdFormGroup">
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Subir Documento</ng-template>
+            <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
 
             <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
@@ -178,6 +180,7 @@
             </div>
 
           </mat-card>
+        </div>
           </form>
         </mat-step>
         
