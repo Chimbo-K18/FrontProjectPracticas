@@ -25,7 +25,20 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import("./profile-estudiante/profile-estudiante.module").then(m => m.ProfileEstudianteModule)
 
+  },
+
+  {
+    path: 'genera-anexo2',
+    loadChildren: () => import("./genera-anexo2/genera-anexo2.module").then(m => m.GeneraAnexo2Module)
+
+  },
+
+  {
+    path: 'genera-anexo3',
+    loadChildren: () => import("./genera-anexo3/genera-anexo3.module").then(m => m.GeneraAnexo3Module)
+
   }
+
 
 ];
 

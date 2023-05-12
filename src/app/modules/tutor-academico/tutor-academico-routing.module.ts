@@ -19,7 +19,20 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import("./profile-academico/profile-academico.module").then(m => m.ProfileAcademicoModule)
 
+  },
+
+  {
+    path: 'envio-anexo1',
+    loadChildren: () => import("./envio-anexo1/envio-anexo1.module").then(m => m.EnvioAnexo1Module)
+
+  },
+  {
+    path: 'envio-anexo4',
+    loadChildren: () => import("./recibeenvia-anexo4/recibeenvia-anexo4.module").then(m => m.RecibeenviaAnexo4Module)
+
   }
+
+
 ];
 
 @NgModule({

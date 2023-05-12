@@ -62,6 +62,12 @@ const routes: Routes = [
     path: 'asigna-tutor',
     loadChildren: () => import("./asigna-especifico/asigna-especifico.module").then(m => m.AsignaEspecificoModule)
 
+  },
+
+  {
+    path: 'recibe-anexo1',
+    loadChildren: () => import("./recibe-anexo1/recibe-anexo1.module").then(m => m.RecibeAnexo1Module)
+
   }
 
 
