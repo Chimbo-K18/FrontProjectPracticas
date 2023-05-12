@@ -1,0 +1,48 @@
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.agregar {
+  color: #fff;
+  background-color: #aca9a9;
+  height: 30px;
+  width: 50px;
+  align-items: center;
+  border-radius: 100px;
+}
+.agregar:hover {
+  background: #e1e6e7;
+  color: #050801;
+}
+.bodyL{
+  margin-top: -20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #c4c3ca;
+  background-image: url('src/assets/images/fondowelcome.png');
+background-size: 100% 100%;
+  overflow-x: hidden;
+}
+.tbConteiner{
+    width: 100%;
+    overflow-x: auto;
+    /* Modifica el color de la barra de desplazamiento y del pulgar */
+    scrollbar-color: #aaa #f8f8f8;
+    /* Ajusta el ancho de la barra de desplazamiento */
+    scrollbar-width: thin;
+}
+
+table {
+  width: 100%;
+  margin-right: 30px;
+  margin-left: 20px;
+}
+
