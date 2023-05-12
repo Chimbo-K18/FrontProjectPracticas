@@ -56,4 +56,7 @@ export class SolicitudpracticasService {
   }
 
 
+  listarDocentes(id: any):Observable<SolicitudPracticas>{
+    return this.http.get<SolicitudPracticas>(this.URL +`nombrestutores/${id}`);
+  }
 }
