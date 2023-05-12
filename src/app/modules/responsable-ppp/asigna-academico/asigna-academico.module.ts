@@ -10,13 +10,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -36,7 +39,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    AsignaAcademicoRoutingModule
+    AsignaAcademicoRoutingModule,
+    FormsModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatSlideToggleModule
   ],
   exports:[
     AsignaAcademicoComponent

@@ -5,19 +5,16 @@ import { DetalleConvenio } from '../models/detalleconvenio';
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DetalleconvenioService {
+
   url: string = 'http://localhost:8080/api/detalleConvenio';
+
   constructor(private http: HttpClient) {}
 
-  creardetalleConvenio(
-    detalleconvenio: DetalleConvenio
-  ): Observable<DetalleConvenio> {
-    return this.http.post<DetalleConvenio>(
-      this.url + '/crear',
-      detalleconvenio
-    );
+  creardetalleConvenio(detalleconvenio: DetalleConvenio): Observable<DetalleConvenio> {
+    return this.http.post<DetalleConvenio>(this.url + '/crear',detalleconvenio);
   }
 
   getDetalleConvenio(): Observable<DetalleConvenio[]> {

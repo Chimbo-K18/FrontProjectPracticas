@@ -28,6 +28,10 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestado`);
   }
 
+  getSolicitudesPor(): Observable<SolicitudPracticas[]>{
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestado`);
+  }
+
   getSolicitudesEstadofalse(): Observable<SolicitudPracticas[]>{
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestadofalse`);
   }
@@ -38,6 +42,11 @@ export class SolicitudpracticasService {
 
   getRequest(idSolicitudPracticas:any) : Observable<SolicitudPracticas> {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
+  }
+
+  
+  getBuscarPorEmpresa(idEmpresa:any) : Observable<SolicitudPracticas> {
+    return this.http.get<SolicitudPracticas>(`${this.URL}buscarporempresa/${idEmpresa}`)
   }
 
   updateSolicitud(solicitud: SolicitudPracticas, idSolicitudPracticas: any) {

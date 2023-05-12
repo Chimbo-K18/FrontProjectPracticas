@@ -134,7 +134,7 @@ export class EnvioSolicitudComponent implements OnInit {
     private responsableService: responsablePpp,
     private empresarialService: tutorempresarialService,
     private documentoSpService: DocumentoSolicitudPracticaService,
-   
+
   ) { }
 
 
@@ -363,7 +363,7 @@ export class EnvioSolicitudComponent implements OnInit {
     }
   }
 
-  
+
   public upload(event: any) {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];

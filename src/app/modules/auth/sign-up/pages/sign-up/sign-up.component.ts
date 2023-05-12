@@ -118,6 +118,7 @@ variableencontrada:any;
       this.estudiantepracticante.estado =true;
       this.estudiantepracticante.usuario_estudiante_practicante =datace;
       this.estudiantepracticanteservice.crearEstudiantePracticante(this.estudiantepracticante).subscribe(dataestu=>{
+
       });
     });
 
