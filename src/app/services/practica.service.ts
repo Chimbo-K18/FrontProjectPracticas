@@ -46,6 +46,10 @@ export class PracticaService {
   // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
   //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
   // }
+  buscarPorUsuarioSolicitud(id: any):Observable<Practica>{
+    return this.http.get<Practica>(this.url +`/usuariosxpractica/${id}`);
+  }
+
 
 
 }
