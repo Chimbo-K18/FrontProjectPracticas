@@ -1,18 +1,15 @@
-import {AfterViewInit, Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {FormGroup, FormControl} from '@angular/forms';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
-import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
-import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { PracticaService } from 'src/app/services/practica.service';
 import { Practica } from 'src/app/models/practica';
 import { BaseFenixService } from 'src/app/services/base-fenix.service';
-import { CarreraService } from 'src/app/services/carrera.service';
 import { UserService } from 'src/app/services/user.service';
 import { CreateAccountService } from 'src/app/services/createaccount.service';
 import Swal from 'sweetalert2';
@@ -20,6 +17,8 @@ import { Usuarios } from 'src/app/models/usuarios';
 import { RolToUser } from 'src/app/models/RolToUser';
 import { UsuarioRol } from 'src/app/models/UsuarioRol';
 import { PermisosService } from 'src/app/services/permisos.service';
+import { DocumentoAsigTutorAcademico } from 'src/app/services/doc/DocumentoAsigTutorAcademico.service';
+import { HttpEventType } from '@angular/common/http';
 
 export interface Aprobados {
   nombre: string;
@@ -29,13 +28,6 @@ export interface Aprobados {
 
 }
 
-const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-];
 
 @Component({
   selector: 'app-asigna-academico',
@@ -64,10 +56,11 @@ export class AsignaAcademicoComponent  implements AfterViewInit{
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
   diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
+
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
-@ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -75,10 +68,6 @@ export class AsignaAcademicoComponent  implements AfterViewInit{
   }
 
   //FINTABLA
-
-
-
-
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -99,9 +88,16 @@ export class AsignaAcademicoComponent  implements AfterViewInit{
   });
 
   isEditable = false;
+  idDocumento!: any;
 
-  constructor(private basefenix: BaseFenixService, private carreraservice: CarreraService ,private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService, private convocatoriaservice: ConvocatoriasService, private practicaservice: PracticaService,
-    private solicitudService : SolicitudConvocatoriasService, private userservice: UserService, private permisoservice: PermisosService ,private crearusuarioservice: CreateAccountService) {
+  constructor(private basefenix: BaseFenixService, 
+    private _formBuilder: FormBuilder, 
+    private convocatoriaservice: ConvocatoriasService, 
+    private practicaservice: PracticaService,
+    private userservice: UserService, 
+    private permisoservice: PermisosService ,
+    private crearusuarioservice: CreateAccountService,
+    private documentoAsig: DocumentoAsigTutorAcademico) {
       this.traerdocente();
       this.traerdocenteRolAcademico();
      }
@@ -329,4 +325,72 @@ this
     });
     });
   }
+
+  public upload(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.documentoAsig.uploadFileDocumentoAsigTutor(file,).subscribe(
+        data => {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                console.log("progreso....");
+
+                break;
+              case HttpEventType.Response:
+                this.inputFile.nativeElement.value = '';
+                sessionStorage.setItem('ArchivoAsigTutorA', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+                this.actualizarDocumento();
+
+                break;
+            }
+          }
+
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+          );
+
+        }
+      );
+    }
+  }
+
+  actualizarDocumento() {
+    const idDoc = JSON.parse(
+      sessionStorage.getItem('ArchivoAsigTutorA') || '{}'
+    );
+    this.idDocumento = idDoc.id_documentoasigtutoracademico;
+    console.log(this.idDocumento);
+    this.convocatoriaservice.updateDocumentoConvocatoria(this.llevarid, this.idDocumento).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        //console.error('Error al actualizar el documento');
+      }
+    );
+  }
+
+  //Metodo para descargar el documento 
+  descargarPDF() {
+    const idPractica = this.llevarid; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/academico/${idPractica}`;
+    window.open(url, '_blank');
+  }
+
+
 }

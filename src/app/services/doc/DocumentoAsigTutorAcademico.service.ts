@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 
-export class DocumentoConvenioService {
-    url: string = 'http://localhost:8080/api/documentoConvenio';
-    urlPost: string = 'http://localhost:8080/api/documentoConvenio/upload';
+export class DocumentoAsigTutorAcademico {
+    url: string = 'http://localhost:8080/api/documentoAsigTutorAcademico';
+    urlPost: string = 'http://localhost:8080/api/documentoAsigTutorAcademico/upload';
 
 
     constructor(private http: HttpClient) { }
 
-    public uploadFileDocumentoConvenio(file: Blob): Observable<HttpEvent<any>> {
+    public uploadFileDocumentoAsigTutor(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
       return this.http.request(new HttpRequest(
@@ -24,5 +24,5 @@ export class DocumentoConvenioService {
           reportProgress: true
         }));
     }
-    
+
 }
