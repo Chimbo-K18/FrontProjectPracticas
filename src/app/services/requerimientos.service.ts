@@ -20,4 +20,8 @@ export class RequermientoService {
     return this.http.get<Requerimientos[]>(this.url+`/listar`);
   }
 
+  getRequerimientoPorSolicitud(idsolicitud: any): Observable<Requerimientos[]>{
+    return this.http.get<Requerimientos[]>(this.url+`/porsolicitud/${idsolicitud}`);
+  }
+
 }

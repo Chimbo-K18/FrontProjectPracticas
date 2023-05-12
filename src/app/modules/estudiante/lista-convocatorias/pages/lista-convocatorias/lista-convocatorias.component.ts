@@ -29,6 +29,7 @@ export class ListaConvocatoriasComponent {
     'nombreconvocatoria',
     'fechapublicacion',
     'fechaexpiracion',
+    'carrera',
     'documento_convocatoria',
     'opciones',
   ];
@@ -49,6 +50,7 @@ export class ListaConvocatoriasComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
+  
 
 
   ngAfterViewInit() {
@@ -88,6 +90,7 @@ export class ListaConvocatoriasComponent {
 
   //obtener convocatorias
   //obtener convocatorias
+  variablecarrera:any;
   obtenerConvocatorias() {
     this.convocatoriaService.listarConvocatorias().subscribe((data) => {
       this.listaConvocatoria = data.map((result) => {
@@ -97,6 +100,8 @@ export class ListaConvocatoriasComponent {
         convo.fechaPublicacion = result.fechaPublicacion
         convo.fechaExpiracion = result.fechaExpiracion;
         convo.documentoConvatoria = result.documentoConvatoria;
+        this.variablecarrera=result.solicitudPracticas?.nombre_carrera
+        console.log(this.variablecarrera);
         return convo;
       });
       this.dataSource.data = this.listaConvocatoria;

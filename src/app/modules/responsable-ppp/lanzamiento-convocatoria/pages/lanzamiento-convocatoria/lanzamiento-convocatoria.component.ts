@@ -12,6 +12,7 @@ import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/Documento
 import { ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
+import { MatStepper } from '@angular/material/stepper';
 
 
 
@@ -52,6 +53,8 @@ export class LanzamientoConvocatoriaComponent {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -165,6 +168,10 @@ export class LanzamientoConvocatoriaComponent {
         });
     }
   }
+  resetStepper() {
+    this.stepper.reset();
+  }
+
 
 
   public upload(event: any) {

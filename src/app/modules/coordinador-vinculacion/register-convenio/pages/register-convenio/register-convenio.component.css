@@ -13,6 +13,13 @@
   table {
     width: 100%;
   }
+  .tbConteiner{
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-color: #aaa #f8f8f8;
+    /* Ajusta el ancho de la barra de desplazamiento */
+    scrollbar-width: thin;
+  }
 
   input[type=text], select {
     width: 100%;

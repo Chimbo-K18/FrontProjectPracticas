@@ -14,6 +14,7 @@ import { DetalleConvenio } from 'src/app/models/detalleconvenio';
 import { DocumentoConvenio } from 'src/app/models/documentoconvenio';
 import { DocumentoConvenioService } from 'src/app/services/doc/DocumentoConvenio.service';
 import { HttpEventType } from '@angular/common/http';
+import { MatStepper } from '@angular/material/stepper';
 
 
 
@@ -58,6 +59,7 @@ export class RegisterConvenioComponent {
   });
 
   @ViewChild('inputFile') inputFile!: ElementRef;
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
   isEditable = false;
   convenio: Convenio = new Convenio;
@@ -113,13 +115,7 @@ export class RegisterConvenioComponent {
           data.rucEmpresa.includes(filter);
         this.dataSource.data = this.listaEmpresa;
         this.loading = false;
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Datos ingresados correctamente',
-          showConfirmButton: false,
-          timer: 2000,
-        });
+
       }
     )
   }
@@ -196,10 +192,22 @@ export class RegisterConvenioComponent {
       this.detalleConvenio.empresa = this.empresacreada;
       this.detalleConvenio.nombre_carrera = this.carreraSeleccionada;
       this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe({
+        
 
+      });
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Convenio creado satisfactoriamente.',
+        showConfirmButton: false,
+        timer: 2000,
       });
     });
 
+  }
+
+  resetStepper() {
+    this.stepper.reset();
   }
 
   fileChangeEvent(fileInput: any) {
