@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EmpresarialDashboardRoutingModule } from './empresarial-dashboard-routing.module';
 import { EmpresarialDashboardComponent } from './pages/empresarial-dashboard/empresarial-dashboard.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { EmpresarialDashboardComponent } from './pages/empresarial-dashboard/emp
   ],
   imports: [
     CommonModule,
-    EmpresarialDashboardRoutingModule
+    EmpresarialDashboardRoutingModule,
+    MatCardModule
   ],
   exports:[
     EmpresarialDashboardComponent
