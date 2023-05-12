@@ -51,7 +51,28 @@ const routes: Routes = [
   {
     path: 'lista-empresariales',
     loadChildren: () => import("./lista-empresariales/lista-empresariales.module").then(m => m.ListaEmpresarialesModule)
+  },
+
+  {
+    path: 'recibe-anexo1',
+    loadChildren: () => import("./recibe-anexo1/recibe-anexo1.module").then(m => m.RecibeAnexo1Module)
+  },
+
+  {
+    path: 'recibe-anexo2',
+    loadChildren: () => import("./recibe-anexo2/recibe-anexo2.module").then(m => m.RecibeAnexo2Module)
+  },
+
+  {
+    path: 'recibe-anexo3',
+    loadChildren: () => import("./recibe-anexo3/recibe-anexo3.module").then(m => m.RecibeAnexo3Module)
+  },
+
+  {
+    path: 'recibe-anexo4',
+    loadChildren: () => import("./recibe-anexo4/recibe-anexo4.module").then(m => m.RecibeAnexo4Module)
   }
+
 
 ];
 
