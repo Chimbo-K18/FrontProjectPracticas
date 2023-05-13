@@ -40,5 +40,9 @@ export class tutorempresarialService {
   updateEstado(idTutor: any) {
     return this.http.put(`${this.url}/updateStatus/${idTutor}`, null);
   }
+
+  listarEmpresariales() {
+    return this.http.get<tutorempresarial[]>(this.url+'/listar');
+  }
   
 }  

@@ -20,15 +20,18 @@
     </div>
     
     <div class="main_container">
-        <div class="mc_header">
-          
-          <div class="promo_card">
-            <h5>Dashboard</h5>
-            <h3>Biendvenido a TecAzuay</h3>
-            <span>Prácticas Preprofesionales</span>
-            <a href="https://www.tecazuay.edu.ec/main/index.php"><button>Saber más</button></a>
-          </div>
-        </div>
+
+
+
+      <div class="promo_card">
+        <img src="https://scontent.fgye18-1.fna.fbcdn.net/v/t39.30808-6/312480603_1328658301212246_4027665849466077503_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nuUJ6e9sVQwAX_pMdv6&_nc_ht=scontent.fgye18-1.fna&oh=00_AfBqJMfZys0UPfyDCTNj4Waly5IWuunYJkEh2527f0g-oA&oe=6464A36E" alt="Logo TecAzuay" width="30%" >
+        <hr>
+        <p><b style="font-family: 'Times New Roman', Times, serif; font-size: 25px;">BIENVENIDO!</b><br> {{user_final}}</p> <br>
+        <a href="https://www.tecazuay.edu.ec/main/index.php" class="btn3">Saber más</a>
+      </div>
+
+
+        
         <div class="sprint_overview">
  
         
@@ -108,8 +111,8 @@
             <div class="team_members">
                 <mat-card class="epic">
                   <mat-card-title-group class="imgBx_s blue">
-                    <i class="fa fa-facebook-square"></i>
-                  </mat-card-title-group>
+                    <i class="fa-brands fa-facebook"></i>       
+                   </mat-card-title-group>
                   <mat-card-content >
                     
                     <a href="https://www.facebook.com/TecAzuay/?locale=es_LA">Facebook</a>
@@ -117,7 +120,7 @@
                 </mat-card>
 
                 <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s purple">
+                  <mat-card-title-group class="imgBx_s blue">
                     <i class="fa fa-instagram"></i>
                   </mat-card-title-group>
                   <mat-card-content >
@@ -126,7 +129,7 @@
                 </mat-card>
 
                 <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s cian">
+                  <mat-card-title-group class="imgBx_s blue">
                     <i class="fa fa-twitter-square"></i>
                   </mat-card-title-group>
                   <mat-card-content >
@@ -135,7 +138,7 @@
                 </mat-card>
 
                 <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s red">
+                  <mat-card-title-group class="imgBx_s blue">
                     <i class="fa fa-chrome"></i>
                   </mat-card-title-group>
                   <mat-card-content >
@@ -149,7 +152,7 @@
         <div class="epics_container">
             
           <div class="title">
-          <h4>Profile</h4>
+            <h4>Perfil de usuario</h4>
             </div>
             <div class="epics">
                 <mat-card class="epic">
@@ -158,9 +161,9 @@
                   </mat-card-title-group>
                   <mat-card-content >
                     <div class="profile">
-                      <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
+                      <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png"
                           alt="profile_picture">
-                      <h4>Kevin Maldonado</h4>
+                      <h4>{{user_final}}</h4>
                   </div>
                   </mat-card-content>
                 </mat-card>
@@ -170,53 +173,18 @@
                     <i class="fas fa-address-card"></i>
                   </mat-card-title-group>
                   <mat-card-content >
-                    <li>0106447485</li>
-                    <li>Estudiante</li>
-                    <li>M5A</li>
-                    <li>20</li>
+                    <li>ROL:</li>
+                    <p>{{ rol }}</p><br>
+                    <li >E-MAIL:</li>
+                    <p>{{ username }}</p><br>
+                    <li>CARRERA:</li>
+                    <p>{{carrera}}</p>
                   </mat-card-content>
                 </mat-card>
 
             </div>
         </div>
-        <div class="project_statistic_container">
-            <div class="title">
-                <h1>Project statistic</h1>
-            </div>
-            <div class="project_statistics">
-                <div class="project_statistic">
-                    <h2>Project</h2>
-                    <p>progress</p>
-                    <div class="progress">
-                        <div class="stat_progress_cover">
-                            <div id="project"></div>
-                        </div>
-                        <h2>75%</h2>
-                    </div>
-                </div>
-                <div class="project_statistic">
-                    <h2>Business</h2>
-                    <p>goals</p>
-                    <div class="progress">
-                        <div class="stat_progress_cover">
-                            <div id="business"></div>
-                        </div>
-                        <h2>42%</h2>
-                    </div>
-                </div>
-                <div class="project_statistic">
-                    <h2>Budget</h2>
-                    <p>used</p>
-                    <div class="progress">
-                        <div class="stat_progress_cover">
-                            <div id="budget"></div>
-                        </div>
-                        <h2>40%</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="#" class="btn project_details">project details</a>
+    
     </div>
 </body>
 
