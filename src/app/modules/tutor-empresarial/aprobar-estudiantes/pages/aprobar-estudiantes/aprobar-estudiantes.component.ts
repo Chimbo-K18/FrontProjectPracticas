@@ -75,15 +75,28 @@ datosTablaAprobados: any[] = [];
     this.listarSolicitudesAprobadasPracticas();
   }
 
+Ce:any;
+tutoenecontrado:any;
   listarSolicitudesAprobadasPracticas() {
-    this.solicitudPracticas.getSolicitudesEstado().subscribe(
-      (res) => {
-        this.practicasSolicitud = res;
-        console.log(res);
-
-        this.dataF1.data = this.practicasSolicitud
-      }
-    );
+    this.Ce = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.Ce)
+    this.userService.getuscedula(this.Ce).subscribe(dataUserEncon => {
+      this.tutorempresarialService.extraerEmpresarialIdUsuario(dataUserEncon.idUsuario).subscribe(dataTutor => {
+        console.log("esta es la dat del tuto");
+        console.log(dataTutor);
+        this.tutoenecontrado = dataTutor.empresa.idEmpresa;
+        console.log(this.tutoenecontrado);
+        this.solicitudPracticas.getSolicitudesPorEmpresa(this.tutoenecontrado).subscribe(
+          (res) => {
+            this.practicasSolicitud = res;
+            console.log(res);
+    
+            this.dataF1.data = this.practicasSolicitud
+          }
+        );
+      });
+    });
+  
   }
 
   variablecheck: any ;
@@ -125,7 +138,7 @@ buscarAprobados() {
       this.idsoliapro=datasoliapro.idSolicitudConvocatoria;
       this.fechaapro = datasoliapro.fechaEnvio;
       console.log(datasoliapro);
-      if(datasoliapro.checkEmpresarial==true){
+      if(datasoliapro.checkResponsable==true){
         this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
         this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
           console.log(datapracticanteApro);
