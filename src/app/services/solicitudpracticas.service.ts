@@ -23,6 +23,10 @@ export class SolicitudpracticasService {
   getSolicitudesActividades(): Observable<SolicitudPracticas[]> {
     return this.http.get<SolicitudPracticas[]>(`${this.URL}activas`);
   }
+
+  getSolicitudesActividadesPorResposanble(idresponsableppp:any): Observable<SolicitudPracticas[]> {
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listaporidresponsableppp/${idresponsableppp}`);
+  }
   getSolicitudesEstado(): Observable<SolicitudPracticas[]>{
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestado`);
   }

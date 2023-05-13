@@ -27,6 +27,10 @@ export class ConvocatoriasService {
     return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
   }
 
+  listarConvocatoriasPorCarrera(carrera:any){
+    return this.http.get<Convocatorias[]>(`${this.API_URL}/convocatoriaporcarrera/${carrera}`);
+  }
+
   listarPorestadoConvocatoria(){
     return this.http.get<Convocatorias[]>(this.API_URL+'/practicas');
   }

@@ -16,6 +16,7 @@ import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.s
 import { UserService } from 'src/app/services/user.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
+import { MatStepper } from '@angular/material/stepper';
 @Component({
   selector: 'app-lista-convocatorias',
   templateUrl: './lista-convocatorias.component.html',
@@ -50,7 +51,8 @@ export class ListaConvocatoriasComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
-  
+  @ViewChild(MatStepper) stepper!: MatStepper;
+
 
 
   ngAfterViewInit() {
@@ -87,27 +89,40 @@ export class ListaConvocatoriasComponent {
     return `${day}/${month}/${year}`;
   }
 
+  resetStepper() {
+    this.stepper.reset();
+  }
+
+
 
   //obtener convocatorias
   //obtener convocatorias
-  variablecarrera:any;
+  Cedus: any;
+  variablecarrera: any;
+  usucarrera: any;
   obtenerConvocatorias() {
-    this.convocatoriaService.listarConvocatorias().subscribe((data) => {
-      this.listaConvocatoria = data.map((result) => {
-        let convo = new Convocatorias();
-        convo.idConvocatorias = result.idConvocatorias;
-        convo.nombreConvocatoria = result.nombreConvocatoria;
-        convo.fechaPublicacion = result.fechaPublicacion
-        convo.fechaExpiracion = result.fechaExpiracion;
-        convo.documentoConvatoria = result.documentoConvatoria;
-        this.variablecarrera=result.solicitudPracticas?.nombre_carrera
-        console.log(this.variablecarrera);
-        return convo;
-      });
-      this.dataSource.data = this.listaConvocatoria;
-      this.loading = false;
+    this.Cedus = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.Cedus)
+    this.userservice.getcedula(this.Cedus).subscribe(datausu => {
+      this.usucarrera = datausu.carrera;
+      this.convocatoriaService.listarConvocatoriasPorCarrera(this.usucarrera).subscribe((data) => {
+        this.listaConvocatoria = data.map((result) => {
+          let convo = new Convocatorias();
+          convo.idConvocatorias = result.idConvocatorias;
+          convo.nombreConvocatoria = result.nombreConvocatoria;
+          convo.fechaPublicacion = result.fechaPublicacion
+          convo.fechaExpiracion = result.fechaExpiracion;
+          convo.documentoConvatoria = result.documentoConvatoria;
+          this.variablecarrera = result.solicitudPracticas?.nombre_carrera
+          console.log(this.variablecarrera);
+          return convo;
+        });
+        this.dataSource.data = this.listaConvocatoria;
+        this.loading = false;
 
+      });
     });
+
   }
   ///obtener el id de la convocatoria de la tabla
   selectedConvo: any;
@@ -118,16 +133,16 @@ export class ListaConvocatoriasComponent {
     this.buscarConvocatoria();
   }
 
-  idencontrado:any;
-  buscarConvocatoria(){
-  this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria =>{
-    console.log(dataconvocatoria);
-  });
-    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento =>{
+  idencontrado: any;
+  buscarConvocatoria() {
+    this.convocatoriaService.getRequest(this.selectedConvo).subscribe(dataconvocatoria => {
+      console.log(dataconvocatoria);
+    });
+    this.convocatoriaService.buscardoc(this.selectedConvo).subscribe(datadocumento => {
       console.log(datadocumento)
       this.downloadDocumentoConvocatoria(datadocumento);
 
-  });
+    });
   }
 
   descargarPDF() {
@@ -160,7 +175,7 @@ export class ListaConvocatoriasComponent {
 
   cargar: any;
   nombreconvo: any;
-  idConvocatoria:any;
+  idConvocatoria: any;
   fechaenvio: any;
   requisitos: any;
   usuarioid: any;
@@ -170,6 +185,7 @@ export class ListaConvocatoriasComponent {
   estu: any
   checkboxRequisitos: any;
   cargardatos() {
+
     this.usuarioid = localStorage.getItem("idusuario");
     this.userservice.getcedula(this.usuarioid).subscribe(datausu => {
       this.cedula = datausu.cedula;
@@ -199,16 +215,19 @@ export class ListaConvocatoriasComponent {
   }
 
 
+  idconvocount: any
+  idestucont!: number;
+  contvariable:any;
   crearconvocatoria() {
     this.estu = localStorage.getItem("idusuario");
     this.estudianteService.getEstucedulavale(this.estu).subscribe(dataestudiante => {
       console.log(dataestudiante);
-
-
+      console.log(this.idestucont);
       this.estudianteService.getRequestEstudiante(dataestudiante).subscribe(dataestu => {
         console.log(dataestu);
+        this.idestucont = dataestu.idEstudiantePracticas;
         this.convocatoriaService.getRequest(this.cargar).subscribe(dataconvo => {
-
+          this.idconvocount = dataconvo.idConvocatorias;
           this.solicitudconvocatorias.convocatoria = dataconvo;
           this.solicitudconvocatorias.fechaEnvio = this.fechaenvio;
           this.solicitudconvocatorias.estudiantePracticante = dataestu;
@@ -225,17 +244,29 @@ export class ListaConvocatoriasComponent {
             'contacto'
           ) as HTMLInputElement;
           this.solicitudconvocatorias.numero_contacto = contacto.value;
-          this.solicitudconvoservice.crearSolicitudConvocatoria(this.solicitudconvocatorias).subscribe(
+          this.solicitudconvoservice.comprobarconvocatoria(this.idconvocount, this.idestucont).subscribe(dataconut => {
+            this.contvariable = dataconut;
+             if(this.contvariable==1){
+              Swal.fire(
+                'Error',
+                'Usted ya postulo para esta convocatoria',
+                'error'
+              );
+              this. resetStepper();
+             }else{
+              this.solicitudconvoservice.crearSolicitudConvocatoria(this.solicitudconvocatorias).subscribe(
 
-            data =>
-
-            {
-
-              console.log(data.idSolicitudConvocatoria)
-              this.solicitudConvocatoriaGenerada = data.idSolicitudConvocatoria
-
-
+                data => {
+    
+                  console.log(data.idSolicitudConvocatoria)
+                  this.solicitudConvocatoriaGenerada = data.idSolicitudConvocatoria
+    
+    
+                });
+             }
           });
+
+          
 
 
         });
@@ -285,7 +316,7 @@ export class ListaConvocatoriasComponent {
                   timer: 1500,
                 });
 
-               this.actualizarDocumento();
+                this.actualizarDocumento();
 
                 break;
             }
@@ -321,7 +352,7 @@ export class ListaConvocatoriasComponent {
     );
   }
 
-  public downloadDocumentoConvocatoria(id:any) {
+  public downloadDocumentoConvocatoria(id: any) {
     this.DocumentoLanzamientoConvocatoria.descargarDocumentoConvocatoria(id).subscribe(
       (data) => {
         const file = new Blob([data], { type: 'application/pdf' }); // Cambiar el tipo MIME a pdf

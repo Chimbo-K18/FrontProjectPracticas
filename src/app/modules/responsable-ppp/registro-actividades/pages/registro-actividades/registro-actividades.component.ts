@@ -226,7 +226,8 @@ export class RegistroActividadesComponent implements OnInit {
       'TERMINADO CON EXITO',
       'success'
     )
-    this.resetStepper();
+    window.location.reload();
+    
   }
 
   ngAfterViewInit() {
