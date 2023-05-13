@@ -3,9 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import Swal from 'sweetalert2';
 
@@ -37,17 +39,19 @@ export class ListaSoliRecibidasComponent {
   //TABLA
   solicitudpractica: SolicitudPracticas = new SolicitudPracticas();
 
-  displayedColumns1: string[] = ['idSolicitudPracticas', 'nombreSolicitud', 'nombre_carrera', 'numeroEstudiantes', 'tutorEmpresarial.empresa.nombreEmpresa','name','weight'];
+  displayedColumns1: string[] = ['idSolicitudPracticas', 'nombre_carrera', 'numeroEstudiantes', 'tutorEmpresarial.empresa.nombreEmpresa','name','weight'];
   dataSource1 = new MatTableDataSource<SolicitudPracticas>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataSource1.paginator = this.paginator;
   }
   constructor(private _formBuilder: FormBuilder,
     private solicitudpracticas: SolicitudpracticasService,
-    private documentoSolPracticas: DocumentoSolicitudPracticaService) {
+    private documentoSolPracticas: DocumentoSolicitudPracticaService, private responsableppservice: Responsable_PPPService) {
     this.listarSolicitudes();
   }
 
@@ -66,6 +70,11 @@ export class ListaSoliRecibidasComponent {
   }
   apruebaid: any;
 
+  resetStepper() {
+    this.stepper.reset();
+  }
+
+  nombreprac:any;
   aprobarsolicitud() {
     Swal.fire({
       title: 'Estas seguro que deseas asignar',
@@ -81,10 +90,7 @@ export class ListaSoliRecibidasComponent {
         this.solicitudpracticas.getRequest(this.apruebaid).subscribe(datasali => {
           console.log(datasali);
           this.solicitudpractica = datasali;
-          const nombresolicitud = document.getElementById(
-            'nombresolicitud'
-          ) as HTMLInputElement;
-          this.solicitudpractica.nombreSolicitud = nombresolicitud.value;
+          this.solicitudpractica.nombreSolicitud = this.nombreprac;
           this.solicitudpractica.fechaAceptacion = this.fechaela;
           this.solicitudpractica.estadoSolicitud = true;
           this.solicitudpracticas.updateSolicitud(this.solicitudpractica, this.idsoli).subscribe(dataupdate => {
@@ -92,8 +98,9 @@ export class ListaSoliRecibidasComponent {
             this.listarSolicitudes();
           });
         });
+        this.resetStepper();
         Swal.fire(
-          'APROVADO',
+          'APROBADO',
           'CON EXITO',
           'success'
         )
@@ -108,6 +115,11 @@ export class ListaSoliRecibidasComponent {
       this.fechaela = event.value.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
       this.solicitudpractica.fechaAceptacion = this.fechaela;
       console.log(this.solicitudpractica.fechaAceptacion);
+      const nombresolicitud = document.getElementById(
+        'nombresolicitud'
+      ) as HTMLInputElement;
+      this.nombreprac = nombresolicitud.value;
+      console.log(this.nombreprac);
     } else {
       console.log("entro a null");
       this.fechaela = null;
@@ -126,14 +138,21 @@ export class ListaSoliRecibidasComponent {
 
 
 
+  idusuario: any;
+  dataresponsable: any;
   listassolicitudes: any[] = [];
   listarSolicitudes() {
+    this.idusuario = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+      this.dataresponsable = datausu.carrera;
+      this.solicitudpracticas.getSolicitudesEstadofalse(this.dataresponsable).subscribe(data => {
+        this.listassolicitudes = data;
+        console.log(this.listassolicitudes);
+        this.dataSource1.data = this.listassolicitudes;
+      })
+    });
 
-    this.solicitudpracticas.getSolicitudesEstadofalse().subscribe(data => {
-      this.listassolicitudes = data;
-      console.log(this.listassolicitudes);
-      this.dataSource1.data = this.listassolicitudes;
-    })
+   
   }
 
   idSeleccionadas: string[] = [];

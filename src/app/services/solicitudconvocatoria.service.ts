@@ -63,6 +63,10 @@ export class SolicitudConvocatoriasService {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscardocument/${iddoc}`)
   }
 
+  comprobarconvocatoria(idconvocatoria: any , idestudiante:any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/count/${idconvocatoria}/${idestudiante}`)
+  }
+
   
 
 }

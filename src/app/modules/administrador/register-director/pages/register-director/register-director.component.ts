@@ -107,7 +107,6 @@ export class RegisterDirectorComponent implements OnInit {
     carreraSeleccionada:any;
     seleccionarCarrera() {
     console.log(this.carreraSeleccionada);
-    
     }
   // para crear el usuario
   users:any;

@@ -18,9 +18,10 @@ export class tutorempresarialService {
 
   extraerEmpresarialIdUsuario(idUsuario: any): Observable<tutorempresarial> {
     return this.http.get<tutorempresarial>(
-      this.url + `/extraer/ ${idUsuario}`
+      this.url +`/extraer/${idUsuario}`
     );
-  }
+  };
+
 
   getTutorEmp(): Observable<any[]>{
     return this.http.get<any[]>(this.urlGet).pipe(

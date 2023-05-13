@@ -19,66 +19,37 @@
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
             <div>
-              <h1 style="text-align: center;"> LISTADO DE CONVOCATORIAS </h1>
-
-              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+              <h1 style="text-align: center;"> LISTA DE SOLICITUDES DE PRACTICAS </h1>
 
               <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-                <!-- Position Column --> 
                 <ng-container matColumnDef="position">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Convocatoria</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.idSolicitudPracticas}} </td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Solicitud</th>
+                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.nombreSolicitud}} </td>
                 </ng-container>
-
-                <!-- Name Column -->
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Publicacion </th>
                   <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaEnvioSolicitud}} </td>
                 </ng-container>
-
-                <!-- Weight Column -->
                 <ng-container matColumnDef="weight">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Expiracion </th>
                   <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaAceptacion}}</td>
                 </ng-container>
-
                 <ng-container matColumnDef="estado">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.estadoSolicitud}}</td>
+                  <td mat-cell *matCellDef="let practicasSolicitud">
+                    <span *ngIf="practicasSolicitud.estadoSolicitud; else noAprobado"> Solicitud Aprobada</span>
+                    <ng-template #noAprobado>Solicitud No Aprobada</ng-template>
+                  </td>
                 </ng-container>
-                <!-- Symbol Column -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-
                 <ng-container matColumnDef="symbol" bol>
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Solicitudes</th>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Opciones</th>
                   <td mat-cell *matCellDef="let practicasSolicitud"> <button mat-raised-button color="primary"
-                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)">Seleccionar</button></td>
-
+                      matStepperNext (click)="seleccionarSolicitud(practicasSolicitud.idSolicitudPracticas)">Seleccionar</button></td>
                 </ng-container>
-
-
-
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
               </table>
-              <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-                aria-label="Select page of solicitudes">
+              <mat-paginator #paginator1 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
               </mat-paginator>
             </div>
           </mat-card>
@@ -96,110 +67,76 @@
             <div>
               <h1 style="text-align: center;"> ASIGNACION DE TUTORES ESPECIFICOS </h1>
               <h1 style="text-align: left;"> Listado de Estudiantes </h1>
-
-              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-              <table mat-table [dataSource]="dataTabla" class="mat-elevation-z8">
-                <!-- Position Column -->
-
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="fecha">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> {{listaSolicitudesAprobadas.fechaAprobacion}} </td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="carrera">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Horario Inicio </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> DATO 1</td>
-                </ng-container>
-
-                <ng-container matColumnDef="esta">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Horario Fin </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas">DATO 1</td>
-                </ng-container>
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-
-                <ng-container matColumnDef="sy" bol>
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"><button mat-raised-button color="primary"
-                    matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)">Seleccionar</button></td>
-
-                </ng-container>
-
-                
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">NO VA</th>
-                  <td mat-cell *matCellDef="let listaSolicitudesAprobadas"> dato2 </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
-                <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
-              </table>
-              <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-                aria-label="Select page of solicitudes">
-              </mat-paginator>
-            </div>
-            
-          </mat-card>
+              <ng-container *ngIf="datosCargadosAprobados">
+                <table mat-table [dataSource]="datam" class="mat-elevation-z8">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="nombres" >
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;" >Nombres</th>
+                        <td mat-cell *matCellDef="let lista"> {{lista.solicitudConvocatoria?.estudiantePracticante?.usuario_estudiante_practicante?.nombres}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="apellidos">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Apellidos</th>
+                        <td mat-cell *matCellDef="let lista"> {{lista.solicitudConvocatoria?.estudiantePracticante?.usuario_estudiante_practicante?.apellidos}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="horai">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Hora Inico</th>
+                        <td mat-cell *matCellDef="let lista"> {{lista.horaInicio }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="horaf">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora Fin </th>
+                        <td mat-cell *matCellDef="let lista"> {{lista.horaSalida}} </td>
+                    </ng-container>
           
+                  <ng-container matColumnDef="opciones" style="width: 60px;">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let lista">
+                      <button class="agregar" data-bs-dismiss="modal" matStepperNext (click)="asignar(lista.idPractica)"> 
+                        <mat-icon>check_circle</mat-icon>
+                      </button>
+                    </td>
+                   </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="diColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: diColumns"></tr>
+                </table>
+                <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
+                </mat-paginator>
+            </ng-container>
+            </div>
+            <div style="text-align: center;">
+              <button style="margin-right: 12px" mat-raised-button color="primary" matStepperPrevious>Back</button>
+            </div>
+          </mat-card>
         </div>
       </form>
-
     </mat-step>
-
-
     <mat-step [stepControl]="tresFormGroup">
       <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
       <form [formGroup]="tresFormGroup">
         <ng-template matStepLabel>Fase 3</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; justify-content: center; align-items: center; ">
           <mat-card>
             <div>
               <h1 style="text-align: left;"> LISTA DE EMPRESARIALES </h1>
 
-              <select id="materias" name="materias">
-                <option value="">Seleccione una carrera</option>
-                <option value="">Seleccione una carrera</option>
-                <option value="">Seleccione una carrera</option>
-              </select>
-
-              
-
+        
+              <h1 style="margin-top: 25px; font-size:16px; color:#c4c3ca;">Asigne un Tutor Empresarial</h1>
+              <select id="materias" name="materias" [(ngModel)]="tutorselect" (change)="onSelectTutor($event)">
+                <option value="disabled selected">Seleccione un Tutor</option>
+                <ng-container *ngFor="let tutor of listatutores">
+                  <option [value]="tutor.cedula">
+                    {{ tutor.nombres }} {{ tutor.apellidos }} 
+                    <span *ngIf="false">{{ tutor.cedula }}</span>
+                  </option>
+                </ng-container>
+              </select>   
               <div style="text-align: center;">
-
-                <button mat-raised-button matStepperNext  color="primary">SIGUIENTE</button>
-  
-              </div>
-
-
-              
-              
-            </div>
-
-            
-
-
-            
-          </mat-card>
-
-         
+                <button style="margin-right: 12px" mat-raised-button color="primary" matStepperPrevious>Back</button>
+                <button mat-raised-button matStepperNext  color="primary" (click)="actualizar()">Siguiente</button>
+              </div>        
+            </div>  
+          </mat-card>    
         </div>
       </form>
-
     </mat-step>
 
     <mat-step [stepControl]="cuatroFormGroup">
@@ -227,9 +164,6 @@
               <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
               <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
           </div>
-
-
-            
           </mat-card>
         </div>
       </form>
@@ -258,35 +192,16 @@
                 Haz clic en el botón para cargar el documento
               </div>
             </div>
-
             <div style="text-align: center">
-              
+                <button style="margin-right: 12px" mat-raised-button color="primary" matStepperPrevious>Back</button>
               <button style="margin-right: 12px" mat-raised-button color="warn">
                 Finalizar
               </button>
-              
             </div>
-            
-
-
-            
           </mat-card>
         </div>
       </form>
-
     </mat-step>
   </mat-stepper>
-
-
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>

@@ -1,3 +1,5 @@
+import { EstudiantePracticante } from './../../../../../models/estudiantepracticante';
+import { PracticaService } from 'src/app/services/practica.service';
 import {AfterViewInit, Component, ViewChild } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,6 +11,14 @@ import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.s
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
+import { UserService } from 'src/app/services/user.service';
+import { Usuarios } from 'src/app/models/usuarios';
+import { tutorempresarialService } from './../../../../../services/tutorempresarial.service';
+import { EstudiantePracticanteService } from './../../../../../services/estudiantepracticante.service';
+import { MatStepper } from '@angular/material/stepper';
+import Swal from 'sweetalert2';
+import { Practica } from 'src/app/models/practica';
+
 
 export interface Aprobados {
   nombre: string;
@@ -36,7 +46,7 @@ const AP: Aprobados[] = [
 export class AsignaEspecificoComponent   implements AfterViewInit{
 
 
-  practicasSolicitud: SolicitudPracticas[] = [] ;
+  practicasSolicitud: any ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
 
@@ -48,8 +58,11 @@ export class AsignaEspecificoComponent   implements AfterViewInit{
   dColumns: string[] = ['fecha', 'carrera', 'esta', 'sy', 'nombre'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
+  diColumns: string[] = ['nombres', 'apellidos', 'horai', 'horaf','opciones'];
+  datam = new MatTableDataSource<Practica>([]);
+  ///usuarios
+  datosCargadosAprobados: boolean = false;
+  datosTablaAprobados: any[] = [];
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
 @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
@@ -60,10 +73,6 @@ export class AsignaEspecificoComponent   implements AfterViewInit{
   }
 
   //FINTABLA
-
-
-
-
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -84,49 +93,130 @@ export class AsignaEspecificoComponent   implements AfterViewInit{
   });
 
   isEditable = false;
-
+  SolicitudPracticas: SolicitudPracticas = new SolicitudPracticas();
+  Practica:Practica=new Practica();
   constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService) { }
+    private solicitudService : SolicitudConvocatoriasService,
+    private SolicitudpracticasService:SolicitudpracticasService,
+    private PracticaService:PracticaService, private UserService:UserService, 
+    private tutorempresarialService:tutorempresarialService) { }
 
   ngOnInit(): void {
-
+this.ObtenerTutores();
     this.listarSolicitudesAprobadasPracticas();
   }
+estdo:string ="solicitud aprobada";
+idempres:any;
+cedus:any;
 
   listarSolicitudesAprobadasPracticas() {
-    this.solicitudPracticas.getSolicitudesEstado().subscribe(
-      (res) => {
-        this.practicasSolicitud = res;
-        console.log(res);
-
-        this.dataF1.data = this.practicasSolicitud
-      }
-    );
+    this.cedus = localStorage.getItem("idusuario");
+this.UserService.getuscedula(this.cedus).subscribe(datBuscar=>{
+this.tutorempresarialService.extraerEmpresarialIdUsuario(datBuscar.idUsuario).subscribe(DataExtaer =>{
+this.idempres=DataExtaer.empresa?.idEmpresa;
+this.solicitudPracticas.getBuscarPorEmpresa(this.idempres).subscribe(
+  (res) => {  
+    this.practicasSolicitud = res;
+    console.log(res);
+    this.dataF1.data = this.practicasSolicitud
   }
-
-
+);
+});
+}); 
+  }
   seleccionarConvocatoria(solicitud: any) {
     sessionStorage.setItem('solicitudPractica', JSON.stringify(solicitud));
-
     const valor = JSON.parse(
       sessionStorage.getItem('solicitudPractica') || '{}'
     );
-
     this.mivariable = valor.idSolicitudPracticas;
     console.log(this.mivariable)
 
-
-    this.solicitudService.listarCheckResponsable(this.mivariable).subscribe(
-      (data) => {
-
-        console.log(data)
-        this.listaSolicitudesAprobadas = data
-
-        this.dataTabla.data = this.listaSolicitudesAprobadas
-
-      }
-    )
-
   }
+  selectedConvocatoria: any;
+  lista:any[]=[];
+  seleccionarSolicitud(soli: any) {
+    this.selectedConvocatoria= soli;
+    console.log('Valor seleccionado:', this.selectedConvocatoria);
+    this.PracticaService.buscarPorUsuarioSolicitud(this.selectedConvocatoria).subscribe(dataSolictud =>{
+
+            if(dataSolictud.checkEmpresarial==false){
+              this.datosCargadosAprobados=true;
+              this.lista = [];
+              dataSolictud.forEach((practica: Practica) => {
+               this.lista.push(practica);
+             });
+             this.datam.data = this.lista;
+             console.log(this.lista);
+            }else{
+              Swal.fire(
+                'Advertencia',
+                'Los estudiantes de esta Solicitud Ya tiene Asignado un Tutor Empresarial',
+                'warning'
+              );
+            
+            }
+      }) 
+  }
+
+  /////////////Listar Tutores
+   ids:number=1;
+   listatutores: any;
+   listatutorestrados: any [] = [];
+   ObtenerTutores() {
+     this.SolicitudpracticasService.listarDocentes(this.ids).subscribe((datax) => {
+       if (Array.isArray(datax)) {
+         this.listatutores = datax
+       } else {
+         console.log("Error: data no es un arreglo.");
+       }
+     });
+   };
+
+tutorselect:any;
+cedulatutor:any
+idUsTuto:any;
+dataTutorcod:any
+onSelectTutor(event: Event): void {
+  const selectedValue = (event.target as HTMLSelectElement).value;
+  this.cedulatutor=selectedValue;
+  this.UserService.getuscedula(this.cedulatutor).subscribe(dataUsuario =>{
+    console.log(dataUsuario);
+    this.idUsTuto=dataUsuario.idUsuario;
+    this.tutorempresarialService.extraerEmpresarialIdUsuario(this.idUsTuto).subscribe(dataTutor =>{
+      this.dataTutorcod=dataTutor;
+      });
+    });
+}
+///asignar tutor 
+idAsignar:any
+idPrac:any
+cedUsuario:any
+dataPracticacod:any
+
+asignar(id:any){
+this.idAsignar= id;
+this.PracticaService.buscarId(this.idAsignar).subscribe(dataPractica =>{
+this.dataPracticacod=dataPractica;
+this.idPrac=dataPractica.idPractica;
+});
+}
+
+actualizar(){
+  this.Practica=this.dataPracticacod;
+  this.Practica.tutorEmpresarial=this.dataTutorcod;
+  this.Practica.checkEmpresarial=true;
+  this.PracticaService.UpdatePractica(this.Practica,this.idPrac).subscribe(datapractica =>{
+    console.log(datapractica);
+    });
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      title: 'Asignación de Tutor, Exitoso.',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+
+}
 
 }

@@ -518,3 +518,11 @@ h1 {
   width: auto;
   display: block;
 }
+.tbConteiner{
+  width: 100%;
+  overflow-x: auto;
+  /* Modifica el color de la barra de desplazamiento y del pulgar */
+  scrollbar-color: #aaa #f8f8f8;
+  /* Ajusta el ancho de la barra de desplazamiento */
+  scrollbar-width: thin;
+}

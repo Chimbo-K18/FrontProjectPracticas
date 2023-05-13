@@ -1,8 +1,7 @@
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
-
 import { UserService } from 'src/app/services/user.service';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild,Renderer2  } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,6 +25,7 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   //TABLA convocatorias
   displayedColumns: string[] = [
     'nombreconvocatoria',
+    'nombresoli',
     'fechapublicacion',
     'fechaexpiracion',
     'estadoConvocatoria',
@@ -70,7 +70,8 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
     private SolicitudConvocatoriasService: SolicitudConvocatoriasService,
     private EstudiantePracticanteService: EstudiantePracticanteService,
     private userService: UserService,
-    private DocumentConvocatoria:DocumentoSolicitudConvocatoria
+    private DocumentConvocatoria:DocumentoSolicitudConvocatoria,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit(): void { }
@@ -96,10 +97,12 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   }
 
   selectedsolicitud: any;
+  selectconvo:any;
   // para seleccionar la convocatoria
   seleccionarConvocatoria(convocatorias: any) {
     console.log('Se seleccionó la convocatoria:', convocatorias);
     this.selectedsolicitud = convocatorias.solicitudPracticas.idSolicitudPracticas;
+    this.selectconvo=convocatorias.idConvocatorias;
     console.log(this.selectedsolicitud);
     this.buscarSolicitud(this.selectedsolicitud);
     this.buscarAprobados(this.selectedsolicitud);
@@ -114,13 +117,15 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   iduspracticante: any;
   fecha: any;
   idsoli: any;
+  convoca:any
   buscarSolicitud(id: any) {
     this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
       (datasoli) => {
         this.idsoli = datasoli.idSolicitudConvocatoria;
         this.fecha = datasoli.fechaEnvio;
+        this.convoca=datasoli.convocatoria.idConvocatorias
         console.log(datasoli);
-        if(datasoli.checkDirector==false && this.idsoli==this.selectedsolicitud){
+        if(datasoli.checkDirector==false && this.convoca==this.selectconvo){
           this.idestudent = datasoli.estudiantePracticante.idEstudiantePracticas;
           this.EstudiantePracticanteService.getRequestEstudiante(
             this.idestudent).subscribe((datapracticante) => {
@@ -155,14 +160,16 @@ idestudentapro: any;
 iduspracticanteApro: any;
 fechaapro: any;
 idsoliapro:any;
+convo:any
 /////cargar estudinates aprobados
 buscarAprobados(id: any) {
   this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
     (datasoliapro) => {
       this.idsoliapro=datasoliapro.idSolicitudConvocatoria;
       this.fechaapro = datasoliapro.fechaEnvio;
+      this.convo=datasoliapro.convocatoria.idConvocatorias
       console.log(datasoliapro);
-      if(datasoliapro.checkDirector==true  && this.idsoli==this.selectedsolicitud){
+      if(datasoliapro.checkDirector==true  && this.convo==this.selectconvo){
         this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
         this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
           console.log(datapracticanteApro);
@@ -216,8 +223,9 @@ buscarAprobados(id: any) {
                 showConfirmButton: false,
                 timer: 1000,
               });
-              this.resetStepper();
+  
               this.datosCargados = true;
+              this.refreshWindow();
             });
         });
 
@@ -265,5 +273,16 @@ buscarAprobados(id: any) {
     );
   }
 
+  refreshPage() {    
+    // Refresca la página
+    this.renderer.setProperty(window, 'location', location.href);
+  }
 
+
+  refreshWindow() {
+    // Realiza la acción aquí
+  
+    // Refresca la ventana sin redireccionar a la página principal
+    window.location.reload();
+  }
 }

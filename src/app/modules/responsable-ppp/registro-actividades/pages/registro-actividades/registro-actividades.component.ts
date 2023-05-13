@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { Actividades } from 'src/app/models/actividades';
 import { Requerimientos } from 'src/app/models/requerimientos';
+import { Responsable_PPP } from 'src/app/models/responsable_ppp';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { verCarreras } from 'src/app/models/verCarreras';
 import { vermateriasf } from 'src/app/models/vermateriasf';
@@ -11,6 +13,7 @@ import { ActividadService } from 'src/app/services/actividad.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MateriaService } from 'src/app/services/materias.service';
 import { RequermientoService } from 'src/app/services/requerimientos.service';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import Swal from 'sweetalert2';
 
@@ -40,8 +43,10 @@ export class RegistroActividadesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public vercarrera: verCarreras = new verCarreras();
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
-  constructor(private carrera: CarreraService, private materia: MateriaService, private requerimientoservice: RequermientoService, private solicitudpracticas: SolicitudpracticasService, private actividadservice: ActividadService) {
+
+  constructor(private carrera: CarreraService, private materia: MateriaService, private requerimientoservice: RequermientoService, private solicitudpracticas: SolicitudpracticasService, private actividadservice: ActividadService, private responsableppservice: Responsable_PPPService) {
     this.listarSolicitudes();
     // this.traercarreras();
   }
@@ -115,21 +120,30 @@ export class RegistroActividadesComponent implements OnInit {
     empresa.value = empreselect;
   }
 
+  resetStepper() {
+    this.stepper.reset();
+  }
 
   listassolicitudes: any[] = [];
+  idusuario: any;
+  dataresponsable: any;
   listarSolicitudes() {
+    this.idusuario = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+      this.dataresponsable = datausu.carrera;
+      this.solicitudpracticas.getSolicitudesEstadotrue(this.dataresponsable).subscribe(data => {
+        this.listassolicitudes = data;
+        console.log(this.listassolicitudes);
+        this.dataSource1.data = this.listassolicitudes;
+      })
+    });
 
-    this.solicitudpracticas.getSolicitudesEstado().subscribe(data => {
-      this.listassolicitudes = data;
-      console.log(this.listassolicitudes);
-      this.dataSource1.data = this.listassolicitudes;
-    })
   }
 
   listarrequerimientos: any[] = [];
-  listaRequerimientos() {
+  listaRequerimientos(idsoli:any) {
 
-    this.requerimientoservice.getRequerimiento().subscribe(dataareque => {
+    this.requerimientoservice.getRequerimientoPorSolicitud(idsoli).subscribe(dataareque => {
       this.listarrequerimientos = dataareque;
       this.dataSource2.data = this.listarrequerimientos;
     })
@@ -176,7 +190,8 @@ export class RegistroActividadesComponent implements OnInit {
               console.log(dataupdate);
               this.requerimiento.solicitudPracticas = dataupdate;
               this.requerimientoservice.crearRequerimiento(this.requerimiento).subscribe(datareque => {
-                this.listaRequerimientos();
+                this.listaRequerimientos(this.idsoli);
+                this.limpiarcampos();
               });
 
             });
@@ -192,6 +207,17 @@ export class RegistroActividadesComponent implements OnInit {
     })
   }
 
+  limpiarcampos(){
+    const detalle = document.getElementById(
+      'detalle'
+    ) as HTMLInputElement;
+    detalle.value = "";
+    const herramienta = document.getElementById(
+      'herramienta'
+    ) as HTMLInputElement;
+    herramienta.value="";
+  }
+
 
 
   procesoterminado() {
@@ -200,6 +226,8 @@ export class RegistroActividadesComponent implements OnInit {
       'TERMINADO CON EXITO',
       'success'
     )
+    window.location.reload();
+    
   }
 
   ngAfterViewInit() {
