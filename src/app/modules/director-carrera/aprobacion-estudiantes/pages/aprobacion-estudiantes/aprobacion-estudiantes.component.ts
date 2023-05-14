@@ -142,16 +142,9 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
 
 
   ///buscar solicitudpractica
-  idestudent: any;
-  nombrestudent: any;
-  carreraestudent: any;
-  iduspracticante: any;
-  fecha: any;
-  idsoli: any;
-  convoca:any
+
   listasolicitudconvocatoria: any;
   buscarSolicitud(id: any) {
-console.log(id);
     this.SolicitudConvocatoriasService.getRequestSolicitudconvoDirector(id).subscribe(
       datasoli => {
         this.listasolicitudconvocatoria = datasoli;

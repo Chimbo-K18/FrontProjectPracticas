@@ -29,6 +29,13 @@ export class SolicitudConvocatoriasService {
   getRequestSolicitudconvoDirectorTrue(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscarcovocatoriadirectorfalse/${idConvocatoriasSolicitud}`)
   }
+  getRequestSolicitudconvoTutor(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscarcovocatoriatutor/${idConvocatoriasSolicitud}`)
+  }
+
+  getRequestSolicitudconvoTutorTrue(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscarcovocatoriatutorfalse/${idConvocatoriasSolicitud}`)
+  }
 
 
 
