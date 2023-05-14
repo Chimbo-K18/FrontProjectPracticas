@@ -31,6 +31,10 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestado`);
   }
 
+  getSolicitudesPorEmpresa(idempresa:any): Observable<SolicitudPracticas[]>{
+    return this.http.get<SolicitudPracticas[]>(`${this.URL}listasolicitudcheck/${idempresa}`);
+  }
+
   getSolicitudesEstadotrue(nombrecarrera:any): Observable<SolicitudPracticas[]>{
     return this.http.get<SolicitudPracticas[]>(`${this.URL}listarestadoentrue/${nombrecarrera}`);
   }

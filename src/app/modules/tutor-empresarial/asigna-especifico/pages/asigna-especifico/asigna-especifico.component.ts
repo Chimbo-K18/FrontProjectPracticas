@@ -66,7 +66,7 @@ export class AsignaEspecificoComponent   implements AfterViewInit{
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
 @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
-
+@ViewChild(MatStepper) stepper!: MatStepper;
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
     this.dataTabla.paginator = this.paginator2;
@@ -139,8 +139,8 @@ this.solicitudPracticas.getBuscarPorEmpresa(this.idempres).subscribe(
     this.selectedConvocatoria= soli;
     console.log('Valor seleccionado:', this.selectedConvocatoria);
     this.PracticaService.buscarPorUsuarioSolicitud(this.selectedConvocatoria).subscribe(dataSolictud =>{
-
-            if(dataSolictud.checkEmpresarial==false){
+      console.log(dataSolictud)
+  
               this.datosCargadosAprobados=true;
               this.lista = [];
               dataSolictud.forEach((practica: Practica) => {
@@ -148,14 +148,7 @@ this.solicitudPracticas.getBuscarPorEmpresa(this.idempres).subscribe(
              });
              this.datam.data = this.lista;
              console.log(this.lista);
-            }else{
-              Swal.fire(
-                'Advertencia',
-                'Los estudiantes de esta Solicitud Ya tiene Asignado un Tutor Empresarial',
-                'warning'
-              );
-            
-            }
+    
       }) 
   }
 
@@ -218,5 +211,10 @@ actualizar(){
     });
 
 }
+
+resetStepper() {
+  this.stepper.reset();
+}
+
 
 }

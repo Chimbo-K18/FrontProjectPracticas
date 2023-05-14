@@ -31,31 +31,34 @@
                 <!-- Position Column -->
                 <ng-container matColumnDef="position">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Solicitud</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.idSolicitudPracticas}} </td>
+                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.solicitudPracticas?.nombreSolicitud}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Envio Solicitud</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaEnvioSolicitud}} </td>
+                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.solicitudPracticas?.fechaEnvioSolicitud}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="weight">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaAceptacion}}</td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Aceptación </th>
+                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.solicitudPracticas?.fechaAceptacion}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="estado">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Solicitudes </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.estadoSolicitud}}</td>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
+                  <td mat-cell *matCellDef="let practicasSolicitud">
+                    <span *ngIf="practicasSolicitud.solicitudPracticas?.estadoSolicitud; else noAprobado"> Aprobada</span>
+                    <ng-template #noAprobado>Pendiente</ng-template>
+                  </td>
                 </ng-container>
                 <!-- Symbol Column -->
 
                 <ng-container matColumnDef="symbol" bol>
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;">Solicitudes</th>
                   <td mat-cell *matCellDef="let practicasSolicitud"> <button mat-raised-button color="primary"
-                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)" (click)=" traerconvocatoria(practicasSolicitud.idSolicitudPracticas)">Seleccionar</button></td>
+                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)" (click)=" traerconvocatoria(practicasSolicitud.idConvocatorias)">Seleccionar</button></td>
 
                 </ng-container>
 
@@ -138,9 +141,9 @@
               </mat-paginator>
             </div>
             <div style="margin-top:25px; text-align: center;">
-                <button mat-raised-button color="primary" matStepperNext (click)="listarpracticas()">Siguiente</button>
+                <button mat-raised-button color="primary" matStepperNext (click)="listarpracticas()" style="margin-left: 10px;">Siguiente</button>
 
-
+                <button mat-raised-button color="primary" matStepperPrevious style="margin-right: 10px;">Back</button>
                 <!-- BOTON SI QUIERES PROVAR  EL MODAL  -->
                 <!-- <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
                     <mat-icon>edit</mat-icon> </button> -->
@@ -202,10 +205,11 @@
               </mat-paginator>
             </div>
 
-
+            <button  mat-raised-button color="primary" (click)="resetStepper()" > Back</button>
 
           </mat-card>
         </div>
+       
       </form>
 
     </mat-step>
@@ -269,7 +273,7 @@
 
             <div style="text-align: center;">
 
-              <button mat-flat-button color="warn" (click)="Asignarhorario()">GENERAR </button>
+              <button mat-flat-button color="warn" (click)="Asignarhorario()" data-bs-dismiss="modal">GENERAR </button>
 
             </div>
 
