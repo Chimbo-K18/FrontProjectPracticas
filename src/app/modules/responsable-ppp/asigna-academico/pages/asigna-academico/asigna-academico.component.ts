@@ -19,6 +19,9 @@ import { UsuarioRol } from 'src/app/models/UsuarioRol';
 import { PermisosService } from 'src/app/services/permisos.service';
 import { DocumentoAsigTutorAcademico } from 'src/app/services/doc/DocumentoAsigTutorAcademico.service';
 import { HttpEventType } from '@angular/common/http';
+import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
+import { MatStepper } from '@angular/material/stepper';
 
 export interface Aprobados {
   nombre: string;
@@ -61,7 +64,7 @@ export class AsignaAcademicoComponent implements AfterViewInit {
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
   @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
-
+  @ViewChild(MatStepper) stepper!: MatStepper;
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
     this.dataTabla.paginator = this.paginator2;
@@ -97,7 +100,7 @@ export class AsignaAcademicoComponent implements AfterViewInit {
     private userservice: UserService,
     private permisoservice: PermisosService,
     private crearusuarioservice: CreateAccountService,
-    private documentoAsig: DocumentoAsigTutorAcademico) {
+    private documentoAsig: DocumentoAsigTutorAcademico, private responsableppservice: Responsable_PPPService) {
     this.traerdocente();
     this.traerdocenteRolAcademico();
   }
@@ -107,14 +110,21 @@ export class AsignaAcademicoComponent implements AfterViewInit {
     this.listarConvocatorias();
   }
 
+  Ce:any;
+  carreradata:any;
   listaconvocatoria: any[] = [];
   listarConvocatorias() {
-    this.convocatoriaservice.listarPorestadoConvocatoria().subscribe(dataconvo => {
-      console.log(dataconvo);
-      this.listaconvocatoria = dataconvo;
-      this.dataF1.data = this.listaconvocatoria
-    }
-    );
+    this.Ce = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.Ce).subscribe(datausu => {
+    this.carreradata = datausu.carrera;
+        this.convocatoriaservice.listarPorestadoConvocatoriaPorcarrera(this.carreradata).subscribe(dataconvo => {
+          console.log(dataconvo);
+          this.listaconvocatoria = dataconvo;
+          this.dataF1.data = this.listaconvocatoria;
+
+        });
+      });
+    
   }
 
   llevarid: any;
@@ -290,6 +300,12 @@ export class AsignaAcademicoComponent implements AfterViewInit {
       });
     });
   }
+  
+  resetStepper() {
+    this.stepper.reset();
+  }
+  
+
 
   listapraacticas: any[] = [];
   seleccionarConvocatoria(solicitud: any) {

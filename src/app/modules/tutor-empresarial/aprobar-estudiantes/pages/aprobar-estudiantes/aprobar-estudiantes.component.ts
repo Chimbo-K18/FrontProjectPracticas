@@ -26,7 +26,7 @@ import Swal from 'sweetalert2';
 export class AprobarEstudiantesComponent implements AfterViewInit{
 
 
-  practicasSolicitud: SolicitudPracticas[] = [] ;
+  practicasSolicitud: Convocatorias[] = [] ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
 
@@ -96,6 +96,7 @@ export class AprobarEstudiantesComponent implements AfterViewInit{
 
 Ce:any;
 tutoenecontrado:any;
+listaconvocatorias:any;
   listarSolicitudesAprobadasPracticas() {
     this.Ce = localStorage.getItem("idusuario");
     console.log("id usuario " + this.Ce)
@@ -105,12 +106,12 @@ tutoenecontrado:any;
         console.log(dataTutor);
         this.tutoenecontrado = dataTutor.empresa.idEmpresa;
         console.log(this.tutoenecontrado);
-        this.solicitudPracticas.getSolicitudesPorEmpresa(this.tutoenecontrado).subscribe(
+        this.ConvocatoriasService.ConvocatoriaporEmpresa(this.tutoenecontrado).subscribe(
           (res) => {
-            this.practicasSolicitud = res;
+            this.listaconvocatorias = res;
             console.log(res);
     
-            this.dataF1.data = this.practicasSolicitud
+            this.dataF1.data = this.listaconvocatorias
           }
         );
       });
@@ -119,17 +120,17 @@ tutoenecontrado:any;
   }
 
   selectconvo:any;
-  idpract:number=2 ;
+  idpract:any;
   listasolicitudconvocatoria: any;
+  nom:any;
   // para seleccionar la convocatoria
   seleccionarConvocatoria(id: any) {
     console.log('Se seleccionó la solicitud:', id);
-    this.ConvocatoriasService.SolicitudporConvocatoria(id).subscribe(dataconvocatoria =>{
-      console.log(dataconvocatoria.idConvocatorias);
-      //  this.idpract=dataconvocatoria.idConvocatorias;
+       this.idpract=id;
        console.log(this.idpract);
        this.buscarSolicitud(this.idpract);
-    });   
+       this.buscarAprobados(this.idpract);
+
   }
 
   ///buscar solicitudpractica
@@ -137,8 +138,7 @@ tutoenecontrado:any;
   
   buscarSolicitud(id:any) {
     console.log(id)
-    this.idpract=id.idConvocatorias
-    this.SolicitudConvocatoriasService.getRequestSolicitudconvoTutorTrue(id).subscribe(
+    this.SolicitudConvocatoriasService.getRequestSolicitudconvoTutor(id).subscribe(
       datasoli => {
         this.listasolicitudconvocatoria = datasoli;
         this.dataestudiante.data = this.listasolicitudconvocatoria;
@@ -154,7 +154,7 @@ tutoenecontrado:any;
   listasolicitudconvocatoriatrue:any
   /////cargar estudinates aprobados
   buscarAprobados(id: any) {
-    this.SolicitudConvocatoriasService.getRequestSolicitudconvoTutor(id).subscribe(
+    this.SolicitudConvocatoriasService.getRequestSolicitudconvoTutorTrue(id).subscribe(
         datasoli => {
           this.listasolicitudconvocatoriatrue = datasoli;
           this.dataestudiantetrue.data = this.listasolicitudconvocatoriatrue;
@@ -172,6 +172,7 @@ idsoliG:any;
 id:any;
 datatutorEmp:any
 selectedestudinate(id: number) {
+  this.mivariable = id;
   this.Cedus=localStorage.getItem("idusuario");
   console.log("id usuario "+this.Cedus)
   console.log("ID seleccionado:",this.mivariable);
@@ -188,6 +189,7 @@ selectedestudinate(id: number) {
         this.SolicitudConvocatoria.tutorEmpresarial= this.datatutorEmp;
         this.SolicitudConvocatoriasService.updateSolicitudConvocatoria(this.SolicitudConvocatoria, this.idsolienc).subscribe(
           (datasoliencontrada) => {
+            console.log(datasoliencontrada);
             Swal.fire({
               position: 'top',
               icon: 'success',
@@ -198,8 +200,8 @@ selectedestudinate(id: number) {
           });
 
           this.SolicitudConvocatoria.tutorEmpresarial = dataTutor;
-          this.refreshWindow();
 
+this.resetStepper();
         });
 
       });

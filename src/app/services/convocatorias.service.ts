@@ -35,6 +35,9 @@ export class ConvocatoriasService {
     return this.http.get<Convocatorias[]>(this.API_URL+'/practicas');
   }
 
+  listarPorestadoConvocatoriaPorcarrera(carrera:any){
+    return this.http.get<Convocatorias[]>(`${this.API_URL}/convocatoriaporcarreraconpractica/${carrera}`);
+  }
 
   buscardoc(iddoc: any): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/convocatoria/documento/${iddoc}`)
@@ -47,4 +50,13 @@ export class ConvocatoriasService {
   SolicitudporConvocatoria(idConvocatorias: any): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporsolicitud/${idConvocatorias}`)
   }
+
+  ConvocatoriaporEmpresa(idempresa: any): Observable<Convocatorias> {
+    return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporempresa/${idempresa}`)
+  }
+
+  ConvocatoriaporEmpresaTrue(idempresa: any): Observable<Convocatorias> {
+    return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporempresaestadosoli/${idempresa}`)
+  }
+
 }

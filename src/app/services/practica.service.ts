@@ -31,8 +31,8 @@ export class PracticaService {
     return this.http.put<Practica>(this.url+`/actualizar/${idPractica}`, practica);
   }
 
-  listarPracticaEstudiante(): Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+'/aprobadas')
+  listarPracticaEstudiante(idempresa: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/aprobadas/${idempresa}`)
   }
 
   updateDocumentoAsigTutor(idSolicitud: any, idDocumento: any) {
