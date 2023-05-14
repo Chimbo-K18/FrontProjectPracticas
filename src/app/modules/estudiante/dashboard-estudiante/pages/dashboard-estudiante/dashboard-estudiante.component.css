@@ -368,15 +368,6 @@ tr:hover {
   margin-bottom: 10px;
 }
 
-.promo_card{
-  width: 100%;
-  color: #fff;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  padding: 0.5rem 1rem 1rem 3rem;
-  background-color:#4F94E4;
-}
 
 .mat-card-content li {
   list-style-type: none;
@@ -615,7 +606,6 @@ h2 {
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -638,7 +628,7 @@ h2 {
 }
 
 .promo_card img {
-  max-width: 80%;
+  max-width: 22%;
   height: auto;
   margin: 20px 0;
   border-radius: 50%;

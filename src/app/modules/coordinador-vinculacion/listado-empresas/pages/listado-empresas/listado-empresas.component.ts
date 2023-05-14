@@ -184,4 +184,14 @@ export class ListadoEmpresasComponent implements OnInit {
   onActualizarClick() {
     this.actualizarEmpresa();
   }
+
+  //FIltrado por cualquier elemento de la lista
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }

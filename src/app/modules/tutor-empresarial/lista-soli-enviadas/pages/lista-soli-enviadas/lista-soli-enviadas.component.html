@@ -14,9 +14,9 @@
     <mat-card style="width: 645px;">
       
       <div style="display: flex; justify-content: center;">
-        <mat-form-field class="example-full-width" style="width: 600px;">
-          <mat-label>Cedula </mat-label>
-          <input matInput placeholder="Buscar...">
+        <mat-form-field appearance="standard">
+          <mat-label>Búsqueda</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Cedula o Nombre" #input>
         </mat-form-field>
       </div>
     </mat-card>

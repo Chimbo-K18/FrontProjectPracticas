@@ -15,9 +15,9 @@
     <mat-card >
 
       <div style="display: flex; justify-content: center;">
-        <mat-form-field class="example-full-width" style="width: 600px;">
-          <mat-label>Buscar </mat-label>
-          <input matInput placeholder="Buscar...">
+        <mat-form-field appearance="standard">
+          <mat-label>Búsqueda</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ejm:Número Convenio" #input>
         </mat-form-field>
       </div>
     </mat-card>
