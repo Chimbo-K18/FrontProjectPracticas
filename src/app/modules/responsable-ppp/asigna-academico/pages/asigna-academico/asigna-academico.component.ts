@@ -106,8 +106,14 @@ export class AsignaAcademicoComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
-    this
-    this.listarConvocatorias();
+
+
+    setInterval(() => {
+
+      this.listarConvocatorias();
+      this.traerdocenteRolAcademico();
+    }, 3500);
+
   }
 
   Ce:any;
@@ -124,7 +130,7 @@ export class AsignaAcademicoComponent implements AfterViewInit {
 
         });
       });
-    
+
   }
 
   llevarid: any;
@@ -300,11 +306,11 @@ export class AsignaAcademicoComponent implements AfterViewInit {
       });
     });
   }
-  
+
   resetStepper() {
     this.stepper.reset();
   }
-  
+
 
 
   listapraacticas: any[] = [];
