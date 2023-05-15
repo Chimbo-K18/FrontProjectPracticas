@@ -14,6 +14,7 @@ import { Practica } from 'src/app/models/practica';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { MatStepper } from '@angular/material/stepper';
 
 export interface Aprobados {
   nombre: string;
@@ -59,7 +60,7 @@ export class AsignarHorarioComponent implements AfterViewInit {
 
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
   @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
-
+  @ViewChild(MatStepper) stepper!: MatStepper;
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
     this.dataTabla.paginator = this.paginator2;
@@ -92,7 +93,7 @@ export class AsignarHorarioComponent implements AfterViewInit {
   isEditable = false;
 
   constructor(private _formBuilder: FormBuilder, private userService: UserService, private tutorempresarialService: tutorempresarialService, private solicitudPracticas: SolicitudpracticasService, private solicitudconvocatoriaservice: SolicitudConvocatoriasService, private practicaservice: PracticaService,
-    private solicitudService: SolicitudConvocatoriasService) { }
+    private solicitudService: SolicitudConvocatoriasService, private convocatoriaservice: ConvocatoriasService) { }
 
   ngOnInit(): void {
 
@@ -107,23 +108,19 @@ export class AsignarHorarioComponent implements AfterViewInit {
   idsoliG: any;
   id: any;
   datatutorEmps: any
-  practicasSolicitudesd: any[] = [];
+  practicasSolicitudesd: any;
   listarSolicitudesAprobadasPracticas() {
     this.Ceduss = localStorage.getItem("idusuario");
     console.log("id usuario " + this.Ceduss)
-    console.log("ID seleccionado:", this.mivariable);
     this.userService.getuscedula(this.Ceduss).subscribe(dataUserEncon => {
       this.tutorempresarialService.extraerEmpresarialIdUsuario(dataUserEncon.idUsuario).subscribe(dataTutor => {
         console.log("esta es la dat del tuto");
         console.log(dataTutor);
         this.datatutorEmps = dataTutor.empresa.idEmpresa;
         console.log(this.datatutorEmps);
-        this.solicitudPracticas.getBuscarPorEmpresa(this.datatutorEmps).subscribe(dataporempresa => {
+        this.convocatoriaservice.ConvocatoriaporEmpresaTrue(this.datatutorEmps).subscribe(dataporempresa => {
           console.log(dataporempresa);
-      this.practicasSolicitudesd = [];
-      dataporempresa.forEach((practica: Practica) => {
-        this.practicasSolicitudesd.push(practica);
-      });
+      this.practicasSolicitudesd = dataporempresa;
       // Asignar la lista al datasource de la tabla
       this.dataF1.data = this.practicasSolicitudesd;
       console.log(this.practicasSolicitudesd);
@@ -141,6 +138,7 @@ export class AsignarHorarioComponent implements AfterViewInit {
   listassolicitudesll: any[] = [];
   listassolicitudeslltrue: any[] = [];
   traerconvocatoria(idconvocatoria: any) {
+    console.log(idconvocatoria);
     this.solicitudconvocatoriaservice.Solicitudestudiantestruepractica(idconvocatoria).subscribe((dataconvo) => {
       // Guardar los datos en la lista
       this.listassolicitudesll = [];
@@ -238,6 +236,28 @@ export class AsignarHorarioComponent implements AfterViewInit {
             timer: 2000,
           });
 
+          const fechainicio = document.getElementById(
+            'fechainicio'
+          ) as HTMLInputElement;
+          fechainicio.value = "dd/mm/aaaa";
+          
+  
+          const fechafinal = document.getElementById(
+            'fechafinal'
+          ) as HTMLInputElement;
+          fechafinal.value= "dd/mm/aaaa";
+         
+  
+          const horainicio = document.getElementById(
+            'horainicio'
+          ) as HTMLInputElement;
+          horainicio.value= "-:-";
+       
+  
+          const horafin = document.getElementById(
+            'horafin'
+          ) as HTMLInputElement;
+          horafin.value= "-:-";
         });
       });
 
@@ -247,9 +267,13 @@ export class AsignarHorarioComponent implements AfterViewInit {
 
   }
 
+  resetStepper() {
+    this.stepper.reset();
+  }
+
   listaspracticastrue: any[] = [];
   listarpracticas() {
-    this.practicaservice.listarPracticaEstudiante().subscribe(datapracticaestu => {
+    this.practicaservice.listarPracticaEstudiante(this.datatutorEmps).subscribe(datapracticaestu => {
       this.listaspracticastrue = datapracticaestu;
       this.datam.data = this.listaspracticastrue;
       console.log(this.listaspracticastrue);

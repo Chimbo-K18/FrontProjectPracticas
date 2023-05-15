@@ -31,13 +31,19 @@ export class PracticaService {
     return this.http.put<Practica>(this.url+`/actualizar/${idPractica}`, practica);
   }
 
-  listarPracticaEstudiante(): Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+'/aprobadas')
+  listarPracticaEstudiante(idempresa: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/aprobadas/${idempresa}`)
   }
 
-  updateDocumentoAsigTutor(idSolicitud: any, idDocumento: any) {
-    return this.http.put(`${this.url}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  updateDocumentoAsigTutorAcademico(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.url}/updateDocumentA/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
+
+  updateDocumentoAsigTutorEmpresarial(idSolicitud: any, idDocumento: any) {
+    return this.http.put(`${this.url}/updateDocumentE/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  }
+
+  
 
 
   // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{

@@ -43,7 +43,7 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   dColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta', 'sy'];
   data = new MatTableDataSource<SolicitudConvocatoria>([]);
 
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
+  diColumns: string[] = ['nombre', 'fecha', 'carrera'];
   datam = new MatTableDataSource<SolicitudConvocatoria>([]);
 
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
@@ -105,9 +105,16 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
 
   }
 
+  listassolicitudes: any[] = [];
+  idusuarious: any;
+  dataresponsableus: any;
   //obtener convocatorias
   obtenerConvocatorias() {
-    this.convocatoriaService.listarConvocatorias().subscribe((data) => {
+    this.idusuarious = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuarious).subscribe(datausu => {
+    this.dataresponsableus = datausu.carrera;
+    console.log(this.dataresponsableus);
+    this.convocatoriaService.listarConvocatoriasPorCarrera(this.dataresponsableus).subscribe((data) => {
       this.listaConvocatoria = data.map((result) => {
         let convo = new Convocatorias();
         convo.idConvocatorias = result.idConvocatorias;
@@ -122,6 +129,8 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
       this.loading = false;
 
     });
+    });
+   
   }
 
   getCurrentDate() {
