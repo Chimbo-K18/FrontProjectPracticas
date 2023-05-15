@@ -391,7 +391,7 @@ export class AsignaAcademicoComponent implements AfterViewInit {
     );
     this.idDocumento = idDoc.id_documentoasigtutoracademico;
     console.log(this.idDocumento);
-    this.convocatoriaservice.updateDocumentoConvocatoria(this.llevarid, this.idDocumento).subscribe(
+    this.practicaservice.updateDocumentoAsigTutorAcademico(this.llevarid, this.idDocumento).subscribe(
       response => {
         console.log('Documento actualizado correctamente');
       },
