@@ -42,7 +42,17 @@ background-size: 100% 100%;
 
 table {
   width: 100%;
-  margin-right: 30px;
-  margin-left: 20px;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+th{
+  /* background-color: #4f94e4;*/
+  color: #050801; 
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+
+
 }
 

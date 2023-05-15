@@ -64,24 +64,21 @@
   font-family: 'Raleway', Arial, sans-serif;
 }
 
-.sidebar a{
-    display: block;
-    width: 100%;
-    color: white;
-    line-height: 65px;
-    padding-left: 5px;
-    box-sizing: border-box;
-    border-bottom: 1px solid black;
-    /* border-top: 1px solid rgba(255,255,255,.1); */
-    border-left: 5px solid transparent;
-    font-family: 'Raleway', Arial, sans-serif;
-    transition: all .5s ease;
-    white-space: nowrap;
-    word-wrap: break-word;
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-  }
+.sidebar a {
+  display: block;
+  width: 100%;
+  color: white;
+  padding-left: 5px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-left: 5px solid transparent;
+  font-family: 'Raleway', Arial, sans-serif;
+  transition: all .5s ease;
+  white-space: nowrap;
+  word-wrap: break-word;
+  line-height: 25px;
+  font-size: 12px;
+}
   
 
 a.active,a:hover{
