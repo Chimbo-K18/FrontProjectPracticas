@@ -8,6 +8,9 @@
   left: 80%;
   transform: translate(24%, 25%);
 }
+.tabla-ancha {
+  max-width: 100%;
+}
 
 
 .container {
@@ -20,6 +23,15 @@
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+h1, h2{
+  color: #213A70;
+  text-align: center;
+  border-radius: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
 }
 
 table {
@@ -81,12 +93,6 @@ mat-card {
 }
 
 
-h1 {
-
-  letter-spacing: 1px;
-  transition: 0.3s;
-}
-
 .example-card {
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 
@@ -94,11 +100,6 @@ h1 {
 }
 
 
-
-
-h1 {
-  text-align: center;
-}
 
 .contenedor {
   float: right;
@@ -200,10 +201,6 @@ h6 span {
   color: #102770;
 }
 
-h1 {
-  font-size: 1.3rem;
-  color: #000;
-}
 
 .ltitle {
   margin-left: 20%;
