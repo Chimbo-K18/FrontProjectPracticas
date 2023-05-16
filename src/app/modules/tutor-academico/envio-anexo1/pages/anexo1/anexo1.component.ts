@@ -9,6 +9,12 @@ import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.s
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
+import { UserService } from 'src/app/services/user.service';
+import { PracticaService } from 'src/app/services/practica.service';
+import { Practica } from 'src/app/models/practica';
+import { Anexo1 } from 'src/app/models/anexo1';
+import { Anexo1Service } from 'src/app/services/anexo1.service';
+import Swal from 'sweetalert2';
 
 export interface Aprobados {
   nombre: string;
@@ -40,13 +46,15 @@ export class Anexo1Component   implements AfterViewInit{
   practicasSolicitud: SolicitudPracticas[] = [] ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
+  anexo1: Anexo1= new Anexo1();
+  practica: Practica = new Practica();
 
 
   //TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
-  dataF1 = new MatTableDataSource<SolicitudPracticas>([]);
+  displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'nombre','symbol'];
+  dataF1 = new MatTableDataSource<Practica>([]);
 
-  dColumns: string[] = ['fecha', 'carrera', 'esta', 'sy', 'nombre'];
+  dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
   diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
@@ -86,48 +94,76 @@ export class Anexo1Component   implements AfterViewInit{
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService) { }
+  constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService, private anexo1service: Anexo1Service,
+    private solicitudService : SolicitudConvocatoriasService, private userService: UserService, private practicaservice: PracticaService) { }
 
   ngOnInit(): void {
 
     this.listarSolicitudesAprobadasPracticas();
   }
 
-  listarSolicitudesAprobadasPracticas() {
-    this.solicitudPracticas.getSolicitudesEstado().subscribe(
-      (res) => {
-        this.practicasSolicitud = res;
-        console.log(res);
 
-        this.dataF1.data = this.practicasSolicitud
-      }
-    );
+  estadosoli: any;
+  idsolienc: any;
+  Ceduss: any;
+  dataUs: any;
+  dataSolicitud: any;
+  idsoliG: any;
+  id: any;
+  datatutorEmps: any
+  practicasSolicitudesd: any;
+  listarSolicitudesAprobadasPracticas() {
+    this.Ceduss = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.Ceduss);
+    this.practicaservice.listarPorAcademico(this.Ceduss).subscribe(datapractica =>{
+      this.practicasSolicitudesd = datapractica;
+      console.log(datapractica);
+
+      this.dataF1.data = this.practicasSolicitudesd
+
+    });
   }
 
 
+  listapraacticas: any[] = [];
   seleccionarConvocatoria(solicitud: any) {
-    sessionStorage.setItem('solicitudPractica', JSON.stringify(solicitud));
-
-    const valor = JSON.parse(
-      sessionStorage.getItem('solicitudPractica') || '{}'
+    console.log(solicitud);
+    this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud).subscribe(datapracticalist => {
+      console.log(datapracticalist);
+      this.listapraacticas = [];
+      datapracticalist.forEach((practica: Practica) => {
+        this.listapraacticas.push(practica);
+      });
+      // Asignar la lista al datasource de la tabla
+      this.dataTabla.data = this.listapraacticas;
+      console.log(this.listapraacticas);
+    }
     );
+  }
 
-    this.mivariable = valor.idSolicitudPracticas;
-    console.log(this.mivariable)
-
-
-    this.solicitudService.listarCheckResponsable(this.mivariable).subscribe(
-      (data) => {
-
-        console.log(data)
-        this.listaSolicitudesAprobadas = data
-
-        this.dataTabla.data = this.listaSolicitudesAprobadas
-
-      }
-    )
-
+  idanexo1:any;
+  anexodataencontrada:any;
+  CreaAnexo1(anexoid:any){
+    this.idanexo1 = anexoid;
+    this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
+      console.log(practicadata);
+      this.practica = practicadata;
+      this.practica.estadoanexo1 = true;
+      this.practicaservice.UpdatePractica(this.idanexo1,  this.practica).subscribe(practicaupdate=>{
+        console.log(practicaupdate);
+        this.anexo1.practica = practicaupdate;
+        this.anexo1.estado_academico =true;
+        this.anexo1service.crearAnexo1(this.anexo1).subscribe(dataanexo1=>{
+          console.log(dataanexo1);
+          Swal.fire(
+            'PROCESO',
+            'GENERADO CON EXITO',
+            'success'
+          )
+        });
+      });
+    
+    });
   }
 
 }
