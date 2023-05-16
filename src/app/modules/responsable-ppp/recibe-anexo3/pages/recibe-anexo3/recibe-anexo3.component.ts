@@ -43,14 +43,14 @@ export class RecibeAnexo3Component  {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   constructor(private responsableppservice: Responsable_PPPService, private practicaservice: PracticaService){
-    
+
   }
 
   ngOnInit(): void {
 
     this.listarAnexos();
   }
-  
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -76,13 +76,15 @@ export class RecibeAnexo3Component  {
 
   }
 
-  anexo2generado:any;
-  descargarPDF(idAnexo2 :any) {
-    this.anexo2generado = idAnexo2; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo2/${this.anexo2generado}`;
+
+  idAnexo3Generado: any;
+
+  descargarPDF(idAnexo3 : any) {
+    this.idAnexo3Generado = idAnexo3; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo3/${this.idAnexo3Generado}`;
     window.open(url, '_blank');
   }
 
- 
+
 
 }
