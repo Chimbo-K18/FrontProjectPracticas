@@ -23,6 +23,7 @@ export class ConvocatoriasService {
   getConvocatorias(): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/listar`)
   }
+  
   listarConvocatorias(){
     return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
   }

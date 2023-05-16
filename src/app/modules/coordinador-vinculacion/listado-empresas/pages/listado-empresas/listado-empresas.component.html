@@ -8,23 +8,20 @@
 
       <mat-step>
         <form [formGroup]="firstFormGroup">
+          <div style="text-align: center;">
           <mat-form-field appearance="standard">
             <mat-label>Búsqueda</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Nombre " #input>
           </mat-form-field>
-
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 200%;">
+        </div>
+        
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <!-- Position Column -->
             <ng-container matColumnDef="idEmpresa">
               <th mat-header-cell *matHeaderCellDef>ID</th>
               <td mat-cell *matCellDef="let element"> {{element.idEmpresa}} </td>
             </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="rucEmpresa">
-              <th mat-header-cell *matHeaderCellDef>RUC</th>
-              <td mat-cell *matCellDef="let element"> {{element.rucEmpresa}} </td>
-            </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="nombreEmpresa">

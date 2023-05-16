@@ -51,20 +51,7 @@ export class PracticaService {
     return this.http.get<Practica[]>(this.url+`/practicaporacademico/${cedula}`)
   }
 
-  
 
-
-  // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${id}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${empresa.idEmpresa}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
-  // }
   buscarPorUsuarioSolicitud(id: any):Observable<Practica>{
     return this.http.get<Practica>(this.url +`/usuariosxpractica/${id}`);
   }
