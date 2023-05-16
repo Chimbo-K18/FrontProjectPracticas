@@ -119,6 +119,7 @@ export class GeneraAnexo2Component   implements AfterViewInit{
 
 
   idanexo2:any;
+  idAnexoGenerado: any;
   CreaAnexo2(anexoid:any){
     this.idanexo2 = anexoid;
     this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
@@ -130,6 +131,8 @@ export class GeneraAnexo2Component   implements AfterViewInit{
         this.anexo2.practica = practicaupdate;
         this.anexo2service.crearAnexo2(this.anexo2).subscribe(dataanexo2=>{
           console.log(dataanexo2);
+
+          this.idAnexoGenerado = dataanexo2.idAnexo2;
           Swal.fire(
             'PROCESO',
             'GENERADO CON EXITO',
@@ -137,8 +140,15 @@ export class GeneraAnexo2Component   implements AfterViewInit{
           )
         });
       });
-    
+
     });
+  }
+
+
+  descargarPDF() {
+    const idanexo2 = this.idAnexoGenerado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo2/${idanexo2}`;
+    window.open(url, '_blank');
   }
 
 }
