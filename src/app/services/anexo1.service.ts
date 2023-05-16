@@ -19,6 +19,7 @@ export class Anexo1Service {
   getAnexo1(): Observable<Anexo1[]>{
     return this.http.get<Anexo1[]>(this.url+`/listar`);
   }
+  
 
 
 }
