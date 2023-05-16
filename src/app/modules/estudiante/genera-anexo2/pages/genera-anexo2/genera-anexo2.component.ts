@@ -9,6 +9,11 @@ import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.s
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
+import { PracticaService } from 'src/app/services/practica.service';
+import { Practica } from 'src/app/models/practica';
+import Swal from 'sweetalert2';
+import { Anexo2 } from 'src/app/models/anexo2';
+import { Anexo2Service } from 'src/app/services/anexo2.service';
 
 export interface Aprobados {
   nombre: string;
@@ -41,13 +46,15 @@ export class GeneraAnexo2Component   implements AfterViewInit{
   practicasSolicitud: SolicitudPracticas[] = [] ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
+  practica: Practica = new Practica();
+  anexo2 : Anexo2 = new Anexo2();
 
 
   //TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'estado','nombre', 'symbol'];
   dataF1 = new MatTableDataSource<SolicitudPracticas>([]);
 
-  dColumns: string[] = ['fecha', 'carrera', 'esta', 'sy', 'nombre'];
+  dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
   diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
@@ -88,47 +95,67 @@ export class GeneraAnexo2Component   implements AfterViewInit{
   isEditable = false;
 
   constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService) { }
+    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo2service: Anexo2Service) { }
 
   ngOnInit(): void {
 
     this.listarSolicitudesAprobadasPracticas();
   }
 
+  datatutorEmps: any
+  practicasSolicitudesd: any;
+  ce:any
   listarSolicitudesAprobadasPracticas() {
-    this.solicitudPracticas.getSolicitudesEstado().subscribe(
-      (res) => {
-        this.practicasSolicitud = res;
-        console.log(res);
+    this.ce = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.ce);
+    this.practicaservice.buscarPorconvocatoriaPorestudiante(this.ce).subscribe(datapractica =>{
+      this.practicasSolicitudesd = datapractica;
+      console.log(datapractica);
 
-        this.dataF1.data = this.practicasSolicitud
-      }
-    );
+      this.dataF1.data = this.practicasSolicitudesd
+
+    });
   }
 
 
-  seleccionarConvocatoria(solicitud: any) {
-    sessionStorage.setItem('solicitudPractica', JSON.stringify(solicitud));
-
-    const valor = JSON.parse(
-      sessionStorage.getItem('solicitudPractica') || '{}'
+  listapraacticas: any[] = [];
+  seleccionarConvocatoria(solicitud: any, idusuario:any) {
+    console.log(solicitud);
+    console.log(idusuario);
+    this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud, idusuario).subscribe(datapracticalist => {
+      console.log(datapracticalist);
+      this.listapraacticas = [];
+      datapracticalist.forEach((practica: Practica) => {
+        this.listapraacticas.push(practica);
+      });
+      // Asignar la lista al datasource de la tabla
+      this.dataTabla.data = this.listapraacticas;
+      console.log(this.listapraacticas);
+    }
     );
+  }
 
-    this.mivariable = valor.idSolicitudPracticas;
-    console.log(this.mivariable)
-
-
-    this.solicitudService.listarCheckResponsable(this.mivariable).subscribe(
-      (data) => {
-
-        console.log(data)
-        this.listaSolicitudesAprobadas = data
-
-        this.dataTabla.data = this.listaSolicitudesAprobadas
-
-      }
-    )
-
+  idanexo2:any;
+  CreaAnexo2(anexoid:any){
+    this.idanexo2 = anexoid;
+    this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
+      console.log(practicadata);
+      this.practica = practicadata;
+      this.practica.estadoanexo2 = true;
+      this.practicaservice.UpdatePractica(this.practica, this.idanexo2).subscribe(practicaupdate=>{
+        console.log(practicaupdate);
+        this.anexo2.practica = practicaupdate;
+        this.anexo2service.crearAnexo2(this.anexo2).subscribe(dataanexo2=>{
+          console.log(dataanexo2);
+          Swal.fire(
+            'PROCESO',
+            'GENERADO CON EXITO',
+            'success'
+          )
+        });
+      });
+    
+    });
   }
 
 }

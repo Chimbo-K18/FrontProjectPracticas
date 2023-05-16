@@ -157,14 +157,27 @@ export class AsignaEspecificoComponent implements AfterViewInit {
   ids: number = 1;
   listatutores: any;
   listatutorestrados: any[] = [];
+  ce:any;
+  empresadataid:any;
   ObtenerTutores() {
-    this.SolicitudpracticasService.listarDocentes(this.ids).subscribe((datax) => {
-      if (Array.isArray(datax)) {
-        this.listatutores = datax
-      } else {
-        console.log("Error: data no es un arreglo.");
-      }
+    this.ce = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.ce)
+    this.UserService.getuscedula(this.ce).subscribe(dataUserEncon => {
+      this.tutorempresarialService.extraerEmpresarialIdUsuario(dataUserEncon.idUsuario).subscribe(dataTutor => {
+        console.log("esta es la dat del tuto");
+        console.log(dataTutor);
+        this.empresadataid = dataTutor.empresa.idEmpresa;
+        console.log(this.empresadataid);
+        this.SolicitudpracticasService.listarDocentes(this.empresadataid).subscribe((datax) => {
+          if (Array.isArray(datax)) {
+            this.listatutores = datax
+          } else {
+            console.log("Error: data no es un arreglo.");
+          }
+        });
+      });
     });
+    
   };
 
   tutorselect: any;
@@ -200,6 +213,7 @@ export class AsignaEspecificoComponent implements AfterViewInit {
     this.Practica = this.dataPracticacod;
     this.Practica.tutorEmpresarial = this.dataTutorcod;
     this.Practica.checkEmpresarial = true;
+    this.Practica.estadoPractica = true;
     this.PracticaService.UpdatePractica(this.Practica, this.idPrac).subscribe(datapractica => {
       console.log(datapractica);
     });

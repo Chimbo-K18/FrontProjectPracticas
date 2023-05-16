@@ -126,9 +126,10 @@ export class Anexo1Component   implements AfterViewInit{
 
 
   listapraacticas: any[] = [];
-  seleccionarConvocatoria(solicitud: any) {
+  seleccionarConvocatoria(solicitud: any, idusuario:any) {
     console.log(solicitud);
-    this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud).subscribe(datapracticalist => {
+    console.log(idusuario);
+    this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud, idusuario).subscribe(datapracticalist => {
       console.log(datapracticalist);
       this.listapraacticas = [];
       datapracticalist.forEach((practica: Practica) => {
@@ -149,7 +150,7 @@ export class Anexo1Component   implements AfterViewInit{
       console.log(practicadata);
       this.practica = practicadata;
       this.practica.estadoanexo1 = true;
-      this.practicaservice.UpdatePractica(this.idanexo1,  this.practica).subscribe(practicaupdate=>{
+      this.practicaservice.UpdatePractica(this.practica, this.idanexo1).subscribe(practicaupdate=>{
         console.log(practicaupdate);
         this.anexo1.practica = practicaupdate;
         this.anexo1.estado_academico =true;
