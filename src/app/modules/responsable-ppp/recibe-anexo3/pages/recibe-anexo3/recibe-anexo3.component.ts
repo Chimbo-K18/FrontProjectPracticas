@@ -50,6 +50,7 @@ export class RecibeAnexo3Component  {
 
     this.listarAnexos();
   }
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

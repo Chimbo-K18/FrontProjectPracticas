@@ -14,7 +14,7 @@
   <mat-stepper labelPosition="bottom" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <ng-template matStepLabel>Fase 1</ng-template>
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="tresFormGroup">
         <ng-template matStepLabel>Fase 1</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
@@ -27,39 +27,33 @@
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
 
             <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
               <!-- Position Column -->
               <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre de Solicitud</th>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaInicio}} </td>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha Envio </th>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Hora fin </th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaSalida}} </td>
               </ng-container>
 
               <!-- Weight Column -->
               <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">  Numero estudiantes </th>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha inicio </th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaInicio }}</td>
               </ng-container>
 
               <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado </th>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaFin}}</td>
               </ng-container>
 
               <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA </th>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Convocatoria </th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.nombres}}</td>
               </ng-container>
               <!-- Symbol Column -->
@@ -76,12 +70,20 @@
                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
 
-              <ng-container matColumnDef="symbol" bol>
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">SELECCIONAR</th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
-                    matStepperNext (click)="CreaAnexo2(practicasSolicitudesd.idPractica)">Seleccionar</button></td>
+            <ng-container matColumnDef="symbol" bol>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Asignar Fecha Semana</th>
+                  <td mat-cell *matCellDef="let practicasSolicitudesd"><button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario"  (click)="Captirarid(practicasSolicitudesd)">
+                    <mat-icon>edit</mat-icon> </button></td>
 
-              </ng-container>
+                </ng-container>
+
+                <ng-container matColumnDef="boton" bol>
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Generar Anexo6</th>
+                  <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
+                      matStepperNext (click)="CreaAnexo6(practicasSolicitudesd.idPractica)">GENERAR</button></td>
+  
+                </ng-container>
+
 
 
 
@@ -96,104 +98,17 @@
         </div>
       </form>
     </mat-step>
+
+
+
+
 
 
 
     <mat-step [stepControl]="secondFormGroup">
-      <ng-template matStepLabel>Fase 2</ng-template>
+      <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Fase 2</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
-            <div>
-              <h1 style="text-align: center;"> Lista de estudiantes que tienen practica</h1>
-
-              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-
-            <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-              <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaInicio}} </td>
-              </ng-container>
-
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">  Jornada </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaSalida}} </td>
-              </ng-container>
-
-              <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">  Carrera </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaInicio }}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> NO VA </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaFin}}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">NO VA </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.nombres}}</td>
-              </ng-container>
-              <!-- Symbol Column -->
-              <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-
-              <ng-container matColumnDef="symbol" bol>
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Anexo 1 </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
-                    matStepperNext (click)="CreaAnexo2(practicasSolicitudesd.idPractica)">Seleccionar</button></td>
-
-              </ng-container>
-
-
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-              aria-label="Select page of solicitudes">
-            </mat-paginator>
-            </div>
-          </mat-card>
-        </div>
-      </form>
-    </mat-step>
-
-
-
-
-
-
-
-    <mat-step [stepControl]="tresFormGroup">
-      <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
-      <form [formGroup]="tresFormGroup">
-        <ng-template matStepLabel>Fase 3</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
 
@@ -225,10 +140,10 @@
     </mat-step>
 
 
-    <mat-step [stepControl]="cuatroFormGroup">
+    <mat-step [stepControl]="tresFormGroup">
       <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
-      <form [formGroup]="cuatroFormGroup">
-        <ng-template matStepLabel>Fase 4</ng-template>
+      <form [formGroup]="tresFormGroup">
+        <ng-template matStepLabel>Fase 3</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
             <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
@@ -266,6 +181,65 @@
   </mat-stepper>
 
 
+  <div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="container">
+
+        <div class="modal-content">
+
+          <div class="container">
+
+
+            <div class="modal-header">
+                <h2 style="color: black;">Asignacion de Anexo 6</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+            <div style="display: flex; flex-direction: column; ">
+
+                <div style="color: black; display: flex; justify-content: center; align-items: center;">
+                    <div style="text-align: center;">
+                      <h3><strong>FECHA DE INICIO DE SEMANA ACTVIDADES</strong></h3>
+                      <mat-form-field class="example-full-width" style="width: 200px; margin-right: 20px;">
+                        <mat-label>Fecha inicio</mat-label>
+                        <input type="date" matInput id="fechainicio">
+                      </mat-form-field>
+                    </div>
+                    <div style="text-align: center;">
+                      <h3><strong>FECHA DE FIN DE SEMANA ACTIVIDADES</strong></h3>
+                      <mat-form-field class="example-full-width" style="width: 200px;">
+                        <mat-label>Fecha final</mat-label>
+                        <input type="date" matInput id="fechafinal">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div div style="text-align: center;">
+                    <h3><strong>Numero de semana</strong></h3>
+                      <mat-form-field class="example-full-width" style="width: 200px; margin-right: 20px;">
+                        <mat-label>Numero</mat-label>
+                        <input type="number" matInput id="numero">
+                      </mat-form-field>
+                  </div>
+
+                
+              </div>
+
+            <div style="text-align: center;">
+
+              <button mat-flat-button color="warn" (click)="GenerarFechas()" data-bs-dismiss="modal" >GENERAR </button>
+
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 
