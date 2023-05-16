@@ -99,13 +99,9 @@ tutoenecontrado:any;
 listaconvocatorias:any;
   listarSolicitudesAprobadasPracticas() {
     this.Ce = localStorage.getItem("idusuario");
-    console.log("id usuario " + this.Ce)
     this.userService.getuscedula(this.Ce).subscribe(dataUserEncon => {
       this.tutorempresarialService.extraerEmpresarialIdUsuario(dataUserEncon.idUsuario).subscribe(dataTutor => {
-        console.log("esta es la dat del tuto");
-        console.log(dataTutor);
         this.tutoenecontrado = dataTutor.empresa.idEmpresa;
-        console.log(this.tutoenecontrado);
         this.ConvocatoriasService.ConvocatoriaporEmpresa(this.tutoenecontrado).subscribe(
           (res) => {
             this.listaconvocatorias = res;

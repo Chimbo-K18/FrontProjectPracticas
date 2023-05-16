@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 50%;
+  }
+  
+  td, th {
+    width: 13%;
+  }
+  
+ 
+  .container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 930px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+  #xd{
+    width: 100%;
+  }
+  h1, h2{
+    color: #213A70;
+    text-align: center;
+    border-radius: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+
+}
+
+.mat-column-nombres {
+  width: 150px;
+}
+
+
+.mat-column-carrera {
+  width: 150px;
+}
+
+.mat-column-nombreConvocatoria {
+  width: 100px;
+}
+
+.bodyL{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #c4c3ca;
+  background-image: url('src/assets/images/fondowelcome.png');
+background-size: 100% 100%;
+  overflow-x: hidden;
+}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+.contenedor{
+align-items: center;
+margin-top: 8%;
+margin-left: 36%;
+}

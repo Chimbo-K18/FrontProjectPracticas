@@ -1,1 +1,52 @@
-<p>lista-estudiantes-aprobados works!</p>
+<body class="bodyL">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  
+    <div class="container">
+      <h1 style="text-align: center;"> LISTA DE ESTUDIANTES APROBADOS</h1>
+  
+      <div>
+        <div style="text-align: center;">
+        <mat-form-field appearance="standard">
+          <mat-label>Búsqueda</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Nombre y Apellido" #input>
+        </mat-form-field>
+        </div>
+  
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <!-- Nombre empresa Column -->
+                <ng-container matColumnDef="nombreConvocatoria">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header >CONVOCATORIA</th>
+                    <td mat-cell *matCellDef="let row">{{row.nombreConvocatoria}}</td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="fechaAprobacion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>APROBACIÓN</th>
+                    <td mat-cell *matCellDef="let row">{{row.fechaAprobacion}}</td>
+                  </ng-container>
+                
+                <ng-container matColumnDef="nombres">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>ESTUDIANTE</th>
+                    <td mat-cell *matCellDef="let row">{{row.nombres}}</td>
+                  </ng-container>                  
+                
+                <ng-container matColumnDef="carrera">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>CARRERA</th>
+                  <td mat-cell *matCellDef="let row">{{row.carrera}}</td>
+                </ng-container>
+
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No hay datos para mostrar "{{input.value}}"</td>
+                </tr>
+              </table>
+              
+  
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </div>
