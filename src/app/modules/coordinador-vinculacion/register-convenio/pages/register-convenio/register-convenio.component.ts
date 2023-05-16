@@ -11,7 +11,7 @@ import { DetalleconvenioService } from 'src/app/services/detalleconvenio.service
 import { CarreraService } from 'src/app/services/carrera.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DetalleConvenio } from 'src/app/models/detalleconvenio';
-import { DocumentoConvenio } from 'src/app/models/documentoconvenio';
+import { DocumentoConvenio } from 'src/app/models/docsGlobales/documentoConvenio';
 import { DocumentoConvenioService } from 'src/app/services/doc/DocumentoConvenio.service';
 import { HttpEventType } from '@angular/common/http';
 import { MatStepper } from '@angular/material/stepper';

@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest,HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { DocumentoSolicitudPracticas } from '../../models/documentoPracticas';
+import { DocumentoSolicitudPracticas } from '../../models/docsGlobales/documentoPracticas';
 
 
 @Injectable({

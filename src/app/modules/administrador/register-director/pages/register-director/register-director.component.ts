@@ -5,7 +5,7 @@ import { CarreraService } from 'src/app/services/carrera.service';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Verdocentef } from 'src/app/models/verdocentef';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BaseFenixService } from 'src/app/services/base-fenix.service';
+import { BaseFenixService } from 'src/app/services/fenix/base-fenix.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { RolToUser } from 'src/app/models/RolToUser';
 import { UsuarioRol } from 'src/app/models/UsuarioRol';
