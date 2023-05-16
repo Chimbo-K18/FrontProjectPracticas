@@ -1,8 +1,7 @@
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
-
 import { UserService } from 'src/app/services/user.service';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild,Renderer2  } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,6 +25,7 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   //TABLA convocatorias
   displayedColumns: string[] = [
     'nombreconvocatoria',
+    'nombresoli',
     'fechapublicacion',
     'fechaexpiracion',
     'estadoConvocatoria',
@@ -37,11 +37,31 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Convocatorias>([]);
   //TABLA2
   datosCargados: boolean = false;
+  datosCargadostrue: boolean=false;
   datosTabla: any[] = [];
   // tabla3
   datosCargadosAprobados: boolean = false;
   datosTablaAprobados: any[] = [];
+  displayedestudiante: string[] = [
+    'id',
+    'fecha',
+    'nombres',
+    'apellidos',
+    'carrera',
+    'opciones',
+  ];
 
+  displayedestudiantetrue: string[] = [
+    'id',
+    'fecha',
+    'nombres',
+    'apellidos',
+    'carrera',
+  ];
+
+  dataestudiante = new MatTableDataSource<SolicitudConvocatoria>([]);
+
+  dataestudiantetrue = new MatTableDataSource<SolicitudConvocatoria>([]);
 
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
   @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
@@ -70,121 +90,83 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
     private SolicitudConvocatoriasService: SolicitudConvocatoriasService,
     private EstudiantePracticanteService: EstudiantePracticanteService,
     private userService: UserService,
-    private DocumentConvocatoria:DocumentoSolicitudConvocatoria
+    private DocumentConvocatoria:DocumentoSolicitudConvocatoria, 
+    private renderer: Renderer2
   ) { }
 
   ngOnInit(): void { }
-
+  Ceduss: any;
+  variablecarrera: any;
+  usucarrera: any;
   //obtener convocatorias
   obtenerConvocatorias() {
-    this.convocatoriaService.listarConvocatorias().subscribe((data) => {
-      this.listaConvocatoria = data.map((result) => {
-        let convo = new Convocatorias();
-        convo.idConvocatorias = result.idConvocatorias;
-        convo.nombreConvocatoria = result.nombreConvocatoria;
-        convo.fechaPublicacion = result.fechaPublicacion;
-        convo.fechaExpiracion = result.fechaExpiracion;
-        convo.estadoConvocatoria = result.estadoConvocatoria;
-        convo.documentoConvatoria = result.documentoConvatoria;
-        convo.solicitudPracticas = result.solicitudPracticas;
-        console.log(convo);
-        return convo;
+    this.Ceduss = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.Ceduss)
+    this.userService.getcedula(this.Ceduss).subscribe(datausu => {
+      this.usucarrera = datausu.carrera;
+      this.convocatoriaService.listarConvocatoriasPorCarrera(this.usucarrera).subscribe((data) => {
+        this.listaConvocatoria = data.map((result) => {
+          let convo = new Convocatorias();
+          convo.idConvocatorias = result.idConvocatorias;
+          convo.nombreConvocatoria = result.nombreConvocatoria;
+          convo.fechaPublicacion = result.fechaPublicacion;
+          convo.fechaExpiracion = result.fechaExpiracion;
+          convo.estadoConvocatoria = result.estadoConvocatoria;
+          convo.documentoConvatoria = result.documentoConvatoria;
+          convo.solicitudPracticas = result.solicitudPracticas;
+          console.log(convo);
+          return convo;
       });
       this.dataSource.data = this.listaConvocatoria;
       this.loading = false;
     });
+     
+      
+      
+    });
   }
 
   selectedsolicitud: any;
+  selectconvo:any;
   // para seleccionar la convocatoria
   seleccionarConvocatoria(convocatorias: any) {
     console.log('Se seleccionó la convocatoria:', convocatorias);
     this.selectedsolicitud = convocatorias.solicitudPracticas.idSolicitudPracticas;
-    console.log(this.selectedsolicitud);
-    this.buscarSolicitud(this.selectedsolicitud);
-    this.buscarAprobados(this.selectedsolicitud);
+    this.selectconvo=convocatorias.idConvocatorias;
+    // console.log(this.selectconvo);
+    // console.log(this.selectedsolicitud);
+    this.buscarSolicitud(this.selectconvo);
+    this.buscarAprobados(this.selectconvo);
   }
 
 
 
   ///buscar solicitudpractica
-  idestudent: any;
-  nombrestudent: any;
-  carreraestudent: any;
-  iduspracticante: any;
-  fecha: any;
-  idsoli: any;
-  buscarSolicitud(id: any) {
-    this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
-      (datasoli) => {
-        this.idsoli = datasoli.idSolicitudConvocatoria;
-        this.fecha = datasoli.fechaEnvio;
-        console.log(datasoli);
-        if(datasoli.checkDirector==false && this.idsoli==this.selectedsolicitud){
-          this.idestudent = datasoli.estudiantePracticante.idEstudiantePracticas;
-          this.EstudiantePracticanteService.getRequestEstudiante(
-            this.idestudent).subscribe((datapracticante) => {
-              console.log(datapracticante);
-              this.iduspracticante = datapracticante.usuario_estudiante_practicante?.idUsuario;
-              console.log('este el id usuario');
-              console.log(this.iduspracticante);
-              this.userService.getUsuarioporId(this.iduspracticante).subscribe((datausuario) => {
-                console.log(datausuario);
-                this.datosTabla.push({
-                  id: this.idsoli,
-                  fecha: this.fecha,
-                  nombres: datausuario.nombres,
-                  apellidos: datausuario.apellidos,
-                  carrera: datausuario.carrera
-                });
-                // Indicar que los datos ya están cargados
-                this.datosCargados = true;
-              });
-            });
-        } else {
-          Swal.fire(
-            'Advertencia',
-            'Los estudiantes de esta Convocatoria ya han sido aprobados.',
-            'warning'
-          );
-        }
 
+  listasolicitudconvocatoria: any;
+  buscarSolicitud(id: any) {
+    this.SolicitudConvocatoriasService.getRequestSolicitudconvoDirector(id).subscribe(
+      datasoli => {
+        this.listasolicitudconvocatoria = datasoli;
+        this.dataestudiante.data = this.listasolicitudconvocatoria;
+        this.datosCargados =true;
     });
 }
+
 idestudentapro: any;
 iduspracticanteApro: any;
 fechaapro: any;
 idsoliapro:any;
+convo:any
+listasolicitudconvocatoriatrue:any
 /////cargar estudinates aprobados
 buscarAprobados(id: any) {
-  this.SolicitudConvocatoriasService.getRequestSolicitudconvo(id).subscribe(
-    (datasoliapro) => {
-      this.idsoliapro=datasoliapro.idSolicitudConvocatoria;
-      this.fechaapro = datasoliapro.fechaEnvio;
-      console.log(datasoliapro);
-      if(datasoliapro.checkDirector==true  && this.idsoli==this.selectedsolicitud){
-        this.idestudentapro = datasoliapro.estudiantePracticante.idEstudiantePracticas;
-        this.EstudiantePracticanteService.getRequestEstudiante(this.idestudentapro).subscribe((datapracticanteApro) => {
-          console.log(datapracticanteApro);
-          this.iduspracticanteApro =datapracticanteApro.usuario_estudiante_practicante?.idUsuario;
-          console.log('este el id usuario');
-          console.log(this.iduspracticanteApro);
-          this.userService.getUsuarioporId(this.iduspracticanteApro).subscribe((datausuarioApro) => {
-              console.log(datausuarioApro);
-              this.datosTablaAprobados.push({
-                id: this.idsoliapro,
-                fecha: this.fechaapro,
-                nombres: datausuarioApro.nombres,
-                apellidos: datausuarioApro.apellidos,
-                carrera: datausuarioApro.carrera
-              });
-              this.datosCargadosAprobados = true;
-            });
-          });
-        } else {
-        }
-
-      });
+  this.SolicitudConvocatoriasService.getRequestSolicitudconvoDirectorTrue(id).subscribe(
+      datasoli => {
+        this.listasolicitudconvocatoriatrue = datasoli;
+        this.dataestudiantetrue.data = this.listasolicitudconvocatoriatrue;
+        this.datosCargadostrue =true;
+    });
   }
   //checkdirector
   estadosoli: any;
@@ -216,8 +198,9 @@ buscarAprobados(id: any) {
                 showConfirmButton: false,
                 timer: 1000,
               });
-              this.resetStepper();
+  
               this.datosCargados = true;
+              this.refreshWindow();
             });
         });
 
@@ -265,5 +248,16 @@ buscarAprobados(id: any) {
     );
   }
 
+  refreshPage() {    
+    // Refresca la página
+    this.renderer.setProperty(window, 'location', location.href);
+  }
 
+
+  refreshWindow() {
+    // Realiza la acción aquí
+  
+    // Refresca la ventana sin redireccionar a la página principal
+    window.location.reload();
+  }
 }

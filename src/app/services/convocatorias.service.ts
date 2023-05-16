@@ -27,10 +27,17 @@ export class ConvocatoriasService {
     return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
   }
 
+  listarConvocatoriasPorCarrera(carrera:any){
+    return this.http.get<Convocatorias[]>(`${this.API_URL}/convocatoriaporcarrera/${carrera}`);
+  }
+
   listarPorestadoConvocatoria(){
     return this.http.get<Convocatorias[]>(this.API_URL+'/practicas');
   }
 
+  listarPorestadoConvocatoriaPorcarrera(carrera:any){
+    return this.http.get<Convocatorias[]>(`${this.API_URL}/convocatoriaporcarreraconpractica/${carrera}`);
+  }
 
   buscardoc(iddoc: any): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/convocatoria/documento/${iddoc}`)
@@ -38,6 +45,18 @@ export class ConvocatoriasService {
 
   updateDocumentoConvocatoria(idSolicitud: any, idDocumento: any) {
     return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
+  }
+
+  SolicitudporConvocatoria(idConvocatorias: any): Observable<Convocatorias> {
+    return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporsolicitud/${idConvocatorias}`)
+  }
+
+  ConvocatoriaporEmpresa(idempresa: any): Observable<Convocatorias> {
+    return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporempresa/${idempresa}`)
+  }
+
+  ConvocatoriaporEmpresaTrue(idempresa: any): Observable<Convocatorias> {
+    return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporempresaestadosoli/${idempresa}`)
   }
 
 }

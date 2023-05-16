@@ -33,6 +33,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
 import { DocumentoSolPracticasService } from 'src/app/services/doc/documento-sol-practicas.service';
+import { MatStepper } from '@angular/material/stepper';
 
 
 export interface PeriodicElement {
@@ -80,7 +81,7 @@ export class EnvioSolicitudComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild(MatStepper) stepper!: MatStepper;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -155,6 +156,9 @@ export class EnvioSolicitudComponent implements OnInit {
     button.onclick = () => {
       input.click();
     };
+  }
+  resetStepper() {
+    this.stepper.reset();
   }
 
   seleccionarDetalle(detalles: any) {

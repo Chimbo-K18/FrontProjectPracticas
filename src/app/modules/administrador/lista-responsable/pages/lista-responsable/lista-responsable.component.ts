@@ -1,11 +1,9 @@
-import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuarios } from 'src/app/models/usuarios';
-import { rolService } from 'src/app/services/rol.service';
 
 @Component({
   selector: 'app-lista-responsable',
@@ -50,8 +48,6 @@ export class ListaResponsableComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     private UserService:UserService,
-    private rolService:rolService,
-    private Responsable_PPPService:Responsable_PPPService,
 
   ) {}
   ngOnInit(): void {

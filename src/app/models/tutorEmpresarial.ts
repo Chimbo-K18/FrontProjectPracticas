@@ -9,4 +9,5 @@ export class tutorempresarial {
   numeroContacto!: string;
   empresa!: Empresa;
   usuario_empresarial!: Usuarios;
+  estado!:boolean;
 }

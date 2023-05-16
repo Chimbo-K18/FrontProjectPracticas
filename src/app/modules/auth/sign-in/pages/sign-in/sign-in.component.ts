@@ -48,10 +48,8 @@ export class SignInComponent implements OnInit {
 idnombrerol:any;
   onSubmit(): void {
     const { correo, contrasenia } = this.form;
-
-    console.log('Em --> ' + correo + '  pa --> ' + contrasenia);
     this.usuarios.getcorreo(correo).subscribe(datausu => {
-        console.log(datausu);
+      console.log(datausu);
       localStorage.setItem("idusuario", String(datausu.cedula));
       this.estudianteservice.getRequestEstudianteCedula(datausu.cedula).subscribe(dataestu => {
         localStorage.setItem("estudianteid", String(dataestu.idEstudiantePracticas));
@@ -73,7 +71,7 @@ idnombrerol:any;
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Tamos dentro del sistema, credenciales correctas!!!',
+          title: 'Credenciales correctas',
           showConfirmButton: false,
           timer: 2000,
         });

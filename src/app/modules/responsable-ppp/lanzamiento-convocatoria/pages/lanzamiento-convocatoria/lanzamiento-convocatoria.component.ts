@@ -12,6 +12,8 @@ import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/Documento
 import { ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
+import { MatStepper } from '@angular/material/stepper';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 
 
 
@@ -53,6 +55,8 @@ export class LanzamientoConvocatoriaComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  @ViewChild(MatStepper) stepper!: MatStepper;
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -80,7 +84,7 @@ export class LanzamientoConvocatoriaComponent {
     constructor(private _formBuilder: FormBuilder, private solicitudService: SolicitudpracticasService,
                 private convocatoriaService: ConvocatoriasService,
                 private documentoLcService:DocumentoLanzamientoConvocatoria,
-      private solicitud: SolicitudpracticasService
+      private solicitud: SolicitudpracticasService, private responsableppservice: Responsable_PPPService
               ) {}
 
   ngOnInit(): void {
@@ -100,11 +104,17 @@ export class LanzamientoConvocatoriaComponent {
     this.getFechaActual();
   }
 
-
+  idusuario: any;
+  dataresponsable: any;
   listarAsignadoActividades() {
+    this.idusuario = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+      this.dataresponsable = datausu.idResponsablePPP;
+      
+    this.solicitudService.getSolicitudesActividadesPorResposanble(this.dataresponsable )
+    .subscribe((res) => (this.solicitudesCompletas = res));
+    });
 
-    this.solicitudService.getSolicitudesActividades()
-      .subscribe((res) => (this.solicitudesCompletas = res));
 
   }
 
@@ -165,6 +175,10 @@ export class LanzamientoConvocatoriaComponent {
         });
     }
   }
+  resetStepper() {
+    this.stepper.reset();
+  }
+
 
 
   public upload(event: any) {
