@@ -7,7 +7,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { HttpClient } from '@angular/common/http';
-import { log } from 'console';
 import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {

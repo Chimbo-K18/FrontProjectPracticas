@@ -39,7 +39,7 @@ export class ListadoEmpresasComponent implements OnInit {
   //TABLA
   //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   // displayedColumns: string[] = ['rucEmpresa', 'nombreEmpresa', 'correo', 'numeroTelefono'];
-  displayedColumns: string[] = ['idEmpresa', 'rucEmpresa', 'nombreEmpresa', 'correo', 'direccion', 'numeroTelefono', 'acciones', 'delete'];
+  displayedColumns: string[] = ['idEmpresa', 'nombreEmpresa', 'correo', 'direccion', 'numeroTelefono', 'acciones', 'delete'];
   dataSource = new MatTableDataSource<Empresa>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

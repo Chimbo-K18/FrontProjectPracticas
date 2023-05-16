@@ -42,21 +42,7 @@ export class PracticaService {
   updateDocumentoAsigTutorEmpresarial(idSolicitud: any, idDocumento: any) {
     return this.http.put(`${this.url}/updateDocumentE/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
-
   
-
-
-  // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${id}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${empresa.idEmpresa}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
-  // }
   buscarPorUsuarioSolicitud(id: any):Observable<Practica>{
     return this.http.get<Practica>(this.url +`/usuariosxpractica/${id}`);
   }
