@@ -127,6 +127,7 @@ export class RegistroActividadesComponent implements OnInit {
   listassolicitudes: any[] = [];
   idusuario: any;
   dataresponsable: any;
+
   listarSolicitudes() {
     this.idusuario = localStorage.getItem("idusuario");
     this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
@@ -227,7 +228,7 @@ export class RegistroActividadesComponent implements OnInit {
       'success'
     )
     window.location.reload();
-    
+
   }
 
   ngAfterViewInit() {
