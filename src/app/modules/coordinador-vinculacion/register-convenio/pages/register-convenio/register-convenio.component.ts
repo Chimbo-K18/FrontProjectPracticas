@@ -285,31 +285,4 @@ export class RegisterConvenioComponent {
     );
   }
 
-
-  //   guardadoFull(){
-  //     this.documentoConvenioService.subirdocumentoConvenio(documentoConvenio).subscribe(
-  //       data=>{
-  //         this.documentoConvenio = data;
-  //         this.convenio.documentoConvenio = this.documentoConvenio
-  //         this.convenioService.crearConvenio(this.convenio).subscribe(
-  //           data =>{
-  //             this.convenio = data;
-  //             this.detalleConvenio.convenio = this.convenio
-  //             this.detalleConvenio.empresa = this.empresa
-  //             this.detalleConvenioService.creardetalleConvenio(this.detalleConvenio).subscribe(
-  //               data =>{
-  //                 Swal.fire({
-  //                   position: 'top',
-  //                   icon: 'success',
-  //                   title: 'Convenio registrado satisfactoriamente.',
-  //                   showConfirmButton: false,
-  //                   timer: 2000,
-  //                 });
-  //               }
-  //             )
-  //           }
-  //         )
-  //       }
-  //     )
-  //   }
 }

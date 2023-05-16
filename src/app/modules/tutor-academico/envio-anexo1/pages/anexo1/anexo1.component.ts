@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild,ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,9 +12,11 @@ import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { UserService } from 'src/app/services/user.service';
 import { PracticaService } from 'src/app/services/practica.service';
 import { Practica } from 'src/app/models/practica';
-import { Anexo1 } from 'src/app/models/anexo1';
-import { Anexo1Service } from 'src/app/services/anexo1.service';
+import { Anexo1 } from 'src/app/models/anexos/anexo1';
+import { Anexo1Service } from 'src/app/services/anexos/anexo1.service';
 import Swal from 'sweetalert2';
+import { DocumentoAnexo1Service } from 'src/app/services/docAnexos/DocumentoAnexo1.service';
+import { HttpEventType } from '@angular/common/http';
 
 export interface Aprobados {
   nombre: string;
@@ -48,7 +50,8 @@ export class Anexo1Component implements AfterViewInit {
   listaSolicitudesAprobadas: any;
   anexo1: Anexo1 = new Anexo1();
   practica: Practica = new Practica();
-
+  public filesToUpload!: Array<File>;
+  idDocumento!: any;
 
   //TABLA
   displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'nombre', 'symbol'];
@@ -62,6 +65,7 @@ export class Anexo1Component implements AfterViewInit {
 
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
   @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -94,8 +98,13 @@ export class Anexo1Component implements AfterViewInit {
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private solicitudPracticas: SolicitudpracticasService, private anexo1service: Anexo1Service,
-    private solicitudService: SolicitudConvocatoriasService, private userService: UserService, private practicaservice: PracticaService) { }
+  constructor(private _formBuilder: FormBuilder, 
+    private solicitudPracticas: SolicitudpracticasService, 
+    private anexo1service: Anexo1Service,
+    private solicitudService: SolicitudConvocatoriasService,
+    private userService: UserService, 
+    private practicaservice: PracticaService,
+    private documentoAnexo1: DocumentoAnexo1Service) { }
 
   ngOnInit(): void {
 
@@ -173,6 +182,78 @@ export class Anexo1Component implements AfterViewInit {
     const idAnexo1 = this.anexo1generado; // obtén el ID de la solicitud
     const url = `http://localhost:8080/api/jasperReport/anexo1/${idAnexo1}`;
     window.open(url, '_blank');
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+
+  onLoad(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoAnexo1.uploadFileDocumentoAnexo1(file)
+        .subscribe(res => {
+          console.log(res);
+        });
+    }
+  }
+
+
+  public upload(event: any) {
+
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.documentoAnexo1.uploadFileDocumentoAnexo1(file).subscribe(
+        data => {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                console.log("progreso....");
+
+                break;
+              case HttpEventType.Response:
+                this.inputFile.nativeElement.value = '';
+                sessionStorage.setItem('ArchivoAnexo1', JSON.stringify(data.body));
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Documento guardado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                this.actualizarDocumento();
+                break;
+            }
+          }
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          Swal.fire(
+            'Error',
+            'El documento no se pudo subir.',
+            'error'
+          );
+        }
+      );
+    }
+  }
+
+
+  actualizarDocumento() {
+    const idDoc = JSON.parse(
+      sessionStorage.getItem('ArchivoAnexo1') || '{}'
+    );
+    this.idDocumento = idDoc.id_documentoAnexo1;
+    this.anexo1service.updateDocumentoAnexo1(this.anexo1generado, this.idDocumento).subscribe(
+
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        //console.error('Error al actualizar el documento');
+      }
+    );
   }
 
 }
