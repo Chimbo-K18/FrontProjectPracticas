@@ -1,4 +1,4 @@
-import { DocumentoConvenio } from "./documentoconvenio";
+import { DocumentoConvenio } from "./docsGlobales/documentoConvenio";
 
 export class Convenio {
 

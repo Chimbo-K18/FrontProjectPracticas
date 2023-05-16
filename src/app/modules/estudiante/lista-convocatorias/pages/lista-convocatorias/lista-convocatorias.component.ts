@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Convocatorias } from 'src/app/models/convocatorias';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { ActividadService } from 'src/app/services/actividad.service';
-import { BaseFenixService } from 'src/app/services/base-fenix.service';
+import { BaseFenixService } from 'src/app/services/fenix/base-fenix.service';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { DocumentoLanzamientoConvocatoria } from 'src/app/services/doc/DocumentoLanzamientoConvocatoria.service';
 import { DocumentoSolicitudConvocatoria } from 'src/app/services/doc/DocumentoSolicitudConvocatoria.service';

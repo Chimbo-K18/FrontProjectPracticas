@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Verdocentef } from '../models/verdocentef';
-import { Verestudiantef } from '../models/verestudiantef';
+import { Verdocentef } from '../../models/verdocentef';
+import { Verestudiantef } from '../../models/verestudiantef';
 
 @Injectable({
   providedIn: 'root'
