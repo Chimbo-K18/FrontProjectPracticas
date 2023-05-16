@@ -171,4 +171,10 @@ export class GeneraAnexo5Component   implements AfterViewInit{
     });
   }
 
+  descargarPDF() {
+    const idSolicitud = this.anexo5generado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo5/${idSolicitud}`;
+    window.open(url, '_blank');
+  }
+
 }

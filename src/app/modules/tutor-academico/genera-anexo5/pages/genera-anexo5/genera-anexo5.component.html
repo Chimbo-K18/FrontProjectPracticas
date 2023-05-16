@@ -18,7 +18,7 @@
         <ng-template matStepLabel>Fase 1</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
-            <div>   
+            <div>
               <h1 style="text-align: center;"> Anexo 5</h1>
 
               <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
@@ -35,7 +35,7 @@
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
 
             <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-              <!-- Position Column --> 
+              <!-- Position Column -->
               <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaInicio}} </td>
@@ -199,7 +199,7 @@
                 nuevamente la subira en el formato pdf.
               </p>
             <div class="download-container">
-              <button mat-raised-button color="primary" >
+              <button mat-raised-button color="primary" (click)="descargarPDF()">
                 <mat-icon>get_app</mat-icon> Descargar Archivo
               </button>
               <div class="instructions">
