@@ -16,8 +16,6 @@ import { DocumentoConvenioService } from 'src/app/services/doc/DocumentoConvenio
 import { HttpEventType } from '@angular/common/http';
 import { MatStepper } from '@angular/material/stepper';
 
-
-
 @Component({
   selector: 'app-register-convenio',
   templateUrl: './register-convenio.component.html',

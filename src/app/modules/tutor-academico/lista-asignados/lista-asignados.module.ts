@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { ListaAsignadosRoutingModule } from './lista-asignados-routing.module';
 import { ListaAsignadosComponent } from './pages/lista-asignados/lista-asignados.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,7 +17,13 @@ import { ListaAsignadosComponent } from './pages/lista-asignados/lista-asignados
   ],
   imports: [
     CommonModule,
-    ListaAsignadosRoutingModule
+    ListaAsignadosRoutingModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatIconModule,
+    MatTableModule
   ],
   exports: [
     ListaAsignadosComponent
