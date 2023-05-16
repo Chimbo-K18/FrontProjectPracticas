@@ -74,6 +74,11 @@ const routes: Routes = [
     loadChildren: () => import("./recibe-anexo5/recibe-anexo5.module").then(m => m.RecibeAnexo5Module)
 
   },
+  {
+    path: 'recibe-anexo6',
+    loadChildren: () => import("./recibe-anexo6/recibe-anexo6.module").then(m => m.RecibeAnexo6Module)
+
+  },
 
   {
     path: 'genera-anexo7',

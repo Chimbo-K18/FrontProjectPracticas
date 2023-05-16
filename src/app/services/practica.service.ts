@@ -31,12 +31,20 @@ export class PracticaService {
     return this.http.get<Practica>(this.url + `/practicaparaanexo/${id}/${usuarioid}`);
   }
 
+  buscarPorconvocatoriaParaanexo5(id: any, usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaparaanexo5/${id}/${usuarioid}`);
+  }
+
   buscarPorconvocatoriaPorestudiante(usuarioid:any):Observable<Practica>{
     return this.http.get<Practica>(this.url + `/practicaporestudiante/${usuarioid}`);
   }
 
   buscarPorconvocatoriaPorestudianteAnexo3(usuarioid:any):Observable<Practica>{
     return this.http.get<Practica>(this.url + `/practicaporestudianteanexo3/${usuarioid}`);
+  }
+
+  buscarPorconvocatoriaPorestudianteAnexo6(usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaporestudianteanexo6/${usuarioid}`);
   }
 
   UpdatePractica(practica: Practica, idPractica:any){
@@ -63,6 +71,19 @@ export class PracticaService {
   buscarPorUsuarioSolicitud(id: any):Observable<Practica>{
     return this.http.get<Practica>(this.url +`/usuariosxpractica/${id}`);
   }
+
+  listarPorAnexo1Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo/${carrera}`)
+  }
+
+  listarPorAnexo2Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo2/${carrera}`)
+  }
+
+  listarPorAnexo3Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo3/${carrera}`)
+  }
+
 
 
 
