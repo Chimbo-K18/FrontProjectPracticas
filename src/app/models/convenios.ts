@@ -8,7 +8,7 @@ export class Convenio{
     numero_itv !: string;
     descripcion !: string;
     estado !: boolean;
-    documentoConvenio: DocumentoConvenio | undefined; 
+    documentoConvenio: DocumentoConvenio | undefined;
 
 
 }

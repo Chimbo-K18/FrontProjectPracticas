@@ -14,7 +14,7 @@
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Fase 1</ng-template>
 
-          
+
           <div style="display: flex; justify-content: center; align-items: center;">
 
             <mat-card style="width: 750px; margin-top: 25px">
@@ -138,14 +138,14 @@
                     <input matInput placeholder="numeroItv:" formControlName="secondCtrl" required [(ngModel)]="numitv" name="numeroItv"/>
                   </mat-form-field>
                 </div>
-                    
+
                   </div>
 
-                  
 
-                 
 
-                
+
+
+
 
                 <div>
 
@@ -195,7 +195,7 @@
         <ng-template matStepLabel>Fase 3</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card class="example-card">
-            <h1 style="text-align: left">Datos Personales</h1>
+            <h1 style="text-align: left">Datos Detalle Convenio</h1>
             <div style="display: flex">
               <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
                 <mat-label>Fecha de Inilizacion:</mat-label>
@@ -235,7 +235,7 @@
               <button style="margin-right: 12px" mat-raised-button color="primary" (click)="crearconvenio()" matStepperNext>
                 Aceptar
               </button>
-              
+
             </div>
           </mat-card>
         </div>
@@ -250,7 +250,7 @@
         <mat-card>
         <div class="download-container">
 
-          
+
           <h1><strong>DESCARGAR EL OFICIO </strong></h1>
               <p style="text-align: center">
                 Auna vez se descargue el oficio, posteriormente debera firmarlo y
@@ -264,19 +264,19 @@
           <div class="instructions">
             Haz clic en el botón para cargar el documento
           </div>
-        
+
         </div>
         <div style="text-align: center">
-              
+
           <button style="margin-right: 12px" mat-raised-button color="warn" (click)="resetStepper()">
             Finalizar
           </button>
-          
+
         </div>
       </mat-card>
-        
+
     </div>
-      
+
       </form>
 
     </mat-step>

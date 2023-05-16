@@ -19,7 +19,7 @@
         <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card>
             <div>
-              <h1 style="text-align: center;"> Listado Solicites </h1>
+              <h1 style="text-align: center;"> Listado Solicitudes Aprobadas </h1>
               <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
                 <!-- Position Column -->
                 <ng-container matColumnDef="position">
@@ -103,7 +103,7 @@
                               <td mat-cell *matCellDef="let listasolicitudconvocatoria"> {{listasolicitudconvocatoria.estudiantePracticante.usuario_estudiante_practicante?.carrera}}</td>
                           </ng-container>
 
-               
+
                           <ng-container matColumnDef="opciones">
                               <th mat-header-cell *matHeaderCellDef style="text-align: center;">Aprobar</th>
                               <td mat-cell *matCellDef="let listasolicitudconvocatoria"> <button mat-raised-button color="primary" (click)="selectedestudinate(listasolicitudconvocatoria.idSolicitudConvocatoria)">Aprobar</button></td>
@@ -114,12 +114,12 @@
                             mat-row
                             *matRowDef="let row; columns: displayedestudiante"
                           ></tr>
-               
+
                       </table>
                       <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
                       </mat-paginator>
                   </ng-container>
-                  
+
                   </div>
 
                   <div>
@@ -155,7 +155,7 @@
                                 mat-row
                                 *matRowDef="let row; columns: displayedestudiantetrue"
                               ></tr>
-                            
+
                           </table>
                           <mat-paginator #paginator3 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
                           </mat-paginator>
