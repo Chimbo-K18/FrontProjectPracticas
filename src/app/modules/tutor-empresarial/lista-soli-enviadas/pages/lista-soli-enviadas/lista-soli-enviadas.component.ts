@@ -6,11 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
-import { HttpClient } from '@angular/common/http';
-import Swal from 'sweetalert2';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
-import { log } from 'console';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {

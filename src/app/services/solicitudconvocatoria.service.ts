@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Convocatorias } from '../models/convocatorias';
-import { Observable } from 'rxjs';
+import { Observable,map } from 'rxjs';
 import { SolicitudConvocatoria } from '../models/solicitudconvocatoria';
 import { SolicitudPracticas } from '../models/solicitudpracticas';
 
@@ -36,8 +36,6 @@ export class SolicitudConvocatoriasService {
   getRequestSolicitudconvoTutorTrue(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscarcovocatoriatutorfalse/${idConvocatoriasSolicitud}`)
   }
-
-
 
 
   listarSolicitudConvocatorias(){
@@ -82,6 +80,23 @@ export class SolicitudConvocatoriasService {
 
   comprobarconvocatoria(idconvocatoria: any , idestudiante:any): Observable<SolicitudConvocatoria> {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/count/${idconvocatoria}/${idestudiante}`)
+  }
+
+  //Estudiantes aprobados por responsable 
+  getEstudiantesAprobados(idTutorEmpresarial:any): Observable<any[]>{
+    return this.http.get<any[]>(`${this.API_URL}/listadoAprobados/${idTutorEmpresarial}`).pipe(
+      map((data: any[]) => {
+        return data.map((item: any) => {
+          return {
+            nombreConvocatoria: item[0],
+            cedula: item[1],
+            nombres: item[2],
+            carrera: item[3],
+            fechaAprobacion: item[4]
+          }
+        })
+      })
+    );
   }
 
   
