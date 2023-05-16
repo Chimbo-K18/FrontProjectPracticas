@@ -35,6 +35,10 @@ export class PracticaService {
     return this.http.get<Practica>(this.url + `/practicaporestudiante/${usuarioid}`);
   }
 
+  buscarPorconvocatoriaPorestudianteAnexo3(usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaporestudianteanexo3/${usuarioid}`);
+  }
+
   UpdatePractica(practica: Practica, idPractica:any){
     return this.http.put<Practica>(this.url+`/actualizar/${idPractica}`, practica);
   }

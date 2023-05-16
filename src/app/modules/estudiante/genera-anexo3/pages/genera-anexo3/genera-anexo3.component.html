@@ -28,58 +28,63 @@
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
 
-              <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-                <!-- Position Column --> 
-                <ng-container matColumnDef="position">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Id Practica</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.idSolicitudPracticas}} </td>
-                </ng-container>
+            <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaInicio}} </td>
+              </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">  Hora Inicio </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaEnvioSolicitud}} </td>
-                </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Hora fin </th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaSalida}} </td>
+              </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="weight">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.fechaAceptacion}}</td>
-                </ng-container>
+              <!-- Weight Column -->
+              <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha inicio </th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaInicio }}</td>
+              </ng-container>
 
-                <ng-container matColumnDef="estado">
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Seleccionar </th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> {{practicasSolicitud.estadoSolicitud}}</td>
-                </ng-container>
-                <!-- Symbol Column -->
+              <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaFin}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Convocatoria </th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.nombres}}</td>
+              </ng-container>
+              <!-- Symbol Column -->
+              <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                  <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                   <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
 
-                <ng-container matColumnDef="symbol" bol>
-                  <th mat-header-cell *matHeaderCellDef style="text-align: center;">Seleccionar</th>
-                  <td mat-cell *matCellDef="let practicasSolicitud"> <button mat-raised-button color="primary"
-                      matStepperNext (click)="seleccionarConvocatoria(practicasSolicitud)">Seleccionar</button></td>
+              <ng-container matColumnDef="symbol" bol>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">SELECCIONAR</th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
+                    matStepperNext (click)="CreaAnexo2(practicasSolicitudesd.idPractica)">Seleccionar</button></td>
 
-                </ng-container>
+              </ng-container>
 
 
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
-              </table>
-              <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-                aria-label="Select page of solicitudes">
-              </mat-paginator>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
+              aria-label="Select page of solicitudes">
+            </mat-paginator>
             </div>
           </mat-card>
         </div>
