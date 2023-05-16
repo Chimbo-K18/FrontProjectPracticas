@@ -119,7 +119,7 @@ export class GeneraAnexo3Component   implements AfterViewInit{
 
 
   idanexo3:any;
-  idAnexoGenerado: any;
+  idAnexo3Generado: any;
   CreaAnexo2(anexoid:any){
     this.idanexo3 = anexoid;
     this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
@@ -131,6 +131,7 @@ export class GeneraAnexo3Component   implements AfterViewInit{
         this.anexo3.practica = practicaupdate;
         this.anexo3service.crearAnexo3(this.anexo3).subscribe(dataanexo3=>{
           console.log(dataanexo3);
+          this.idAnexo3Generado = dataanexo3.idAnexo3;
 
           Swal.fire(
             'PROCESO',
@@ -142,4 +143,11 @@ export class GeneraAnexo3Component   implements AfterViewInit{
 
     });
   }
+
+  descargarPDF() {
+    const idanexo3 = this.idAnexo3Generado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
+    window.open(url, '_blank');
+  }
+
 }

@@ -68,8 +68,23 @@ const routes: Routes = [
     path: 'recibe-anexo1',
     loadChildren: () => import("./recibe-anexo1/recibe-anexo1.module").then(m => m.RecibeAnexo1Module)
 
-  }
+  },
+  {
+    path: 'recibe-anexo5',
+    loadChildren: () => import("./recibe-anexo5/recibe-anexo5.module").then(m => m.RecibeAnexo5Module)
 
+  },
+
+  {
+    path: 'genera-anexo7',
+    loadChildren: () => import("./genera-anexo7/genera-anexo7.module").then(m => m.GeneraAnexo7Module)
+
+  },
+  {
+    path: 'recibe-anexo8',
+    loadChildren: () => import("./recibe-anexo8/recibe-anexo8.module").then(m => m.RecibeAnexo8Module)
+
+  }
 
 ];
 

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecibeenviaAnexo4Component } from './recibeenvia-anexo4.component';
+import { GeneraAnexo6Component } from './genera-anexo6.component';
 
-describe('RecibeenviaAnexo4Component', () => {
-  let component: RecibeenviaAnexo4Component;
-  let fixture: ComponentFixture<RecibeenviaAnexo4Component>;
+describe('GeneraAnexo6Component', () => {
+  let component: GeneraAnexo6Component;
+  let fixture: ComponentFixture<GeneraAnexo6Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecibeenviaAnexo4Component ]
+      declarations: [ GeneraAnexo6Component ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecibeenviaAnexo4Component);
+    fixture = TestBed.createComponent(GeneraAnexo6Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

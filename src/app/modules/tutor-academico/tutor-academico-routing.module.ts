@@ -27,11 +27,27 @@ const routes: Routes = [
 
   },
   {
-    path: 'envio-anexo4',
-    loadChildren: () => import("./recibeenvia-anexo4/recibeenvia-anexo4.module").then(m => m.RecibeenviaAnexo4Module)
+    path: 'envio-anexo5',
+    loadChildren: () => import("./genera-anexo5/genera-anexo5.module").then(m => m.GeneraAnexo5Module)
+
+  },
+
+  {
+    path: 'recibe-anexo6',
+    loadChildren: () => import("./recibe-anexo6/recibe-anexo6.module").then(m => m.RecibeAnexo6Module)
+
+  },
+
+  {
+    path: 'recibe-anexo7',
+    loadChildren: () => import("./recibe-anexo7/recibe-anexo7.module").then(m => m.RecibeAnexo7Module)
+
+  },
+  {
+    path: 'recibe-anexo8',
+    loadChildren: () => import("./recibe-anexo8/recibe-anexo8.module").then(m => m.RecibeAnexo8Module)
 
   }
-
 
 ];
 
