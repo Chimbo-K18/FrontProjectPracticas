@@ -203,6 +203,7 @@ export class AsignarHorarioComponent implements AfterViewInit {
         this.datasoli = datasoliactu;
         this.practica.solicitudConvocatoria = this.datasoli;
         this.practica.checkEmpresarial = true;
+        this.practica.estadoHorario = true;
         const fechainicio = document.getElementById(
           'fechainicio'
         ) as HTMLInputElement;

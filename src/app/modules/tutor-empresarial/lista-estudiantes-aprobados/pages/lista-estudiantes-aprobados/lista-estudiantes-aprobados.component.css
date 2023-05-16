@@ -1,58 +1,72 @@
-input[type="text"],
-select {
+table {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
-.agregar {
-  color: #fff;
-  background-color: #aca9a9;
-  height: 30px;
-  width: 50px;
-  align-items: center;
-  border-radius: 100px;
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
 }
-.agregar:hover {
-  background: #e1e6e7;
-  color: #050801;
+
+td,
+th {
+  width: 13%;
 }
-.bodyL{
-  margin-top: -20px;
+
+
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 930px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+#xd {
+  width: 100%;
+}
+
+h1,
+h2 {
+  color: #213A70;
+  text-align: center;
+  border-radius: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+
+}
+
+.mat-column-nombres {
+  width: 150px;
+}
+
+
+.mat-column-carrera {
+  width: 150px;
+}
+
+.mat-column-nombreConvocatoria {
+  width: 100px;
+}
+
+.bodyL {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
   color: #c4c3ca;
   background-image: url('src/assets/images/fondowelcome.png');
-background-size: 100% 100%;
+  background-size: 100% 100%;
   overflow-x: hidden;
 }
-.tbConteiner{
-    width: 100%;
-    overflow-x: auto;
-    /* Modifica el color de la barra de desplazamiento y del pulgar */
-    scrollbar-color: #aaa #f8f8f8;
-    /* Ajusta el ancho de la barra de desplazamiento */
-    scrollbar-width: thin;
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+.contenedor {
+  align-items: center;
+  margin-top: 8%;
+  margin-left: 36%;
 }
-
-table {
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-
-}
-
-th{
-  /* background-color: #4f94e4;*/
-  color: #050801; 
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-
-
-}
-

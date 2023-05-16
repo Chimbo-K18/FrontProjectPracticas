@@ -16,6 +16,14 @@ export class Practica {
     checkAcademico?: boolean;
     estadoHorario?: boolean;
     checkEmpresarial?: boolean;
+    estadoanexo1?: boolean;
+    estadoanexo2?: boolean;
+    estadoanexo3?: boolean;
+    estadoanexo4?: boolean;
+    estadoanexo5?: boolean;
+    estadoanexo6?: boolean;
+    estadoanexo7?: boolean;
+    estadoanexo8?: boolean;
     solicitudConvocatoria?: SolicitudConvocatoria;
     tutorEmpresarial?: tutorempresarial;
     usuario?: Usuarios;

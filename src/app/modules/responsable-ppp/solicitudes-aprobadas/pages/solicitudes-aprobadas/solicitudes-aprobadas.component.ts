@@ -1,6 +1,9 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
+import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 
 
 export interface PeriodicElement {
@@ -32,8 +35,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class SolicitudesAprobadasComponent  {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  displayedColumns: string[] = ['idSolicitudPracticas', 'nombreSolicitud', 'nombre_carrera', 'seleccionar', 'seleccionar1',  'tutorEmpresarial.empresa.nombreEmpresa', 'numeroEstudiantes'];
+  dataSource = new MatTableDataSource<SolicitudPracticas>([]);
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -46,6 +52,28 @@ export class SolicitudesAprobadasComponent  {
     this.dataSource.paginator = this.paginator;
   }
 
- 
+  constructor(private responsableppservice: Responsable_PPPService,
+    private solicitudpracticas: SolicitudpracticasService) {
+
+      this.listarSolicitudes();
+  }
+
+
+  listassolicitudes: any[] = [];
+  idusuario: any;
+  dataresponsable: any;
+
+  listarSolicitudes() {
+    this.idusuario = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+      this.dataresponsable = datausu.carrera;
+      this.solicitudpracticas.getSolicitudesEstadotrue(this.dataresponsable).subscribe(data => {
+        this.listassolicitudes = data;
+        console.log(this.listassolicitudes);
+        this.dataSource.data = this.listassolicitudes;
+      })
+    });
+
+  }
 
 }

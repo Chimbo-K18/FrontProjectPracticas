@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ListaEstudiantesAprobadosRoutingModule } from './lista-estudiantes-aprobados-routing.module';
 import { ListaEstudiantesAprobadosComponent } from './pages/lista-estudiantes-aprobados/lista-estudiantes-aprobados.component';
-//Importaciones clave
 
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,20 +22,13 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
   imports: [
     CommonModule,
-
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatTableModule,
+    ListaEstudiantesAprobadosRoutingModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatPaginatorModule,
+    MatInputModule,
     MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    FormsModule,
-    ListaEstudiantesAprobadosRoutingModule
+    MatTableModule
   ],
   exports:[
     ListaEstudiantesAprobadosComponent

@@ -27,6 +27,18 @@ export class PracticaService {
     return this.http.get<Practica>(this.url + `/convocatoriaspractica/${id}`);
   }
 
+  buscarPorconvocatoriaParaanexo(id: any, usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaparaanexo/${id}/${usuarioid}`);
+  }
+
+  buscarPorconvocatoriaPorestudiante(usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaporestudiante/${usuarioid}`);
+  }
+
+  buscarPorconvocatoriaPorestudianteAnexo3(usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaporestudianteanexo3/${usuarioid}`);
+  }
+
   UpdatePractica(practica: Practica, idPractica:any){
     return this.http.put<Practica>(this.url+`/actualizar/${idPractica}`, practica);
   }
@@ -43,20 +55,11 @@ export class PracticaService {
     return this.http.put(`${this.url}/updateDocumentE/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
 
-  
+  listarPorAcademico(cedula: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/practicaporacademico/${cedula}`)
+  }
 
 
-  // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${id}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${empresa.idEmpresa}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
-  // }
   buscarPorUsuarioSolicitud(id: any):Observable<Practica>{
     return this.http.get<Practica>(this.url +`/usuariosxpractica/${id}`);
   }

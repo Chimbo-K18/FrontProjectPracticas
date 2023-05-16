@@ -9,6 +9,11 @@ import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.s
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
+import Swal from 'sweetalert2';
+import { PracticaService } from 'src/app/services/practica.service';
+import { Anexo3Service } from 'src/app/services/anexo3.service';
+import { Practica } from 'src/app/models/practica';
+import { Anexo3 } from 'src/app/models/anexo3';
 
 export interface Aprobados {
   nombre: string;
@@ -41,13 +46,15 @@ export class GeneraAnexo3Component   implements AfterViewInit{
   practicasSolicitud: SolicitudPracticas[] = [] ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
+  practica : Practica= new Practica();
+  anexo3: Anexo3 = new Anexo3();
 
 
   //TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'estado','nombre', 'symbol'];
   dataF1 = new MatTableDataSource<SolicitudPracticas>([]);
 
-  dColumns: string[] = ['fecha', 'carrera', 'esta', 'sy', 'nombre'];
+  dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
   diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
@@ -88,47 +95,59 @@ export class GeneraAnexo3Component   implements AfterViewInit{
   isEditable = false;
 
   constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService) { }
+    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo3service: Anexo3Service) { }
 
   ngOnInit(): void {
 
     this.listarSolicitudesAprobadasPracticas();
   }
 
+  datatutorEmps: any
+  practicasSolicitudesd: any;
+  ce:any
   listarSolicitudesAprobadasPracticas() {
-    this.solicitudPracticas.getSolicitudesEstado().subscribe(
-      (res) => {
-        this.practicasSolicitud = res;
-        console.log(res);
+    this.ce = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.ce);
+    this.practicaservice.buscarPorconvocatoriaPorestudianteAnexo3(this.ce).subscribe(datapractica =>{
+      this.practicasSolicitudesd = datapractica;
+      console.log(datapractica);
 
-        this.dataF1.data = this.practicasSolicitud
-      }
-    );
+      this.dataF1.data = this.practicasSolicitudesd
+
+    });
   }
 
 
-  seleccionarConvocatoria(solicitud: any) {
-    sessionStorage.setItem('solicitudPractica', JSON.stringify(solicitud));
+  idanexo3:any;
+  idAnexo3Generado: any;
+  CreaAnexo2(anexoid:any){
+    this.idanexo3 = anexoid;
+    this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
+      console.log(practicadata);
+      this.practica = practicadata;
+      this.practica.estadoanexo3 = true;
+      this.practicaservice.UpdatePractica(this.practica, this.idanexo3).subscribe(practicaupdate=>{
+        console.log(practicaupdate);
+        this.anexo3.practica = practicaupdate;
+        this.anexo3service.crearAnexo3(this.anexo3).subscribe(dataanexo3=>{
+          console.log(dataanexo3);
+          this.idAnexo3Generado = dataanexo3.idAnexo3;
 
-    const valor = JSON.parse(
-      sessionStorage.getItem('solicitudPractica') || '{}'
-    );
+          Swal.fire(
+            'PROCESO',
+            'GENERADO CON EXITO',
+            'success'
+          )
+        });
+      });
 
-    this.mivariable = valor.idSolicitudPracticas;
-    console.log(this.mivariable)
+    });
+  }
 
-
-    this.solicitudService.listarCheckResponsable(this.mivariable).subscribe(
-      (data) => {
-
-        console.log(data)
-        this.listaSolicitudesAprobadas = data
-
-        this.dataTabla.data = this.listaSolicitudesAprobadas
-
-      }
-    )
-
+  descargarPDF() {
+    const idanexo3 = this.idAnexo3Generado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
+    window.open(url, '_blank');
   }
 
 }

@@ -37,7 +37,20 @@ const routes: Routes = [
     path: 'genera-anexo3',
     loadChildren: () => import("./genera-anexo3/genera-anexo3.module").then(m => m.GeneraAnexo3Module)
 
+  },
+
+  {
+    path: 'genera-anexo6',
+    loadChildren: () => import("./genera-anexo6/genera-anexo6.module").then(m => m.GeneraAnexo6Module)
+
+  },
+
+  {
+    path: 'genera-anexo8',
+    loadChildren: () => import("./genera-anexo8/genera-anexo8.module").then(m => m.GeneraAnexo8Module)
+
   }
+
 
 
 ];

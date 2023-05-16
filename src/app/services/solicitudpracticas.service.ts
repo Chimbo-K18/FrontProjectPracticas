@@ -60,6 +60,10 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscarporempresa/${idEmpresa}`)
   }
 
+  getBuscarTodasXEmpresa(idEmpresa:any) : Observable<SolicitudPracticas> {
+    return this.http.get<SolicitudPracticas>(`${this.URL}buscarTodas/${idEmpresa}`)
+  }
+
   updateSolicitud(solicitud: SolicitudPracticas, idSolicitudPracticas: any) {
     console.log("servicio");
     console.log(solicitud);
