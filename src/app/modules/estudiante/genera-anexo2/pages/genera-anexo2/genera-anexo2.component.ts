@@ -118,23 +118,6 @@ export class GeneraAnexo2Component   implements AfterViewInit{
   }
 
 
-  listapraacticas: any[] = [];
-  seleccionarConvocatoria(solicitud: any, idusuario:any) {
-    console.log(solicitud);
-    console.log(idusuario);
-    this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud, idusuario).subscribe(datapracticalist => {
-      console.log(datapracticalist);
-      this.listapraacticas = [];
-      datapracticalist.forEach((practica: Practica) => {
-        this.listapraacticas.push(practica);
-      });
-      // Asignar la lista al datasource de la tabla
-      this.dataTabla.data = this.listapraacticas;
-      console.log(this.listapraacticas);
-    }
-    );
-  }
-
   idanexo2:any;
   CreaAnexo2(anexoid:any){
     this.idanexo2 = anexoid;

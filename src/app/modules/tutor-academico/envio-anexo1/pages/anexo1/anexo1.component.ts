@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, ViewChild } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {FormGroup, FormControl} from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
 import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
@@ -25,11 +25,11 @@ export interface Aprobados {
 }
 
 const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
+  { nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado' },
+  { nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado' },
 ];
 
 @Component({
@@ -40,18 +40,18 @@ const AP: Aprobados[] = [
 
 
 
-export class Anexo1Component   implements AfterViewInit{
+export class Anexo1Component implements AfterViewInit {
 
 
-  practicasSolicitud: SolicitudPracticas[] = [] ;
+  practicasSolicitud: SolicitudPracticas[] = [];
   mivariable !: any;
   listaSolicitudesAprobadas: any;
-  anexo1: Anexo1= new Anexo1();
+  anexo1: Anexo1 = new Anexo1();
   practica: Practica = new Practica();
 
 
   //TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'nombre','symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'nombre', 'symbol'];
   dataF1 = new MatTableDataSource<Practica>([]);
 
   dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
@@ -60,8 +60,8 @@ export class Anexo1Component   implements AfterViewInit{
   diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
   datam = new MatTableDataSource<Aprobados>(AP);
 
-  @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
-@ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
+  @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -94,8 +94,8 @@ export class Anexo1Component   implements AfterViewInit{
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService, private anexo1service: Anexo1Service,
-    private solicitudService : SolicitudConvocatoriasService, private userService: UserService, private practicaservice: PracticaService) { }
+  constructor(private _formBuilder: FormBuilder, private solicitudPracticas: SolicitudpracticasService, private anexo1service: Anexo1Service,
+    private solicitudService: SolicitudConvocatoriasService, private userService: UserService, private practicaservice: PracticaService) { }
 
   ngOnInit(): void {
 
@@ -115,7 +115,7 @@ export class Anexo1Component   implements AfterViewInit{
   listarSolicitudesAprobadasPracticas() {
     this.Ceduss = localStorage.getItem("idusuario");
     console.log("id usuario " + this.Ceduss);
-    this.practicaservice.listarPorAcademico(this.Ceduss).subscribe(datapractica =>{
+    this.practicaservice.listarPorAcademico(this.Ceduss).subscribe(datapractica => {
       this.practicasSolicitudesd = datapractica;
       console.log(datapractica);
 
@@ -126,7 +126,7 @@ export class Anexo1Component   implements AfterViewInit{
 
 
   listapraacticas: any[] = [];
-  seleccionarConvocatoria(solicitud: any, idusuario:any) {
+  seleccionarConvocatoria(solicitud: any, idusuario: any) {
     console.log(solicitud);
     console.log(idusuario);
     this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud, idusuario).subscribe(datapracticalist => {
@@ -142,20 +142,22 @@ export class Anexo1Component   implements AfterViewInit{
     );
   }
 
-  idanexo1:any;
-  anexodataencontrada:any;
-  CreaAnexo1(anexoid:any){
+  idanexo1: any;
+  anexo1generado: any;
+  anexodataencontrada: any;
+  CreaAnexo1(anexoid: any) {
     this.idanexo1 = anexoid;
-    this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
+    this.practicaservice.buscarId(anexoid).subscribe(practicadata => {
       console.log(practicadata);
       this.practica = practicadata;
       this.practica.estadoanexo1 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo1).subscribe(practicaupdate=>{
+      this.practicaservice.UpdatePractica(this.practica, this.idanexo1).subscribe(practicaupdate => {
         console.log(practicaupdate);
         this.anexo1.practica = practicaupdate;
-        this.anexo1.estado_academico =true;
-        this.anexo1service.crearAnexo1(this.anexo1).subscribe(dataanexo1=>{
+        this.anexo1.estado_academico = true;
+        this.anexo1service.crearAnexo1(this.anexo1).subscribe(dataanexo1 => {
           console.log(dataanexo1);
+          this.anexo1generado = dataanexo1.idAnexo1;
           Swal.fire(
             'PROCESO',
             'GENERADO CON EXITO',
@@ -163,8 +165,14 @@ export class Anexo1Component   implements AfterViewInit{
           )
         });
       });
-    
+
     });
+  }
+
+  descargarPDF() {
+    const idAnexo1 = this.anexo1generado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo1/${idAnexo1}`;
+    window.open(url, '_blank');
   }
 
 }
