@@ -1,21 +1,16 @@
-import {AfterViewInit, Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ViewChild,ElementRef } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {FormGroup, FormControl} from '@angular/forms';
-import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
-import { Convocatorias } from 'src/app/models/convocatorias';
-import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
-import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import Swal from 'sweetalert2';
 import { PracticaService } from 'src/app/services/practica.service';
-import { Anexo3Service } from 'src/app/services/anexo3.service';
 import { Practica } from 'src/app/models/practica';
-import { Anexo3 } from 'src/app/models/anexo3';
-import { Anexo6Service } from 'src/app/services/anexo6.service';
+import { Anexo6Service } from 'src/app/services/anexos/anexo6.service';
 import { Anexo6 } from 'src/app/models/anexo6';
+import { HttpEventType } from '@angular/common/http';
+import { DocumentoAnexo6Service } from 'src/app/services/docAnexos/DocumentoAnexo6.service';
 
 export interface Aprobados {
   nombre: string;
@@ -25,69 +20,22 @@ export interface Aprobados {
 
 }
 
-const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-];
-
 @Component({
   selector: 'app-genera-anexo6',
   templateUrl: './genera-anexo6.component.html',
   styleUrls: ['./genera-anexo6.component.css']
 })
 
-
-
-
-
 export class GeneraAnexo6Component   implements AfterViewInit{
 
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 
   practicasSolicitud: SolicitudPracticas[] = [] ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
   practica : Practica= new Practica();
   anexo6: Anexo6 = new Anexo6();
-
+  public filesToUpload!: Array<File>;
+  DocumentoAnexo6!: any;
 
   //TABLA
   displayedColumns: string[] = ['position', 'name', 'weight', 'estado','nombre', 'symbol', 'boton'];
@@ -96,11 +44,10 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
-@ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -108,10 +55,6 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   }
 
   //FINTABLA
-
-
-
-
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -132,8 +75,10 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   });
 
   isEditable = false;
-  constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo6service: Anexo6Service) { }
+  constructor(private _formBuilder: FormBuilder, 
+    private practicaservice: PracticaService, 
+    private anexo6service: Anexo6Service,
+    private documentoAnexo6: DocumentoAnexo6Service) { }
 
   ngOnInit(): void {
 
@@ -216,6 +161,67 @@ export class GeneraAnexo6Component   implements AfterViewInit{
     const idanexo6 = this.idAnexo6Generado; // obtén el ID de la solicitud
     const url = `http://localhost:8080/api/jasperReport/anexo6/${idanexo6}`;
     window.open(url, '_blank');
+  }
+
+  fileChangeEvent(event: any) {
+    this.filesToUpload = <Array<File>>event.target.files;
+  }
+  
+  onLoad(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoAnexo6.uploadFileDocumentoAnexo6(file).subscribe(
+        res => {
+          console.log(res);
+        },
+        error => {
+          console.error('Error al subir el archivo', error);
+        }
+      );
+    }
+  }
+  
+  public upload(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.documentoAnexo6.uploadFileDocumentoAnexo6(file).subscribe(
+        event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            console.log('Progreso de carga:', event.loaded, '/', event.total);
+          } else if (event.type === HttpEventType.Response) {
+            this.inputFile.nativeElement.value = '';
+            sessionStorage.setItem('ArchivoAnexo6', JSON.stringify(event.body));
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Documento guardado correctamente',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.actualizarDocumento();
+          }
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          Swal.fire('Error', 'El documento no se pudo subir.', 'error');
+        }
+      );
+    }
+  }
+  
+  actualizarDocumento() {
+    const idDoc = JSON.parse(sessionStorage.getItem('ArchivoAnexo6') || '{}');
+    const documentoAnexo5 = idDoc.id_documentoAnexo6;
+    
+    this.anexo6service.updateDocumentoAnexo6(this.idAnexo6Generado, documentoAnexo5).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        //console.error('Error al actualizar el documento', error);
+      }
+    );
   }
 
 }

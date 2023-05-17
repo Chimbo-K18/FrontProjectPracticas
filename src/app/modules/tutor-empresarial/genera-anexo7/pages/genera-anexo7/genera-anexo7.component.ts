@@ -11,9 +11,9 @@ import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import Swal from 'sweetalert2';
 import { PracticaService } from 'src/app/services/practica.service';
-import { Anexo3Service } from 'src/app/services/anexo3.service';
+import { Anexo3Service } from 'src/app/services/anexos/anexo3.service';
 import { Practica } from 'src/app/models/practica';
-import { Anexo3 } from 'src/app/models/anexo3';
+import { Anexo3 } from 'src/app/models/anexos/anexo3';
 
 export interface Aprobados {
   nombre: string;

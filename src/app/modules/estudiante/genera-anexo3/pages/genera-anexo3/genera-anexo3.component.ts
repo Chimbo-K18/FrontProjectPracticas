@@ -2,8 +2,6 @@ import {AfterViewInit, Component, ViewChild,ElementRef} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
-import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import Swal from 'sweetalert2';
@@ -14,22 +12,6 @@ import { Anexo3 } from 'src/app/models/anexos/anexo3';
 import { DocumentoAnexo3Service } from 'src/app/services/docAnexos/DocumentoAnexo3.service';
 import { HttpEventType } from '@angular/common/http';
 
-export interface Aprobados {
-  nombre: string;
-  fecha: string;
-  carrera: string;
-  esta: string;
-
-}
-
-const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-];
-
 @Component({
   selector: 'app-genera-anexo3',
   templateUrl: './genera-anexo3.component.html',
@@ -37,10 +19,7 @@ const AP: Aprobados[] = [
 })
 
 
-
-
 export class GeneraAnexo3Component   implements AfterViewInit{
-
 
   practicasSolicitud: SolicitudPracticas[] = [] ;
   mivariable !: any;
@@ -58,8 +37,6 @@ export class GeneraAnexo3Component   implements AfterViewInit{
   dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
@@ -71,10 +48,6 @@ export class GeneraAnexo3Component   implements AfterViewInit{
   }
 
   //FINTABLA
-
-
-
-
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
