@@ -14,6 +14,8 @@ import { PracticaService } from 'src/app/services/practica.service';
 import { Anexo3Service } from 'src/app/services/anexo3.service';
 import { Practica } from 'src/app/models/practica';
 import { Anexo3 } from 'src/app/models/anexo3';
+import { Anexo8 } from 'src/app/models/anexo8';
+import { Anexo8Service } from 'src/app/services/anexo8.service';
 
 export interface Aprobados {
   nombre: string;
@@ -42,48 +44,12 @@ const AP: Aprobados[] = [
 
 export class GeneraAnexo8Component   implements AfterViewInit{
   
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 
   practicasSolicitud: SolicitudPracticas[] = [] ;
   mivariable !: any;
   listaSolicitudesAprobadas: any;
   practica : Practica= new Practica();
-  anexo3: Anexo3 = new Anexo3();
+  anexo8: Anexo8 = new Anexo8();
 
 
   //TABLA
@@ -129,9 +95,8 @@ export class GeneraAnexo8Component   implements AfterViewInit{
   });
 
   isEditable = false;
-
   constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo3service: Anexo3Service) { }
+    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo8service: Anexo8Service) { }
 
   ngOnInit(): void {
 
@@ -144,7 +109,7 @@ export class GeneraAnexo8Component   implements AfterViewInit{
   listarSolicitudesAprobadasPracticas() {
     this.ce = localStorage.getItem("idusuario");
     console.log("id usuario " + this.ce);
-    this.practicaservice.buscarPorconvocatoriaPorestudianteAnexo3(this.ce).subscribe(datapractica =>{
+    this.practicaservice.buscarPorconvocatoriaPorestudianteAnexo8(this.ce).subscribe(datapractica =>{
       this.practicasSolicitudesd = datapractica;
       console.log(datapractica);
 
@@ -154,20 +119,20 @@ export class GeneraAnexo8Component   implements AfterViewInit{
   }
 
 
-  idanexo3:any;
-  idAnexo3Generado: any;
-  CreaAnexo2(anexoid:any){
-    this.idanexo3 = anexoid;
+  idanexo8:any;
+  idAnexo8Generado: any;
+  CreaAnexo8(anexoid:any){
+    this.idanexo8 = anexoid;
     this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
       console.log(practicadata);
       this.practica = practicadata;
-      this.practica.estadoanexo3 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo3).subscribe(practicaupdate=>{
+      this.practica.estadoanexo8 = true;
+      this.practicaservice.UpdatePractica(this.practica, this.idanexo8).subscribe(practicaupdate=>{
         console.log(practicaupdate);
-        this.anexo3.practica = practicaupdate;
-        this.anexo3service.crearAnexo3(this.anexo3).subscribe(dataanexo3=>{
-          console.log(dataanexo3);
-          this.idAnexo3Generado = dataanexo3.idAnexo3;
+        this.anexo8.practica = practicaupdate;
+        this.anexo8service.crearAnexo8(this.anexo8).subscribe(dataanexo8=>{
+          console.log(dataanexo8);
+          this.idAnexo8Generado = dataanexo8.idAnexo8;
 
           Swal.fire(
             'PROCESO',
@@ -181,7 +146,7 @@ export class GeneraAnexo8Component   implements AfterViewInit{
   }
 
   descargarPDF() {
-    const idanexo3 = this.idAnexo3Generado; // obtén el ID de la solicitud
+    const idanexo3 = this.idAnexo8Generado; // obtén el ID de la solicitud
     const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
     window.open(url, '_blank');
   }
