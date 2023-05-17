@@ -4,6 +4,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from 'src/app/services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,7 +31,7 @@ export class ListaAsignadosComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  displayedColumns: string[] = ['nombreConvocatoria', "fechaAprobacion", 'nombres', 'carrera'];
+  displayedColumns: string[] = ['nombreConvocatoria', "nombres", 'carrera', 'fechainicio', 'fechafin'];
   dataSource = new MatTableDataSource<any>([]);
   apiResponse: any = [];
   mitutor!: any;
@@ -38,10 +40,34 @@ export class ListaAsignadosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() { }
+  constructor(private userService: UserService,
+    private http: HttpClient) { }
+
+  datos: {nombreConvocatoria:string,nombres: string, carrera: string, fechainicio: string, fechafin: string}[] = [];
+
 
   ngOnInit(): void {
-
+    this.getEstudiantesAsignados();
+  }
+  
+  user!:any;
+  getEstudiantesAsignados(){
+    this.user = localStorage.getItem("idusuario");
+    console.log("id usuario " + this.user)
+    this.userService.getuscedula(this.user).subscribe(dataUserEncon => {
+    this.http.get('http://localhost:8080/api/practica/listadoAprobados/'+dataUserEncon.cedula).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.datos = response;
+        this.dataSource = new MatTableDataSource<any>(this.datos);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error: (err) => {
+        alert("Error while fetching the records")
+      }
+    });
+  }); 
   }
 
   applyFilter(event: Event) {

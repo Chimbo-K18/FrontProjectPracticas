@@ -18,7 +18,7 @@ table {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 930px;
+    max-width: 950px;
     padding: 20px;
     background-color: white;
     border-radius: 12px;
@@ -40,17 +40,18 @@ table {
   }
   
   .mat-column-nombres {
-    width: 150px;
+    width: 200px;
   }
   
   
   .mat-column-carrera {
     width: 150px;
   }
-  
+
   .mat-column-nombreConvocatoria {
-    width: 100px;
+    width: 150px;
   }
+  
   
   .bodyL {
     font-family: 'Poppins', sans-serif;
