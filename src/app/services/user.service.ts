@@ -40,6 +40,8 @@ export class UserService {
   getcedula(cedula: any):Observable<UsuarioRol>{
     return this.http.get<UsuarioRol>(API_URL + `/buscarcedula/${cedula}`)
   }
+
+  
   getuscedula(cedula: any):Observable<Usuarios>{
     return this.http.get<Usuarios>(API_URL + `/buscarcedula/${cedula}`)
   }

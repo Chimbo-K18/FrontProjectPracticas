@@ -49,10 +49,10 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   public consultaUserFenix(ci: string): void {
-    this.bd_fenix.consultarUserEstudiante(ci).subscribe((response) => {
+    this.userService.getcedula(ci).subscribe((response) => {
       this.usuario.nombres = response.nombres;
       this.usuario.apellidos = response.apellidos;
-      this.usuario.correo = response.correo_institucional;
+      this.usuario.correo = response.correo;
       this.usuario.carrera = response.carrera;
     });
   }
@@ -60,7 +60,7 @@ export class ResetPasswordComponent implements OnInit {
   escribirInput(evento: any) {
     let cedulaF = evento.target.value;
     if (cedulaF.length == 10) {
-      this.bd_fenix.consultarUserEstudiante(cedulaF).subscribe((response) => {
+      this.userService.getcedula(cedulaF).subscribe((response) => {
         if (response == null) {
           Swal.fire(
             'Usuario no registrado en FENIX',
@@ -72,7 +72,7 @@ export class ResetPasswordComponent implements OnInit {
             'correoe'
           ) as HTMLButtonElement | null;
 
-          if (response.correo_institucional == null) {
+          if (response.correo == null) {
             if (campoCorreo == null) {
             } else {
               campoCorreo.disabled = false;
@@ -85,7 +85,7 @@ export class ResetPasswordComponent implements OnInit {
           }
           this.usuario.nombres = response.nombres;
           this.usuario.apellidos = response.apellidos;
-          this.usuario.correo = response.correo_institucional;
+          this.usuario.correo = response.correo;
           this.usuario.carrera = response.carrera;
         }
       });
