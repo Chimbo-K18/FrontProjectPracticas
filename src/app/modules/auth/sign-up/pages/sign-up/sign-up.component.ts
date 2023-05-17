@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { EstudiantePracticante } from 'src/app/models/estudiantepracticante';
 import { Usuarios } from 'src/app/models/usuarios';
 import { Verestudiantef } from 'src/app/models/verestudiantef';
-import { BaseFenixService } from 'src/app/services/base-fenix.service';
+import { BaseFenixService } from 'src/app/services/fenix/base-fenix.service';
 import { CreateAccountService } from 'src/app/services/createaccount.service';
 import { EstudiantePracticanteService } from 'src/app/services/estudiantepracticante.service';
 import { UserService } from 'src/app/services/user.service';
@@ -177,7 +177,7 @@ variableencontrada:any;
       this.bd_fenix.consultarUserEstudiante(cedulaF).subscribe((response) => {
         if (response == null) {
           Swal.fire(
-            'Docente no registrado en FENIX',
+            'Usuario no registrado en FENIX',
             `Verifique si su cedula esta correcta.`,
             'warning'
           );

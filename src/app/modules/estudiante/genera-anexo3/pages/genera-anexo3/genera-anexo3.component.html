@@ -145,7 +145,7 @@
               nuevamente la subira en el formato pdf.
             </p>
             <div class="download-container">
-              <input name="file" id="file" type="file" #inputFile hidden>
+              <input name="file" id="file" (change)="upload($event)" type="file" #inputFile hidden>
               <button mat-raised-button color="primary"(click)="inputFile.click()" >
                 <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
               </button>

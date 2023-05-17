@@ -1,47 +1,21 @@
-import {AfterViewInit, Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ViewChild,ElementRef } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {FormGroup, FormControl} from '@angular/forms';
-import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
-import { Convocatorias } from 'src/app/models/convocatorias';
-import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
-import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import Swal from 'sweetalert2';
 import { PracticaService } from 'src/app/services/practica.service';
-import { Anexo3Service } from 'src/app/services/anexo3.service';
 import { Practica } from 'src/app/models/practica';
-import { Anexo3 } from 'src/app/models/anexo3';
-import { Anexo5 } from 'src/app/models/anexo5';
-import { Anexo5Service } from 'src/app/services/anexo5.service';
-
-export interface Aprobados {
-  nombre: string;
-  fecha: string;
-  carrera: string;
-  esta: string;
-
-}
-
-const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-];
-
+import { Anexo5 } from 'src/app/models/anexos/anexo5';
+import { Anexo5Service } from 'src/app/services/anexos/anexo5.service';
+import { DocumentoAnexo5Service } from 'src/app/services/docAnexos/DocumentoAnexo5.service';
+import { HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-genera-anexo5',
   templateUrl: './genera-anexo5.component.html',
   styleUrls: ['./genera-anexo5.component.css']
 })
-
-
-
-
 
 export class GeneraAnexo5Component   implements AfterViewInit{
 
@@ -51,6 +25,8 @@ export class GeneraAnexo5Component   implements AfterViewInit{
   listaSolicitudesAprobadas: any;
   practica : Practica= new Practica();
   anexo5: Anexo5 = new Anexo5();
+  public filesToUpload!: Array<File>;
+  DocumentoAnexo5!: any;
 
 
   //TABLA
@@ -60,11 +36,9 @@ export class GeneraAnexo5Component   implements AfterViewInit{
   dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
-
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
-@ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -72,10 +46,6 @@ export class GeneraAnexo5Component   implements AfterViewInit{
   }
 
   //FINTABLA
-
-
-
-
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -97,8 +67,10 @@ export class GeneraAnexo5Component   implements AfterViewInit{
 
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo5service: Anexo5Service) { }
+  constructor(private _formBuilder: FormBuilder, 
+    private practicaservice: PracticaService, 
+    private anexo5service: Anexo5Service,
+    private documentoAnexo5: DocumentoAnexo5Service) { }
 
   ngOnInit(): void {
 
@@ -175,6 +147,67 @@ export class GeneraAnexo5Component   implements AfterViewInit{
     const idSolicitud = this.anexo5generado; // obtén el ID de la solicitud
     const url = `http://localhost:8080/api/jasperReport/anexo5/${idSolicitud}`;
     window.open(url, '_blank');
+  }
+
+  fileChangeEvent(event: any) {
+    this.filesToUpload = <Array<File>>event.target.files;
+  }
+  
+  onLoad(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+    if (file) {
+      this.documentoAnexo5.uploadFileDocumentoAnexo5(file).subscribe(
+        res => {
+          console.log(res);
+        },
+        error => {
+          console.error('Error al subir el archivo', error);
+        }
+      );
+    }
+  }
+  
+  public upload(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.documentoAnexo5.uploadFileDocumentoAnexo5(file).subscribe(
+        event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            console.log('Progreso de carga:', event.loaded, '/', event.total);
+          } else if (event.type === HttpEventType.Response) {
+            this.inputFile.nativeElement.value = '';
+            sessionStorage.setItem('ArchivoAnexo5', JSON.stringify(event.body));
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Documento guardado correctamente',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.actualizarDocumento();
+          }
+        },
+        error => {
+          this.inputFile.nativeElement.value = '';
+          Swal.fire('Error', 'El documento no se pudo subir.', 'error');
+        }
+      );
+    }
+  }
+  
+  actualizarDocumento() {
+    const idDoc = JSON.parse(sessionStorage.getItem('ArchivoAnexo5') || '{}');
+    const documentoAnexo5 = idDoc.id_documentoAnexo5;
+    
+    this.anexo5service.updateDocumentoAnexo5(this.anexo5generado, documentoAnexo5).subscribe(
+      response => {
+        console.log('Documento actualizado correctamente');
+      },
+      error => {
+        //console.error('Error al actualizar el documento', error);
+      }
+    );
   }
 
 }

@@ -1,6 +1,6 @@
 
 import { ResponsablePpp } from './ResponsablePPP';
-import { DocumentoSolicitudPracticas } from './documentoPracticas';
+import { DocumentoSolicitudPracticas } from './docsGlobales/documentoPracticas';
 import { Empresa } from './empresa';
 import { tutorempresarial } from './tutorempresarial';
 
