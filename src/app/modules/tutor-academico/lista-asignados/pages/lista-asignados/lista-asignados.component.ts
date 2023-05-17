@@ -27,7 +27,6 @@ export class ListaAsignadosComponent implements OnInit {
     Validators.pattern('valid'),
   ]);
 
-
   matcher = new MyErrorStateMatcher();
 
   displayedColumns: string[] = ['nombreConvocatoria', "fechaAprobacion", 'nombres', 'carrera'];
@@ -42,6 +41,7 @@ export class ListaAsignadosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   applyFilter(event: Event) {
