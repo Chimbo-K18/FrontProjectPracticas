@@ -12,6 +12,12 @@ th {
   width: 13%;
 }
 
+mat-card{
+  width: 900px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 
 .container {
   position: fixed;

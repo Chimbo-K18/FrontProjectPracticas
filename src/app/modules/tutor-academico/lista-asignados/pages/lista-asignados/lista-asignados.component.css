@@ -47,6 +47,12 @@ table {
   .mat-column-carrera {
     width: 150px;
   }
+
+  mat-card{
+    width: 900px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
   
   .mat-column-nombreConvocatoria {
     width: 100px;

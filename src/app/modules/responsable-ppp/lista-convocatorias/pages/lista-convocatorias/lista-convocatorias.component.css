@@ -38,6 +38,11 @@ h2 {
   font-weight: bold;
 
 }
+mat-card{
+  width: 900px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 
 
 .bodyL {
