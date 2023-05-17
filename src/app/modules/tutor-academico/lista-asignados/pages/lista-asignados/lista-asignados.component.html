@@ -21,21 +21,25 @@
               <td mat-cell *matCellDef="let row">{{row.nombreConvocatoria}}</td>
             </ng-container>
   
-            <ng-container matColumnDef="fechaAprobacion">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>APROBACIÓN</th>
-              <td mat-cell *matCellDef="let row">{{row.fechaAprobacion}}</td>
-            </ng-container>
-  
             <ng-container matColumnDef="nombres">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>ESTUDIANTE</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ESTUDIANTE</th>
               <td mat-cell *matCellDef="let row">{{row.nombres}}</td>
             </ng-container>
   
             <ng-container matColumnDef="carrera">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>CARRERA</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>CARRERA</th>
               <td mat-cell *matCellDef="let row">{{row.carrera}}</td>
             </ng-container>
   
+            <ng-container matColumnDef="fechainicio">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>INICIO PRACTICA</th>
+              <td mat-cell *matCellDef="let row">{{row.fechainicio}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fechafin">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>FIN PRACTICA</th>
+              <td mat-cell *matCellDef="let row">{{row.fechafin}}</td>
+            </ng-container>
   
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
