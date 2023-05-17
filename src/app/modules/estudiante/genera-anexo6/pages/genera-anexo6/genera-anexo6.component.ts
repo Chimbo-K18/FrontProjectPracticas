@@ -14,6 +14,8 @@ import { PracticaService } from 'src/app/services/practica.service';
 import { Anexo3Service } from 'src/app/services/anexo3.service';
 import { Practica } from 'src/app/models/practica';
 import { Anexo3 } from 'src/app/models/anexo3';
+import { Anexo6Service } from 'src/app/services/anexo6.service';
+import { Anexo6 } from 'src/app/models/anexo6';
 
 export interface Aprobados {
   nombre: string;
@@ -43,7 +45,6 @@ const AP: Aprobados[] = [
 
 export class GeneraAnexo6Component   implements AfterViewInit{
 
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
@@ -52,7 +53,6 @@ export class GeneraAnexo6Component   implements AfterViewInit{
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
@@ -61,7 +61,6 @@ export class GeneraAnexo6Component   implements AfterViewInit{
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
@@ -70,7 +69,10 @@ export class GeneraAnexo6Component   implements AfterViewInit{
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
-//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR 
+//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
+//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
+//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
+//ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
 //ESTOS DATOS NO CORRESPONDEN A LA PAGINA TOMAR DE REFERENCIA PORFAVOR
@@ -84,11 +86,11 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   mivariable !: any;
   listaSolicitudesAprobadas: any;
   practica : Practica= new Practica();
-  anexo3: Anexo3 = new Anexo3();
+  anexo6: Anexo6 = new Anexo6();
 
 
   //TABLA
-  displayedColumns: string[] = ['position', 'name', 'weight', 'estado','nombre', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'estado','nombre', 'symbol', 'boton'];
   dataF1 = new MatTableDataSource<SolicitudPracticas>([]);
 
   dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
@@ -130,9 +132,8 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   });
 
   isEditable = false;
-
   constructor(private _formBuilder: FormBuilder, private solicitudPracticas : SolicitudpracticasService,
-    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo3service: Anexo3Service) { }
+    private solicitudService : SolicitudConvocatoriasService, private practicaservice: PracticaService, private anexo6service: Anexo6Service) { }
 
   ngOnInit(): void {
 
@@ -145,7 +146,7 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   listarSolicitudesAprobadasPracticas() {
     this.ce = localStorage.getItem("idusuario");
     console.log("id usuario " + this.ce);
-    this.practicaservice.buscarPorconvocatoriaPorestudianteAnexo3(this.ce).subscribe(datapractica =>{
+    this.practicaservice.buscarPorconvocatoriaPorestudianteAnexo6(this.ce).subscribe(datapractica =>{
       this.practicasSolicitudesd = datapractica;
       console.log(datapractica);
 
@@ -154,22 +155,52 @@ export class GeneraAnexo6Component   implements AfterViewInit{
     });
   }
 
+  Captirarid(id:any){
 
-  idanexo3:any;
-  idAnexo3Generado: any;
-  CreaAnexo2(anexoid:any){
-    this.idanexo3 = anexoid;
+  }
+
+
+  fechaini:any;
+  fechafin:any;
+  numerosemana:any;
+  GenerarFechas(){
+    const fechainicio = document.getElementById(
+      'fechainicio'
+    ) as HTMLInputElement;
+    this.fechaini = fechainicio.value;
+    console.log(this.fechaini);
+
+    const fechafinal = document.getElementById(
+      'fechafinal'
+    ) as HTMLInputElement;
+    this.fechafin = fechafinal.value;
+    console.log(this.fechafin);
+
+    const numero = document.getElementById(
+      'numero'
+    ) as HTMLInputElement;
+    this.numerosemana = numero.value;
+    console.log(this.numerosemana);
+
+  }
+  idanexo6:any;
+  idAnexo6Generado: any;
+  CreaAnexo6(anexoid:any){
+    this.idanexo6 = anexoid;
     this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
       console.log(practicadata);
       this.practica = practicadata;
-      this.practica.estadoanexo3 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo3).subscribe(practicaupdate=>{
+      this.practica.estadoanexo6 = true;
+      this.practicaservice.UpdatePractica(this.practica, this.idanexo6).subscribe(practicaupdate=>{
         console.log(practicaupdate);
-        this.anexo3.practica = practicaupdate;
-        this.anexo3service.crearAnexo3(this.anexo3).subscribe(dataanexo3=>{
-          console.log(dataanexo3);
-          this.idAnexo3Generado = dataanexo3.idAnexo3;
-
+        this.anexo6.practica = practicaupdate;
+        this.anexo6.estado_estudiante = true;
+        this.anexo6.fecha_inicio = this.fechaini;
+        this.anexo6.fecha_fin = this.fechafin;
+        this.anexo6.numero_semana = this.numerosemana;
+        this.anexo6service.crearAnexo6(this.anexo6).subscribe(dataanexo6=>{
+          console.log(dataanexo6);
+          this.idAnexo6Generado = dataanexo6.idAnexo6;
           Swal.fire(
             'PROCESO',
             'GENERADO CON EXITO',
@@ -182,8 +213,8 @@ export class GeneraAnexo6Component   implements AfterViewInit{
   }
 
   descargarPDF() {
-    const idanexo3 = this.idAnexo3Generado; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
+    const idanexo6 = this.idAnexo6Generado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo6/${idanexo6}`;
     window.open(url, '_blank');
   }
 

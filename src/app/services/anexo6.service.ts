@@ -4,20 +4,22 @@ import { Observable } from 'rxjs';
 import { Convenio } from '../models/convenio';
 import { Actividades } from '../models/actividades';
 import { Anexo1 } from '../models/anexo1';
+import { Anexo5 } from '../models/anexo5';
+import { Anexo6 } from '../models/anexo6';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Anexo1Service {
-  url: string = 'http://localhost:8080/api/anexo1';
+export class Anexo6Service {
+  url: string = 'http://localhost:8080/api/anexo6';
   constructor(private http: HttpClient) { }
 
-  crearAnexo1(anexo1: Anexo1): Observable<Anexo1>{
-    return this.http.post<Anexo1>(this.url+'/crear',anexo1);
+  crearAnexo6(anexo6: Anexo6): Observable<Anexo6>{
+    return this.http.post<Anexo6>(this.url+'/crear',anexo6);
   }
 
-  getAnexo1(): Observable<Anexo1[]>{
-    return this.http.get<Anexo1[]>(this.url+`/listar`);
+  getAnexo6(): Observable<Anexo6[]>{
+    return this.http.get<Anexo6[]>(this.url+`/listar`);
   }
   
 
