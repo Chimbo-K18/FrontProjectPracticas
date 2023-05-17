@@ -127,7 +127,7 @@ export class GeneraAnexo7Component   implements AfterViewInit{
           this.practicasSolicitudesd = datapractica;
           console.log(datapractica);
           this.dataF1.data = this.practicasSolicitudesd
-    
+
         });
       });
     });
@@ -176,8 +176,8 @@ export class GeneraAnexo7Component   implements AfterViewInit{
   }
 
   descargarPDF() {
-    const idanexo3 = this.idAnexo7Generado; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
+    const idAnexo7 = this.idAnexo7Generado; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo7/${idAnexo7}`;
     window.open(url, '_blank');
   }
 
