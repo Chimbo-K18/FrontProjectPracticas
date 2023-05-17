@@ -60,6 +60,18 @@ export class SolicitudConvocatoriasService {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/porconvocatoriatruepractica/${idConvocatoriasSolicitud}`)
   }
 
+  SolicitudesPorAnexo1(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscaranexo1/${idConvocatoriasSolicitud}`)
+  }
+  
+  SolicitudesPorAnexo5(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscaranexo5/${idConvocatoriasSolicitud}`)
+  }
+
+  SolicitudesPorAnexo7(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscaranexo7/${idConvocatoriasSolicitud}`)
+  }
+
 
   updateSolicitudCnv(idSolicitud: any, idDocumento: any) {
     return this.http.put(`${this.API_URL}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);

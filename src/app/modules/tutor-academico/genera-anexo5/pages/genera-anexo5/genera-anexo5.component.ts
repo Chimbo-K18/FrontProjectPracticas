@@ -127,11 +127,11 @@ export class GeneraAnexo5Component   implements AfterViewInit{
   }
 
 
+
   listapraacticas: any[] = [];
-  seleccionarConvocatoria(solicitud: any, idusuario: any) {
-    console.log(solicitud);
-    console.log(idusuario);
-    this.practicaservice.buscarPorconvocatoriaParaanexo5(solicitud, idusuario).subscribe(datapracticalist => {
+  seleccionarConvocatoria(idconvo: any) {
+    console.log(idconvo);
+    this.solicitudService.SolicitudesPorAnexo5(idconvo).subscribe(datapracticalist => {
       console.log(datapracticalist);
       this.listapraacticas = [];
       datapracticalist.forEach((practica: Practica) => {
@@ -147,28 +147,34 @@ export class GeneraAnexo5Component   implements AfterViewInit{
   idanexo5: any;
   anexo5generado: any;
   anexodataencontrada: any;
+  idprac:any;
   CreaAnexo5(anexoid: any) {
     this.idanexo5 = anexoid;
-    this.practicaservice.buscarId(anexoid).subscribe(practicadata => {
-      console.log(practicadata);
-      this.practica = practicadata;
-      this.practica.estadoanexo5 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo5).subscribe(practicaupdate => {
-        console.log(practicaupdate);
-        this.anexo5.practica = practicaupdate;
-        this.anexo5.estado_academico = true;
-        this.anexo5service.crearAnexo5(this.anexo5).subscribe(dataanexo5 => {
-          console.log(dataanexo5);
-          this.anexo5generado = dataanexo5.idAnexo5;
-          Swal.fire(
-            'PROCESO',
-            'GENERADO CON EXITO',
-            'success'
-          )
+    this.practicaservice.buscarPorconvocatoriaParaAnexo1(anexoid).subscribe(practicadatabusque => {
+      console.log(practicadatabusque);
+      this.idprac = practicadatabusque;
+      this.practicaservice.buscarId(this.idprac).subscribe(practicadata => {
+        console.log(practicadata);
+        this.practica = practicadata;
+        this.practica.estadoanexo5 = true;
+        this.practicaservice.UpdatePractica(this.practica, this.idprac).subscribe(practicaupdate => {
+          console.log(practicaupdate);
+          this.anexo5.practica = practicaupdate;
+          this.anexo5.estado_academico = true;
+          this.anexo5service.crearAnexo5(this.anexo5).subscribe(dataanexo5 => {
+            console.log(dataanexo5);
+            this.anexo5generado = dataanexo5.idAnexo5;
+            Swal.fire(
+              'PROCESO',
+              'GENERADO CON EXITO',
+              'success'
+            )
+          });
         });
+  
       });
-
     });
+  
   }
 
   descargarPDF() {

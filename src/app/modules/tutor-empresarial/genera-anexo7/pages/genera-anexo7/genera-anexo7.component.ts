@@ -132,11 +132,10 @@ export class GeneraAnexo7Component   implements AfterViewInit{
       });
     });
   }
-
   listapraacticas: any[] = [];
-  seleccionarConvocatoria(tutor: any) {
-    console.log(tutor);
-    this.practicaservice.listarPorListarAnexo7(tutor).subscribe(datapracticalist => {
+  seleccionarConvocatoria(idconvo: any) {
+    console.log(idconvo);
+    this.solicitudService.SolicitudesPorAnexo7(idconvo).subscribe(datapracticalist => {
       console.log(datapracticalist);
       this.listapraacticas = [];
       datapracticalist.forEach((practica: Practica) => {
@@ -149,35 +148,40 @@ export class GeneraAnexo7Component   implements AfterViewInit{
     );
   }
 
+
   idanexo7:any;
   idAnexo7Generado: any;
+  idprac:any;
   CreaAnexo7(anexoid:any){
     this.idanexo7 = anexoid;
-    this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
-      console.log(practicadata);
-      this.practica = practicadata;
-      this.practica.estadoanexo7 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo7).subscribe(practicaupdate=>{
-        console.log(practicaupdate);
-        this.anexo7.practica = practicaupdate;
-        this.anexo7service.crearAnexo7(this.anexo7).subscribe(dataanexo7=>{
-          console.log(dataanexo7);
-          this.idAnexo7Generado = dataanexo7.idAnexo7;
-
-          Swal.fire(
-            'PROCESO',
-            'GENERADO CON EXITO',
-            'success'
-          )
+    this.practicaservice.buscarPorconvocatoriaParaAnexo1(anexoid).subscribe(practicadatabusque => {
+      console.log(practicadatabusque);
+      this.idprac = practicadatabusque;
+      this.practicaservice.buscarId(this.idprac).subscribe(practicadata => {
+        console.log(practicadata);
+        this.practica = practicadata;
+        this.practica.estadoanexo7 = true;
+        this.practicaservice.UpdatePractica(this.practica, this.idprac).subscribe(practicaupdate=>{
+          console.log(practicaupdate);
+          this.anexo7.practica = practicaupdate;
+          this.anexo7service.crearAnexo7(this.anexo7).subscribe(dataanexo7=>{
+            console.log(dataanexo7);
+            this.idAnexo7Generado = dataanexo7.idAnexo7;
+  
+            Swal.fire(
+              'PROCESO',
+              'GENERADO CON EXITO',
+              'success'
+            )
+          });
         });
       });
-
     });
   }
 
   descargarPDF() {
     const idanexo3 = this.idAnexo7Generado; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
+    const url = `http://localhost:8080/api/jasperReport/anexo7/${idanexo3}`;
     window.open(url, '_blank');
   }
 

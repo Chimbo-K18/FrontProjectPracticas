@@ -147,7 +147,7 @@ export class GeneraAnexo8Component   implements AfterViewInit{
 
   descargarPDF() {
     const idanexo3 = this.idAnexo8Generado; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo3/${idanexo3}`;
+    const url = `http://localhost:8080/api/jasperReport/anexo8/${idanexo3}`;
     window.open(url, '_blank');
   }
 
