@@ -26,4 +26,8 @@ export class BaseFenixService {
     return this.http.get<Verdocentef[]>(this.urlFenix + '/listardocentes');
   }
 
+  public consultarUserCorreo(correo: string): Observable<Verestudiantef> {
+    return this.http.get<Verestudiantef>(this.urlFenix + `/estudiantefenix/${correo}`);
+  }
+
 }

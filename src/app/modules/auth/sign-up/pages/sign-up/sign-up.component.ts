@@ -177,7 +177,7 @@ variableencontrada:any;
       this.bd_fenix.consultarUserEstudiante(cedulaF).subscribe((response) => {
         if (response == null) {
           Swal.fire(
-            'Docente no registrado en FENIX',
+            'Usuario no registrado en FENIX',
             `Verifique si su cedula esta correcta.`,
             'warning'
           );
