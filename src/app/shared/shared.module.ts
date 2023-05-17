@@ -13,7 +13,19 @@ import { RouterModule } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+//Importaciones clave
 
+import {MatStepperModule} from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -31,6 +43,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     CommonModule,
     MatToolbarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
     RouterModule
   ],
   exports:[
