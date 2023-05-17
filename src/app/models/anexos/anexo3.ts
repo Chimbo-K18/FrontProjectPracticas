@@ -1,4 +1,4 @@
-import { Practica } from "./practica";
+import { Practica } from "../practica";
 
 export class Anexo3 {
 

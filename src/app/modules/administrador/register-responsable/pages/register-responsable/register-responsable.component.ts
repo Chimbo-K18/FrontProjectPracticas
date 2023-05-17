@@ -9,7 +9,7 @@ import { UsuarioRol } from 'src/app/models/UsuarioRol';
 import { Responsable_PPP } from 'src/app/models/responsable_ppp';
 import { Usuarios } from 'src/app/models/usuarios';
 import { Verdocentef } from 'src/app/models/verdocentef';
-import { BaseFenixService } from 'src/app/services/base-fenix.service';
+import { BaseFenixService } from 'src/app/services/fenix/base-fenix.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { CreateAccountService } from 'src/app/services/createaccount.service';
 import { PermisosService } from 'src/app/services/permisos.service';

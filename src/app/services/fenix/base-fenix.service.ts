@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Verdocentef } from '../models/verdocentef';
-import { Verestudiantef } from '../models/verestudiantef';
+import { Verdocentef } from '../../models/verdocentef';
+import { Verestudiantef } from '../../models/verestudiantef';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,10 @@ export class BaseFenixService {
 
   getPersonasFenix() {
     return this.http.get<Verdocentef[]>(this.urlFenix + '/listardocentes');
+  }
+
+  public consultarUserCorreo(correo: string): Observable<Verestudiantef> {
+    return this.http.get<Verestudiantef>(this.urlFenix + `/estudiantefenix/${correo}`);
   }
 
 }

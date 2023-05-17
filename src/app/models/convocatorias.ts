@@ -1,4 +1,4 @@
-import { DocumentoConvocatoria } from "./documentoConvocatoria";
+import { DocumentoConvocatoria } from "./docsGlobales/documentoConvocatoria";
 import { SolicitudPracticas } from "./solicitudpracticas";
 
 export class Convocatorias{

@@ -23,7 +23,7 @@ import { responsablePpp } from 'src/app/services/responsablePpp.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { ResponsablePpp } from 'src/app/models/ResponsablePPP';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
-import { DocumentoSolicitudPracticas } from 'src/app/models/documentoPracticas';
+import { DocumentoSolicitudPracticas } from 'src/app/models/docsGlobales/documentoPracticas';
 import { Observable, Subscriber } from 'rxjs';
 import { error, log } from 'console';
 import { DocumentoSolicitudPracticaService } from 'src/app/services/doc/DocumentoSolicitudPractica.service';

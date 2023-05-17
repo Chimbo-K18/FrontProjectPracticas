@@ -9,7 +9,7 @@ import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { PracticaService } from 'src/app/services/practica.service';
 import { Practica } from 'src/app/models/practica';
-import { BaseFenixService } from 'src/app/services/base-fenix.service';
+import { BaseFenixService } from 'src/app/services/fenix/base-fenix.service';
 import { UserService } from 'src/app/services/user.service';
 import { CreateAccountService } from 'src/app/services/createaccount.service';
 import Swal from 'sweetalert2';
@@ -19,7 +19,6 @@ import { UsuarioRol } from 'src/app/models/UsuarioRol';
 import { PermisosService } from 'src/app/services/permisos.service';
 import { DocumentoAsigTutorAcademico } from 'src/app/services/doc/DocumentoAsigTutorAcademico.service';
 import { HttpEventType } from '@angular/common/http';
-import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { MatStepper } from '@angular/material/stepper';
 
