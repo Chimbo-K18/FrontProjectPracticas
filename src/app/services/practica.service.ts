@@ -67,6 +67,17 @@ export class PracticaService {
     return this.http.get<Practica[]>(this.url+`/practicaporacademico/${cedula}`)
   }
 
+  listarPorEmpresaAnexo7(idempresa: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/practicaporempresaanexo7/${idempresa}`)
+  }
+
+  listarPorListarAnexo7(tutor: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/practicalistaranexo7/${tutor}`)
+  }
+
+  buscarPorconvocatoriaPorestudianteAnexo8(usuarioid:any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/practicaporestudianteanexo8/${usuarioid}`);
+  }
 
   buscarPorUsuarioSolicitud(id: any):Observable<Practica>{
     return this.http.get<Practica>(this.url +`/usuariosxpractica/${id}`);
