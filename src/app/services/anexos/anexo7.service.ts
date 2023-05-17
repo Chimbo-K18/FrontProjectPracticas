@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Convenio } from '../models/convenio';
-import { Actividades } from '../models/actividades';
-import { Anexo1 } from '../models/anexo1';
-import { Anexo5 } from '../models/anexo5';
-import { Anexo6 } from '../models/anexo6';
-import { Anexo7 } from '../models/anexo7';
+import { Anexo7 } from '../../models/anexos/anexo7';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +18,9 @@ export class Anexo7Service {
     return this.http.get<Anexo7[]>(this.url+`/listar`);
   }
   
+  updateDocumentoAnexo7(idAnexo7: any, documentoAnexo2: any) {
+    return this.http.put(`${this.url}/updateDocument/${idAnexo7}?idDocumento=${documentoAnexo2}`, null);
+  }
 
 
 }

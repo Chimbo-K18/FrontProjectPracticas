@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { PracticaService } from 'src/app/services/practica.service';
 import { Practica } from 'src/app/models/practica';
 import { Anexo6Service } from 'src/app/services/anexos/anexo6.service';
-import { Anexo6 } from 'src/app/models/anexo6';
+import { Anexo6 } from 'src/app/models/anexos/anexo6';
 import { HttpEventType } from '@angular/common/http';
 import { DocumentoAnexo6Service } from 'src/app/services/docAnexos/DocumentoAnexo6.service';
 

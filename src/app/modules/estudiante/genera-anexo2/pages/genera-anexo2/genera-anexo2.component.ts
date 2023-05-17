@@ -2,8 +2,6 @@ import {AfterViewInit, Component, ViewChild ,ElementRef} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
-import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import { PracticaService } from 'src/app/services/practica.service';
@@ -13,22 +11,6 @@ import { Anexo2 } from 'src/app/models/anexos/anexo2';
 import { Anexo2Service } from 'src/app/services/anexos/anexo2.service';
 import { HttpEventType } from '@angular/common/http';
 import { DocumentoAnexo2Service } from 'src/app/services/docAnexos/DocumentoAnexo2.service';
-
-export interface Aprobados {
-  nombre: string;
-  fecha: string;
-  carrera: string;
-  esta: string;
-
-}
-
-const AP: Aprobados[] = [
-  {nombre: 'Bryam Tenecota', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Carlos Ibarra', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Christian Barbecho', fecha: '05-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Erika Fernandez', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-  {nombre: 'Adriana Jaya', fecha: '08-01-2022', carrera: 'TDS', esta: 'Finalizado'},
-];
 
 @Component({
   selector: 'app-genera-anexo2',
@@ -58,8 +40,6 @@ export class GeneraAnexo2Component   implements AfterViewInit{
   dColumns: string[] = ['nombre', 'fechainicio', 'fechafin', 'horainicio', 'horafin', 'sy'];
   dataTabla = new MatTableDataSource<SolicitudConvocatoria>([]);
 
-  diColumns: string[] = ['nombre', 'fecha', 'carrera', 'esta'];
-  datam = new MatTableDataSource<Aprobados>(AP);
 
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;

@@ -7,7 +7,7 @@ import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import Swal from 'sweetalert2';
 import { PracticaService } from 'src/app/services/practica.service';
 import { Practica } from 'src/app/models/practica';
-import { Anexo5 } from 'src/app/models/anexo5';
+import { Anexo5 } from 'src/app/models/anexos/anexo5';
 import { Anexo5Service } from 'src/app/services/anexos/anexo5.service';
 import { DocumentoAnexo5Service } from 'src/app/services/docAnexos/DocumentoAnexo5.service';
 import { HttpEventType } from '@angular/common/http';

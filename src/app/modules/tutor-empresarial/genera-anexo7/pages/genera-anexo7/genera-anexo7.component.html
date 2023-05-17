@@ -1,275 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <body class="bodyL">
+    <h1><strong>Generar Anexo 7</strong></h1>
 
-</head>
-
-<body class="bodyL">
-  <h1><strong>Generar  Anexo 7</strong></h1>
-
-  <mat-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <ng-template matStepLabel>Fase 1</ng-template>
-      <form [formGroup]="firstFormGroup">
+    <mat-stepper labelPosition="bottom" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
         <ng-template matStepLabel>Fase 1</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
-            <div>   
-              <h1 style="text-align: center;"> Anexo 7</h1>
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fase 1</ng-template>
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <mat-card>
+              <div>
+                <h1 style="text-align: center">Anexo 7</h1>
 
-              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+                <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="position">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Nombre Solicitud
+                    </th>
+                    <td mat-cell *matCellDef="let practicasSolicitudesd">
+                      {{
+                        practicasSolicitudesd.solicitudConvocatoria.convocatoria
+                          .solicitudPracticas.nombreSolicitud
+                      }}
+                    </td>
+                  </ng-container>
 
-            <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-              <!-- Position Column --> 
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Solicitud</th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudConvocatoria.convocatoria.solicitudPracticas.nombreSolicitud}} </td>
-              </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Carrera Perteneciente
+                    </th>
+                    <td mat-cell *matCellDef="let practicasSolicitudesd">
+                      {{
+                        practicasSolicitudesd.solicitudConvocatoria.convocatoria
+                          .solicitudPracticas.nombre_carrera
+                      }}
+                    </td>
+                  </ng-container>
 
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Carrera Perteneciente </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudConvocatoria.convocatoria.solicitudPracticas.nombre_carrera}} </td>
-              </ng-container>
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="weight">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Fecha inicio
+                    </th>
+                    <td mat-cell *matCellDef="let practicasSolicitudesd">
+                      {{ practicasSolicitudesd.fechaInicio }}
+                    </td>
+                  </ng-container>
 
-              <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha inicio </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaInicio }}</td>
-              </ng-container>
+                  <ng-container matColumnDef="estado">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Fecha fin
+                    </th>
+                    <td mat-cell *matCellDef="let practicasSolicitudesd">
+                      {{ practicasSolicitudesd.fechaFin }}
+                    </td>
+                  </ng-container>
 
-              <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaFin}}</td>
-              </ng-container>
+                  <ng-container matColumnDef="nombre">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Nombre Empresa
+                    </th>
+                    <td mat-cell *matCellDef="let practicasSolicitudesd">
+                      {{
+                        practicasSolicitudesd.tutorEmpresarial.empresa
+                          .nombreEmpresa
+                      }}
+                    </td>
+                  </ng-container>
 
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Empresa </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.tutorEmpresarial.empresa.nombreEmpresa}}</td>
-              </ng-container>
-              <!-- Symbol Column -->
-              <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
-                 <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+                  <ng-container matColumnDef="symbol" bol>
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      SELECCIONAR
+                    </th>
+                    <td mat-cell *matCellDef="let practicasSolicitudesd">
+                      <button
+                        mat-raised-button
+                        color="primary"
+                        matStepperNext
+                        (click)="
+                          seleccionarConvocatoria(
+                            practicasSolicitudesd.tutorEmpresarial
+                              .idTutorEmpresarial
+                          )
+                        "
+                      >
+                        Seleccionar
+                      </button>
+                    </td>
+                  </ng-container>
 
-              <ng-container matColumnDef="symbol" bol>
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">SELECCIONAR</th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
-                    matStepperNext  (click)=" seleccionarConvocatoria(practicasSolicitudesd.tutorEmpresarial.idTutorEmpresarial)">Seleccionar</button></td>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let rows; columns: displayedColumns"
+                  ></tr>
+                </table>
+                <mat-paginator
+                  #paginator2
+                  [pageSizeOptions]="[6]"
+                  showFirstLastButtons
+                  aria-label="Select page of solicitudes"
+                >
+                </mat-paginator>
+              </div>
+            </mat-card>
+          </div>
+        </form>
+      </mat-step>
 
-              </ng-container>
-
-
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-              aria-label="Select page of solicitudes">
-            </mat-paginator>
-            </div>
-          </mat-card>
-        </div>
-      </form>
-    </mat-step>
-
-
-
-    <mat-step [stepControl]="secondFormGroup">
-      <ng-template matStepLabel>Fase 2</ng-template>
-      <form [formGroup]="secondFormGroup">
+      <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Fase 2</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
-            <div>
-              <h1 style="text-align: center;"> Listado de Solicitudes</h1>
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fase 2</ng-template>
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <mat-card>
+              <div>
+                <h1 style="text-align: center">Listado de Solicitudes</h1>
 
-              <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
-            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+                <table
+                  mat-table
+                  [dataSource]="dataTabla"
+                  class="mat-elevation-z8"
+                >
+                  <!-- Position Column -->
 
-            <table mat-table [dataSource]="dataTabla" class="mat-elevation-z8">
-              <!-- Position Column -->
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="nombre">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Nombre Estudiante
+                    </th>
+                    <td mat-cell *matCellDef="let listapraacticas">
+                      {{
+                        listapraacticas.solicitudConvocatoria
+                          ?.estudiantePracticante.usuario_estudiante_practicante
+                          ?.nombres
+                      }}
+                    </td>
+                  </ng-container>
 
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="fechainicio">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Fecha inicio
+                    </th>
+                    <td mat-cell *matCellDef="let listapraacticas">
+                      {{ listapraacticas.fechaInicio }}
+                    </td>
+                  </ng-container>
 
-              <!-- Name Column -->
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
-                <td mat-cell *matCellDef="let listapraacticas">
-                  {{listapraacticas.solicitudConvocatoria?.estudiantePracticante.usuario_estudiante_practicante?.nombres}}
-                </td>
-              </ng-container>
+                  <ng-container matColumnDef="fechafin">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Fecha fin
+                    </th>
+                    <td mat-cell *matCellDef="let listapraacticas">
+                      {{ listapraacticas.fechaFin }}
+                    </td>
+                  </ng-container>
+                  <!-- Symbol Column -->
 
-              <!-- Weight Column -->
-              <ng-container matColumnDef="fechainicio">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha inicio </th>
-                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.fechaInicio}}</td>
-              </ng-container>
+                  <ng-container matColumnDef="horainicio">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Hora inicio
+                    </th>
+                    <td mat-cell *matCellDef="let listapraacticas">
+                      {{ listapraacticas.horaInicio }}
+                    </td>
+                  </ng-container>
 
-              <ng-container matColumnDef="fechafin">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
-                <td mat-cell *matCellDef="let listapraacticas">{{listapraacticas.fechaFin}}</td>
-              </ng-container>
-              <!-- Symbol Column -->
+                  <ng-container matColumnDef="horafin">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Hora fin
+                    </th>
+                    <td mat-cell *matCellDef="let listapraacticas">
+                      {{ listapraacticas.horaSalida }}
+                    </td>
+                  </ng-container>
 
-              <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
-              <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
-              <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
-              <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
-              <!-- el boton para abrir el modal si esta funcional es el que esta aqui abajo  -->
+                  <ng-container matColumnDef="sy" bol>
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      style="text-align: center"
+                    >
+                      Generar Anexo
+                    </th>
+                    <td mat-cell *matCellDef="let listapraacticas">
+                      <button
+                        mat-raised-button
+                        color="primary"
+                        matStepperNext
+                        (click)="CreaAnexo7(listapraacticas.idPractica)"
+                      >
+                        Generar
+                      </button>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
+                  <tr mat-row *matRowDef="let rows; columns: dColumns"></tr>
+                </table>
+                <mat-paginator
+                  #paginator2
+                  [pageSizeOptions]="[6]"
+                  showFirstLastButtons
+                  aria-label="Select page of solicitudes"
+                >
+                </mat-paginator>
+              </div>
+            </mat-card>
+          </div>
+        </form>
+      </mat-step>
 
-
-              <ng-container matColumnDef="horainicio">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
-                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaInicio}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="horafin">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora fin</th>
-                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaSalida}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="sy" bol>
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Generar Anexo </th>
-                <td mat-cell *matCellDef="let listapraacticas"><button mat-raised-button color="primary" matStepperNext (click)="CreaAnexo7(listapraacticas.idPractica)">Generar</button></td>
-
-              </ng-container>
-              <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
-              <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
-            </table>
-            <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
-              aria-label="Select page of solicitudes">
-            </mat-paginator>
-            </div>
-          </mat-card>
-        </div>
-      </form>
-    </mat-step>
-
-
-
-
-
-
-
-    <mat-step [stepControl]="tresFormGroup">
-      <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
-      <form [formGroup]="tresFormGroup">
-        <ng-template matStepLabel>Fase 3</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
-
-            <h1><strong>DESCARGAR EL OFICIO </strong></h1>
+      <mat-step [stepControl]="tresFormGroup">
+        <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
+        <form [formGroup]="tresFormGroup">
+          <ng-template matStepLabel>Fase 3</ng-template>
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <mat-card>
+              <h1><strong>DESCARGAR EL OFICIO </strong></h1>
               <p style="text-align: center">
-                Auna vez se descargue el oficio, posteriormente debera firmarlo y
+                Auna vez se descargue el oficio, posteriormente debera firmarlo
+                y
                 <br />
                 nuevamente la subira en el formato pdf.
               </p>
-            <div class="download-container">
-              <button mat-raised-button color="primary" (click)="descargarPDF()">
-                <mat-icon>get_app</mat-icon> Descargar Archivo
-              </button>
-              <div class="instructions">
-                Haz clic en el botón para descargar el documento
+              <div class="download-container">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="descargarPDF()"
+                >
+                  <mat-icon>get_app</mat-icon> Descargar Archivo
+                </button>
+                <div class="instructions">
+                  Haz clic en el botón para descargar el documento
+                </div>
               </div>
-            </div>
-            <div style="margin-top:25px; text-align: center;">
-              <button style="margin-right: 12px;" mat-raised-button color="primary" matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+              <div style="margin-top: 25px; text-align: center">
+                <button
+                  style="margin-right: 12px"
+                  mat-raised-button
+                  color="primary"
+                  matStepperPrevious
+                >
+                  Back
+                </button>
+                <button mat-raised-button color="primary" matStepperNext>
+                  Siguiente
+                </button>
+              </div>
+            </mat-card>
           </div>
+        </form>
+      </mat-step>
 
-
-
-          </mat-card>
-        </div>
-      </form>
-
-    </mat-step>
-
-
-    <mat-step [stepControl]="cuatroFormGroup">
-      <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
-      <form [formGroup]="cuatroFormGroup">
-        <ng-template matStepLabel>Fase 4</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
-            <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
-            <p style="text-align: center">
-              Auna vez se descargue el oficio, posteriormente debera firmarlo y
-              <br />
-              nuevamente la subira en el formato pdf.
-            </p>
-            <div class="download-container">
-              <input name="file" id="file" type="file" #inputFile hidden>
-              <button mat-raised-button color="primary"(click)="inputFile.click()" >
-                <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
-              </button>
-              <div class="instructions">
-                Haz clic en el botón para cargar el documento
+      <mat-step [stepControl]="cuatroFormGroup">
+        <!--  TENER EN CUENTA QUE ESTA PARTE FALTA VALIDAR EL firstFormGroup-->
+        <form [formGroup]="cuatroFormGroup">
+          <ng-template matStepLabel>Fase 4</ng-template>
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <mat-card>
+              <h1><strong>SUBIR EL OFICIO FIRMADO</strong></h1>
+              <p style="text-align: center">
+                Auna vez se descargue el oficio, posteriormente debera firmarlo
+                y
+                <br />
+                nuevamente la subira en el formato pdf.
+              </p>
+              <div class="download-container">
+                <input
+                  name="file"
+                  id="file"
+                  (change)="upload($event)"
+                  type="file"
+                  #inputFile
+                  hidden
+                />
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="inputFile.click()"
+                >
+                  <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
+                </button>
+                <div class="instructions">
+                  Haz clic en el botón para cargar el documento
+                </div>
               </div>
-            </div>
 
-            <div style="text-align: center">
-
-              <button style="margin-right: 12px" mat-raised-button color="warn">
-                Finalizar
-              </button>
-
-            </div>
-
-
-
-
-          </mat-card>
-        </div>
-      </form>
-
-    </mat-step>
-  </mat-stepper>
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>s
+              <div style="text-align: center">
+                <button
+                  style="margin-right: 12px"
+                  mat-raised-button
+                  color="warn"
+                >
+                  Finalizar
+                </button>
+              </div>
+            </mat-card>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </body>
+</html>
+s
