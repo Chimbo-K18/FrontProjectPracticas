@@ -23,6 +23,11 @@ td, th {
   border-radius: 12px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
+mat-card{
+  width: 900px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 
 #xd{
   width: 100%;
@@ -54,14 +59,15 @@ width: 100px;
     }
 
 .bodyL{
-font-family: 'Poppins', sans-serif;
-font-weight: 300;
-font-size: 15px;
-line-height: 1.7;
-color: #c4c3ca;
-background-image: url('src/assets/images/fondowelcome.png');
+  margin-top: -20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #c4c3ca;
+  background-image: url('src/assets/images/fondowelcome.png');
 background-size: 100% 100%;
-overflow-x: hidden;
+  overflow-x: hidden;
 }
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 .contenedor{

@@ -26,7 +26,7 @@
       <div class="promo_card">
         <img src="https://scontent.fgye18-1.fna.fbcdn.net/v/t39.30808-6/312480603_1328658301212246_4027665849466077503_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nuUJ6e9sVQwAX_pMdv6&_nc_ht=scontent.fgye18-1.fna&oh=00_AfBqJMfZys0UPfyDCTNj4Waly5IWuunYJkEh2527f0g-oA&oe=6464A36E" alt="Logo TecAzuay" width="30%" >
         <hr>
-        <p><b style="font-family: 'Times New Roman', Times, serif; font-size: 25px;">BIENVENIDO!</b><br> {{user_final}}</p> <br>
+        <p><b style="font-family: 'Raleway', Arial, sans-serif; font-size: 25px;">BIENVENIDO!</b><br> {{user_final}}</p> <br>
         <a href="https://www.tecazuay.edu.ec/main/index.php" class="btn3">Saber más</a>
       </div>
 
@@ -180,6 +180,11 @@
                     <li>CARRERA:</li>
                     <p>{{carrera}}</p>
                   </mat-card-content>
+                  <button 
+              style="text-align: center" mat-raised-button
+              color="warn"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-formulario2">RESTABLECER CONTRASEÑA</button>
                 </mat-card>
 
             </div>
@@ -189,3 +194,36 @@
 </body>
 
 </html>
+
+
+<!-- MODAL   -->
+<div class="modal" id="modal-formulario2" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1><strong>Restablecer Contraseña</strong></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-container">
+          <mat-form-field class="form-field">
+            <input style="color: black;" matInput type="text" name="cedula" placeholder="Cédula" id="cedulausu" required />
+            <!-- <p style="color: red;">Por favor, primero ingrese su identificación</p> -->
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <input style="color: black;" matInput type="email" id="correo" placeholder="CORREO" class="form-control, text" required name="correo" readonly />
+            <!-- <p style="color: red;">Por favor, primero ingrese su identificación</p> -->
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <input matInput type="password" name="newPassword" placeholder="Nueva contraseña" required />
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" data-bs-dismiss="modal">
+            Restablecer contraseña
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
