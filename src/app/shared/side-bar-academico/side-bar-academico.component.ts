@@ -105,7 +105,6 @@ export class SideBarAcademicoComponent implements OnInit {
 
 
 
-  //Parte de login y logout..
   logout(): void {
 
     const Toast = Swal.mixin({
@@ -119,7 +118,7 @@ export class SideBarAcademicoComponent implements OnInit {
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     })
-
+    
     Toast.fire({
       icon: 'success',
       title: 'Signed in successfully'
