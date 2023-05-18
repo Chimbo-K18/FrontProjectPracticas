@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from "@angular/core";
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { StorageService } from "src/app/services/storage.service"; 
+import { StorageService } from "src/app/services/storage.service";
 import { Usuarios } from 'src/app/models/usuarios';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -15,7 +16,7 @@ export class AdminDashboardComponent implements OnInit {
 
   private roles: string[] = [];
   isLoggedIn = false;
-  
+
   username?: string;
 
   id_persona?: string;
@@ -49,10 +50,11 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private storageService: StorageService,
     private usuarios: UserService,
-    private changeDedectionRef: ChangeDetectorRef
+    private changeDedectionRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
+    this.extraerDatos();
     this.changeDedectionRef.detectChanges();
 
     //Metodo incorporado para el login..
@@ -76,7 +78,7 @@ export class AdminDashboardComponent implements OnInit {
       this.user_final= this.nombres_usuario?.concat(' '+this.apellidos_user)
       this.id_persona= user.id;
       this.usuarios.getRolNombre(this.username).subscribe(datarol=>{
-       this.rol=datarol;  
+       this.rol=datarol;
       });
     }
       this.usuarios.listarUsuarios().subscribe((dataUsers) => {
@@ -89,5 +91,49 @@ export class AdminDashboardComponent implements OnInit {
       }
     );
     }
+
+  cedula!: string;
+  correo!: string;
+  newPassword!: string;
+  message!: string;
+  captura: any;
+  captura2: any;
+  cedula01 !: string;
+  var1 !: string;
+
+
+  extraerDatos(){
+
+    this.captura = localStorage.getItem("idusuario");
+    this.cedula01 = String(this.captura);
+    console.log(this.cedula01);
+
+
+    const idDoc = JSON.parse(
+      sessionStorage.getItem('auth-user') || '{}'
+    );
+    this.captura2 = idDoc.correo;
+
+    console.log(this.captura2)
+
+  }
+
+  onResetPassword() {
+
+    this.var1 = this.captura;
+    this.usuarios.resetPassword(this.cedula01, this.newPassword).subscribe(
+      () => {
+        this.message = "Contraseña modificada correctamente";
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.message = "No se encontró ningún usuario con el número de cédula proporcionado.";
+        } else {
+          this.message = "Error al restablecer la contraseña.";
+        }
+      }
+    );
+  }
+
 
 }
