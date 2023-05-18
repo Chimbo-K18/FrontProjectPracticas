@@ -161,7 +161,7 @@ console.log(this.carreraSeleccionada);
       this.usuario.apellidos = data.apellidos;
       this.usuario.correo=data.correo_institucional;
       this.usuario.carrera = data.carrera;
-      this.usuario.contrasenia = "Contra123";
+      this.usuario.contrasenia = "Responsable123";
       this.createAccountService.createUserdocente
       (this.usuario).subscribe(
         data => {
