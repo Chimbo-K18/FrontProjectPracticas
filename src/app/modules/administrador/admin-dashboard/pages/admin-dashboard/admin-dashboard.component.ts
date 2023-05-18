@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { StorageService } from "src/app/services/storage.service";
 import { Usuarios } from 'src/app/models/usuarios';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -123,7 +124,16 @@ export class AdminDashboardComponent implements OnInit {
     this.var1 = this.captura;
     this.usuarios.resetPassword(this.cedula01, this.newPassword).subscribe(
       () => {
-        this.message = "Contraseña modificada correctamente";
+
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Contraseña restablecida satisfactoriamente.',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        this.newPassword = '';
       },
       (error: HttpErrorResponse) => {
         if (error.status === 404) {
