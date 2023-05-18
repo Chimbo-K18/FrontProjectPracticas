@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { tutorempresarialService } from 'src/app/services/tutorempresarial.service';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -44,7 +45,9 @@ export class ListaEmpresarialesComponent implements OnInit {
 
 
 
-  constructor(private tutoresEmpreService: tutorempresarialService, private http: HttpClient) { }
+  constructor(private tutoresEmpreService: tutorempresarialService, 
+    private http: HttpClient,
+    private responsableppservice: Responsable_PPPService) { }
 
   datos: {idUsuario:string,nombreEmpresa: string, nombreUsuario: string, correoUsuario: string, telefonoUsuario: string}[] = [];
 
@@ -52,8 +55,15 @@ export class ListaEmpresarialesComponent implements OnInit {
     this.getTutorEmpresarial();
   }
   
+  idusuario: any;
+  dataresponsable: any;
   getTutorEmpresarial(){
-    this.http.get('http://localhost:8080/api/tutorEmp/datos').subscribe({
+    this.idusuario = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+    this.dataresponsable = datausu.idResponsablePPP;
+    console.log(this.dataresponsable);
+    
+    this.http.get('http://localhost:8080/api/tutorEmp/datos/'+this.dataresponsable).subscribe({
       next: (response: any) => {
         console.log(response);
         this.datos = response;
@@ -62,9 +72,10 @@ export class ListaEmpresarialesComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       error: (err) => {
-        alert("Error while fetching the records")
+        alert("No hay tutores empresariales disponibles")
       }
-    }); 
+    });
+  });  
   }
 
   applyFilter(event: Event) {

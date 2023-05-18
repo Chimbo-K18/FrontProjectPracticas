@@ -83,7 +83,7 @@ export class ListaConvocatoriasComponent implements OnInit {
         
       },
       error: (err) => {
-        alert("Error while fetching the records")
+        alert("No hay convocatorias disponibles")
       }
     });
   }); 
