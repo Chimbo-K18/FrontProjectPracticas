@@ -10,6 +10,7 @@ import { Convocatorias } from 'src/app/models/convocatorias';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { log } from 'console';
+import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,7 +38,7 @@ export class ListaConvocatoriasComponent implements OnInit {
   convocatorias: Convocatorias | any;
   matcher = new MyErrorStateMatcher();
 
-  displayedColumns: string[] = ['convocatoria', 'FechaPublicacion', 'FechaExpiracion', 'estado', 'carrera','fechaAprobacion'];
+  displayedColumns: string[] = ['convocatoria', 'FechaPublicacion', 'FechaExpiracion', 'carrera','fechaAprobacion'];
   dataSource = new MatTableDataSource<any>([]);
   apiResponse: any = [];
   listaConvocatoria: Convocatorias[] = [];
@@ -48,8 +49,9 @@ export class ListaConvocatoriasComponent implements OnInit {
 
   constructor(private convocatoriaService: ConvocatoriasService,
     private userservice: UserService,
-    private http: HttpClient) { }
-  datos: { convocatoria: string, FechaPublicacion: string, FechaExpiracion: string, estado: boolean, carrera: string ,fechaAprobacion:string}[] = [];
+    private http: HttpClient,
+    private responsableppservice: Responsable_PPPService) { }
+  datos: { convocatoria: string, FechaPublicacion: string, FechaExpiracion: string, carrera: string ,fechaAprobacion:string}[] = [];
 
 
   ngOnInit(): void {
@@ -63,8 +65,13 @@ export class ListaConvocatoriasComponent implements OnInit {
   usuariocarrera: any;
   estadoTexto: any;
 
+  idusuario: any;
+  dataresponsable: any;
   getConvocatorias(){
-    this.http.get('http://localhost:8080/api/convocatorias/datos').subscribe({
+    this.idusuario = localStorage.getItem("idusuario");
+    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+      this.dataresponsable = datausu.idResponsablePPP;
+    this.http.get('http://localhost:8080/api/convocatorias/datos/'+this.dataresponsable).subscribe({
       next: (response: any) => {
         console.log(response.estado);
         this.datos = response;
@@ -78,7 +85,8 @@ export class ListaConvocatoriasComponent implements OnInit {
       error: (err) => {
         alert("Error while fetching the records")
       }
-    }); 
+    });
+  }); 
   }
 
  
