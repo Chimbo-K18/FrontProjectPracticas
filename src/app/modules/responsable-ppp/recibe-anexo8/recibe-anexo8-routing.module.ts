@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { RecibeAnexo8Component } from './pages/recibe-anexo8/recibe-anexo8.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ResetPasswordComponent
+    component: RecibeAnexo8Component
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ResetPasswordRoutingModule { }
+export class RecibeAnexo8RoutingModule { }

@@ -38,11 +38,6 @@ const routes: Routes = [
   {
     path: 'lista-director',
     loadChildren: () => import('./lista-director/lista-director.module').then((m) => m.ListaDirectorModule),
-  },
-
-  {
-    path: 'reset',
-    loadChildren: () => import('./reset-password/reset-password.module').then((m) => m.ResetPasswordModule),
   }
 
 ];

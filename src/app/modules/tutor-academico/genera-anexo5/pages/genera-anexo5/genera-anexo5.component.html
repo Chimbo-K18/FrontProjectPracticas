@@ -35,32 +35,34 @@
             <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
 
             <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
-              <!-- Position Column -->
+              <!-- Position Column --> 
               <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaInicio}} </td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Carrera</th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudPracticas.nombre_carrera}} </td>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Hora fin </th>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">  </th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.horaSalida}} </td>
               </ng-container>
 
               <!-- Weight Column -->
               <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha inicio </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaInicio }}</td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha publicacion</th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaPublicacion
+                }}</td>
               </ng-container>
 
               <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaFin}}</td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha expiracion </th>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.fechaExpiracion
+                }}</td>
               </ng-container>
 
               <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Convocatoria </th>
-                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudConvocatoria.convocatoria.nombreConvocatoria}}</td>
+                <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.nombreConvocatoria}}</td>
               </ng-container>
               <!-- Symbol Column -->
               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
@@ -79,7 +81,7 @@
               <ng-container matColumnDef="symbol" bol>
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;">SELECCIONAR</th>
                 <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
-                    matStepperNext (click)="seleccionarConvocatoria(practicasSolicitudesd.solicitudConvocatoria.convocatoria.idConvocatorias, practicasSolicitudesd.usuario.idUsuario)">Seleccionar</button></td>
+                    matStepperNext (click)="seleccionarConvocatoria(practicasSolicitudesd.idConvocatorias)">Seleccionar</button></td>
 
               </ng-container>
 
@@ -129,19 +131,21 @@
               <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Estudiante</th>
                 <td mat-cell *matCellDef="let listapraacticas">
-                  {{listapraacticas.solicitudConvocatoria?.estudiantePracticante.usuario_estudiante_practicante?.nombres}}
+                  {{listapraacticas.estudiantePracticante.usuario_estudiante_practicante?.nombres}}
                 </td>
               </ng-container>
 
               <!-- Weight Column -->
               <ng-container matColumnDef="fechainicio">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha inicio </th>
-                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.fechaInicio}}</td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Periodo </th>
+                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.periodo
+                }}</td>
               </ng-container>
 
               <ng-container matColumnDef="fechafin">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fecha fin </th>
-                <td mat-cell *matCellDef="let listapraacticas">{{listapraacticas.fechaFin}}</td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ciclo</th>
+                <td mat-cell *matCellDef="let listapraacticas">{{listapraacticas.ciclo
+                }}</td>
               </ng-container>
               <!-- Symbol Column -->
 
@@ -153,18 +157,18 @@
 
 
               <ng-container matColumnDef="horainicio">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora inicio</th>
-                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaInicio}} </td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha Envio</th>
+                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.fechaEnvio}} </td>
               </ng-container>
 
               <ng-container matColumnDef="horafin">
-                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hora fin</th>
-                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.horaSalida}} </td>
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha Aprobacion</th>
+                <td mat-cell *matCellDef="let listapraacticas"> {{listapraacticas.fechaAprobacion}} </td>
               </ng-container>
 
               <ng-container matColumnDef="sy" bol>
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Generar Anexo </th>
-                <td mat-cell *matCellDef="let listapraacticas"><button mat-raised-button color="primary" matStepperNext (click)="CreaAnexo5(listapraacticas.idPractica)">Generar</button></td>
+                <td mat-cell *matCellDef="let listapraacticas"><button mat-raised-button color="primary" matStepperNext (click)="CreaAnexo5(listapraacticas.idSolicitudConvocatoria)">Generar</button></td>
 
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="dColumns"></tr>

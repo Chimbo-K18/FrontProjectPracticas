@@ -5,9 +5,6 @@ import { Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { HttpClient } from '@angular/common/http';
-import { log } from 'console';
-import Swal from 'sweetalert2';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +15,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-
 
 @Component({
   selector: 'app-lista-convocatorias',
@@ -79,12 +75,11 @@ export class ListaConvocatoriasComponent implements OnInit {
           convo.documentoConvatoria = result.documentoConvatoria;
           this.estadoTexto = convo.estadoConvocatoria ? "Aprobada" : "Pendiente";
           this.varcarrera = result.solicitudPracticas?.nombre_carrera
-          console.log(this.varcarrera);
+          console.log(data);
           return convo;
         });
         this.dataSource.data = this.listaConvocatoria;
         this.loading = false;
-
       });
     });
 
