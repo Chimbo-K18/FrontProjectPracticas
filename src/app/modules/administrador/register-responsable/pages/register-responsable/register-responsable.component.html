@@ -45,7 +45,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[2, 4, 6]"
+    <mat-paginator [pageSizeOptions]="[6]"
     showFirstLastButtons
     aria-label="Select page of periodic elements">
 </mat-paginator>
@@ -130,7 +130,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
           </table>
       
-          <mat-paginator #paginator2 [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons aria-label="Select page of periodic elements">
+          <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons aria-label="Select page of periodic elements">
           </mat-paginator>
           
           <div style="color: black;">
