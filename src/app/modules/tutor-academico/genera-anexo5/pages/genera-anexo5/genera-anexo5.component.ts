@@ -11,6 +11,7 @@ import { Anexo5 } from 'src/app/models/anexos/anexo5';
 import { Anexo5Service } from 'src/app/services/anexos/anexo5.service';
 import { DocumentoAnexo5Service } from 'src/app/services/docAnexos/DocumentoAnexo5.service';
 import { HttpEventType } from '@angular/common/http';
+import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
 @Component({
   selector: 'app-genera-anexo5',
   templateUrl: './genera-anexo5.component.html',
@@ -69,7 +70,7 @@ export class GeneraAnexo5Component   implements AfterViewInit{
 
   constructor(private _formBuilder: FormBuilder, 
     private practicaservice: PracticaService, 
-    private anexo5service: Anexo5Service,
+    private anexo5service: Anexo5Service, private solicitudService: SolicitudConvocatoriasService,
     private documentoAnexo5: DocumentoAnexo5Service) { }
 
   ngOnInit(): void {
