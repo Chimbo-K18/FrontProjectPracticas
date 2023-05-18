@@ -39,6 +39,7 @@ const routes: Routes = [
     path: 'lista-director',
     loadChildren: () => import('./lista-director/lista-director.module').then((m) => m.ListaDirectorModule),
   }
+
 ];
 
 @NgModule({

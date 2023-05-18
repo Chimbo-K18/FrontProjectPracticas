@@ -2,186 +2,243 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Practicas Preprofesionales</title>
-    <link rel="stylesheet" href="admin-dashboard.component.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Practicas Preprofesionales</title>
+  <link rel="stylesheet" href="admin-dashboard.component.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <div class="left_sidebar">
-    </div>
-    
-    <div class="main_container">
-        <div class="mc_header">
-          
-          <div class="promo_card">
-            <img src="https://scontent.fgye18-1.fna.fbcdn.net/v/t39.30808-6/312480603_1328658301212246_4027665849466077503_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nuUJ6e9sVQwAX_pMdv6&_nc_ht=scontent.fgye18-1.fna&oh=00_AfBqJMfZys0UPfyDCTNj4Waly5IWuunYJkEh2527f0g-oA&oe=6464A36E" alt="Logo TecAzuay" width="30%" >
-            <hr>
-            <p><b style="font-family: 'Times New Roman', Times, serif; font-size: 25px;">BIENVENIDO!</b><br> {{user_final}}</p> <br>
-            <a href="https://www.tecazuay.edu.ec/main/index.php" class="btn3">Saber más</a>
-          </div>
+  <div class="left_sidebar">
+  </div>
 
-          
-        </div>
-        <div class="sprint_overview">
+  <div class="main_container">
+    <div class="mc_header">
 
-          
+      <div class="promo_card">
+        <img
+          src="https://scontent.fgye18-1.fna.fbcdn.net/v/t39.30808-6/312480603_1328658301212246_4027665849466077503_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nuUJ6e9sVQwAX_pMdv6&_nc_ht=scontent.fgye18-1.fna&oh=00_AfBqJMfZys0UPfyDCTNj4Waly5IWuunYJkEh2527f0g-oA&oe=6464A36E"
+          alt="Logo TecAzuay" width="30%">
+        <hr>
+        <p><b style="font-family: 'Raleway', Arial, sans-serif, serif; font-size: 25px;">BIENVENIDO!</b><br>
+          {{user_final}}</p> <br>
+        <a href="https://www.tecazuay.edu.ec/main/index.php" class="btn3">Saber más</a>
+      </div>
 
-          
-            <div class="title">
-                <h1>Información General</h1>
-            </div>
-              <div class="sprint_overview_cards">
-                <mat-card class="sprint_overview_card">
-                  <mat-card-header>
-                    <mat-card-title>¿Para qué sirve?</mat-card-title>
-                  </mat-card-header>
-                  <img mat-card-md-image style="border-radius: 5px;" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" >
-                  <mat-card-content>
-                        <p>Los estudiantes de carreras tecnológicas tendrán la oportunidad de 
-                          adquirir experiencia práctica en un entorno real, permitiéndoles aplicar 
-                          los conocimientos y habilidades adquiridos en su programa de estudios y 
-                          desarrollar nuevas habilidades en el proceso.</p>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="sprint_overview_card">
-                  <mat-card-header>
-                    <mat-card-title>¿En qué ayudan?</mat-card-title>
-                  </mat-card-header>
-                  <img mat-card-sm-image style="border-radius: 5px;" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
-                  <mat-card-content>
-                        <p>Los estudiantes empezarán a establecer contactos valiosos en la industria 
-                          tecnológica, lo que puede facilitar su transición al mercado laboral una vez
-                           que se gradúen.</p>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="sprint_overview_card">
-                  <mat-card-header>
-                    <mat-card-title>¿Cómo influyen?</mat-card-title>
-                  </mat-card-header>
-                  <img mat-card-sm-image style="border-radius: 5px;" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" >
-                  <mat-card-content>
-                    <p>Preparar a los estudiantes de carreras tecnológicas para el mundo laboral, 
-                      proporcionándoles una comprensión más profunda de la industria y de los desafíos 
-                      y oportunidades que enfrentan los profesionales en este campo.</p>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="sprint_overview_card">
-                  <mat-card-header>
-                    <mat-card-title>Sus beneficios</mat-card-title>
-                  </mat-card-header>
-                  <img mat-card-sm-image style="border-radius: 5px;" src="https://images.unsplash.com/photo-1573164713712-03790a178651?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" >
-                  <mat-card-content>
-                    <p>Las prácticas pre-profesionales son una oportunidad para que los estudiantes adquieran experiencia práctica en un
-                      entorno profesional real, antes de graduarse de su programa de estudios.</p>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="sprint_overview_card">
-                  <mat-card-header>
-                    <mat-card-title>¿Dónde se realizan?</mat-card-title>
-                  </mat-card-header>
-                  <img mat-card-sm-image style="border-radius: 5px;" src="https://www.parlamentario.com/wp-content/uploads/2020/10/Estudiantes-universitarios.jpg" >
-                  <mat-card-content>
-                    <p>Estas prácticas se llevan a cabo en empresas, organizaciones sin fines de lucro, 
-                      agencias gubernamentales u otras instituciones, y suelen tener una duración determinada, que puede variar desde unas pocas semanas 
-                      hasta varios meses o incluso un año completo.</p>
-                  </mat-card-content>
-                </mat-card>
-              </div>
-        </div>
-        
-        <div class="team_members_container">
-            <div class="title">
-                <h1>Redes Sociales</h1>
-            </div>
-            <div class="team_members">
-                <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s blue">
-                    <i class="fa fa-facebook-square"></i>
-                  </mat-card-title-group>
-                  <mat-card-content >
-                    
-                    <a href="https://www.facebook.com/TecAzuay/?locale=es_LA">Facebook</a>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s blue">
-                    <i class="fa fa-instagram"></i>
-                  </mat-card-title-group>
-                  <mat-card-content >
-                    <a href="https://www.instagram.com/tecdelazuay/?hl=es">Instagram</a>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s blue">
-                    <i class="fa fa-twitter-square"></i>
-                  </mat-card-title-group>
-                  <mat-card-content >
-                    <a href="https://twitter.com/TecAzuay?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s blue">
-                    <i class="fa fa-chrome"></i>
-                  </mat-card-title-group>
-                  <mat-card-content >
-                    <a href="https://www.tecazuay.edu.ec/main/index.php">TecAzuay</a>
-                  </mat-card-content>
-                </mat-card>
-            </div>
-        </div>
-    </div>
-    <div class="right_sidebar">
-        <div class="epics_container">
-            
-          <div class="title">
-            <h4>Perfil de usuario</h4>
-            </div>
-            <div class="epics">
-                <mat-card class="epic">
-                  <mat-card-title-group >
-                    
-                  </mat-card-title-group>
-                  <mat-card-content >
-                    <div class="profile">
-                      <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png"
-                          alt="profile_picture">
-                      <h4>{{user_final}}</h4>
-                  </div>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="epic">
-                  <mat-card-title-group class="imgBx_s red">
-                    <i class="fas fa-address-card"></i>
-                  </mat-card-title-group>
-                  <mat-card-content >
-                    <li>ROL:</li>
-                    <p>{{ rol }}</p><br>
-                    <li >E-MAIL:</li>
-                    <p>{{ username }}</p><br>
-                  </mat-card-content>
-                </mat-card>
-
-            </div>
-        </div>
 
     </div>
+    <div class="sprint_overview">
+
+
+
+
+      <div class="title">
+        <h1>Información General</h1>
+      </div>
+      <div class="sprint_overview_cards">
+        <mat-card class="sprint_overview_card">
+          <mat-card-header>
+            <mat-card-title>¿Para qué sirve?</mat-card-title>
+          </mat-card-header>
+          <img mat-card-md-image style="border-radius: 5px;"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+          <mat-card-content>
+            <p>Los estudiantes de carreras tecnológicas tendrán la oportunidad de
+              adquirir experiencia práctica en un entorno real, permitiéndoles aplicar
+              los conocimientos y habilidades adquiridos en su programa de estudios y
+              desarrollar nuevas habilidades en el proceso.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="sprint_overview_card">
+          <mat-card-header>
+            <mat-card-title>¿En qué ayudan?</mat-card-title>
+          </mat-card-header>
+          <img mat-card-sm-image style="border-radius: 5px;"
+            src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+          <mat-card-content>
+            <p>Los estudiantes empezarán a establecer contactos valiosos en la industria
+              tecnológica, lo que puede facilitar su transición al mercado laboral una vez
+              que se gradúen.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="sprint_overview_card">
+          <mat-card-header>
+            <mat-card-title>¿Cómo influyen?</mat-card-title>
+          </mat-card-header>
+          <img mat-card-sm-image style="border-radius: 5px;"
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+          <mat-card-content>
+            <p>Preparar a los estudiantes de carreras tecnológicas para el mundo laboral,
+              proporcionándoles una comprensión más profunda de la industria y de los desafíos
+              y oportunidades que enfrentan los profesionales en este campo.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="sprint_overview_card">
+          <mat-card-header>
+            <mat-card-title>Sus beneficios</mat-card-title>
+          </mat-card-header>
+          <img mat-card-sm-image style="border-radius: 5px;"
+            src="https://images.unsplash.com/photo-1573164713712-03790a178651?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80">
+          <mat-card-content>
+            <p>Las prácticas pre-profesionales son una oportunidad para que los estudiantes adquieran experiencia
+              práctica en un
+              entorno profesional real, antes de graduarse de su programa de estudios.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="sprint_overview_card">
+          <mat-card-header>
+            <mat-card-title>¿Dónde se realizan?</mat-card-title>
+          </mat-card-header>
+          <img mat-card-sm-image style="border-radius: 5px;"
+            src="https://www.parlamentario.com/wp-content/uploads/2020/10/Estudiantes-universitarios.jpg">
+          <mat-card-content>
+            <p>Estas prácticas se llevan a cabo en empresas, organizaciones sin fines de lucro,
+              agencias gubernamentales u otras instituciones, y suelen tener una duración determinada, que puede variar
+              desde unas pocas semanas
+              hasta varios meses o incluso un año completo.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="team_members_container">
+      <div class="title">
+        <h1>Redes Sociales</h1>
+      </div>
+      <div class="team_members">
+        <mat-card class="epic">
+          <mat-card-title-group class="imgBx_s blue">
+            <i class="fa fa-facebook-square"></i>
+          </mat-card-title-group>
+          <mat-card-content>
+
+            <a href="https://www.facebook.com/TecAzuay/?locale=es_LA">Facebook</a>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="epic">
+          <mat-card-title-group class="imgBx_s blue">
+            <i class="fa fa-instagram"></i>
+          </mat-card-title-group>
+          <mat-card-content>
+            <a href="https://www.instagram.com/tecdelazuay/?hl=es">Instagram</a>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="epic">
+          <mat-card-title-group class="imgBx_s blue">
+            <i class="fa fa-twitter-square"></i>
+          </mat-card-title-group>
+          <mat-card-content>
+            <a href="https://twitter.com/TecAzuay?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="epic">
+          <mat-card-title-group class="imgBx_s blue">
+            <i class="fa fa-chrome"></i>
+          </mat-card-title-group>
+          <mat-card-content>
+            <a href="https://www.tecazuay.edu.ec/main/index.php">TecAzuay</a>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="right_sidebar">
+    <div class="epics_container">
+
+      <div class="title">
+        <h4>Perfil de usuario</h4>
+      </div>
+      <div class="epics">
+        <mat-card class="epic">
+          <mat-card-title-group>
+
+          </mat-card-title-group>
+          <mat-card-content>
+            <div class="profile">
+              <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png" alt="profile_picture">
+              <h4>{{user_final}}</h4>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="epic">
+          <mat-card-title-group class="imgBx_s red">
+            <i class="fas fa-address-card"></i>
+          </mat-card-title-group>
+          <mat-card-content>
+            <li>ROL:</li>
+            <p>{{ rol }}</p><br>
+            <li>E-MAIL:</li>
+            <p>{{ username }}</p><br>
+          </mat-card-content>
+          <button style="text-align: center" mat-raised-button color="warn" data-bs-toggle="modal"
+            data-bs-target="#modal-formulario2">RESTABLECER CONTRASEÑA</button>
+        </mat-card>
+
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
 </body>
 
 </html>
+
+<!-- MODAL   -->
+<div class="modal" id="modal-formulario2" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1><strong>Restablecer Contraseña</strong></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-container" (ngSubmit)="onResetPassword()">
+          <mat-form-field class="form-field">
+            <input style="color: black;" matInput type="text" [(ngModel)]="captura" name="cedula" placeholder="Cédula"
+              id="cedulausu" required />
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <input style="color: black;" matInput type="email" id="correo" placeholder="CORREO"
+              class="form-control, text" required name="correo" readonly [value]="captura2" />
+            <!-- <p style="color: red;">Por favor, primero ingrese su identificación</p> -->
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <input matInput type="password" [(ngModel)]="newPassword" name="newPassword" placeholder="Nueva contraseña"
+              required />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" data-bs-dismiss="modal">
+            Restablecer contraseña
+          </button>
+          <p class="message" style="color: red;">{{ message }}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

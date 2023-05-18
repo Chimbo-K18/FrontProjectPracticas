@@ -154,13 +154,14 @@ header {
 /* ///////////////// */
 
 .bodyL {
-    font-family: "Poppins", sans-serif;
+    margin-top: -20px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     font-size: 15px;
     line-height: 1.7;
     color: #c4c3ca;
-    background-image: url("src/assets/images/fondowelcome.png");
-    background-size: 100% 100%;
+    background-image: url('src/assets/images/fondowelcome.png');
+  background-size: 100% 100%;
     overflow-x: hidden;
 }
 
