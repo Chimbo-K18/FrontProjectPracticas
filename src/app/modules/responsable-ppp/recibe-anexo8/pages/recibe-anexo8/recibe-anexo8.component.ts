@@ -66,7 +66,7 @@ export class RecibeAnexo8Component implements AfterViewInit {
     this.responsableppservice.getBuscarcedula(this.Ce).subscribe(datausu => {
       console.log(datausu);
     this.carreradata = datausu.carrera;
-        this.practicaservice.listarPorAnexo1Recibe(this.carreradata).subscribe(dataconvo => {
+        this.practicaservice.listarPorAnexo8Recibe(this.carreradata).subscribe(dataconvo => {
           console.log(dataconvo);
           this.listaconvocatoria = dataconvo;
           this.dataSource.data = this.listaconvocatoria;
@@ -75,10 +75,10 @@ export class RecibeAnexo8Component implements AfterViewInit {
       });
 
   }
-  anexo1generado:any;
-  descargarPDF(idAnexo1 :any) {
-    this.anexo1generado = idAnexo1; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo1/${this.anexo1generado}`;
+  anexo8generado:any;
+  descargarPDF(idAnexo8 :any) {
+    this.anexo8generado = idAnexo8; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/jasperReport/anexo8/${this.anexo8generado}`;
     window.open(url, '_blank');
   }
 
