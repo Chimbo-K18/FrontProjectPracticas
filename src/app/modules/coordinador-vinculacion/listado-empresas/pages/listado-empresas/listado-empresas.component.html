@@ -2,14 +2,15 @@
 
   <h1>LISTA DE EMPRESAS</h1>
 
-  <div class="conatiner">
+  <div style="display: flex; justify-content: center; align-items:center;">
+  
 
-    <mat-stepper linear #stepper class="headerxd">
+    <mat-card>
 
-      <mat-step>
+    
         <form [formGroup]="firstFormGroup">
           <div style="text-align: center;">
-          <mat-form-field appearance="standard">
+          <mat-form-field appearance="standard" style="width: 600px;">
             <mat-label>Búsqueda</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Nombre " #input>
           </mat-form-field>
@@ -32,19 +33,19 @@
 
             <!-- Weight Column -->
             <ng-container matColumnDef="correo">
-              <th mat-header-cell *matHeaderCellDef> correo </th>
+              <th mat-header-cell *matHeaderCellDef> Correo </th>
               <td mat-cell *matCellDef="let element">{{element.correo}}</td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="direccion">
-              <th mat-header-cell *matHeaderCellDef> direccion </th>
+              <th mat-header-cell *matHeaderCellDef> Dirección	 </th>
               <td mat-cell *matCellDef="let element">{{element.direccion}}</td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="numeroTelefono">
-              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <th mat-header-cell *matHeaderCellDef> Teléfono	 </th>
               <td mat-cell *matCellDef="let element"> {{element.numeroTelefono}}</td>
             </ng-container>
 
@@ -91,10 +92,8 @@
             aria-label="Select page of periodic elements">
           </mat-paginator>
         </form>
-
-      </mat-step>
-
-    </mat-stepper>
+      </mat-card>
+     
   </div>
 
 

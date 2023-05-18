@@ -2,7 +2,12 @@ import {AfterViewInit, Component, ViewChild,ElementRef } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { SolicitudPracticas } from 'src/app/models/solicitudpracticas';
+import {FormGroup, FormControl} from '@angular/forms';
+import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
+import { Convocatorias } from 'src/app/models/convocatorias'; 
+import { SolicitudpracticasService } from 'src/app/services/solicitudpracticas.service';
+import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
+import { SolicitudPracticas } from 'src/app/models/solicitudpracticas'; 
 import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 import Swal from 'sweetalert2';
 import { PracticaService } from 'src/app/services/practica.service';
@@ -76,7 +81,7 @@ export class GeneraAnexo7Component   implements AfterViewInit{
     private anexo7service: Anexo7Service,
     private userService: UserService,
     private practicaservice: PracticaService,
-    private tutorempresarialService: tutorempresarialService,
+    private tutorempresarialService: tutorempresarialService, private solicitudService: SolicitudConvocatoriasService,
     private documentoAnexo7: DocumentoAnexo7Service) { }
 
   ngOnInit(): void {
@@ -111,11 +116,10 @@ export class GeneraAnexo7Component   implements AfterViewInit{
       });
     });
   }
-
   listapraacticas: any[] = [];
-  seleccionarConvocatoria(tutor: any) {
-    console.log(tutor);
-    this.practicaservice.listarPorListarAnexo7(tutor).subscribe(datapracticalist => {
+  seleccionarConvocatoria(idconvo: any) {
+    console.log(idconvo);
+    this.solicitudService.SolicitudesPorAnexo7(idconvo).subscribe(datapracticalist => {
       console.log(datapracticalist);
       this.listapraacticas = [];
       datapracticalist.forEach((practica: Practica) => {
@@ -128,29 +132,34 @@ export class GeneraAnexo7Component   implements AfterViewInit{
     );
   }
 
+
   idanexo7:any;
   idAnexo7Generado: any;
+  idprac:any;
   CreaAnexo7(anexoid:any){
     this.idanexo7 = anexoid;
-    this.practicaservice.buscarId(anexoid).subscribe(practicadata=>{
-      console.log(practicadata);
-      this.practica = practicadata;
-      this.practica.estadoanexo7 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo7).subscribe(practicaupdate=>{
-        console.log(practicaupdate);
-        this.anexo7.practica = practicaupdate;
-        this.anexo7service.crearAnexo7(this.anexo7).subscribe(dataanexo7=>{
-          console.log(dataanexo7);
-          this.idAnexo7Generado = dataanexo7.idAnexo7;
-
-          Swal.fire(
-            'PROCESO',
-            'GENERADO CON EXITO',
-            'success'
-          )
+    this.practicaservice.buscarPorconvocatoriaParaAnexo1(anexoid).subscribe(practicadatabusque => {
+      console.log(practicadatabusque);
+      this.idprac = practicadatabusque;
+      this.practicaservice.buscarId(this.idprac).subscribe(practicadata => {
+        console.log(practicadata);
+        this.practica = practicadata;
+        this.practica.estadoanexo7 = true;
+        this.practicaservice.UpdatePractica(this.practica, this.idprac).subscribe(practicaupdate=>{
+          console.log(practicaupdate);
+          this.anexo7.practica = practicaupdate;
+          this.anexo7service.crearAnexo7(this.anexo7).subscribe(dataanexo7=>{
+            console.log(dataanexo7);
+            this.idAnexo7Generado = dataanexo7.idAnexo7;
+  
+            Swal.fire(
+              'PROCESO',
+              'GENERADO CON EXITO',
+              'success'
+            )
+          });
         });
       });
-
     });
   }
 

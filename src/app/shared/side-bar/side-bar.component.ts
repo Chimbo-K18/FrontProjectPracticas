@@ -131,6 +131,7 @@ export class SideBarComponent implements OnInit {
         console.log(res);
         this.storageService.clean();
         window.location.reload();
+        
       },
       error: err => {
         console.log('Tenemos un error a la hora de un logOut')

@@ -27,6 +27,10 @@ export class PracticaService {
     return this.http.get<Practica>(this.url + `/convocatoriaspractica/${id}`);
   }
 
+  buscarPorconvocatoriaParaAnexo1(id: any):Observable<Practica>{
+    return this.http.get<Practica>(this.url + `/convocatoriasparaanexo1/${id}`);
+  }
+
   buscarPorconvocatoriaParaanexo(id: any, usuarioid:any):Observable<Practica>{
     return this.http.get<Practica>(this.url + `/practicaparaanexo/${id}/${usuarioid}`);
   }
@@ -93,6 +97,10 @@ export class PracticaService {
 
   listarPorAnexo3Recibe(carrera: any): Observable<Practica[]>{
     return this.http.get<Practica[]>(this.url+`/carreraparaanexo3/${carrera}`)
+  }
+
+  listarPorAnexo4Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo4/${carrera}`)
   }
 
 

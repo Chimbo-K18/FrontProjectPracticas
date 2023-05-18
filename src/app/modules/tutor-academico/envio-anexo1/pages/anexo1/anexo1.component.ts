@@ -135,10 +135,9 @@ export class Anexo1Component implements AfterViewInit {
 
 
   listapraacticas: any[] = [];
-  seleccionarConvocatoria(solicitud: any, idusuario: any) {
-    console.log(solicitud);
-    console.log(idusuario);
-    this.practicaservice.buscarPorconvocatoriaParaanexo(solicitud, idusuario).subscribe(datapracticalist => {
+  seleccionarConvocatoria(idconvo: any) {
+    console.log(idconvo);
+    this.solicitudService.SolicitudesPorAnexo1(idconvo).subscribe(datapracticalist => {
       console.log(datapracticalist);
       this.listapraacticas = [];
       datapracticalist.forEach((practica: Practica) => {
@@ -154,26 +153,32 @@ export class Anexo1Component implements AfterViewInit {
   idanexo1: any;
   anexo1generado: any;
   anexodataencontrada: any;
+  idprac:any;
   CreaAnexo1(anexoid: any) {
     this.idanexo1 = anexoid;
-    this.practicaservice.buscarId(anexoid).subscribe(practicadata => {
+    this.practicaservice.buscarPorconvocatoriaParaAnexo1(anexoid).subscribe(practicadata => {
       console.log(practicadata);
-      this.practica = practicadata;
-      this.practica.estadoanexo1 = true;
-      this.practicaservice.UpdatePractica(this.practica, this.idanexo1).subscribe(practicaupdate => {
-        console.log(practicaupdate);
-        this.anexo1.practica = practicaupdate;
-        this.anexo1.estado_academico = true;
-        this.anexo1service.crearAnexo1(this.anexo1).subscribe(dataanexo1 => {
-          console.log(dataanexo1);
-          this.anexo1generado = dataanexo1.idAnexo1;
-          Swal.fire(
-            'PROCESO',
-            'GENERADO CON EXITO',
-            'success'
-          )
+      this.idprac = practicadata;
+      this.practicaservice.buscarId(this.idprac).subscribe(practicadataencontrada =>{
+        console.log(practicadataencontrada);
+        this.practica = practicadataencontrada;
+        this.practica.estadoanexo1 = true;
+        this.practicaservice.UpdatePractica(this.practica, this.idprac).subscribe(practicaupdate => {
+          console.log(practicaupdate);
+          this.anexo1.practica = practicaupdate;
+          this.anexo1.estado_academico = true;
+          this.anexo1service.crearAnexo1(this.anexo1).subscribe(dataanexo1 => {
+            console.log(dataanexo1);
+            this.anexo1generado = dataanexo1.idAnexo1;
+            Swal.fire(
+              'PROCESO',
+              'GENERADO CON EXITO',
+              'success'
+            )
+          });
         });
       });
+      
 
     });
   }

@@ -11,12 +11,12 @@
 <body class="bodyL">
     <h1><strong>APROBACIÓN DE ESTUDIANTES </strong></h1>
 
-    <mat-stepper linear #stepper class="headerxd">
+    <mat-stepper linear #stepper class="headerxd" style="width: 75%;">
         <mat-step>
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Fase 1</ng-template>
-                <div style="justify-content: center; align-items: center;">
-                    <mat-card>
+                <div style="display: flex; justify-content: center; align-items:center;">
+                                        <mat-card>
                         <div class="tbConteiner">
                         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
                         style="
@@ -77,8 +77,8 @@
         <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup" >
                 <ng-template matStepLabel>Fase 2</ng-template>
-                <div style="justify-content: center; align-items: center;" >
-                    <mat-card >
+                <div style="display: flex; justify-content: center; align-items:center;">
+                       <mat-card >
                         <div>
                             <h1 style="text-align: center;"> Listado de Estudiantes </h1>
                             <!-- <ng-container *ngIf="datosCargados.length > 0; else noResults"></ng-container> -->
