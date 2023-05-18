@@ -11,13 +11,13 @@
 <body class="bodyL">
   <h1><strong>Asignar Horarios </strong></h1>
 
-  <mat-stepper labelPosition="bottom" #stepper>
+  <mat-stepper labelPosition="bottom" #stepper style="width: 80%;">
     <mat-step [stepControl]="firstFormGroup">
       <ng-template matStepLabel>Fase 1</ng-template>
       <form [formGroup]="tresFormGroup">
         <ng-template matStepLabel>Fase 1</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
+          <mat-card style="width: 1200%;">
             <div>
 
               <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
@@ -82,7 +82,7 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Fase 2</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
+          <mat-card style="width: 1200%;">
             <div>
 
               <h1 style="text-align: left;"> Listado de Solicitudes </h1>
@@ -143,7 +143,7 @@
             <div style="margin-top:25px; text-align: center;">
                 <button mat-raised-button color="primary" matStepperNext (click)="listarpracticas()" style="margin-left: 10px;">Siguiente</button>
 
-                <button mat-raised-button color="primary" matStepperPrevious style="margin-right: 10px;">Back</button>
+                <button mat-raised-button color="primary" matStepperPrevious style="margin-left: 10px;">Back</button>
                 <!-- BOTON SI QUIERES PROVAR  EL MODAL  -->
                 <!-- <button mat-raised-button  color="primary" data-bs-toggle="modal" data-bs-target="#modal-formulario">
                     <mat-icon>edit</mat-icon> </button> -->
@@ -163,7 +163,7 @@
       <form [formGroup]="tresFormGroup">
         <ng-template matStepLabel>Fase 3</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
+          <mat-card style="width: 1200%;">
             <div>
               <h1 style="text-align: center;">Detalles de estudiantes practicantes</h1>
               <table mat-table [dataSource]="datam" class="mat-elevation-z8">

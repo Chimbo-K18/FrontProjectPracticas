@@ -11,12 +11,12 @@
 <body class="bodyL">
   <h1><strong>APROBACIÓN DE ESTUDIANTES </strong></h1>
 
-  <mat-stepper linear #stepper class="headerxd">
+  <mat-stepper linear #stepper class="headerxd" style=" width: 80%;">
     <mat-step>
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fase 1</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <mat-card>
+          <mat-card >
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <!-- Position Column -->
               <ng-container matColumnDef="nombreconvocatoria">

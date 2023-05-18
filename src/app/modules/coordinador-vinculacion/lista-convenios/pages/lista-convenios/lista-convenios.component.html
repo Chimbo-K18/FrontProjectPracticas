@@ -7,20 +7,22 @@
     <title>Lista Productos</title>
 </head>
 <body class="bodyL">
+  <h1><strong>LISTA DE CONVENIOS</strong> </h1>
+
 
   <div style="display: flex; flex-direction: column; align-items: center;">
 
-    <mat-card style="width: 750px; margin-top: 25px;">
-      <h1><strong>Lista de Convenios</strong> </h1>
-    <mat-card >
+    <mat-card style="width: 1200px; margin-top: 25px;">
+    
+    
 
       <div style="display: flex; justify-content: center;">
-        <mat-form-field appearance="standard">
+        <mat-form-field appearance="standard" style="width: 600px;">
           <mat-label>Búsqueda</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ejm:Número Convenio" #input>
         </mat-form-field>
       </div>
-    </mat-card>
+    
 
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

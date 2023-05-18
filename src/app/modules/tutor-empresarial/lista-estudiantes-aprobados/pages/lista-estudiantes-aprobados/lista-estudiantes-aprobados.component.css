@@ -37,10 +37,9 @@ mat-card{
 
 h1,
 h2 {
-  color: #213A70;
+  color: black;
   text-align: center;
   border-radius: 10px;
-  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
 
 }
