@@ -197,7 +197,7 @@
             <h1 style="text-align: left">Datos Personales</h1>
             <div style="display: flex">
               <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px">
-                <mat-label>Fecha de Inilizacion:</mat-label>
+                <mat-label>Fecha de Inicio:</mat-label>
                 <input matInput [matDatepicker]="picker1" [(ngModel)]="fechaini" name="fechaAprobacion" (dateChange)="onDateChange2($event)">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -252,9 +252,9 @@
           
           <h1><strong>DESCARGAR EL OFICIO </strong></h1>
               <p style="text-align: center">
-                Auna vez se descargue el oficio, posteriormente debera firmarlo y
+                Una vez se descargue el oficio, posteriormente deberá firmarlo y
                 <br />
-                nuevamente la subira en el formato pdf.
+                nuevamente la subirá en el formato PDF.
               </p>
           <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
           <button mat-raised-button color="primary"(click)="inputFile.click()" >
