@@ -1,6 +1,4 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
@@ -477,7 +475,7 @@ h2 {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Raleway', Arial, sans-serif;
 }
 
 
@@ -632,14 +630,14 @@ h2 {
 }
 
 .promo_card h5 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Raleway', Arial, sans-serif;
   font-size: 32px;
   color: #004F9F;
   margin: 0;
 }
 
 .promo_card h3 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Raleway', Arial, sans-serif;
   font-size: 22px;
   margin: 20px 0 0;
 }
@@ -660,7 +658,7 @@ h2 {
 }
 
 .promo_card p {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Raleway', Arial, sans-serif;
   font-size: 20px;
   margin: 0;
   color: #f7f6f6;
@@ -673,7 +671,7 @@ h2 {
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Raleway', Arial, sans-serif;
   font-size: 18px;
   transition: background-color 0.3s ease;
 }
@@ -681,6 +679,8 @@ h2 {
 .promo_card .btn:hover {
   background-color: #003D7D;
 }
+
+
 
 @media screen and (max-width: 600px) {
   .promo_card {
@@ -692,4 +692,43 @@ h2 {
   border: none;
   border-top: 3px solid #ccc;
   margin: 20px 0;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.form-field {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-top: 10px;
+  color: rgb(0, 0, 0);
+}
+
+.mat-stepper-horizontal {
+margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+margin-top: 16px;
 }

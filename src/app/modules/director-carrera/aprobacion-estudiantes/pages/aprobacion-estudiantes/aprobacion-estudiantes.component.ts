@@ -88,7 +88,6 @@ export class AprobacionEstudiantesComponent implements AfterViewInit {
     private _formBuilder: FormBuilder,
     private convocatoriaService: ConvocatoriasService,
     private SolicitudConvocatoriasService: SolicitudConvocatoriasService,
-    private EstudiantePracticanteService: EstudiantePracticanteService,
     private userService: UserService,
     private DocumentConvocatoria:DocumentoSolicitudConvocatoria, 
     private renderer: Renderer2
