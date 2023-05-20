@@ -21,7 +21,7 @@
     box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
 }
 .side-image{
-    background-image: url("https://img.freepik.com/vector-gratis/composicion-moderna-registro-online_23-2147993862.jpg?w=740&t=st=1684462623~exp=1684463223~hmac=55aa4fbb602f821db3de9a66a1538fe9061458abba7b5eab11c00093d91a4595");
+    background-image: url("https://img.freepik.com/vector-gratis/concepto-proteccion-datos-isometrica-bloqueo-ventana-inicio-sesion-padres-e-hijos-3d_1284-63713.jpg?w=740&t=st=1684470729~exp=1684471329~hmac=0b8e5fbf166da86dcedcf07202ad9eb6b73f13d7d284477bea2df71cd643cf11");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -166,7 +166,7 @@ span a{
     font-weight: 700;
     color: #000;
     transition: .5s;
-    font-size: 5px;
+    
 }
 span a:hover{
     text-decoration: underline;
