@@ -69,42 +69,87 @@ export class RegistroEmpresaComponent implements OnInit {
   //   }
   // }
 
-  crearEmpresa() {
-    // this.empresa.status= true;
 
-    if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
-      Swal.fire(
-        'Campos Vacíos',
-        'Todos los campos deben ser ingresados.',
-        'error'
-      );
-    } else if (this.empresa.rucEmpresa.length !== 13) {
-      Swal.fire(
-        'Error',
-        'El RUC debe tener 13 dígitos.',
-        'error'
-      );
-    } else {
-      this.empresaServices.crearEmpresa(this.empresa)
-        .subscribe(response => {
-          console.log('Exito al Registrar la empresa');
-          Swal.fire({
-            position: 'top',
-            icon: 'success',
-            title: 'Empresa Creada Exitosamente',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }, error => {
-          console.log('Error al registrar la empresa:', error);
-          Swal.fire(
-            'Error',
-            'No se pudo registrar la empresa. Por favor, inténtelo nuevamente.',
-            'error'
-          );
+  crearEmpresa() {
+  // this.empresa.status = true;
+
+  if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
+    Swal.fire(
+      'Campos Vacíos',
+      'Todos los campos deben ser ingresados.',
+      'error'
+    );
+  } else if (this.empresa.rucEmpresa.length !== 13) {
+    Swal.fire(
+      'Error',
+      'El RUC debe tener 13 dígitos.',
+      'error'
+    );
+  } else if (!this.empresa.correo.endsWith('@gmail.com')) {
+    Swal.fire(
+      'Error',
+      'El correo electrónico debe tener el formato @gmail.com.',
+      'error'
+    );
+  } else {
+    this.empresaServices.crearEmpresa(this.empresa)
+      .subscribe(response => {
+        console.log('Éxito al Registrar la empresa');
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Empresa Creada Exitosamente',
+          showConfirmButton: false,
+          timer: 2000,
         });
-    }
+      }, error => {
+        console.log('Error al registrar la empresa:', error);
+        Swal.fire(
+          'Error',
+          'No se pudo registrar la empresa. Por favor, inténtelo nuevamente.',
+          'error'
+        );
+      });
   }
+}
+
+
+    // crearEmpresa() {
+    //   // this.empresa.status= true;
+
+    //   if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
+    //     Swal.fire(
+    //       'Campos Vacíos',
+    //       'Todos los campos deben ser ingresados.',
+    //       'error'
+    //     );
+    //   } else if (this.empresa.rucEmpresa.length !== 13) {
+    //     Swal.fire(
+    //       'Error',
+    //       'El RUC debe tener 13 dígitos.',
+    //       'error'
+    //     );
+    //   } else {
+    //     this.empresaServices.crearEmpresa(this.empresa)
+    //       .subscribe(response => {
+    //         console.log('Exito al Registrar la empresa');
+    //         Swal.fire({
+    //           position: 'top',
+    //           icon: 'success',
+    //           title: 'Empresa Creada Exitosamente',
+    //           showConfirmButton: false,
+    //           timer: 2000,
+    //         });
+    //       }, error => {
+    //         console.log('Error al registrar la empresa:', error);
+    //         Swal.fire(
+    //           'Error',
+    //           'No se pudo registrar la empresa. Por favor, inténtelo nuevamente.',
+    //           'error'
+    //         );
+    //       });
+    //   }
+    // }
 
 
 
