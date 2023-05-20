@@ -11,6 +11,7 @@ import { Anexo2 } from 'src/app/models/anexos/anexo2';
 import { Anexo2Service } from 'src/app/services/anexos/anexo2.service';
 import { HttpEventType } from '@angular/common/http';
 import { DocumentoAnexo2Service } from 'src/app/services/docAnexos/DocumentoAnexo2.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-genera-anexo2',
@@ -44,6 +45,7 @@ export class GeneraAnexo2Component   implements AfterViewInit{
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -124,6 +126,12 @@ export class GeneraAnexo2Component   implements AfterViewInit{
 
     });
   }
+
+  resetStepper() {
+    this.listarSolicitudesAprobadasPracticas();
+    this.stepper.reset();
+  }
+
 
 
   descargarPDF() {

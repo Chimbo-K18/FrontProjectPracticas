@@ -32,6 +32,15 @@ export class StorageService {
     return {};
   }
 
+  // traerroles(){
+  //   const roles = this.getUser().roles;
+  //   for(let r of roles){
+
+  //   }
+  // }
+
+
+
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     console.log('En el strorage--> '+user);

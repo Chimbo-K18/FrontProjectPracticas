@@ -17,6 +17,7 @@ import { Anexo1Service } from 'src/app/services/anexos/anexo1.service';
 import Swal from 'sweetalert2';
 import { DocumentoAnexo1Service } from 'src/app/services/docAnexos/DocumentoAnexo1.service';
 import { HttpEventType } from '@angular/common/http';
+import { MatStepper } from '@angular/material/stepper';
 
 export interface Aprobados {
   nombre: string;
@@ -66,6 +67,7 @@ export class Anexo1Component implements AfterViewInit {
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
   @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
+  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -260,5 +262,11 @@ export class Anexo1Component implements AfterViewInit {
       }
     );
   }
+
+  resetStepper() {
+    this.listarSolicitudesAprobadasPracticas();
+    this.stepper.reset();
+  }
+
 
 }
