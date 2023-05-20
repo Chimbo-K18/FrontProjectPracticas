@@ -103,23 +103,6 @@ export class PracticaService {
     return this.http.get<Practica[]>(this.url+`/carreraparaanexo4/${carrera}`)
   }
 
-  
-  listarPorAnexo5Recibe(carrera: any): Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+`/carreraparaanexo5/${carrera}`)
-  }
-
-  listarPorAnexo6Recibe(carrera: any): Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+`/carreraparaanexo6/${carrera}`)
-  }
-
-  listarPorAnexo7Recibe(carrera: any): Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+`/carreraparaanexo7/${carrera}`)
-  }
-
-  listarPorAnexo8Recibe(carrera: any): Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+`/carreraparaanexo8/${carrera}`)
-  }
-
 
 
 

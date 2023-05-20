@@ -11,13 +11,7 @@ td,
 th {
   width: 13%;
 }
-.mat-column-convocatoria {
-  width: 100px;
-}
 
-.mat-column-carrera {
-  width: 150px;
-}
 
 .container {
   position: fixed;

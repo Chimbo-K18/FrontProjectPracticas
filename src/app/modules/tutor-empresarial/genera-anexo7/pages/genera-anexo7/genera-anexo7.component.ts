@@ -18,7 +18,6 @@ import { Anexo7Service } from 'src/app/services/anexos/anexo7.service';
 import { Anexo7 } from 'src/app/models/anexos/anexo7';
 import { HttpEventType } from '@angular/common/http';
 import { DocumentoAnexo7Service } from 'src/app/services/docAnexos/DocumentoAnexo7.service';
-import { MatStepper } from '@angular/material/stepper';
 
 
 @Component({
@@ -49,7 +48,6 @@ export class GeneraAnexo7Component   implements AfterViewInit{
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
-  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -118,13 +116,6 @@ export class GeneraAnexo7Component   implements AfterViewInit{
       });
     });
   }
-
-  resetStepper() {
-    this.listarSolicitudesAprobadasPracticas();
-    this.stepper.reset();
-  }
-
-
   listapraacticas: any[] = [];
   seleccionarConvocatoria(idconvo: any) {
     console.log(idconvo);

@@ -18,29 +18,29 @@
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
           <!-- Nombre empresa Column -->
-          <ng-container matColumnDef="convocatoria">
+          <ng-container matColumnDef="nombreConvocatoria">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>CONVOCATORIA</th>
-            <td mat-cell *matCellDef="let row">{{row.convocatoria}}</td>
+            <td mat-cell *matCellDef="let row">{{row.nombreConvocatoria}}</td>
           </ng-container>
           <!-- Nombre empresa Column -->
-          <ng-container matColumnDef="FechaPublicacion">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>PUBLICACIÓN</th>
-            <td mat-cell *matCellDef="let row">{{row.FechaPublicacion}}</td>
+          <ng-container matColumnDef="fechaPublicacion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>FECHA PUBLICACIÓN</th>
+            <td mat-cell *matCellDef="let row">{{row.fechaPublicacion}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="FechaExpiracion">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>EXPIRACIÓN</th>
-            <td mat-cell *matCellDef="let row">{{row.FechaExpiracion}}</td>
+          <ng-container matColumnDef="fechaExpiracion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>FECHA EXPIRACIÓN</th>
+            <td mat-cell *matCellDef="let row">{{row.fechaExpiracion}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="estadoConvocatoria">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ESTADO</th>
+            <td mat-cell *matCellDef="let row">{{estadoTexto}}</td>
           </ng-container>
 
           <ng-container matColumnDef="carrera">
-            <th mat-header-cell *matHeaderCellDef>CARRERA</th>
-            <td mat-cell *matCellDef="let row">{{row.carrera}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="fechaAprobacion">
-            <th mat-header-cell *matHeaderCellDef>APROBACIÓN</th>
-            <td mat-cell *matCellDef="let row">{{row.fechaAprobacion}}</td>
+            <th mat-header-cell *matHeaderCellDef>Carrera</th>
+            <td mat-cell *matCellDef="let convocatorias">{{varcarrera}}</td>
           </ng-container>
 
 

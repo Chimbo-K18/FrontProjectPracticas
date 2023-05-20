@@ -8,9 +8,6 @@ import { MatSort } from '@angular/material/sort';
 import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
 import { Convocatorias } from 'src/app/models/convocatorias';
 import { UserService } from 'src/app/services/user.service';
-import { HttpClient } from '@angular/common/http';
-import { log } from 'console';
-import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -38,7 +35,7 @@ export class ListaConvocatoriasComponent implements OnInit {
   convocatorias: Convocatorias | any;
   matcher = new MyErrorStateMatcher();
 
-  displayedColumns: string[] = ['convocatoria', 'FechaPublicacion', 'FechaExpiracion', 'carrera','fechaAprobacion'];
+  displayedColumns: string[] = ['nombreConvocatoria', 'fechaPublicacion', 'fechaExpiracion', 'estadoConvocatoria', 'carrera'];
   dataSource = new MatTableDataSource<any>([]);
   apiResponse: any = [];
   listaConvocatoria: Convocatorias[] = [];
@@ -48,49 +45,21 @@ export class ListaConvocatoriasComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private convocatoriaService: ConvocatoriasService,
-    private userservice: UserService,
-    private http: HttpClient,
-    private responsableppservice: Responsable_PPPService) { }
-  datos: { convocatoria: string, FechaPublicacion: string, FechaExpiracion: string, carrera: string ,fechaAprobacion:string}[] = [];
+    private userservice: UserService) { }
+  datos: { nombreconvocatoria: string, fechapublicacion: string, fechaexpiracion: string, estadoConvocatoria: boolean, carrera: string }[] = [];
 
 
   ngOnInit(): void {
-   this.getConvocatorias();
+    this.obtenerConvocatorias();
   }
 
-   //obtener convocatorias
+  //obtener convocatorias
   //obtener convocatorias
   storageUser: any;
   varcarrera: any;
   usuariocarrera: any;
   estadoTexto: any;
 
-  idusuario: any;
-  dataresponsable: any;
-  getConvocatorias(){
-    this.idusuario = localStorage.getItem("idusuario");
-    this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
-      this.dataresponsable = datausu.idResponsablePPP;
-    this.http.get('http://localhost:8080/api/convocatorias/datos/'+this.dataresponsable).subscribe({
-      next: (response: any) => {
-        console.log(response.estado);
-        this.datos = response;
-        this.dataSource = new MatTableDataSource<any>(this.datos);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.estadoTexto = response.estado ? "Aprobada" : "Pendiente";
-        
-        
-      },
-      error: (err) => {
-        alert("No hay convocatorias disponibles")
-      }
-    });
-  }); 
-  }
-
- 
-  /*
   obtenerConvocatorias() {
     this.storageUser = localStorage.getItem("idusuario");
     console.log("id usuario " + this.storageUser)
@@ -115,7 +84,7 @@ export class ListaConvocatoriasComponent implements OnInit {
     });
 
   }
-*/
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

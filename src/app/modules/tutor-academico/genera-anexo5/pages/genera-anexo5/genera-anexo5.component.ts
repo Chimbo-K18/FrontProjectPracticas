@@ -12,7 +12,6 @@ import { Anexo5Service } from 'src/app/services/anexos/anexo5.service';
 import { DocumentoAnexo5Service } from 'src/app/services/docAnexos/DocumentoAnexo5.service';
 import { HttpEventType } from '@angular/common/http';
 import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
-import { MatStepper } from '@angular/material/stepper';
 @Component({
   selector: 'app-genera-anexo5',
   templateUrl: './genera-anexo5.component.html',
@@ -41,7 +40,6 @@ export class GeneraAnexo5Component   implements AfterViewInit{
   @ViewChild('paginator1', {static: true}) paginator1!: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
   @ViewChild('inputFile') inputFile!: ElementRef;
-  @ViewChild(MatStepper) stepper!: MatStepper;
 
   ngAfterViewInit() {
     this.dataF1.paginator = this.paginator1;
@@ -151,11 +149,6 @@ export class GeneraAnexo5Component   implements AfterViewInit{
     });
   
   }
-  resetStepper() {
-    this.listarSolicitudesAprobadasPracticas();
-    this.stepper.reset();
-  }
-
 
   descargarPDF() {
     const idSolicitud = this.anexo5generado; // obtén el ID de la solicitud

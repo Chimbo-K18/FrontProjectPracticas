@@ -9,7 +9,6 @@ import { WelcomeEstudianteComponent } from './modules/estudiante/welcome-estudia
 import { WelcomeResponsableComponent } from './modules/responsable-ppp/welcome-responsable/welcome-responsable.component';
 import { WelcomeEmpresarialComponent } from './modules/tutor-empresarial/welcome-empresarial/welcome-empresarial.component';
 import { WelcomeAcademicoComponent } from './modules/tutor-academico/welcome-academico/welcome-academico.component';
-import { AuthGaurdGuard } from './guard';
 
 const routes: Routes = [
 
@@ -22,49 +21,49 @@ const routes: Routes = [
 
   {
     path: 'auth',
-    component: WelcomeAuthComponent, 
+    component: WelcomeAuthComponent,
     loadChildren: () => import("./modules/auth/auth.module").then(m => m.AuthModule)
   },
 
   {
     path: 'administrador',
-    component: WelcomeAdministradorComponent, canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_ADMIN'] },
+    component: WelcomeAdministradorComponent,
     loadChildren: () => import("./modules/administrador/administrador.module").then(m => m.AdministradorModule)
   },
 
   {
     path: 'coordinador',
-    component: WelcomeCoordVinculacionComponent,canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_CORDINADOR'] },
+    component: WelcomeCoordVinculacionComponent,
     loadChildren: () => import("./modules/coordinador-vinculacion/coordinador-vinculacion.module").then(m => m.CoordinadorVinculacionModule)
   },
 
   {
     path: 'director',
-    component: WelcomeDirectorComponent, canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_DIRECTOR'] },
+    component: WelcomeDirectorComponent,
     loadChildren: () => import("./modules/director-carrera/director-carrera.module").then(m => m.DirectorCarreraModule)
   },
 
   {
     path: 'estudiante',
-    component: WelcomeEstudianteComponent, canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_ESTUDIANTE'] },
+    component: WelcomeEstudianteComponent,
     loadChildren: () => import("./modules/estudiante/estudiante.module").then(m => m.EstudianteModule)
   },
 
   {
-    path: 'responsable', canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_RESPONSABLEPP'] },
+    path: 'responsable',
     component: WelcomeResponsableComponent,
     loadChildren: () => import("./modules/responsable-ppp/responsable-ppp.module").then(m => m.ResponsablePppModule)
   },
 
 
   {
-    path: 'empresarial', canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_TUTOREMPRESARIAL'] },
+    path: 'empresarial',
     component: WelcomeEmpresarialComponent,
     loadChildren: () => import("./modules/tutor-empresarial/tutor-empresarial.module").then(m => m.TutorEmpresarialModule)
   },
 
   {
-    path: 'academico', canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_TUTORACADEMICO'] },
+    path: 'academico',
     component: WelcomeAcademicoComponent,
     loadChildren: () => import("./modules/tutor-academico/tutor-academico.module").then(m => m.TutorAcademicoModule)
   }
