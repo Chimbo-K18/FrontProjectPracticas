@@ -22,29 +22,11 @@
   }
   
   
-table {
-  font-family: 'Times New Roman', Times, serif;
-
-  width: 100%;
-}
-
-
-p{
-  font-family: 'Times New Roman', Times, serif;
-
-}
-mat-label{
-font-family: 'Times New Roman', Times, serif;
-}
-input{
-font-family: 'Times New Roman', Times, serif;
-}
-
-button{
-font-family: 'Times New Roman', Times, serif;
-
-}
-
+  table {
+    width: 100%;
+  }
+  
+  
   .mat-stepper-horizontal {
     margin-top: 8px;
   }
@@ -82,8 +64,7 @@ font-family: 'Times New Roman', Times, serif;
   
   
   h1{
-    font-family: 'Times New Roman', Times, serif;
-
+  
       letter-spacing: 1px;
       transition: 0.3s;
   }

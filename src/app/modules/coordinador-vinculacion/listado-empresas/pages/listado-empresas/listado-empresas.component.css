@@ -24,8 +24,6 @@
 
 
 h1, h2{
-  font-family: 'Times New Roman', Times, serif;
-
   color: #000;
   text-align: center;
   border-radius: 10px;
@@ -33,33 +31,11 @@ h1, h2{
 }
 
 table {
-  font-family: 'Times New Roman', Times, serif;
-
   width: 100%;
 }
 
-
-p{
-  font-family: 'Times New Roman', Times, serif;
-
-}
-mat-label{
-font-family: 'Times New Roman', Times, serif;
-}
-input{
-font-family: 'Times New Roman', Times, serif;
-}
-
-button{
-font-family: 'Times New Roman', Times, serif;
-
-}
-
-
 input[type=text],
 select {
-  font-family: 'Times New Roman', Times, serif;
-
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

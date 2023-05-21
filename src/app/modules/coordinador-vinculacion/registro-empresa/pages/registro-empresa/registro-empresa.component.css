@@ -9,87 +9,7 @@
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  font-family: 'Lato', sans-serif;
-
 }
-h1{
-  font-family: 'Times New Roman', Times, serif;
-
-}
-
-p{
-  font-family: 'Times New Roman', Times, serif;
-
-}
-mat-label{
-font-family: 'Times New Roman', Times, serif;
-}
-input{
-font-family: 'Times New Roman', Times, serif;
-}
-
-button{
-font-family: 'Times New Roman', Times, serif;
-
-}
-
-.card-with-photo {
-  display: flex;
-}
-
-.card-photo {
-  width: 500px;
-  height: 500px; /* Ajusta el ancho deseado de la imagen */
-  background-image: url('https://img.freepik.com/vector-gratis/ilustracion-concepto-cms-plana_23-2148844352.jpg?w=740&t=st=1684626738~exp=1684627338~hmac=dcc92ebb8c646506606c02f9677ab6a2ebebf863c71ec5fd455db18034832cac');
-  background-size: cover;
-  background-position: center;
-}
-
-.content-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-
-
-.wrapper{
-  color: #000;
-    padding: 0 20px 0 20px;
-}
-.main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-.row{
-    width: 900px;
-    height: 550px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
-}
-.side-image{
-    background-image: url("https://img.freepik.com/vector-gratis/concepto-teamwork-gente-negocios_23-2147766276.jpg?w=740&t=st=1684628117~exp=1684628717~hmac=12c651619e03fb67a0e1dfbcc799ef2d94a78e8f40cd40ffe5d8bf5d145bb97a");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    border-radius: 10px 0 0 10px;
-}
-
-
-img{
-    width: 20px;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-}
-
-
-
 
 
 input[type=text],
@@ -149,6 +69,8 @@ h1 {
 
 .example-card {
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+
+
 }
 
 
@@ -203,7 +125,7 @@ header {
 /* ///////////////// */
 .bodyL {
   margin-top: -20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
@@ -314,7 +236,7 @@ h1 {
   border-radius: 50%;
   color: #ffeba7;
   background-color: #102770;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'unicons';
   content: '\eb4f';
   z-index: 20;
   top: -5px;

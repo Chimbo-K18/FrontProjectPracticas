@@ -9,60 +9,55 @@
 </head>
 
 <body class="bodyL">
-  <div style="display: flex; justify-content: center; align-items: center; ">
+  <div style="display: flex; justify-content: center; align-items: center;">
+
     <mat-card class="example-card" style="width: 700px;">
-      <h1  style="  font-family: 'Times New Roman', Times, serif; font-size: 25px; text-align: right; margin-right: 25px;"> <strong>Registro de Empresa </strong></h1>
-     
+
+      <h1> <strong>Registro de Empresa </strong></h1>
+      <p style="font-size:16px;"> <strong>Ingrese los siguientes datos:</strong> </p>
+
       <div style="display: flex;">
-        <div >
+
+        <div>
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Ruc:</mat-label>
             <input [(ngModel)]="empresa.rucEmpresa" matInput maxlength="13" (keypress)="onKeyPress($event)">
-            <mat-icon matSuffix>description</mat-icon>
-
-
           </mat-form-field>
 
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Correo:</mat-label>
             <input [(ngModel)]="empresa.correo" matInput>
-            <mat-icon matSuffix>mail</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Ciudad:</mat-label>
             <input [(ngModel)]="empresa.ciudad" matInput maxlength="50">
-            <mat-icon matSuffix>location_city</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Nombre:</mat-label>
             <input [(ngModel)]="empresa.nombreEmpresa" matInput maxlength="100">
-            <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Teléfono:</mat-label>
             <input [(ngModel)]="empresa.numeroTelefono" matInput maxlength="10" (keypress)="onKeyPress($event)">
-            <mat-icon matSuffix>phone</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Dirección:</mat-label>
             <input [(ngModel)]="empresa.direccion" matInput maxlength="200">
-            <mat-icon matSuffix>location_on</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="fill" style="margin-right: 20px; width: 300px;">
             <mat-label>Código:</mat-label>
             <input [(ngModel)]="empresa.codigoPostal" matInput maxlength="6" (keypress)="onKeyPress($event)">
-            <mat-icon matSuffix>add</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="example-full-width" style="margin-right: 20px; width: 300px;">
             <mat-label>Descripción:</mat-label>
-            <mat-icon matSuffix>description</mat-icon>
-            <textarea style="   font-family: 'Times New Roman', Times, serif;" [(ngModel)]="empresa.descripcion" matInput maxlength="300"
+            <textarea [(ngModel)]="empresa.descripcion" matInput maxlength="300"
               placeholder="Descripcion..."></textarea>
           </mat-form-field>
 
@@ -72,15 +67,24 @@
 
       </div>
 
-      <div style="text-align: right;margin-right:25px" >
-        <button  style="margin-right: 10px;"  mat-raised-button color="warn" (click)="crearEmpresa()" (click)="LimpiarCampos()">Registrar
-          Empresa   <mat-icon>save</mat-icon>
-        </button>
-
-        <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas"> Listados   <mat-icon>list</mat-icon>
-        </button>
+      <div style="text-align: center;">
+        <button mat-raised-button color="warn" (click)="crearEmpresa()" (click)="LimpiarCampos()">Registrar
+          Empresa</button>
 
       </div>
+
+
+      <div style="text-align: center; margin-top: 10px;">
+        <button mat-raised-button color="primary" routerLink="/coordinador/listado-empresas">Listados</button>
+
+      </div>
+
+     
+
+
+
+
+
     </mat-card>
   </div>
 

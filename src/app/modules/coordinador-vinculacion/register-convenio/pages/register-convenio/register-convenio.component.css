@@ -11,7 +11,6 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
   table {
-    font-family: 'Times New Roman', Times, serif;
     width: 100%;
   }
   .tbConteiner{
@@ -22,26 +21,7 @@
     scrollbar-width: thin;
   }
 
-
-  p{
-    font-family: 'Times New Roman', Times, serif;
-
-  }
-mat-label{
-  font-family: 'Times New Roman', Times, serif;
-}
-input{
-  font-family: 'Times New Roman', Times, serif;
-}
-
-button{
-  font-family: 'Times New Roman', Times, serif;
-
-}
-
   input[type=text], select {
-    font-family: 'Times New Roman', Times, serif;
-
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -70,8 +50,6 @@ button{
     margin-top: 16px;
   }
   .headerxd{
-    font-family: 'Times New Roman', Times, serif;
-
      margin-top: 60px;
   width: 80%;
   margin-left: auto;
@@ -97,7 +75,6 @@ button{
 
 
   h1{
-    font-family: 'Times New Roman', Times, serif;
 
       letter-spacing: 1px;
       transition: 0.3s;
@@ -113,8 +90,6 @@ button{
 
 
   h1{
-    font-family: 'Times New Roman', Times, serif;
-
     text-align: center;
   }
   .contenedor {
@@ -205,8 +180,6 @@ button{
     color: #102770;
   }
   h1{
-    font-family: 'Times New Roman', Times, serif;
-
     font-size: 1.3rem;
     color: #000;
   }
