@@ -3,43 +3,39 @@
 <html lang="en">
   
   <body class="bodyL">
+    <div class="xdxd">
     <mat-card class="example-card">
       <mat-card-content style="display: flex; flex-direction: row;">
-        <div style="flex-basis: 50%; flex-grow: 0; text-align: left; margin-right: 30px; display: flex; justify-content: center; align-items: center;">
+        <div  class="imgSign" style="flex-basis: 50%; flex-grow: 0; text-align: left; margin-right: 30px; display: flex; justify-content: center; align-items: center;">
           <img src="https://dev2020.tecazuay.edu.ec/wp-content/uploads/2022/11/cropped-LOGO-RECTANGULAR_SIN-FONDO.png" alt="" style="width: 100%;">
         </div>
         
         <form action="#" class="login-form" ngNativeValidate (ngSubmit)="onSubmit()">
-        <div style="flex-basis: 50%; flex-grow: 0;" >
+        <div class="conteDatos" style="flex-basis: 50%; flex-grow: 0;" >
           
-          <h1 style="text-align: left;"><strong>Iniciar Sesion</strong></h1>
+          <h1 style="text-align: left;"><strong>Iniciar Sesión</strong></h1>
 
           <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;">
             <mat-label>Nombre Usuario</mat-label>
             <input matInput type="username" name="username" placeholder="Ingrese su correo" [(ngModel)]="form.correo"  required >
           </mat-form-field>
           <mat-form-field appearance="outline" class="example-full-width" style="margin-right: 20px; width: 300px;" >
-            <mat-label>Password</mat-label>
+            <mat-label>Contraseña</mat-label>
             <input matInput type="password"   name="username" placeholder="Ingrese su contraseña"  [(ngModel)]="form.contrasenia" required>
           </mat-form-field>
-          <p>¿No tienes una cuenta?<strong><a href="/auth/sign-up" style="margin-left:5px;">Ingresa aqui</a></strong> <br> 
+          <p>¿No tienes una cuenta?<strong><a href="/auth/sign-up" style="margin-left:5px;">Ingresa aquí</a></strong> <br> 
            <br> <a   href="/auth/reset-password">¿Olvidaste tu contraseña?</a></p>
-          <button style="text-align: right;" mat-raised-button color="primary" type="submit">Ingresar</button>
+           <div class="groupbtn">
+           <button class="btnSign" style="text-align: right;" mat-raised-button type="submit">Ingresar</button>
+          <button
+          class="btnSign" style="margin-left: 15px" onclick="location.href=''"mat-raised-button>Home</button>
+           </div>
         </div>
       </form>
       </mat-card-content>
     </mat-card>
-    
-      
-  
-
-        
-
-
-              
-    
-
-  </body>
+    </div>
+      </body>
 </html>
 
 

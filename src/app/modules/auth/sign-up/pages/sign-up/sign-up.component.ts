@@ -83,7 +83,7 @@ export class SignUpComponent implements OnInit {
               case 'Error: El usuario no esta en FENIX!':
                 Swal.fire(
                   'Docente no registrado en FENIX',
-                  `Este docenete no se encuentra registrado en fenix.`,
+                  `Este docente no se encuentra registrado en fenix.`,
                   'error'
                 );
                 break;
@@ -91,7 +91,7 @@ export class SignUpComponent implements OnInit {
               case 'Error: Usted no puede ingresar un correo existente!':
                 Swal.fire(
                   'Correo institucional ya registrado',
-                  `El correo ingresaso ya eta registrado con otro docente.`,
+                  `El correo ingresado ya esta registrado con otro docente.`,
                   'error'
                 );
                 break;
@@ -101,9 +101,9 @@ export class SignUpComponent implements OnInit {
       } else {
         Swal.fire(
           'El correo no es institucional',
-          `Corre incorrecto`,
+          `Correo incorrecto`,
           'warning'
-        );
+      );
       }
     }
   }
