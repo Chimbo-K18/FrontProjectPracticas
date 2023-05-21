@@ -1,6 +1,7 @@
 <!-- <!DOCTYPE html>
 <html lang="en">
   <body class="bodyL">
+    <div class="xdxd">
     <div style="display: flex; flex-direction: row">
       <mat-card class="example-card" style="flex-basis: 50%; flex-grow: 0">
         <mat-card-content>
@@ -12,8 +13,8 @@
                 style="width: 35%"
               />
             </div>
-            <h1 style="margin-right: 12px; font-size: 27px;">
-              <strong>Registrate</strong>
+            <h1 style="margin-right: 12px">
+              <strong>Registrar</strong>
             </h1>
           </div>
 
@@ -57,27 +58,64 @@
 
               
 
-              
-              <span id="elemento" Style="Display:none;"
-                >Contraseña insegura, números, letras minúsculas y mayúsculas.</span>
+              <input
+                type="email"
+                id="correo"
+                placeholder="CORREO"
+                class="form-control, text"
+                required
+                [(ngModel)]="usuario.correo"
+                name="correo"
+                disabled
+                (input)="autoEmail($event)"
+              />
 
-                
+              <input
+                type="text"
+                id="carrera"
+                placeholder="CARRERA"
+                class="form-control, text"
+                required
+                [(ngModel)]="usuario.carrera"
+                name="carrera"
+                disabled
+              />
 
-                </div>
-                
-                <div style="text-align: right;">
-                  <button
-                mat-raised-button color="warn" style="margin-right: 10px" type="submit" >
+              <input
+                type="password"
+                placeholder="CONTRASEÑA"
+                class="form-control, text"
+                required
+                [(ngModel)]="usuario.contrasenia"
+                name="contrasenia"
+                id="contrasenia"
+                (input)="validarCoontra($event)"
+                maxlength="10"
+              />
+              <span class="msj" id="elemento" Style="Display:none;"
+                >Contraseña insegura: La contraseña debe tener números, letras minúsculas y
+                mayúsculas*.</span
+              >
+              <div class="groupbtn">
+                <button
+                mat-raised-button
+                class="btnSign"
+                style="margin-right: 15px"
+                type="submit"
+              >
                 Registrar
               </button>
 
-              <button style="margin-right: 12px;"
-                onclick="location.href=''" mat-raised-button  color="primary"> Home
+              <button
+               class="btnSign"
+               style="margin-left: 15px"
+                onclick="location.href=''"
+                mat-raised-button
+           
+              >
+                Home
               </button>
-
-                </div>
-              
-
+              </div>
             </form>
           </div>
 
@@ -102,6 +140,7 @@
           
         </mat-card-content>
       </mat-card>
+    </div>
     </div>
   </body>
 </html> -->
