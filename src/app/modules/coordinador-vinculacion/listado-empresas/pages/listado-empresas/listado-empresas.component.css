@@ -553,8 +553,13 @@ h6 span {
   margin-right: 20px;
   margin-bottom: 12px;
 }
-
-
-
-
-
+.container{
+  position: absolute;
+  /* right: 500px; */
+  margin-top: 35px;
+  background-color: #F4D03F;
+}
+img{
+  width: 100px;
+  height: 50px;
+}
