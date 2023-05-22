@@ -15,27 +15,30 @@
           <ng-template matStepLabel>Fase 1</ng-template>
           <div style="display: flex; justify-content: center; align-items: center;">
           <mat-card style="box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);" >
-            <p style="font-size: 16px"><strong>Datos Personales</strong></p>
+            <p style="font-size: 20px; margin-left: 15px; text-align: center;"><strong>Datos Personales</strong></p>
 
-            <div style="display: flex">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between">
               <div>
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field 
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 50px; width: 300px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                 >
                   <mat-label>Cédula:</mat-label>
-                  <input maxlength="10"
+                  <input 
+                    pattern="[0-9]{0,10}"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
                     id="cedulaPersona"
                     [(ngModel)]="personasemp.cedula"  [(ngModel)]="usuarios.cedula"
                     matInput
                     formControlName="firstCtrl" 
-                    
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 20px; width: 300px; padding-bottom: 10px; padding-left: 30px;"
                 >
                   <mat-label>Primer Nombre:</mat-label>
                   <input
@@ -49,9 +52,10 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 50px; width: 300px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                 >
                   <mat-label>Segundo Nombre:</mat-label>
                   <input   id="second_name"
@@ -64,9 +68,10 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 20px; width: 300px; padding-bottom: 10px; padding-left: 30px;"
                 >
                   <mat-label>Primer Apellido:</mat-label>
                   <input
@@ -79,9 +84,10 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 50px; width: 300px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                 >
                   <mat-label>Segundo Apellido:</mat-label>
                   <input id="secondlast_name"
@@ -94,20 +100,24 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 20px; width: 300px; padding-bottom: 10px; padding-left: 30px;"
                 >
                   <mat-label>Celular:</mat-label>
                   <input id="celular"
                   maxlength="10"
                     matInput
                     formControlName="firstCtrl"
+                    pattern="[0-9]{0,10}"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
                   />
                 </mat-form-field>
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 50px; width: 300px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                 >
                   <mat-label>Departamento:</mat-label>
                   <input 
@@ -119,9 +129,10 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 20px; width: 300px; padding-bottom: 10px; padding-left: 30px;"
                 >
                   <mat-label>Título:</mat-label>
                   <input 
@@ -133,13 +144,14 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
-                  style="margin-right: 20px; width: 300px"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
+                  class="example-full-width"
+                  style="margin-right: 50px; width: 300px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                 >
                   <mat-label>Correo:</mat-label>
                   <input
-     
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
                     id="correoPersona"
                     name="correoPersona"
                     [(ngModel)]="personasemp.correo" [(ngModel)]="usuarios.correo"
@@ -147,12 +159,15 @@
                     formControlName="firstCtrl" 
                     
                   />
+                  <mat-error>Ingresa un correo válido, por ejemplo, correo@gmail.com</mat-error>
+
                 </mat-form-field>
 
-                <mat-form-field
-                  appearance="fill"
+                <mat-form-field style="width: calc(50% - 10px)"
+                  appearance="outline"
                   class="example-full-width"
-                  style="margin-right: 20px; width: 300px"
+                  class="example-full-width"
+                  style="margin-right: 20px; width: 300px; padding-bottom: 10px; padding-left: 30px;"
                 >
                   <mat-label>Cargo:</mat-label>
                   <input 
@@ -163,10 +178,10 @@
                     
                   />
                 </mat-form-field>
-                <select
+                <select style="width: calc(50% - 10px)"
                   id="genero"
                   formControlName="firstCtrl"
-                  style="width: 300px; margin-right: 20px"
+                  style="width: 270px; margin-right: 50px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                   [(ngModel)]="personasemp.genero"
                 >
                   <option value="" disabled selected>
@@ -198,7 +213,7 @@
           <div style="display: flex; justify-content: center; align-items: center;">
             <mat-card class="example-card" style="width: 600px">
               <mat-card-content>
-                <p style="font-size: 16px">
+                <p style="font-size: 20px; text-align: center;">
                   <strong>Generar Credenciales</strong>
                 </p>
                 <div style="display: flex; align-items: center">
@@ -326,7 +341,7 @@
             class="example-card"
             style="text-align: center; width: 500px"
           >
-            <p style="font-size: 16px"><strong>Generar Credenciales</strong></p>
+            <p style="font-size: 20px"><strong>Generar Credenciales</strong></p>
             <div class="conten">
               <label class="label">
                 <figure class="recipiente">
@@ -339,7 +354,7 @@
               <input style="text-transform: uppercase;"id="NombreCompleto2" matInput type="nombresss2" />
               <!-- <input type="text" id="captdat" /> -->
             </p>
-            <h3 style="margin-top: 25px">
+            <h3 style="margin-top: 25px; font-family: 'Times New Roman', Times, serif;">
               <strong>Rol Asignado:</strong>Tutor Empresarial
             </h3>
             <div style="display: flex; align-items: center; margin-top: 25px">
@@ -347,8 +362,8 @@
                 <mat-label>Nombre de la Empresa:</mat-label>
                 <input id="nombreEmp"matInput   formControlName=""readonly/>
               </mat-form-field>
-              <button mat-raised-button style="margin-left: 25px" data-bs-toggle="modal" data-bs-target="#modal-formulario" (click)="obtenerEmpresas()">
-                <mat-icon>add</mat-icon>
+              <button mat-raised-button class="btnAdd" style="margin-left: 25px" data-bs-toggle="modal" data-bs-target="#modal-formulario" (click)="obtenerEmpresas()">
+                <mat-icon style="color: white;">add</mat-icon>
               </button>
             </div>
              <input type="text"  id="codigoEmp" hidden />
@@ -378,58 +393,42 @@
     </mat-stepper>
 
 <!-- Modal Empresas -->
+  
   <div class="modal" id="modal-formulario" tabindex="-5" aria-labelledby="modal-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="container" style="width: 800px">
-        <div class="modal-content">
-          <div class="container" style="width: 500px">
-            <div class="modal-header">
-              <h1 style=" font-size: 18px; text-align: center; width: 290px; margin-top: 20px;"
-              > Empresas</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <ng-container matColumnDef="rucEmpresa">
-                <th mat-header-cell *matHeaderCellDef>Ruc</th>
-                <td mat-cell *matCellDef="let empresa">
-                  {{ empresa.rucEmpresa }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="nombreEmpresa">
-                <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                <td mat-cell *matCellDef="let empresa">
-                  {{ empresa.nombreEmpresa }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="direccion">
-                <th mat-header-cell *matHeaderCellDef>Dirección</th>
-                <td mat-cell *matCellDef="let empresa">
-                  {{ empresa.direccion }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="agg" style="width: 60px;">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let empresa">
-                  <button
-                    class="agregar"
-                    data-bs-dismiss="modal"
-                    (click)="seleccionarEmpresa(empresa)"
-                  > 
-                    <mat-icon>check_circle</mat-icon>
-                  </button>
-                </td>
-                 </ng-container
-              >
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            </table>
-
-           
-
-            
-            <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons aria-label="Select page of periodic elements">
-            </mat-paginator>
-          </div>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="modal-label">Empresas</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="rucEmpresa">
+              <th mat-header-cell *matHeaderCellDef>RUC</th>
+              <td mat-cell *matCellDef="let empresa">{{ empresa.rucEmpresa }}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombreEmpresa">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let empresa">{{ empresa.nombreEmpresa }}</td>
+            </ng-container>
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef>Dirección</th>
+              <td mat-cell *matCellDef="let empresa">{{ empresa.direccion }}</td>
+            </ng-container>
+            <ng-container matColumnDef="agg">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let empresa">
+                <button class="agregar" data-bs-dismiss="modal" (click)="seleccionarEmpresa(empresa)">
+                  <mat-icon>check_circle</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+  
+          <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
         </div>
       </div>
     </div>
