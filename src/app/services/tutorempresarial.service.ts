@@ -9,6 +9,11 @@ import { Observable, map } from 'rxjs';
 export class tutorempresarialService {
   url: string = 'http://localhost:8080/api/tutorEmp';
   urlGet:string="http://localhost:8080/api/tutorEmp/datos"
+  idTutor: any;
+  nombreTutor: any;
+  empresa: any;
+  emailTutor: any;
+  contactoTutor: any;
 
   constructor(private http: HttpClient) { }
 
@@ -40,6 +45,18 @@ export class tutorempresarialService {
 
   updateEstado(idTutor: any) {
     return this.http.put(`${this.url}/updateStatus/${idTutor}`, null);
+  }
+
+  actualizarTutoremp(idTutor: any, empresa: string, nombreTutor: string, emailTutor: string, contactoTutor: string){  
+    const tutorEmpresarialActualizado = {
+      idTutor: idTutor,
+      empresa: empresa,
+      nombreTutor: nombreTutor,
+      emailTutor: emailTutor,
+      contactoTutor: contactoTutor
+    };
+  
+    return this.http.put(`${this.url}/actualizar`, tutorEmpresarialActualizado);
   }
 
   listarEmpresariales() {

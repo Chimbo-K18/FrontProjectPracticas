@@ -104,6 +104,8 @@ export class RegistroTutEmpresarialComponent {
   ngOnInit(): void {
     this.personasemp = new Personas_empresa(); // Inicializar la propiedad 'personasemp' con una instancia de PersonasEmp
     this.personasemp.genero = '';
+    this.personasemp.cedula = '';
+    this.personasemp.correo = '';
   }
   // para seleccionar la empresa
   seleccionarEmpresa(empresa: any) {
