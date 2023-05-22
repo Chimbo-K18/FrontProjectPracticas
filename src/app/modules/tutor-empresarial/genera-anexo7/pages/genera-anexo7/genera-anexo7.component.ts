@@ -147,6 +147,7 @@ export class GeneraAnexo7Component   implements AfterViewInit{
         this.practica.estadoanexo7 = true;
         this.practicaservice.UpdatePractica(this.practica, this.idprac).subscribe(practicaupdate=>{
           console.log(practicaupdate);
+          this.anexo7.estado_especifico = true;
           this.anexo7.practica = practicaupdate;
           this.anexo7service.crearAnexo7(this.anexo7).subscribe(dataanexo7=>{
             console.log(dataanexo7);

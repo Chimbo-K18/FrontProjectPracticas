@@ -22,4 +22,13 @@ export class Anexo8Service {
     return this.http.put(`${this.url}/updateDocument/${idAnexo8}?idDocumento=${documentoAnexo2}`, null);
   }
 
+  
+  UpdateAnexo8(anexo8: any, anexoid:any){
+    return this.http.put<Anexo8>(this.url+`/actualizar/${anexoid}`, anexo8);
+  }
+
+  buscarId(id: any):Observable<Anexo8>{
+    return this.http.get<Anexo8>(this.url + `/buscar/${id}`);
+  }
+
 }

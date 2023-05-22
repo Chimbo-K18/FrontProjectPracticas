@@ -23,4 +23,11 @@ export class Anexo7Service {
   }
 
 
+  UpdateAnexo7(anexo7: any, anexoid:any){
+    return this.http.put<Anexo7>(this.url+`/actualizar/${anexoid}`, anexo7);
+  }
+
+  buscarId(id: any):Observable<Anexo7>{
+    return this.http.get<Anexo7>(this.url + `/buscar/${id}`);
+  }
 }

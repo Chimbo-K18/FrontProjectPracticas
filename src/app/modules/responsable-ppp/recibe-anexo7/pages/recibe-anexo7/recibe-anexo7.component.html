@@ -1,1 +1,162 @@
-<p>recibe-anexo7 works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="bodyL">
+
+
+
+  <div style="color: black;text-align: left; margin-left: 20px; margin-top: 60px;">
+    <h1> <strong>Recepción de Anexos 7 - Responsable</strong> </h1>
+    <h3>A continuación se visualizarán todos los anexos 7.</h3>
+</div>
+    
+
+
+<mat-stepper labelPosition="bottom" #stepper style="width: 80%;">
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Fase 1</ng-template>
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fase 1</ng-template>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <mat-card style="width: 1200px; ">
+          <div>
+
+            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <table mat-table [dataSource]="dataF1" class="mat-elevation-z8">
+            <!-- Position Column --> 
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre</th>
+              <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudPracticas.nombreSolicitud}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;">Carrera</th>
+              <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudPracticas.nombre_carrera}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;">Descripcion Actividades</th>
+              <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudPracticas.descripcionActividades}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Encargado </th>
+              <td mat-cell *matCellDef="let practicasSolicitudesd"> {{practicasSolicitudesd.solicitudPracticas.tutorEmpresarial.usuario_empresarial.nombres}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+             <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+              <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+             <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+              <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+             <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+              <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+               <!-- TENER EN CUENTA EL BOTONNNNNNNNNNNNNN -->
+
+            <ng-container matColumnDef="symbol" bol>
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;">Ver Anexos</th>
+              <td mat-cell *matCellDef="let practicasSolicitudesd"> <button mat-raised-button color="primary"
+                  matStepperNext (click)="listarAnexos(practicasSolicitudesd.idConvocatorias)">VER ANEXOS</button></td>
+
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <tr mat-row *matRowDef="let rows; columns: displayedColumns1;"></tr>
+          </table>
+          <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
+            aria-label="Select page of solicitudes">
+          </mat-paginator>
+          </div>
+        </mat-card>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Fase 2</ng-template>
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fase 2</ng-template>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <mat-card style="width: 1200px; ">
+          <div>
+
+            <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <!-- CAMBIAR LOS DATOS EN EL TS ESTA TABLA ESTA CON DATOS QUE NO COORESPONDEN, OJITO AHI -->
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    
+      
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef >Nombre Estudiante</th>
+              <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.practica.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.nombres}} {{listaconvocatoria.practica.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.apellidos}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+              <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.practica.fechaInicio}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Fecha Fin </th>
+              <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.practica.fechaFin}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Ciclo </th>
+              <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.practica.solicitudConvocatoria.ciclo}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="carrera">
+              <th mat-header-cell *matHeaderCellDef> Carrera </th>
+              <td mat-cell *matCellDef="let listaconvocatoria"> {{listaconvocatoria.practica.solicitudConvocatoria.estudiantePracticante.usuario_estudiante_practicante.carrera}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="descargar">
+              <th mat-header-cell *matHeaderCellDef> Descargar </th>
+              <td mat-cell *matCellDef="let listaconvocatoria"><button style="margin-right: 12px;" mat-raised-button color="primary" (click)=" descargarPDF(listaconvocatoria.idAnexo7)">Descargar</button></td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+          </div>
+        </mat-card>
+      </div>
+    </form>
+  </mat-step>
+
+</mat-stepper>  
+    
+</body>
+</html>

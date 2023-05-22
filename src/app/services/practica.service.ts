@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Empresa } from '../models/empresa';
 import { Practica } from '../models/practica';
+import { Anexo1 } from '../models/anexos/anexo1';
+import { Anexo5 } from '../models/anexos/anexo5';
+import { Anexo6 } from '../models/anexos/anexo6';
+import { Convocatorias } from '../models/convocatorias';
+import { Anexo7 } from '../models/anexos/anexo7';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +76,10 @@ export class PracticaService {
     return this.http.get<Practica[]>(this.url+`/practicaporacademico/${cedula}`)
   }
 
+  listarPorResponsable(cedula: any): Observable<Convocatorias[]>{
+    return this.http.get<Convocatorias[]>(this.url+`/convocatoriasporresponsable/${cedula}`)
+  }
+
   listarPorEmpresaAnexo7(idempresa: any): Observable<Practica[]>{
     return this.http.get<Practica[]>(this.url+`/practicaporempresaanexo7/${idempresa}`)
   }
@@ -103,7 +112,55 @@ export class PracticaService {
     return this.http.get<Practica[]>(this.url+`/carreraparaanexo4/${carrera}`)
   }
 
+  listarPorAnexo5Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo5/${carrera}`)
+  }
 
+  listarPorAnexo6Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo6/${carrera}`)
+  }
 
+  listarPorAnexo7Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo7/${carrera}`)
+  }
 
+  listarPorAnexo8Recibe(carrera: any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/carreraparaanexo8/${carrera}`)
+  }
+
+  DocumentoAnexo1Recibe(idpractica:any): Observable<Anexo1[]>{
+    return this.http.get<Anexo1[]>(this.url+`/documentoanexo1/${idpractica}`);
+  }
+
+  PracticaDocumentoAnexo(cedula:any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/documentoanexoPractica/${cedula}`);
+  }
+
+  DocumentoAnexoAcademicoRecibe(cedula:any): Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+`/documentoanexoParaAcademico/${cedula}`);
+  }
+
+  DocumentoAnexo5Recibe(cedula:any): Observable<Anexo5[]>{
+    return this.http.get<Anexo5[]>(this.url+`/documentoanexo5/${cedula}`);
+  }
+
+  DocumentoAnexo6Recibe(cedula:any): Observable<Anexo6[]>{
+    return this.http.get<Anexo6[]>(this.url+`/documentoanexo6/${cedula}`);
+  }
+
+  DocumentoAnexo6RecibeAcademico(cedula:any): Observable<Anexo6[]>{
+    return this.http.get<Anexo6[]>(this.url+`/documentoAcademicoanexo6/${cedula}`);
+  }
+
+  DocumentoAnexo7RecibeAcademico(cedula:any): Observable<Anexo7[]>{
+    return this.http.get<Anexo7[]>(this.url+`/documentoEmpresarialanexo7/${cedula}`);
+  }
+
+  DocumentoAnexo8RecibeAcademico(cedula:any): Observable<Anexo7[]>{
+    return this.http.get<Anexo7[]>(this.url+`/documentoAcademicoanexo8/${cedula}`);
+  }
+
+  DocumentoAnexo8RecibeEmpresarial(cedula:any): Observable<Anexo7[]>{
+    return this.http.get<Anexo7[]>(this.url+`/documentoEmpresarialanexo8/${cedula}`);
+  }
 }

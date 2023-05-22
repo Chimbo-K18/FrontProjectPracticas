@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { Practica } from 'src/app/models/practica';
 import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { PracticaService } from 'src/app/services/practica.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 export interface PeriodicElement {
@@ -35,22 +36,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class RecibeAnexo3Component  {
 
+  displayedColumns1: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
+  dataF1 = new MatTableDataSource<Practica>([]);
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'carrera','descargar'];
   dataSource = new MatTableDataSource<Practica>([]);
 
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  constructor(private responsableppservice: Responsable_PPPService, private practicaservice: PracticaService){
-
+  constructor(private responsableppservice: Responsable_PPPService, private practicaservice: PracticaService, private _formBuilder: FormBuilder){
+    
   }
-
   ngOnInit(): void {
 
-    this.listarAnexos();
+    this.listarpracticas();
   }
-  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -59,21 +67,29 @@ export class RecibeAnexo3Component  {
   }
 
   Ce:any;
-  carreradata:any;
-  listaconvocatoria: any[] = [];
-  listarAnexos() {
+  practicasSolicitudesd: any;
+  listarpracticas(){
     this.Ce = localStorage.getItem("idusuario");
     console.log(this.Ce);
-    this.responsableppservice.getBuscarcedula(this.Ce).subscribe(datausu => {
-      console.log(datausu);
-    this.carreradata = datausu.carrera;
-        this.practicaservice.listarPorAnexo3Recibe(this.carreradata).subscribe(dataconvo => {
+    this.practicaservice.listarPorResponsable(this.Ce).subscribe(datapractica=>{
+      console.log(datapractica);
+      this.practicasSolicitudesd = datapractica;
+      console.log(datapractica);
+
+      this.dataF1.data = this.practicasSolicitudesd
+    });
+  }
+
+  listaconvocatoria: any[] = [];
+  listarAnexos(idconvo:any) {
+
+        this.practicaservice.listarPorAnexo3Recibe(idconvo).subscribe(dataconvo => {
           console.log(dataconvo);
           this.listaconvocatoria = dataconvo;
           this.dataSource.data = this.listaconvocatoria;
 
         });
-      });
+    
 
   }
 
@@ -82,10 +98,9 @@ export class RecibeAnexo3Component  {
 
   descargarPDF(idAnexo3 : any) {
     this.idAnexo3Generado = idAnexo3; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo3/${this.idAnexo3Generado}`;
+    const url = `http://localhost:8080/api/documentoAnexo3/download/${this.idAnexo3Generado}`;
     window.open(url, '_blank');
   }
-
 
 
 }
