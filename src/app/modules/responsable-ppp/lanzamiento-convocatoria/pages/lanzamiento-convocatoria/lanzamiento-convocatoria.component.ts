@@ -123,7 +123,7 @@ export class LanzamientoConvocatoriaComponent {
 
     this.convocatoria.fechaPublicacion = this.getFechaActual();
     this.convocatoria.solicitudPracticas = this.solicitudID;
-
+    this.convocatoria.estadoConvocatoria = true;
     return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
       (res) => {
 
