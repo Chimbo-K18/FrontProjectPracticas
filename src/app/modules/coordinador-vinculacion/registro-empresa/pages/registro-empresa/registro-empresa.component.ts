@@ -88,7 +88,7 @@ export class RegistroEmpresaComponent implements OnInit {
   } else if (!this.empresa.correo.endsWith('@gmail.com')) {
     Swal.fire(
       'Error',
-      'El correo electrónico debe tener el formato @gmail.com.',
+      'El correo electrónico debe tener el formato correcto.',
       'error'
     );
   } else {

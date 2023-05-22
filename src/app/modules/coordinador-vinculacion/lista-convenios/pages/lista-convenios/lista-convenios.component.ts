@@ -80,5 +80,4 @@ export class ListaConveniosComponent implements  OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }
