@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -58,12 +59,14 @@ export class ListaEmpresarialesComponent implements OnInit {
   idusuario: any;
   dataresponsable: any;
   getTutorEmpresarial(){
+
     this.idusuario = localStorage.getItem("idusuario");
     this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
     this.dataresponsable = datausu.idResponsablePPP;
     console.log(this.dataresponsable);
     
     this.http.get('http://localhost:8080/api/tutorEmp/datos/'+this.dataresponsable).subscribe({
+
       next: (response: any) => {
         console.log(response);
         this.datos = response;
@@ -122,5 +125,28 @@ Swal.fire("Usted ha cancelado la eliminación");
 
       }
 })}
+
+actualizarTutorEmp() {
+  const idTutor = this.tutoresEmpreService.idTutor;
+  const empresa = this.tutoresEmpreService.empresa;
+  const nombreTutor = this.tutoresEmpreService.nombreTutor;
+  const emailTutor = this.tutoresEmpreService.emailTutor;
+  const contactoTutor = this.tutoresEmpreService.contactoTutor;
+
+  // Llama al método de actualización del servicio pasando los valores actualizados
+  this.tutoresEmpreService.actualizarTutoremp(idTutor, empresa, nombreTutor, emailTutor, contactoTutor).subscribe(
+    (resultado) => {
+      console.log("Tutor empresarial actualizado correctamente:", resultado);
+      // Realiza alguna acción adicional después de actualizar, si es necesario
+    },
+    (error) => {
+      console.error("Error al actualizar el tutor empresarial:", error);
+      // Maneja el error de acuerdo a tus necesidades
+    }
+  );
+
+  // Cierra el modal
+  // Puedes usar cualquier método para cerrar el modal, como 'data-bs-dismiss="modal"' o a través de tu lógica personalizada
+}
 
 }

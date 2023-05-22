@@ -28,43 +28,43 @@ const routes: Routes = [
 
   {
     path: 'administrador',
-    component: WelcomeAdministradorComponent, canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_ADMIN'] },
+    component: WelcomeAdministradorComponent, //canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_ADMIN'] },
     loadChildren: () => import("./modules/administrador/administrador.module").then(m => m.AdministradorModule)
   },
 
   {
     path: 'coordinador',
-    component: WelcomeCoordVinculacionComponent,canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_CORDINADOR'] },
+    component: WelcomeCoordVinculacionComponent,//canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_CORDINADOR'] },
     loadChildren: () => import("./modules/coordinador-vinculacion/coordinador-vinculacion.module").then(m => m.CoordinadorVinculacionModule)
   },
 
   {
     path: 'director',
-    component: WelcomeDirectorComponent, canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_DIRECTOR'] },
+    component: WelcomeDirectorComponent, //canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_DIRECTOR'] },
     loadChildren: () => import("./modules/director-carrera/director-carrera.module").then(m => m.DirectorCarreraModule)
   },
 
   {
     path: 'estudiante',
-    component: WelcomeEstudianteComponent, canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_ESTUDIANTE'] },
+    component: WelcomeEstudianteComponent, //canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_ESTUDIANTE'] },
     loadChildren: () => import("./modules/estudiante/estudiante.module").then(m => m.EstudianteModule)
   },
 
   {
-    path: 'responsable', canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_RESPONSABLEPP'] },
+    path: 'responsable', //canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_RESPONSABLEPP'] },
     component: WelcomeResponsableComponent,
     loadChildren: () => import("./modules/responsable-ppp/responsable-ppp.module").then(m => m.ResponsablePppModule)
   },
 
 
   {
-    path: 'empresarial', canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_TUTOREMPRESARIAL'] },
+    path: 'empresarial', //canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_TUTOREMPRESARIAL'] },
     component: WelcomeEmpresarialComponent,
     loadChildren: () => import("./modules/tutor-empresarial/tutor-empresarial.module").then(m => m.TutorEmpresarialModule)
   },
 
   {
-    path: 'academico', canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_TUTORACADEMICO'] },
+    path: 'academico', //canActivate: [AuthGaurdGuard], data: {expectedRoles: ['ROLE_TUTORACADEMICO'] },
     component: WelcomeAcademicoComponent,
     loadChildren: () => import("./modules/tutor-academico/tutor-academico.module").then(m => m.TutorAcademicoModule)
   }
