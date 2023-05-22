@@ -24,6 +24,13 @@ export class Anexo1Service {
     return this.http.put(`${this.url}/updateDocument/${idAnexo1}?idDocumento=${idDocumento}`, null);
   }
 
+  UpdateAnexo1(anexo1: any, anexoid:any){
+    return this.http.put<Anexo1>(this.url+`/actualizar/${anexoid}`, anexo1);
+  }
+
+  buscarId(id: any):Observable<Anexo1>{
+    return this.http.get<Anexo1>(this.url + `/buscar/${id}`);
+  }
 
 
 }

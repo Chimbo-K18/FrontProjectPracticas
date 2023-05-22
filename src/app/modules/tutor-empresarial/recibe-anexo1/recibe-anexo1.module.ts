@@ -41,7 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
-    RecibeAnexo1RoutingModule
+    RecibeAnexo1RoutingModule,
   ],
   exports:[
     RecibeAnexo1Component

@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { Responsable_PPPService } from 'src/app/services/responsable_ppp.service';
 import { PracticaService } from 'src/app/services/practica.service';
 import { Practica } from 'src/app/models/practica';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 export interface PeriodicElement {
@@ -32,23 +33,31 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./recibe-anexo8.component.css']
 })
 
+export class RecibeAnexo8Component implements OnInit {
 
-
-export class RecibeAnexo8Component implements AfterViewInit {
+  displayedColumns1: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
+  dataF1 = new MatTableDataSource<Practica>([]);
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'carrera','descargar'];
   dataSource = new MatTableDataSource<Practica>([]);
 
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  constructor(private responsableppservice: Responsable_PPPService, private practicaservice: PracticaService){
+  constructor(private responsableppservice: Responsable_PPPService, private practicaservice: PracticaService, private _formBuilder: FormBuilder){
     
   }
+  
   ngOnInit(): void {
 
-    this.listarAnexos();
+    this.listarpracticas();
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -58,29 +67,38 @@ export class RecibeAnexo8Component implements AfterViewInit {
   }
 
   Ce:any;
-  carreradata:any;
-  listaconvocatoria: any[] = [];
-  listarAnexos() {
+  practicasSolicitudesd: any;
+  listarpracticas(){
     this.Ce = localStorage.getItem("idusuario");
     console.log(this.Ce);
-    this.responsableppservice.getBuscarcedula(this.Ce).subscribe(datausu => {
-      console.log(datausu);
-    this.carreradata = datausu.carrera;
-        this.practicaservice.listarPorAnexo1Recibe(this.carreradata).subscribe(dataconvo => {
+    this.practicaservice.listarPorResponsable(this.Ce).subscribe(datapractica=>{
+      console.log(datapractica);
+      this.practicasSolicitudesd = datapractica;
+      console.log(datapractica);
+
+      this.dataF1.data = this.practicasSolicitudesd
+    });
+  }
+
+  listaconvocatoria: any[] = [];
+  listarAnexos(idconvo:any) {
+
+        this.practicaservice.listarPorAnexo8Recibe(idconvo).subscribe(dataconvo => {
           console.log(dataconvo);
           this.listaconvocatoria = dataconvo;
           this.dataSource.data = this.listaconvocatoria;
 
         });
-      });
 
   }
-  anexo1generado:any;
-  descargarPDF(idAnexo1 :any) {
-    this.anexo1generado = idAnexo1; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/anexo1/${this.anexo1generado}`;
+
+  anexo8generado:any;
+  descargarPDF(idAnexo8 :any) {
+    this.anexo8generado = idAnexo8; // obtén el ID de la solicitud
+    const url = `http://localhost:8080/api/documentoAnexo8/download/${this.anexo8generado}`;
     window.open(url, '_blank');
   }
+
 
  
 
