@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <body class="bodyL">
+    <div class="xdxd">
     <div style="display: flex; flex-direction: row">
       <mat-card class="example-card" style="flex-basis: 50%; flex-grow: 0">
         <mat-card-content>
@@ -12,8 +13,8 @@
                 style="width: 25%"
               />
             </div>
-            <h1 style="margin-right: 12px; font-size: 25px">
-              <strong>Register</strong>
+            <h1 style="margin-right: 12px">
+              <strong>Registrar</strong>
             </h1>
           </div>
           <div>
@@ -96,28 +97,33 @@
                 mayúsculas.</span
               >
 
-              <button
+              <div class="groupbtn">
+                <button
                 mat-raised-button
-                color="primary"
-                style="margin-right: 25px"
+                class="btnSign"
+                style="margin-right: 15px"
                 type="submit"
               >
                 Registrar
               </button>
 
               <button
+               class="btnSign"
+               style="margin-left: 15px"
                 onclick="location.href=''"
                 mat-raised-button
-                color="primary"
+           
               >
                 Home
               </button>
+              </div>
             </form>
           </div>
 
           <div></div>
         </mat-card-content>
       </mat-card>
+    </div>
     </div>
   </body>
 </html>
