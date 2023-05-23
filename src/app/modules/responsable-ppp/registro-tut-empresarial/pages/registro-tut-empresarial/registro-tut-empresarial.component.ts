@@ -4,7 +4,7 @@ import { tutorempresarial } from 'src/app/models//tutorempresarial';
 import { Personas_empresa } from 'src/app/models/personaemp';
 import { personaempService } from './../../../../../services/personaemp.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -56,10 +56,24 @@ export class RegistroTutEmpresarialComponent {
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: [''],
+    cedula: [''],
+    primer_nombre: [''],
+    segundo_nombre: [''],
+    primer_apellido: [''],
+    segundo_apellido: [''],
+    celular: [''],
+    departamento: [''],
+    titulo: [''],
+    correo: [''],
+    cargo: [''],
+    genero: ['']
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: [''],
   });
+
+  
+  
 
   isEditable = false;
   //empresa
@@ -209,27 +223,41 @@ export class RegistroTutEmpresarialComponent {
   correousu:any;
   nombresusu:any;
   apellidosusu:any;
-  crearpersona(){
-this.verficarcedula();
-this.personaempService.buscarcedulapersona(this.cedulapersonass).subscribe(buscarpersona =>{
-  if(buscarpersona.cedula==this.cedulapersonass){
-    Swal.fire(
-      'Error',
-      'La cedula ya esta registrada.',
-      'error'
-            );
-  }
+  crearpersona() {
+    this.verficarcedula();
+    this.personaempService.buscarcedulapersona(this.cedulapersonass).subscribe(buscarpersona => {
+      if (buscarpersona.cedula == this.cedulapersonass) {
+        Swal.fire(
+          'Error',
+          'La cedula ya está registrada.',
+          'error'
+        );
+      }
     });
-  this.personaempService.buscarcorreopersona(this.correoconsulta).subscribe(buscarpersona =>{
-    if(buscarpersona.correo== this.correoconsulta){
+  
+    this.personaempService.buscarcorreopersona(this.correoconsulta).subscribe(buscarpersona => {
+      if (buscarpersona.correo == this.correoconsulta) {
+        Swal.fire(
+          'Error',
+          'El correo ya está registrado.',
+          'error'
+        );
+      }
+    });
+  
+    // Expresión regular para validar el correo
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@gmail\.com$|^[\w-]+(\.[\w-]+)*@hotmail\.com$/;
+  
+    if (!emailRegex.test(this.personasemp.correo)) {
       Swal.fire(
         'Error',
-        'El correo ya esta registrado.',
+        'El correo no tiene un formato válido.',
         'error'
-            );
+      );
+      return; // Salir de la función si el correo no es válido
     }
-    });
-    this.personaempService.crearpersonaemp(this.personasemp).subscribe(data =>{
+  
+    this.personaempService.crearpersonaemp(this.personasemp).subscribe(data => {
       localStorage.setItem("cedulapersona", String(data.cedula));
       this.cargardatoseninput();
       this.stepperNext();
@@ -240,8 +268,9 @@ this.personaempService.buscarcedulapersona(this.cedulapersonass).subscribe(busca
         showConfirmButton: false,
         timer: 2000,
       });
-    })
-    }
+    });
+  }
+    
 
 variableencontrada:any;
   crearusuario(){

@@ -58,27 +58,97 @@ export class ListaEmpresarialesComponent implements OnInit {
   
   idusuario: any;
   dataresponsable: any;
-  getTutorEmpresarial(){
+  // getTutorEmpresarial(){
 
+  //   this.idusuario = localStorage.getItem("idusuario");
+  //   this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+    
+  //     if (datausu && datausu.idResponsablePPP) {
+  //       this.dataresponsable = datausu.idResponsablePPP;
+  //       console.log(this.dataresponsable);
+        
+  //       this.http.get('http://localhost:8080/api/tutorEmp/datos/'+this.dataresponsable).subscribe({
+
+  //     next: (response: any) => {
+  //       console.log(response);
+  //       this.datos = response;
+  //       this.dataSource = new MatTableDataSource<any>(this.datos);
+  //       this.dataSource.paginator = this.paginator;
+  //       this.dataSource.sort = this.sort;
+  //     },
+  //     error: (err) => {
+  //       alert("No hay tutores empresariales disponibles")
+  //     }
+  //   });
+  //     } else {
+  //       console.error('El objeto datausu o la propiedad idResponsablePPP son nulos.');
+  //     }  this.dataresponsable = datausu.idResponsablePPP;
+  //   console.log(this.dataresponsable);
+    
+    
+  // });  
+  // }
+  // getTutorEmpresarial() {
+  //   this.idusuario = localStorage.getItem("idusuario");
+    
+  //   this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(
+  //     (datausu) => {
+  //       if (datausu && datausu.idResponsablePPP) {
+  //         this.dataresponsable = datausu.idResponsablePPP;
+  //         console.log(this.dataresponsable);
+  
+  //         this.http.get('http://localhost:8080/api/tutorEmp/datos/' + this.dataresponsable).subscribe(
+  //           (response: any) => {
+  //             console.log(response);
+  //             this.datos = response;
+  //             this.dataSource = new MatTableDataSource<any>(this.datos);
+  //             this.dataSource.paginator = this.paginator;
+  //             this.dataSource.sort = this.sort;
+  //           },
+  //           (error) => {
+  //             alert("No hay tutores empresariales disponibles");
+  //           }
+  //         );
+  //       } else {
+  //         console.error('El objeto datausu o la propiedad idResponsablePPP son nulos.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error("Error al obtener el responsable del PPP:", error);
+  //     }
+  //   );
+  // }
+  getTutorEmpresarial() {
     this.idusuario = localStorage.getItem("idusuario");
     this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
-    this.dataresponsable = datausu.idResponsablePPP;
-    console.log(this.dataresponsable);
-    
-    this.http.get('http://localhost:8080/api/tutorEmp/datos/'+this.dataresponsable).subscribe({
-
-      next: (response: any) => {
-        console.log(response);
-        this.datos = response;
-        this.dataSource = new MatTableDataSource<any>(this.datos);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      },
-      error: (err) => {
-        alert("No hay tutores empresariales disponibles")
+      if (datausu && datausu.idResponsablePPP) {
+        this.dataresponsable = datausu.idResponsablePPP;
+        console.log(this.dataresponsable);
+        
+        this.http.get('http://localhost:8080/api/tutorEmp/datos/' + this.dataresponsable).subscribe({
+          next: (response: any) => {
+            console.log(response);
+            this.datos = response;
+            console.log(this.datos); // Verifica si los datos están asignados correctamente
+            
+            this.dataSource = new MatTableDataSource<any>(this.datos);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+  
+            // Aplica el filtro y la paginación nuevamente
+            this.dataSource.filter = '';
+            if (this.dataSource.paginator) {
+              this.dataSource.paginator.firstPage();
+            }
+          },
+          error: (err) => {
+            alert("No hay tutores empresariales disponibles")
+          }
+        });
+      } else {
+        console.error('El objeto datausu o la propiedad idResponsablePPP son nulos.');
       }
     });
-  });  
   }
 
   applyFilter(event: Event) {
