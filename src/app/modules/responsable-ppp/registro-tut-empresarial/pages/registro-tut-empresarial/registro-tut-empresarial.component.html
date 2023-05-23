@@ -31,7 +31,7 @@
                     id="cedulaPersona"
                     [(ngModel)]="personasemp.cedula"  [(ngModel)]="usuarios.cedula"
                     matInput
-                    formControlName="firstCtrl" 
+                    formControlName="cedula" 
                   />
                 </mat-form-field>
 
@@ -47,7 +47,7 @@
                     [(ngModel)]="personasemp.primer_nombre"
               
                     matInput
-                    formControlName="firstCtrl" 
+                    formControlName="primer_nombre" 
                     
                   />
                 </mat-form-field>
@@ -63,7 +63,7 @@
                   style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.segundo_nombre"
                     matInput
-                    formControlName="firstCtrl" 
+                    formControlName="segundo_nombre" 
                     
                   />
                 </mat-form-field>
@@ -79,7 +79,7 @@
                     id="last_name" style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.primer_apellido"
                     matInput
-                    formControlName="firstCtrl"
+                    formControlName="primer_apellido"
                     
                   />
                 </mat-form-field>
@@ -95,7 +95,7 @@
                   style="text-transform: uppercase;"
                     [(ngModel)]="personasemp.segundo_apellido"
                     matInput
-                    formControlName="firstCtrl"
+                    formControlName="segundo_apellido"
                     
                   />
                 </mat-form-field>
@@ -109,7 +109,7 @@
                   <input id="celular"
                   maxlength="10"
                     matInput
-                    formControlName="firstCtrl"
+                    formControlName="celular"
                     pattern="[0-9]{0,10}"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
                   />
@@ -124,7 +124,7 @@
       
                     [(ngModel)]="tutorempresarial.departamento"
                     matInput
-                    formControlName="firstCtrl"
+                    formControlName="departamento"
                     
                   />
                 </mat-form-field>
@@ -139,7 +139,7 @@
            
                     [(ngModel)]="tutorempresarial.titulo"
                     matInput
-                    formControlName="firstCtrl" 
+                    formControlName="titulo" 
                     
                   />
                 </mat-form-field>
@@ -156,7 +156,7 @@
                     name="correoPersona"
                     [(ngModel)]="personasemp.correo" [(ngModel)]="usuarios.correo"
                     matInput
-                    formControlName="firstCtrl" 
+                    formControlName="correo" 
                     
                   />
                   <mat-error>Ingresa un correo válido, por ejemplo, correo@gmail.com</mat-error>
@@ -174,13 +174,13 @@
              
                     [(ngModel)]="tutorempresarial.cargo"
                     matInput
-                    formControlName="firstCtrl" 
+                    formControlName="cargo" 
                     
                   />
                 </mat-form-field>
                 <select style="width: calc(50% - 10px)"
                   id="genero"
-                  formControlName="firstCtrl"
+                  formControlName="genero"
                   style="width: 270px; margin-right: 50px; padding-bottom: 10px; padding-right: 30px; margin-left: 25px;"
                   [(ngModel)]="personasemp.genero"
                 >
