@@ -85,8 +85,9 @@ export class RegistroEmpresaComponent implements OnInit {
       'El RUC debe tener 13 dígitos.',
       'error'
     );
-  } else if (!this.empresa.correo.endsWith('@gmail.com')) {
-    Swal.fire(
+  } else if (!this.empresa.correo.endsWith('@gmail.com') &&
+  !this.empresa.correo.endsWith('@hotmail.com') &&
+  !this.empresa.correo.endsWith('@outlook.com')) {    Swal.fire(
       'Error',
       'El correo electrónico debe tener el formato correcto.',
       'error'
