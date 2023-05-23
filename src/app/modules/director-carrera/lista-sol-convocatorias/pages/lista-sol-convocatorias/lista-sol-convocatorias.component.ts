@@ -1,27 +1,14 @@
+import { UserService } from './../../../../../services/user.service';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import { Convocatorias } from 'src/app/models/convocatorias';
+import { ConvocatoriasService } from 'src/app/services/convocatorias.service';
+import { SolicitudConvocatoriasService } from 'src/app/services/solicitudconvocatoria.service';
+import { SolicitudConvocatoria } from 'src/app/models/solicitudconvocatoria';
 
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-lista-sol-convocatorias',
@@ -29,10 +16,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./lista-sol-convocatorias.component.css']
 })
 export class ListaSolConvocatoriasComponent  {
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+  convocatorias: Convocatorias | any;
+  mivariable !: any;
+  //TABLA
+  //TABLA convocatorias
+  displayedColumns: string[] = [
+    'nombreconvocatoria',
+    'fechapublicacion',
+    'fechaexpiracion',
+    'estadoConvocatoria',
+  ];
+  listaConvocatoria: Convocatorias[] = [];
+  solicitudconvocatoria: SolicitudConvocatoria = new SolicitudConvocatoria();
+  loading: boolean = true;
+  dataSource = new MatTableDataSource<Convocatorias>([]);
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -43,7 +40,52 @@ export class ListaSolConvocatoriasComponent  {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+  constructor(
+    private convocatoriaService: ConvocatoriasService, 
+    private UserService:UserService,
+    private solicitudconvocatoriaservice: SolicitudConvocatoriasService) {
+    this.obtenerConvocatorias();
+  }
 
+  ngOnInit(): void {
+
+    this.listaConvocatorias();
+  }
+  listaConvocatorias() {
+    this.convocatoriaService.getConvocatorias().subscribe(
+      (res) => {
+        this.convocatorias = res;
+        console.log(this.convocatorias);
+      }
+    );
+  }
  
+  listassolicitudes: any[] = [];
+  idusuarious: any;
+  datadirector: any;
+  //obtener convocatorias
+  obtenerConvocatorias() {
+    this.idusuarious = localStorage.getItem("idusuario");
+    this.UserService.getuscedula(this.idusuarious).subscribe(datausu => {
+    this.datadirector = datausu.carrera;
+    console.log(this.datadirector);
+    this.convocatoriaService.listarConvocatoriasPorCarrera(this.datadirector).subscribe((data) => {
+      this.listaConvocatoria = data.map((result) => {
+        let convo = new Convocatorias();
+        convo.idConvocatorias = result.idConvocatorias;
+        convo.nombreConvocatoria = result.nombreConvocatoria;
+        convo.fechaPublicacion = result.fechaPublicacion
+        convo.fechaExpiracion = result.fechaExpiracion;
+        convo.documentoConvatoria = result.documentoConvatoria;
+        return convo;
+      });
+      this.dataSource.data = this.listaConvocatoria;
+      console.log(this.listaConvocatoria);
+      this.loading = false;
+
+    });
+    });
+   
+  }
 
 }
