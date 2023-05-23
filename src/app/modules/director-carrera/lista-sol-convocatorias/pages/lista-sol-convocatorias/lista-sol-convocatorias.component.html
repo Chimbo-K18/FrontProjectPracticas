@@ -23,60 +23,44 @@
             <input
               matInput
               (keyup)="applyFilter($event)"
-              placeholder="Ejm: Nombre de Convocatoria"
+              placeholder="Ejm: Nombre de Solicitud"
               #input
             />
           </mat-form-field>
         </div>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
           <!-- Position Column -->
-          <ng-container matColumnDef="nombreconvocatoria">
-            <th mat-header-cell *matHeaderCellDef style="text-align: left">
-              Nombre Convocatoria
-            </th>
-            <td mat-cell *matCellDef="let convocatorias">
-              {{ convocatorias.nombreConvocatoria }}
-            </td>
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef style="text-align: left;">Nombre Solicitud</th>
+            <td mat-cell *matCellDef="let listaconvocatorias"> {{listaconvocatorias.solicitudPracticas?.nombreSolicitud}} </td>
+          </ng-container> 
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef style="text-align: left;">Descripcion Actividades</th>
+            <td mat-cell *matCellDef="let listaconvocatorias"> {{listaconvocatorias.solicitudPracticas?.descripcionActividades}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="nombresoli">
-            <th mat-header-cell *matHeaderCellDef style="text-align: left">
-              Nombre Solicitud
-            </th>
-            <td mat-cell *matCellDef="let convocatorias">
-              {{ convocatorias.solicitudPracticas.nombreSolicitud }}
-            </td>
+          <!-- Name Column -->
+          <ng-container matColumnDef="fechaE">
+            <th mat-header-cell *matHeaderCellDef style="text-align: left;"> Fecha Envio </th>
+            <td mat-cell *matCellDef="let listaconvocatorias"> {{listaconvocatorias.solicitudPracticas?.fechaEnvioSolicitud}} </td>
           </ng-container>
-          <ng-container matColumnDef="fechapublicacion">
-            <th mat-header-cell *matHeaderCellDef style="text-align: left">
-              Fecha publicación
-            </th>
-            <td mat-cell *matCellDef="let convocatorias">
-              {{ convocatorias.fechaPublicacion }}
-            </td>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="fechaA">
+            <th mat-header-cell *matHeaderCellDef style="text-align: left;"> Fecha Aceptacion </th>
+            <td mat-cell *matCellDef="let listaconvocatorias"> {{listaconvocatorias.solicitudPracticas?.fechaAceptacion}}</td>
           </ng-container>
-          <ng-container matColumnDef="fechaexpiracion">
-            <th mat-header-cell *matHeaderCellDef style="text-align: left">
-              Fecha Expiración
-            </th>
-            <td mat-cell *matCellDef="let convocatorias">
-              {{ convocatorias.fechaExpiracion }}
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="estadoConvocatoria">
-            <th mat-header-cell *matHeaderCellDef style="text-align: left">
-              Estado Aprobación
-            </th>
-            <td mat-cell *matCellDef="let convocatorias">
-              <span *ngIf="convocatorias.estadoConvocatoria; else noAprobado">
-                Aprobada</span
-              >
+
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef style="text-align: left;"> Estado </th>
+            <td mat-cell *matCellDef="let listaconvocatorias">
+              <span *ngIf="listaconvocatorias.solicitudPracticas?.estadoSolicitud; else noAprobado"> Aprobada</span>
               <ng-template #noAprobado>Pendiente</ng-template>
             </td>
           </ng-container>
-
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
         </table>
         <mat-paginator
           [pageSizeOptions]="[4]"
