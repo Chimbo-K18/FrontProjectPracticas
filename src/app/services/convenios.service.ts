@@ -18,6 +18,13 @@ export class ConveniosService {
     return this.http.get<Convenio[]>(`${this.URL}listar`);
 
   }
+  buscarId(id: any):Observable<Convenio>{
+    return this.http.get<Convenio>(this.URL + `buscar/${id}`);
+  }
+
+  UpdateConvenio(convenios: Convenio, idConvenio:any){
+    return this.http.put<Convenio>(this.URL+`actualizar/${idConvenio}`, convenios);
+  }
 
 
 }
