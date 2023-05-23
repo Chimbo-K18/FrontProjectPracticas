@@ -37,7 +37,7 @@ export class ListaSolConvocatoriasComponent implements OnInit {
   obtenersolicitudes() {
     this.idusuarious = localStorage.getItem("idusuario");
     this.UserService.getuscedula(this.idusuarious).subscribe(datausu => {
-    this.convocatoriaService.listarConvocatoriasPorCarrera(datausu.carrera).subscribe({
+    this.convocatoriaService.listarConvocatoriasSoliPorCarrera(datausu.carrera).subscribe({
       next: (data) => {
       this.listaconvocatorias = data;
       console.log("estas es la data de convocatoria")

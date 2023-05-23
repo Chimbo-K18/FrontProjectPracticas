@@ -59,5 +59,8 @@ export class ConvocatoriasService {
   ConvocatoriaporEmpresaTrue(idempresa: any): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/convocatoriaporempresaestadosoli/${idempresa}`)
   }
+  listarConvocatoriasSoliPorCarrera(carrera:any){
+    return this.http.get<Convocatorias[]>(`${this.API_URL}/convocatoriasoli/${carrera}`);
+  }
 
 }
