@@ -56,7 +56,6 @@ body {
   justify-content: space-between;
 }
 
-
 .promo_card{
   width: 100%;
   color: #fff;
@@ -75,6 +74,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+
 
 /* .left_sidebar {
   display: flex;
@@ -283,6 +283,8 @@ td {
   color: #555;
 }
 
+
+
 tr:hover {
   background-color: rgba(79, 148, 228, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -391,6 +393,7 @@ tr:hover {
   font-size: 0.9rem;
 
 }
+
 
 .mat-card-content p {
   margin: 0;
