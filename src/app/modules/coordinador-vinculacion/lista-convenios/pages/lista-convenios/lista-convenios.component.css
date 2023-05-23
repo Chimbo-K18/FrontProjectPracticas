@@ -492,5 +492,35 @@ background-size: 100% 100%;
     width: 100px;
   }
 
-
+  .boton-eliminar {
+    background-color: rgb(32, 113, 218);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .boton-eliminar:hover {
+    background-color: rgb(254, 217, 30);
+  }
+  
+  .boton-eliminar:active {
+    background-color: rgb(32, 113, 218);
+  }
+  
+  @keyframes eliminado {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+  
+  .boton-eliminar.eliminado {
+    animation: eliminado 0.3s ease-in-out;
+  }
+  
   
