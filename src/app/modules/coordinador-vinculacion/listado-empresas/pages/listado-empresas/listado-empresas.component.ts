@@ -71,6 +71,8 @@ export class ListadoEmpresasComponent implements OnInit {
   traerEmpresa(idEmpresa: any) {
     console.log(idEmpresa);
     localStorage.setItem('idEmpre', String(idEmpresa));
+    this.capturarEmpresa();
+
 
   }
   traerEstado(idEmpresa: any) {

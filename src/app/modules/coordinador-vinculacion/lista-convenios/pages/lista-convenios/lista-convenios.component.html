@@ -20,13 +20,12 @@
         alt="lg.png">
 
 
-
-      <div style="text-align: center;">
-        <mat-form-field appearance="standard">
-          <mat-label>Búsqueda</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Numero de convenio" #input>
-        </mat-form-field>
-      </div>
+        <div style="text-align: center;">
+          <mat-form-field appearance="standard">
+            <mat-label>Búsqueda</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Nombre" #input>
+          </mat-form-field>
+        </div>
 
 
 
@@ -86,6 +85,11 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No hay datos para mostrar "{{input.value}}"</td>
+        </tr>
+        
       </table>
       <mat-paginator [pageSizeOptions]="[4]" showFirstLastButtons aria-label="Select page of periodic elements">
       </mat-paginator>

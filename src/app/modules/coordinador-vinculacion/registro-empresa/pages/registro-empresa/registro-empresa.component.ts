@@ -21,15 +21,7 @@ export class RegistroEmpresaComponent implements OnInit {
   ngOnInit(): void {
     // Buscar Empresa Por ID
     this.activateRoute.params
-      // .subscribe(params => {
-      //   let id: number = params['idEmpresa'];
-      //   if (id) {
-      //     this.empresaServices.buscarId(id).subscribe(response => this.empresa = response);
-      //   }
-      // });
-
       this.empresa = new Empresa;
-
       this.empresa.ciudad = '';
       this.empresa.correo = '';
       this.empresa.codigoPostal = '';
@@ -39,36 +31,6 @@ export class RegistroEmpresaComponent implements OnInit {
       this.empresa.rucEmpresa = '';
       this.empresa.numeroTelefono = '';
   }
-
-  // crearEmpresa() {
-  //   if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
-  //     Swal.fire(
-  //       'Campos Vacíos',
-  //       'Todos los campos deben ser ingresados.',
-  //       'error'
-  //     );
-  //   } else {
-  //     this.empresaServices.crearEmpresa(this.empresa)
-  //       .subscribe(response => {
-  //         console.log('Exito al Registrar la empresa');
-  //         Swal.fire({
-  //           position: 'top',
-  //           icon: 'success',
-  //           title: 'Empresa Creada Exitosamente',
-  //           showConfirmButton: false,
-  //           timer: 2000,
-  //         });
-  //       }, error => {
-  //         console.log('Error al registrar la empresa:', error);
-  //         Swal.fire(
-  //           'Error',
-  //           'No se pudo registrar la empresa. Por favor, inténtelo nuevamente.',
-  //           'error'
-  //         );
-  //       });
-  //   }
-  // }
-
 
   crearEmpresa() {
   // this.empresa.status = true;
@@ -113,46 +75,6 @@ export class RegistroEmpresaComponent implements OnInit {
       });
   }
 }
-
-
-    // crearEmpresa() {
-    //   // this.empresa.status= true;
-
-    //   if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
-    //     Swal.fire(
-    //       'Campos Vacíos',
-    //       'Todos los campos deben ser ingresados.',
-    //       'error'
-    //     );
-    //   } else if (this.empresa.rucEmpresa.length !== 13) {
-    //     Swal.fire(
-    //       'Error',
-    //       'El RUC debe tener 13 dígitos.',
-    //       'error'
-    //     );
-    //   } else {
-    //     this.empresaServices.crearEmpresa(this.empresa)
-    //       .subscribe(response => {
-    //         console.log('Exito al Registrar la empresa');
-    //         Swal.fire({
-    //           position: 'top',
-    //           icon: 'success',
-    //           title: 'Empresa Creada Exitosamente',
-    //           showConfirmButton: false,
-    //           timer: 2000,
-    //         });
-    //       }, error => {
-    //         console.log('Error al registrar la empresa:', error);
-    //         Swal.fire(
-    //           'Error',
-    //           'No se pudo registrar la empresa. Por favor, inténtelo nuevamente.',
-    //           'error'
-    //         );
-    //       });
-    //   }
-    // }
-
-
 
   LimpiarCampos() {
     this.empresa.ciudad = '';

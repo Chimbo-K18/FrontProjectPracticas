@@ -73,7 +73,6 @@ export class ListaConveniosComponent implements OnInit {
       );
   }
 
-  //Filtrado para todos los campos de la tabla
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -81,7 +80,7 @@ export class ListaConveniosComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
+  } 
 
   //  Actualizar Estado
   traerEstado(idConvenio: any) {

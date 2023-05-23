@@ -26,17 +26,5 @@ export class EmpresaService {
     return this.http.put<Empresa>(this.url+`/actualizar/${idEmpresa}`, empresa);
   }
 
-  // actualizarEmpresa( id:any, empresa: Empresa):Observable<Empresa>{
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${id}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url + `/actualizar/${empresa.idEmpresa}`, empresa);
-  // }
-
-  // actualizarEmpresa(empresa: Empresa): Observable<Empresa> {
-  //   return this.http.put<Empresa>(this.url+'/actualizar/'+empresa.idEmpresa, empresa);
-  // }
-
 
 }
