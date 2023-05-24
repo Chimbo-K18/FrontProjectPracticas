@@ -80,6 +80,11 @@ select {
   background-color: rgba(0, 0, 0, 0);
 }
 
+th{
+  color:black;
+  font-size: 15px;
+
+}
 .mat-stepper-horizontal {
   margin-top: 60px;
   margin-left: auto;

@@ -83,6 +83,11 @@ select {
     font-family: 'Times New Roman', Times, serif;
 
 }
+th{
+    color:black;
+    font-size: 15px;
+  
+  }
 
 .mat-stepper-horizontal {
     margin-top: 60px;

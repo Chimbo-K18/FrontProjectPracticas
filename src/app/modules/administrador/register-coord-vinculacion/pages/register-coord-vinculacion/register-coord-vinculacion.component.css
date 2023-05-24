@@ -1,6 +1,7 @@
 
 .container {
   position: fixed;
+ 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -12,7 +13,20 @@
 }
 
 
+th{
+  color:black;
+  font-size: 15px;
 
+}
+.container3{
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-table {
+  width: 1200px; /* Ajusta la altura de la tabla según tus necesidades */
+
+}
 .center {
   display: flex;
   justify-content: center;

@@ -47,7 +47,11 @@
   button{
   font-family: 'Times New Roman', Times, serif;
   }
-
+  th{
+    color:black;
+    font-size: 15px;
+  
+  }
 
   input[type=text], select {
     font-family: 'Times New Roman', Times, serif;

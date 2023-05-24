@@ -87,6 +87,11 @@ font-family: 'Times New Roman', Times, serif;
 
 
 }
+th{
+  color:black;
+  font-size: 15px;
+
+}
 
 
 .mat-tab-group {

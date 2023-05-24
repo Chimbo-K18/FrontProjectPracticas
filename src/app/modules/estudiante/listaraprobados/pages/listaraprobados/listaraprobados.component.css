@@ -37,6 +37,11 @@
   font-family: 'Times New Roman', Times, serif;
   }
   
+  th{
+    color:black;
+    font-size: 15px;
+  
+  }
   
   .mat-date-range-input {
     display: none;

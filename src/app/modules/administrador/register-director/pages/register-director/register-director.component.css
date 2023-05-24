@@ -7,10 +7,18 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+
+
+}
+th{
+  color:black;
+  font-size: 15px;
+
 }
 .agregar {
   color: #fff;
-  background-color: #aca9a9;
+  background-color: #013F7E;
   height: 30px;
   width: 50px;
   align-items: center;
@@ -22,7 +30,7 @@ select {
 }
 .bodyL{
   margin-top: -20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;

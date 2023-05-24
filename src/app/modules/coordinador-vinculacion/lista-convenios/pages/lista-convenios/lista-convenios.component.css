@@ -21,7 +21,11 @@
   width: 100%;
   }
   
-
+  th{
+    color:black;
+    font-size: 15px;
+  
+  }
   table {
     font-family: 'Times New Roman', Times, serif;
   
@@ -495,7 +499,7 @@ background-size: 100% 100%;
   }
 
   .boton-eliminar {
-    background-color: rgb(32, 113, 218);
+    background-color: #013F7E;
     color: white;
     border: none;
     padding: 10px 20px;

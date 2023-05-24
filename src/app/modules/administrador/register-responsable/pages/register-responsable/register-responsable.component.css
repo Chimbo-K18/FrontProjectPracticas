@@ -27,6 +27,8 @@
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+
     box-sizing: border-box;
   }
   
@@ -56,6 +58,10 @@
   
   }
 
+  .container3{
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
   table {
     font-family: 'Times New Roman', Times, serif;
   
