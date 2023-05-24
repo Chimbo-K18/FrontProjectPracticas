@@ -45,6 +45,7 @@ export class LanzamientoConvocatoriaComponent {
 
 
   solicitudesCompletas: SolicitudPracticas[] | undefined;
+  solicitudpracticas: SolicitudPracticas = new SolicitudPracticas();
   solicitudID: any;
   convocatoriaGenerada: any;
   idDocumento!: any;
@@ -85,11 +86,13 @@ export class LanzamientoConvocatoriaComponent {
                 private convocatoriaService: ConvocatoriasService,
                 private documentoLcService:DocumentoLanzamientoConvocatoria,
       private solicitud: SolicitudpracticasService, private responsableppservice: Responsable_PPPService
-              ) {}
+              ) {
+                this.listarAsignadoActividades();
+              }
 
   ngOnInit(): void {
 
-    this.listarAsignadoActividades();
+  
   }
 
   seleccionarSolicitud(solicitud: any) {
@@ -109,6 +112,7 @@ export class LanzamientoConvocatoriaComponent {
   listarAsignadoActividades() {
     this.idusuario = localStorage.getItem("idusuario");
     this.responsableppservice.getBuscarcedula(this.idusuario).subscribe(datausu => {
+      console.log(datausu);
       this.dataresponsable = datausu.idResponsablePPP;
       
     this.solicitudService.getSolicitudesActividadesPorResposanble(this.dataresponsable )
@@ -118,22 +122,37 @@ export class LanzamientoConvocatoriaComponent {
 
   }
 
+  idsolicitudpracticas:any;
+  Capturarid(id:any){
+    this.idsolicitudpracticas = id;
+console.log(id);
+  }
+
 
   public crearConvocatoria() {
+    this.solicitudService.getRequest(this.idsolicitudpracticas).subscribe(datasoli =>{
+      console.log(datasoli);
+      this.solicitudpracticas = datasoli;
+      this.solicitudpracticas.estadoConvocatoria = true;
+      this.solicitudService.updateSolicitud(this.solicitudpracticas, this.idsolicitudpracticas).subscribe(dataactualizada =>{
+        console.log(dataactualizada);
+        this.convocatoria.fechaPublicacion = this.getFechaActual();
+        this.convocatoria.solicitudPracticas = this.solicitudID;
+        this.convocatoria.estadoConvocatoria = true;
+        return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
+          (res) => {
+    
+            this.convocatoriaGenerada = res.idConvocatorias
+            console.log(res);
+            console.log(this.convocatoriaGenerada)
+            this.listarAsignadoActividades();
+          },
+    
+          (err) => console.error(err)
+        );
+      })
+    });
 
-    this.convocatoria.fechaPublicacion = this.getFechaActual();
-    this.convocatoria.solicitudPracticas = this.solicitudID;
-    this.convocatoria.estadoConvocatoria = true;
-    return this.convocatoriaService.crearConvocatoria(this.convocatoria).subscribe(
-      (res) => {
-
-        this.convocatoriaGenerada = res.idConvocatorias
-        console.log(res);
-        console.log(this.convocatoriaGenerada)
-      },
-
-      (err) => console.error(err)
-    );
   }
 
   verificarID() {

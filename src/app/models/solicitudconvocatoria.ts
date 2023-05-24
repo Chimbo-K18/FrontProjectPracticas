@@ -19,6 +19,7 @@ export class SolicitudConvocatoria{
     checkEmpresarial !: boolean;
     estadoSolicitudConvo !: boolean;
     checkPractica!: boolean;
+    estadoestudiante!: boolean;
 
     convocatoria!: Convocatorias;
     estudiantePracticante!: EstudiantePracticante;
