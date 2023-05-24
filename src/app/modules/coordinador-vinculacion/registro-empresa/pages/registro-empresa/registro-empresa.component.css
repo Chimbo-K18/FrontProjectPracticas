@@ -12,11 +12,16 @@
   font-family: 'Lato', sans-serif;
 
 }
-h1{
+
+table {
   font-family: 'Times New Roman', Times, serif;
 
+  width: 100%;
 }
 
+h1,h2,h3,h4,h5{
+  font-family: 'Times New Roman', Times, serif;
+}
 p{
   font-family: 'Times New Roman', Times, serif;
 
@@ -29,8 +34,7 @@ font-family: 'Times New Roman', Times, serif;
 }
 
 button{
-font-family: 'Times New Roman', Times, serif;
-
+font-family: 'Times New Roman', Times, serif;
 }
 
 
