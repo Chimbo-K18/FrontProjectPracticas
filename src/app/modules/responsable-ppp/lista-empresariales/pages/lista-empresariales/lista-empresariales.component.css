@@ -110,6 +110,28 @@ mat-card{
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
   } */
 
+  table {
+    font-family: 'Times New Roman', Times, serif;
+  
+    width: 100%;
+  }
+  
+  
+  p{
+    font-family: 'Times New Roman', Times, serif;
+  
+  }
+  mat-label{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  input{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  
+  button{
+  font-family: 'Times New Roman', Times, serif;
+  
+  }
   
 .container {
   position: fixed;
@@ -159,6 +181,8 @@ font-family: 'Times New Roman', Times, serif;
 
 .mat-stepper-horizontal {
   margin-top: 8px;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 .mat-mdc-form-field {
@@ -250,7 +274,7 @@ header {
 /* ///////////////// */
 .bodyL{
   margin-top: -20px;
-font-family: 'Poppins', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 font-weight: 300;
 font-size: 15px;
 line-height: 1.7;
@@ -287,8 +311,12 @@ p {
 }
 h4 {
   font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 h6 span{
+  font-family: 'Times New Roman', Times, serif;
+
   padding: 0 50px;
   margin-left: 2%;
   text-transform: uppercase;
@@ -299,6 +327,8 @@ h6 span{
 h1{
   font-size: 1.3rem;
   color: #000;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 .ltitle{
 margin-left: 20%;
@@ -307,11 +337,15 @@ margin-left: 20%;
 .title2{
   /* margin-top: -90px; */
   margin-bottom: 50px;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 .section{
   position: relative;
   width: 100%;
   display: block;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 /* .full-height{
   min-height: 100vh;

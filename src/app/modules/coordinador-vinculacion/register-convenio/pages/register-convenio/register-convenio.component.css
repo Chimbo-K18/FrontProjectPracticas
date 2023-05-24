@@ -23,21 +23,31 @@
   }
 
 
+
+  table {
+    font-family: 'Times New Roman', Times, serif;
+  
+    width: 100%;
+  }
+  
+  h1,h2,h3,h4,h5{
+    font-family: 'Times New Roman', Times, serif;
+  }
   p{
     font-family: 'Times New Roman', Times, serif;
-
+  
   }
-mat-label{
+  mat-label{
   font-family: 'Times New Roman', Times, serif;
-}
-input{
+  }
+  input{
   font-family: 'Times New Roman', Times, serif;
-}
+  }
+  
+  button{
+  font-family: 'Times New Roman', Times, serif;
+  }
 
-button{
-  font-family: 'Times New Roman', Times, serif;
-
-}
 
   input[type=text], select {
     font-family: 'Times New Roman', Times, serif;

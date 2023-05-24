@@ -11,6 +11,29 @@
 }
 
 table {
+    font-family: 'Times New Roman', Times, serif;
+  
+    width: 100%;
+  }
+  
+  
+  p{
+    font-family: 'Times New Roman', Times, serif;
+  
+  }
+  mat-label{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  input{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  
+  button{
+  font-family: 'Times New Roman', Times, serif;
+  
+  }
+
+table {
     width: 100%;
 }
 
@@ -35,6 +58,8 @@ select {
 
 .mat-stepper-horizontal {
     margin-top: 8px;
+    font-family: 'Times New Roman', Times, serif;
+
 }
 
 .pdf {
@@ -89,6 +114,8 @@ h1 {
 
 h1 {
     text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+
 }
 
 .contenedor {
@@ -137,13 +164,13 @@ header {
 
 .bodyL {
     margin-top: -20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 300;
     font-size: 15px;
     line-height: 1.7;
     color: #c4c3ca;
     background-image: url('src/assets/images/fondowelcome.png');
-  background-size: 100% 100%;
+    background-size: 100% 100%;
     overflow-x: hidden;
 }
 

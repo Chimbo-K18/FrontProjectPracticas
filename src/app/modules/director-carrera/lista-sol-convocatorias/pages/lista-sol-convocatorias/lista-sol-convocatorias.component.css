@@ -23,14 +23,16 @@ width: 100%;
 
 
 table {
-font-family: 'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 
-width: 100%;
+  width: 100%;
 }
 
-
+h1,h2,h3,h4,h5{
+  font-family: 'Times New Roman', Times, serif;
+}
 p{
-font-family: 'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 
 }
 mat-label{
@@ -41,9 +43,9 @@ font-family: 'Times New Roman', Times, serif;
 }
 
 button{
-font-family: 'Times New Roman', Times, serif;
-
+font-family: 'Times New Roman', Times, serif;
 }
+
 
 .mat-stepper-horizontal {
   margin-top: 8px;
@@ -59,7 +61,7 @@ margin-left: auto;
 margin-right: auto;
 background-color: rgba(0, 0, 0, 0);
 
-
+font-family: 'Times New Roman', Times, serif;
 
 
 
@@ -486,7 +488,7 @@ margin-left: 20%;
   position: absolute;
   /* right: 500px; */
   margin-top: 35px;
-  background-color: #F4D03F;
+
 }
 img{
   width: 100px;

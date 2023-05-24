@@ -49,12 +49,41 @@
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(0, 0, 0, 0);
-  
+  font-family: 'Times New Roman', Times, serif;
   
   
   
   
   }
+
+  table {
+    font-family: 'Times New Roman', Times, serif;
+  
+    width: 100%;
+  }
+  
+  h1,h2,h3,h4,h5{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  p{
+    font-family: 'Times New Roman', Times, serif;
+  
+  }
+  mat-label{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  input{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  
+  button{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  .logo img {
+    height: 26px;
+    width: auto;
+    display: block;
+}
   
   
   .mat-tab-group {

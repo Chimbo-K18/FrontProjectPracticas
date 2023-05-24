@@ -7,7 +7,63 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+
 }
+
+p{
+  font-family: 'Times New Roman', Times, serif;
+
+}
+mat-label{
+font-family: 'Times New Roman', Times, serif;
+}
+input{
+font-family: 'Times New Roman', Times, serif;
+}
+button{
+font-family: 'Times New Roman', Times, serif;
+}
+
+h1{
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  h2{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  h3 {
+    font-family: 'Times New Roman', Times, serif;
+  }
+  h4{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  h5{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  h6{
+    font-family: 'Times New Roman', Times, serif;
+  } 
+  mat-paginator{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  li{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .mat-stepper-horizontal {
+    font-family: 'Times New Roman', Times, serif;
+
+  }
+
+  td{
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  th{
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+
 .agregar {
   color: #fff;
   background-color: #aca9a9;
@@ -22,7 +78,7 @@ select {
 }
 .bodyL{
   margin-top: -20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
@@ -42,17 +98,13 @@ background-size: 100% 100%;
 
 table {
   width: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 
 }
 
 th{
   /* background-color: #4f94e4;*/
   color: #050801; 
-  font-family: 'Poppins', sans-serif;
   font-size: 15px;
-  font-weight: bold;
-
-
 }
 

@@ -7,6 +7,29 @@ table {
   width: 50%;
 }
 
+table {
+  font-family: 'Times New Roman', Times, serif;
+
+  width: 100%;
+}
+
+
+p{
+  font-family: 'Times New Roman', Times, serif;
+
+}
+mat-label{
+font-family: 'Times New Roman', Times, serif;
+}
+input{
+font-family: 'Times New Roman', Times, serif;
+}
+
+button{
+font-family: 'Times New Roman', Times, serif;
+
+}
+
 td,
 th {
   width: 13%;
@@ -36,6 +59,8 @@ h2 {
   border-radius: 10px;
 
   font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+
 
 }
 mat-card{
@@ -47,7 +72,7 @@ mat-card{
 
 .bodyL {
   margin-top: -20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;

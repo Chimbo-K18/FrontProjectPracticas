@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecibeAnexo5Component } from '../../tutor-empresarial/recibe-anexo5/pages/recibe-anexo5/recibe-anexo5.component';
+import { RecibeAnexo5Component } from './pages/recibe-anexo5/recibe-anexo5.component';
 
 const routes: Routes = [
   {
