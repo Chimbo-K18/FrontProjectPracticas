@@ -8,6 +8,11 @@ const routes: Routes = [
     loadChildren: () => import("./lista-convocatorias/lista-convocatorias.module").then(m => m.ListaConvocatoriasModule)
 
   },
+  {
+    path: 'lista-aprovacion',
+    loadChildren: () => import("./listaraprobados/listaraprobados.module").then(m => m.ListaraprobadosModule)
+
+  },
 
   {
     path: 'detalle-practica',

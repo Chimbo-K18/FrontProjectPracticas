@@ -111,6 +111,12 @@ export class SolicitudConvocatoriasService {
     );
   }
 
-  
+  SolicitudesPorEstudianteNoCancelado(cedula: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/SolicitudEstudianteNoCancelado/${cedula}`)
+  }
+
+  SolicitudesPorEstudianteCancelado(cedula: any): Observable<SolicitudConvocatoria> {
+    return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/SolicitudEstudianteCancelado/${cedula}`)
+  }
 
 }
