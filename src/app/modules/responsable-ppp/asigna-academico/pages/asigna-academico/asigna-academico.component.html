@@ -13,7 +13,8 @@
 
   <mat-stepper labelPosition="bottom" #stepper style="width: 80%;">
     <mat-step [stepControl]="firstFormGroup">
-      <ng-template matStepLabel>Fase 1</ng-template>
+      <ng-template style="  font-family: 'Times New Roman', Times, serif;
+      " matStepLabel>Fase 1</ng-template>
       <form [formGroup]="tresFormGroup">
         <ng-template matStepLabel>Fase 1</ng-template>
         <div style="display: flex; justify-content: center; align-items: center;">
@@ -68,7 +69,8 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let rows; columns: displayedColumns;"></tr>
               </table>
-              <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
+              <mat-paginator style="  font-family: 'Times New Roman', Times, serif;
+              " #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
                 aria-label="Select page of solicitudes">
               </mat-paginator>
             </div>
@@ -144,7 +146,8 @@
                 <tr mat-header-row *matHeaderRowDef="dColumns"></tr>
                 <tr mat-row *matRowDef="let rows; columns: dColumns;"></tr>
               </table>
-              <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
+              <mat-paginator style="  font-family: 'Times New Roman', Times, serif;
+              " #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons
                 aria-label="Select page of solicitudes">
               </mat-paginator>
             </div>
@@ -244,7 +247,8 @@
               <button mat-raised-button color="primary" (click)="descargarPDF()">
                 <mat-icon>get_app</mat-icon> Descargar Archivo
               </button>
-              <div class="instructions">
+              <div class="instructions" style="  font-family: 'Times New Roman', Times, serif;
+              ">
                 Haz clic en el botón para descargar el documento
               </div>
             </div>
@@ -279,7 +283,8 @@
               <button mat-raised-button color="primary" (click)="inputFile.click()">
                 <mat-icon>cloud_upload </mat-icon> Subir Documento PDF
               </button>
-              <div class="instructions">
+              <div class="instructions" style="  font-family: 'Times New Roman', Times, serif;
+              ">
                 Haz clic en el botón para cargar el documento
               </div>
             </div>

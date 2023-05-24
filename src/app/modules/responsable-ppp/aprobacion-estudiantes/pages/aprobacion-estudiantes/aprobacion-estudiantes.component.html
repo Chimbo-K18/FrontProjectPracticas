@@ -14,8 +14,9 @@
   <mat-stepper linear #stepper class="headerxd" style=" width: 80%;">
     <mat-step>
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fase 1</ng-template>
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <ng-template style="  font-family: 'Times New Roman', Times, serif;
+        " matStepLabel>Fase 1</ng-template>
+        <div style="display: flex; justify-content: center; align-items: center; ">
           <mat-card >
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <!-- Position Column -->
@@ -51,7 +52,8 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <mat-paginator #paginator1 [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons
+            <mat-paginator style="  font-family: 'Times New Roman', Times, serif;
+            " #paginator1 [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons
               aria-label="Select page of periodic elements">
             </mat-paginator>
           </mat-card>

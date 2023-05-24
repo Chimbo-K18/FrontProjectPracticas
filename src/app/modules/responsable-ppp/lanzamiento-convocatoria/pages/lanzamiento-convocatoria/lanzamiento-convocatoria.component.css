@@ -10,6 +10,30 @@
     border-radius: 12px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   }
+
+  table {
+    font-family: 'Times New Roman', Times, serif;
+  
+    width: 100%;
+  }
+  
+  
+  p{
+    font-family: 'Times New Roman', Times, serif;
+  
+  }
+  mat-label{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  input{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  
+  button{
+  font-family: 'Times New Roman', Times, serif;
+  
+  }
+
   table {
     width: 100%;
   }
@@ -37,10 +61,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+
   }
 
   .mat-stepper-horizontal {
     margin-top: 8px;
+    font-family: 'Times New Roman', Times, serif;
+
   }
 
   .pdf{
@@ -80,6 +108,8 @@
 
       letter-spacing: 1px;
       transition: 0.3s;
+      font-family: 'Times New Roman', Times, serif;
+
   }
 
   .example-card {
@@ -135,7 +165,7 @@
   /* ///////////////// */
   .bodyL{
     margin-top: -20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 300;
     font-size: 15px;
     line-height: 1.7;

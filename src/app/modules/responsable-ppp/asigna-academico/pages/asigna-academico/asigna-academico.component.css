@@ -10,6 +10,29 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
 
+table {
+    font-family: 'Times New Roman', Times, serif;
+  
+    width: 100%;
+  }
+  
+  
+  p{
+    font-family: 'Times New Roman', Times, serif;
+  
+  }
+  mat-label{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  input{
+  font-family: 'Times New Roman', Times, serif;
+  }
+  
+  button{
+  font-family: 'Times New Roman', Times, serif;
+  
+  }
+
 .download-container {
     display: flex;
     flex-direction: column;
@@ -31,6 +54,8 @@ table {
 
 input[type="text"],
 select {
+    font-family: 'Times New Roman', Times, serif;
+
     width: 90%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -42,6 +67,8 @@ select {
 
 .mat-stepper-horizontal {
     margin-top: 8px;
+    font-family: 'Times New Roman', Times, serif;
+
 }
 
 .pdf {
@@ -88,6 +115,7 @@ mat-card {
 h1 {
     letter-spacing: 1px;
     transition: 0.3s;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .example-card {
@@ -144,7 +172,7 @@ header {
 
 .bodyL {
     margin-top: -20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 300;
     font-size: 15px;
     line-height: 1.7;
@@ -183,10 +211,12 @@ p {
     font-size: 0.8rem;
     line-height: 1.7;
     color: #000;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 h4 {
     font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 h6 span {
@@ -196,11 +226,13 @@ h6 span {
     font-weight: 700;
     font-size: 1rem;
     color: #102770;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 h1 {
     font-size: 1.3rem;
     color: #000;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .ltitle {
@@ -211,6 +243,8 @@ h1 {
 .title2 {
     /* margin-top: -90px; */
     margin-bottom: 50px;
+    font-family: 'Times New Roman', Times, serif;
+
 }
 
 .section {

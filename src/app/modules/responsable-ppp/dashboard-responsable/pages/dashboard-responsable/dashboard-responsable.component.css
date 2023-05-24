@@ -3,6 +3,29 @@
  font-family: 'Times New Roman', Times, serif;
 }
 
+table {
+  font-family: 'Times New Roman', Times, serif;
+
+  width: 100%;
+}
+
+
+p{
+  font-family: 'Times New Roman', Times, serif;
+
+}
+mat-label{
+font-family: 'Times New Roman', Times, serif;
+}
+input{
+font-family: 'Times New Roman', Times, serif;
+}
+
+button{
+font-family: 'Times New Roman', Times, serif;
+
+}
+
 body {
   min-height: 100vh;
   display: grid;
@@ -169,16 +192,22 @@ a {
 h1 {
   font-size: 1.3rem;
   color: #222;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 h3 {
   font-size: 1.3rem;
   color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 h4 {
   font-size: 1.3rem;
   color: #222;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 .sprint_overview .btn3 {
@@ -190,6 +219,8 @@ h4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 .sprint_overview_cards {
@@ -262,6 +293,8 @@ h4 {
 h5 {
   font-size: 2rem;
   color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 .charts_stories {
@@ -402,6 +435,8 @@ tr:hover {
 h2 {
   font-size: 1rem;
   color: #333;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 .imgBx_s {
@@ -720,10 +755,13 @@ h2 {
 .message {
   margin-top: 10px;
   color: rgb(0, 0, 0);
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
 .mat-stepper-horizontal {
 margin-top: 8px;
+font-family: 'Times New Roman', Times, serif;
 }
 
 .mat-mdc-form-field {
