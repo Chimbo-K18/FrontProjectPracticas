@@ -10,18 +10,18 @@
 
 
 
-  <div style="color: black;text-align: left; margin-left: 20px; margin-top: 60px;">
+  <div style="display: flex; justify-content: center; align-items:center; margin-top: 100px;">  
     
-</div>
+
     
     
-<mat-stepper labelPosition="bottom" #stepper style="width: 80%;">
+<mat-stepper labelPosition="bottom" #stepper style="width: 80%; background-color: rgba(0, 0, 0, 0);">
   <mat-step [stepControl]="firstFormGroup">
     <ng-template matStepLabel>Fase 1</ng-template>
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Fase 1</ng-template>
       <h1 style="margin-top: 30px; font-size: 30px; color: black;text-align: center;"> <strong>Recepcion de Anexos 5 - Tutor Empresarial</strong> </h1>
-    <h3>A continuacion se visualizaran todos los anexos 5.</h3>
+    <h3 style="color: black">A continuacion se visualizaran todos los anexos 5.</h3>
       <div style="display: flex; justify-content: center; align-items: center;">
         <mat-card style="width: 1200px; ">
           <img style="width: 150px; padding-bottom: 10px;"
@@ -205,5 +205,6 @@
 
   </mat-step>
 </mat-stepper>
+</div>
 </body>
 </html>
