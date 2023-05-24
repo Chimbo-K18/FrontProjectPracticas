@@ -8,6 +8,11 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+th{
+  color:black;
+  font-size: 15px;
+
+}
 .agregar {
   color: #fff;
   background-color: #aca9a9;
