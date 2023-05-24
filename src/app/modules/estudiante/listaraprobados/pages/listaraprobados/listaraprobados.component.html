@@ -9,15 +9,15 @@
 </head>
 
 <body class="bodyL">
-    <h1><strong>APROBACIÓN DE ESTUDIANTES </strong></h1>
 
+    <h1 style="margin-top: 100px; font-size: 30px;"> <strong>APROBACIÓN DE ESTUDIANTES</strong> </h1>
     <mat-stepper linear #stepper class="headerxd" style="width: 75%;">
         <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup" >
-                <div style="display: flex; justify-content: center; align-items:center;">
+         <div style="display: flex; justify-content: center; align-items:center;">
                        <mat-card >
                         <div>
-                            <h1 style="text-align: center;"> Solicitudes Enviadas </h1>
+                            <h1 style="text-align: center;"> <strong> Solicitudes Enviadas</strong> </h1>
                             <!-- <ng-container *ngIf="datosCargados.length > 0; else noResults"></ng-container> -->
                             <table mat-table [dataSource]="dataestudiante" class="mat-elevation-z8">
                                 <!-- Position Column -->
@@ -57,13 +57,13 @@
                                 ></tr>
                      
                             </table>
-                            <mat-paginator #paginator2 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
+                            <mat-paginator #paginator2 [pageSizeOptions]="[6]" showFirstLastButtons aria-label="Select page of solicitudes">
                             </mat-paginator>
                         
                         </div>
 
                         <div>
-                            <h1 style="text-align: center;"> Solicitudes Canceladas </h1>
+                            <h1 style="text-align: center;">  <strong>Solicitudes Canceladas</strong>  </h1>
                                 <table mat-table [dataSource]="dataestudiantetrue" class="mat-elevation-z8">
                                     <!-- Position Column -->
                                     <ng-container matColumnDef="id" >
@@ -96,7 +96,7 @@
                                     ></tr>
                                   
                                 </table>
-                                <mat-paginator #paginator3 [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons aria-label="Select page of solicitudes">
+                                <mat-paginator #paginator3 [pageSizeOptions]="[6]" showFirstLastButtons aria-label="Select page of solicitudes">
                                 </mat-paginator>
                         </div>
                         <div style="margin-top:25px; text-align: center;">

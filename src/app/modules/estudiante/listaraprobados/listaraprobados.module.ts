@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ListaraprobadosRoutingModule } from './listaraprobados-routing.module';
 import { ListaraprobadosComponent } from './pages/listaraprobados/listaraprobados.component';
+
+
+
+//Importaciones clave
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
@@ -15,7 +19,6 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
 
 @NgModule({
   declarations: [
