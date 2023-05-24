@@ -66,7 +66,6 @@ export class ListaraprobadosComponent implements AfterViewInit {
   @ViewChild('paginator1', { static: true }) paginator1!: MatPaginator;
   @ViewChild('paginator2', { static: true }) paginator2!: MatPaginator;
   @ViewChild('paginator3', { static: true }) paginator3!: MatPaginator;
-  @ViewChild(MatStepper) stepper!: MatStepper;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator1;
     // this.data.paginator = this.paginator2;
@@ -188,9 +187,7 @@ EstudianteNoCancelado() {
         
       });
   }
-  resetStepper() {
-    this.stepper.reset();
-  }
+ 
 
   selectedSolicitud: any;
   seleccionarSolicitudC(solicitud: any) {

@@ -7,7 +7,6 @@ import { ListaraprobadosComponent } from './pages/listaraprobados/listaraprobado
 
 
 //Importaciones clave
-import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -28,7 +27,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CommonModule,
     ListaraprobadosRoutingModule,
     CommonModule,
-    MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
