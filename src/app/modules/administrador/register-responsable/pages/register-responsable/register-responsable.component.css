@@ -79,6 +79,11 @@
   button{
   font-family: 'Times New Roman', Times, serif;
   }
+  .logo img {
+    height: 26px;
+    width: auto;
+    display: block;
+}
   
   
   .mat-tab-group {
