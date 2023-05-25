@@ -89,7 +89,7 @@ export class RecibeAnexo4Component  {
 
   descargarPDF(idanexo4:any) {
     const idPractica = idanexo4; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/jasperReport/academico/${idPractica}`;
+    const url = `http://68.183.134.207:8080/api/jasperReport/academico/${idPractica}`;
     window.open(url, '_blank');
   }
 

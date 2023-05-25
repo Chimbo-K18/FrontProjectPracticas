@@ -95,7 +95,7 @@ export class RecibeAnexo2Component  {
   anexo2generado:any;
   descargarPDF(idAnexo2 :any) {
     this.anexo2generado = idAnexo2; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/documentoAnexo2/download/${this.anexo2generado}`;
+    const url = `http://68.183.134.207:8080/api/documentoAnexo2/download/${this.anexo2generado}`;
     window.open(url, '_blank');
   }
 

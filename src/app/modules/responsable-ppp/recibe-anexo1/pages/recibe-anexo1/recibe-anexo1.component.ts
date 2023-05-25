@@ -96,7 +96,7 @@ export class RecibeAnexo1Component implements AfterViewInit {
   descargarPDF(anexogenerado :any) {
 
     this.anexo1generado = anexogenerado; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/documentoAnexo1/download/${this.anexo1generado}`;
+    const url = `http://68.183.134.207:8080/api/documentoAnexo1/download/${this.anexo1generado}`;
     window.open(url, '_blank');
   }
 

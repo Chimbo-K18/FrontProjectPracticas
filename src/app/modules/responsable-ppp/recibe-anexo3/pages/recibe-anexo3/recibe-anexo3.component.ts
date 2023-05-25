@@ -98,7 +98,7 @@ export class RecibeAnexo3Component  {
 
   descargarPDF(idAnexo3 : any) {
     this.idAnexo3Generado = idAnexo3; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/documentoAnexo3/download/${this.idAnexo3Generado}`;
+    const url = `http://68.183.134.207:8080/api/documentoAnexo3/download/${this.idAnexo3Generado}`;
     window.open(url, '_blank');
   }
 

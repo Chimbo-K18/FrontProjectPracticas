@@ -95,7 +95,7 @@ export class RecibeAnexo8Component implements OnInit {
   anexo8generado:any;
   descargarPDF(idAnexo8 :any) {
     this.anexo8generado = idAnexo8; // obtén el ID de la solicitud
-    const url = `http://localhost:8080/api/documentoAnexo8/download/${this.anexo8generado}`;
+    const url = `http://68.183.134.207:8080/api/documentoAnexo8/download/${this.anexo8generado}`;
     window.open(url, '_blank');
   }
 
