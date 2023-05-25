@@ -62,5 +62,13 @@ export class tutorempresarialService {
   listarEmpresariales() {
     return this.http.get<tutorempresarial[]>(this.url+'/listar');
   }
+
+  buscarId(id: any):Observable<tutorempresarial>{
+    return this.http.get<tutorempresarial>(this.url + `/buscar/${id}`);
+  }
+
+  UpdateTutor(tutor: tutorempresarial, idTutor:any){
+    return this.http.put<tutorempresarial>(this.url+`/actualizar/${idTutor}`, tutor);
+  }
   
 }  

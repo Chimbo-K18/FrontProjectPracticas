@@ -33,7 +33,7 @@ export class RegistroEmpresaComponent implements OnInit {
   }
 
   crearEmpresa() {
-  // this.empresa.status = true;
+   this.empresa.status = true;
 
   if (!this.empresa.rucEmpresa || !this.empresa.correo || !this.empresa.numeroTelefono) {
     Swal.fire(

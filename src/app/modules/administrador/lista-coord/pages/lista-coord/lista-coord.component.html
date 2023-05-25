@@ -18,7 +18,9 @@
         <div style="display: flex; justify-content: left; margin-top: 5px;">
           <mat-form-field class="example-full-width" style="width: 500px">
             <mat-label>Buscar </mat-label>
-            <input (keyup)="onInputKeyup()" [(ngModel)]="cedulaBuscada" (ngModelChange)="buscarPorCedula()" matInput placeholder="Ingrese la Cédula" />
+            <!-- <input (keyup)="onInputKeyup()" [(ngModel)]="cedulaBuscada" (ngModelChange)="buscarPorCedula()" matInput placeholder="Ingrese la Cédula" /> -->
+            <input (keyup)="applyFilter($event)" matInput placeholder="Buscar" />
+
               </mat-form-field>
         </div>
       </mat-card>

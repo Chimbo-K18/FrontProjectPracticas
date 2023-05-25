@@ -6,8 +6,13 @@ import { ListaEmpresarialesComponent } from './pages/lista-empresariales/lista-e
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -21,9 +26,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatTableModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  exports:[
+  exports: [
     ListaEmpresarialesComponent
   ]
 })
