@@ -9,8 +9,8 @@ import { DocumentoSolicitudPracticas } from '../../models/docsGlobales/documento
 })
 
 export class DocumentoSolicitudPracticaService{
-    url: string = 'http://localhost:8080/api/documentoSolicitudPracticas';
-    urlPost: string = 'http://localhost:8080/api/documentoSolicitudPracticas/upload';
+  url: string = 'http://68.183.134.207:8080/api/documentoSolicitudPracticas';
+  urlPost: string = 'http://68.183.134.207:8080/api/documentoSolicitudPracticas/upload';
 
 
     constructor(private http: HttpClient) { }

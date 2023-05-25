@@ -7,7 +7,7 @@ import { Convenio } from '../models/convenio';
   providedIn: 'root'
 })
 export class ConvenioService {
-  url: string = 'http://localhost:8080/api/convenio';
+  url: string = 'http://68.183.134.207:8080/api/convenio';
   constructor(private http: HttpClient) { }
 
   crearConvenio(convenio: Convenio): Observable<Convenio>{
@@ -17,6 +17,6 @@ export class ConvenioService {
   updateDocumentoConvenio(idSolicitud: any, idDocumento: any) {
     return this.http.put(`${this.url}/updateDocument/${idSolicitud}?idDocumento=${idDocumento}`, null);
   }
-  
+
 
 }

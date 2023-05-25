@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 
 export class DocumentoSolicitudConvocatoria{
-    url: string = 'http://localhost:8080/api/documentoSolicitudConvocatoria';
-    urlPost: string = 'http://localhost:8080/api/documentoSolicitudConvocatoria/upload';
-  
+  url: string = 'http://68.183.134.207:8080/api/documentoSolicitudConvocatoria';
+  urlPost: string = 'http://68.183.134.207:8080/api/documentoSolicitudConvocatoria/upload';
+
     constructor(private http: HttpClient) { }
-    
+
     public uploadFileSolicitudConvocatoria(file: Blob): Observable<HttpEvent<any>> {
       const formData = new FormData();
       formData.append('file', file);
@@ -23,12 +23,12 @@ export class DocumentoSolicitudConvocatoria{
           reportProgress: true
         }));
     }
-  
+
     descargarSolicitudConvocatoria(id: any) {
       const url = `${this.url}/download/${id}`;
       return this.http.get(url, { responseType: 'blob' });
-    }  
-      
+    }
 
-      
+
+
 }

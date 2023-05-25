@@ -11,7 +11,7 @@ import { Anexo3 } from '../../models/anexos/anexo3';
   providedIn: 'root'
 })
 export class Anexo3Service {
-  url: string = 'http://localhost:8080/api/anexo3';
+  url: string = 'http://68.183.134.207:8080/api/anexo3';
   constructor(private http: HttpClient) { }
 
   crearAnexo3(anexo3: Anexo3): Observable<Anexo3>{

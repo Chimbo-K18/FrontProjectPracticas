@@ -13,7 +13,7 @@ import { Anexo7 } from '../models/anexos/anexo7';
   providedIn: 'root'
 })
 export class PracticaService {
-  url: string = 'http://localhost:8080/api/practica';
+  url: string = 'http://68.183.134.207:8080/api/practica';
   constructor(private http: HttpClient) { }
 
   crearPractica(practica: Practica): Observable<Practica>{

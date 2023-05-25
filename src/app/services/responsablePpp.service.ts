@@ -9,10 +9,10 @@ import { ResponsablePpp } from '../models/ResponsablePPP';
 })
 export class responsablePpp {
 
-  private API_URL: string = 'http://localhost:8080/api/representantePPP';
-  private urlGet: string = 'http://localhost:8080/api/representantePPP/carrera';
+  private API_URL: string = 'http://68.183.134.207:8080/api/representantePPP';
+  private urlGet: string = 'http://68.183.134.207:8080/api/representantePPP/carrera';
   private urlGet2: string =
-    'http://localhost:8080/api/representantePPP/carreraID';
+    'http://68.183.134.207:8080/api/representantePPP/carreraID';
 
   private urlPost: string = '';
   private urlDelete: string = '';

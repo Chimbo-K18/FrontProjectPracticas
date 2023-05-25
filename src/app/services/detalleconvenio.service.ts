@@ -9,7 +9,7 @@ import { DetalleConvenio } from '../models/detalleconvenio';
 })
 export class DetalleconvenioService {
 
-  url: string = 'http://localhost:8080/api/detalleConvenio';
+  url: string = 'http://68.183.134.207:8080/api/detalleConvenio';
 
   constructor(private http: HttpClient) {}
 

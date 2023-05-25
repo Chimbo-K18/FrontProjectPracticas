@@ -4,7 +4,7 @@ import {Usuarios} from '../models/usuarios';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-const urlEndPoint = 'http://localhost:8080/api/auth';
+const urlEndPoint = 'http://68.183.134.207:8080/api/auth';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -92,6 +92,6 @@ registerUserempresa(cedula: string, nombres: string, apellidos: string, correo: 
   logout(): Observable<any> {
     return this.http.post(urlEndPoint + '/signout', { }, httpOptions);
   }
-  
+
 }
 

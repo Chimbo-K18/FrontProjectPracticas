@@ -7,8 +7,8 @@ import { Anexo1 } from '../../models/anexos/anexo1';
   providedIn: 'root'
 })
 export class Anexo1Service {
-  url: string = 'http://localhost:8080/api/anexo1';
-  urlPost:string='http://localhost:8080/api/anexo1/up';
+  url: string = 'http://68.183.134.207:8080/api/anexo1';
+  urlPost: string ='http://68.183.134.207:8080/api/anexo1/up';
   constructor(private http: HttpClient) { }
 
   crearAnexo1(anexo1: Anexo1): Observable<Anexo1>{
@@ -18,7 +18,7 @@ export class Anexo1Service {
   getAnexo1(): Observable<Anexo1[]>{
     return this.http.get<Anexo1[]>(this.url+`/listar`);
   }
-  
+
 
   updateDocumentoAnexo1(idAnexo1: any, idDocumento: any) {
     return this.http.put(`${this.url}/updateDocument/${idAnexo1}?idDocumento=${idDocumento}`, null);

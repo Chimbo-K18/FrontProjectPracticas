@@ -8,7 +8,7 @@ import { Convenio } from '../models/convenios';
 })
 export class ConveniosService {
 
-  URL: string = 'http://localhost:8080/api/convenio/';
+  URL: string = 'http://68.183.134.207:8080/api/convenio/';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }

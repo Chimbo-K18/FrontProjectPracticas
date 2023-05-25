@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 
 export class DocumentoAsigTutorAcademico {
-    url: string = 'http://localhost:8080/api/documentoAsigTutorAcademico';
-    urlPost: string = 'http://localhost:8080/api/documentoAsigTutorAcademico/upload';
+  url: string = 'http://68.183.134.207:8080/api/documentoAsigTutorAcademico';
+  urlPost: string = 'http://68.183.134.207:8080/api/documentoAsigTutorAcademico/upload';
 
 
     constructor(private http: HttpClient) { }

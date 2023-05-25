@@ -9,7 +9,7 @@ import { Requerimientos } from '../models/requerimientos';
   providedIn: 'root'
 })
 export class RequermientoService {
-  url: string = 'http://localhost:8080/api/requerimientos';
+  url: string = 'http://68.183.134.207:8080/api/requerimientos';
   constructor(private http: HttpClient) { }
 
   crearRequerimiento(requerimientos: Requerimientos): Observable<Requerimientos>{

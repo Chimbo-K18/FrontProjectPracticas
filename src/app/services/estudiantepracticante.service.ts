@@ -10,7 +10,7 @@ import { EstudiantePracticante } from '../models/estudiantepracticante';
 })
 export class EstudiantePracticanteService {
 
-  API_URL: string = 'http://localhost:8080/api/estudiantepracticante'
+  API_URL: string = 'http://68.183.134.207:8080/api/estudiantepracticante'
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ import { SolicitudPracticas } from '../models/solicitudpracticas';
 })
 export class SolicitudConvocatoriasService {
 
-  API_URL: string = 'http://localhost:8080/api/solicitudConvocatoria'
+  API_URL: string = 'http://68.183.134.207:8080/api/solicitudConvocatoria'
 
   constructor(private http: HttpClient) { }
 
@@ -63,7 +63,7 @@ export class SolicitudConvocatoriasService {
   SolicitudesPorAnexo1(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscaranexo1/${idConvocatoriasSolicitud}`)
   }
-  
+
   SolicitudesPorAnexo5(idConvocatoriasSolicitud: any): Observable<SolicitudConvocatoria> {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/buscaranexo5/${idConvocatoriasSolicitud}`)
   }
@@ -94,7 +94,7 @@ export class SolicitudConvocatoriasService {
     return this.http.get<SolicitudConvocatoria>(`${this.API_URL}/count/${idconvocatoria}/${idestudiante}`)
   }
 
-  //Estudiantes aprobados por responsable 
+  //Estudiantes aprobados por responsable
   getEstudiantesAprobados(idTutorEmpresarial:any): Observable<any[]>{
     return this.http.get<any[]>(`${this.API_URL}/listadoAprobados/${idTutorEmpresarial}`).pipe(
       map((data: any[]) => {

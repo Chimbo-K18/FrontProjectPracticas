@@ -7,7 +7,7 @@ import { Empresa } from '../models/empresa';
   providedIn: 'root'
 })
 export class EmpresaService {
-  url: string = 'http://localhost:8080/api/empresa';
+  url: string = 'http://68.183.134.207:8080/api/empresa';
   constructor(private http: HttpClient) { }
 
   crearEmpresa(empresa: Empresa): Observable<Empresa>{

@@ -7,7 +7,7 @@ import { SolicitudPracticas } from '../../models/solicitudpracticas';
 })
 export class DocumentoSolPracticasService {
 
-  API_Jasper: string = 'http://localhost:4200/api/jasperReport';
+  API_Jasper: string = 'http://68.183.134.207:4200/api/jasperReport';
 
   constructor(private http: HttpClient) { }
 

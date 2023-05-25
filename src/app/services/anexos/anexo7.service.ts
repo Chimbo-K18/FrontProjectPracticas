@@ -7,7 +7,7 @@ import { Anexo7 } from '../../models/anexos/anexo7';
   providedIn: 'root'
 })
 export class Anexo7Service {
-  url: string = 'http://localhost:8080/api/anexo7';
+  url: string = 'http://68.183.134.207:8080/api/anexo7';
   constructor(private http: HttpClient) { }
 
   crearAnexo7(anexo7: Anexo7): Observable<Anexo7>{
@@ -17,7 +17,7 @@ export class Anexo7Service {
   getAnexo7(): Observable<Anexo7[]>{
     return this.http.get<Anexo7[]>(this.url+`/listar`);
   }
-  
+
   updateDocumentoAnexo7(idAnexo7: any, documentoAnexo2: any) {
     return this.http.put(`${this.url}/updateDocument/${idAnexo7}?idDocumento=${documentoAnexo2}`, null);
   }

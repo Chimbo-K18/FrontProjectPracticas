@@ -8,18 +8,18 @@ import { Personas_empresa } from '../models/personaemp';
   providedIn: 'root'
 })
 export class personaempService {
-  url: string = 'http://localhost:8080/api/personaemp';
+  url: string = 'http://68.183.134.207:8080/api/personaemp';
   constructor(private http: HttpClient) { }
 
   crearpersonaemp(personaemp: Personas_empresa): Observable<Personas_empresa>{
     return this.http.post<Personas_empresa>(this.url+'/crear',personaemp);
   }
-  
-  
+
+
   buscarpersona(idpersona: any):Observable<Personas_empresa>{
     return this.http.get<Personas_empresa>(this.url +`/buscar/${idpersona}`);
   }
-  
+
   buscarcedulapersona(cedula: any):Observable<Personas_empresa>{
     return this.http.get<Personas_empresa>(this.url +`/buscarcedula/${cedula}`);
   }
