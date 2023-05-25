@@ -8,7 +8,7 @@ import { Responsable_PPP } from '../models/responsable_ppp';
   providedIn: 'root'
 })
 export class Responsable_PPPService {
-  url: string = 'http://localhost:8080/api/representantePPP';
+  url: string = 'http://68.183.134.207:8080/api/representantePPP';
   constructor(private http: HttpClient) { }
 
   crearResponsable(responsable_ppp: Responsable_PPP): Observable<Responsable_PPP>{

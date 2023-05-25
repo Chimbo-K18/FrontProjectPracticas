@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 
 export class DocumentoConvenioService {
-    url: string = 'http://localhost:8080/api/documentoConvenio';
-    urlPost: string = 'http://localhost:8080/api/documentoConvenio/upload';
+  url: string = 'http://68.183.134.207:8080/api/documentoConvenio';
+  urlPost: string = 'http://68.183.134.207:8080/api/documentoConvenio/upload';
 
 
     constructor(private http: HttpClient) { }
@@ -24,5 +24,5 @@ export class DocumentoConvenioService {
           reportProgress: true
         }));
     }
-    
+
 }

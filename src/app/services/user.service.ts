@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UsuarioRol } from '../models/UsuarioRol';
 import { Usuarios } from '../models/usuarios';
 
-const API_URL = 'http://localhost:8080/api/user';
+const API_URL = 'http://68.183.134.207:8080/api/user';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ const API_URL = 'http://localhost:8080/api/user';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  private resetPasswordUrl = 'http://localhost:8080/api/user/reset-password';
+  private resetPasswordUrl = 'http://68.183.134.207:8080/api/user/reset-password';
 
   //getAdminBoard(): Observable<any> {
  //   return this.http.get(API_URL + "test/admin", { responseType: 'text' });
@@ -41,7 +41,7 @@ export class UserService {
     return this.http.get<UsuarioRol>(API_URL + `/buscarcedula/${cedula}`)
   }
 
-  
+
   getuscedula(cedula: any):Observable<Usuarios>{
     return this.http.get<Usuarios>(API_URL + `/buscarcedula/${cedula}`)
   }

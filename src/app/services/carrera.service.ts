@@ -13,7 +13,7 @@ export class CarreraService {
 
   constructor(private http: HttpClient) { }
 
-  private urlFenix: string = 'http://localhost:8080/api/verCarreras';
+  private urlFenix: string = 'http://68.183.134.207:8080/api/verCarreras';
 
   getCarreras(){
     return this.http.get<verCarreras[]>(this.urlFenix + '/nombrescarrera');

@@ -10,8 +10,8 @@ import { Anexo2 } from '../../models/anexos/anexo2';
 })
 
 export class Anexo2Service {
-  url: string = 'http://localhost:8080/api/anexo2';
-  
+  url: string = 'http://68.183.134.207:8080/api/anexo2';
+
   constructor(private http: HttpClient) { }
 
   crearAnexo2(anexo2: Anexo2): Observable<Anexo2> {

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 
 export class DocumentoAnexo1Service {
-    url: string = 'http://localhost:8080/api/documentoAnexo1';
-    urlPost: string = 'http://localhost:8080/api/documentoAnexo1/upload';
+  url: string = 'http://68.183.134.207:8080/api/documentoAnexo1';
+  urlPost: string = 'http://68.183.134.207:8080/api/documentoAnexo1/upload';
 
 
     constructor(private http: HttpClient) { }
@@ -25,6 +25,6 @@ export class DocumentoAnexo1Service {
         }));
     }
 
-    
+
 
 }

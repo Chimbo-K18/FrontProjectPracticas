@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ConvocatoriasService {
 
-  API_URL: string = 'http://localhost:8080/api/convocatorias'
+  API_URL: string = 'http://68.183.134.207:8080/api/convocatorias'
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class ConvocatoriasService {
   getConvocatorias(): Observable<Convocatorias> {
     return this.http.get<Convocatorias>(`${this.API_URL}/listar`)
   }
-  
+
   listarConvocatorias(){
     return this.http.get<Convocatorias[]>(this.API_URL+'/listar');
   }

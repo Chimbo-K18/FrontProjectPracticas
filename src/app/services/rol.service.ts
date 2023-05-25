@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class rolService {
-  url: string = 'http://localhost:8080/api/rol';
+  url: string = 'http://68.183.134.207:8080/api/rol';
   constructor(private http: HttpClient) { }
 
 
-  
+
   buscarrol(idrol: any){
     return this.http.get<RolToUser>(this.url+'/buscar/'+idrol);
   }

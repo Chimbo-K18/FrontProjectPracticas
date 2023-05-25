@@ -8,7 +8,7 @@ import { Actividades } from '../models/actividades';
   providedIn: 'root'
 })
 export class ActividadService {
-  url: string = 'http://localhost:8080/api/actividades';
+  url: string = 'http://68.183.134.207:8080/api/actividades';
   constructor(private http: HttpClient) { }
 
   crearActividad(actividad: Actividades): Observable<Actividades>{

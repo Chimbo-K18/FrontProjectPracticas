@@ -7,8 +7,8 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class tutorempresarialService {
-  url: string = 'http://localhost:8080/api/tutorEmp';
-  urlGet:string="http://localhost:8080/api/tutorEmp/datos"
+  url: string = 'http://68.183.134.207:8080/api/tutorEmp';
+  urlGet: string ="http://68.183.134.207:8080/api/tutorEmp/datos"
   idTutor: any;
   nombreTutor: any;
   empresa: any;
@@ -47,7 +47,7 @@ export class tutorempresarialService {
     return this.http.put(`${this.url}/updateStatus/${idTutor}`, null);
   }
 
-  actualizarTutoremp(idTutor: any, empresa: string, nombreTutor: string, emailTutor: string, contactoTutor: string){  
+  actualizarTutoremp(idTutor: any, empresa: string, nombreTutor: string, emailTutor: string, contactoTutor: string){
     const tutorEmpresarialActualizado = {
       idTutor: idTutor,
       empresa: empresa,
@@ -55,7 +55,7 @@ export class tutorempresarialService {
       emailTutor: emailTutor,
       contactoTutor: contactoTutor
     };
-  
+
     return this.http.put(`${this.url}/actualizar`, tutorEmpresarialActualizado);
   }
 
@@ -70,5 +70,5 @@ export class tutorempresarialService {
   UpdateTutor(tutor: tutorempresarial, idTutor:any){
     return this.http.put<tutorempresarial>(this.url+`/actualizar/${idTutor}`, tutor);
   }
-  
-}  
+
+}

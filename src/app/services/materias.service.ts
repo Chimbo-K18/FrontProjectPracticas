@@ -14,7 +14,7 @@ export class MateriaService {
 
   constructor(private http: HttpClient) { }
 
-  private urlFenix: string = 'http://localhost:8080/api/verMaterias';
+  private urlFenix: string = 'http://68.183.134.207:8080/api/verMaterias';
 
   getlistarmateriascarrera(nombrecarrera: any):Observable<vermateriasf>{
     return this.http.get<vermateriasf>(this.urlFenix + `/nombre/`+ encodeURIComponent(nombrecarrera))

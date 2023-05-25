@@ -12,7 +12,7 @@ export class BaseFenixService {
 
   constructor(private http: HttpClient) { }
 
-  private urlFenix: string = 'http://localhost:8080/api/auth';
+  private urlFenix: string = 'http://68.183.134.207:8080/api/auth';
 
   public consultarUserEstudiante(cedula: string): Observable<Verestudiantef> {
     return this.http.get<Verestudiantef>(this.urlFenix + `/estudiantefenix/${cedula}`);

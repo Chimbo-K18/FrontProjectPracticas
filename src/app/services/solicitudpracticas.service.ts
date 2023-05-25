@@ -10,7 +10,7 @@ export class SolicitudpracticasService {
 
 
 
-  URL: string = "http://localhost:8080/api/solicitudPractica/";
+  URL: string = "http://68.183.134.207:8080/api/solicitudPractica/";
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
 
@@ -55,7 +55,7 @@ export class SolicitudpracticasService {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscar/${idSolicitudPracticas}`)
   }
 
-  
+
   getBuscarPorEmpresa(idEmpresa:any) : Observable<SolicitudPracticas> {
     return this.http.get<SolicitudPracticas>(`${this.URL}buscarporempresa/${idEmpresa}`)
   }
