@@ -23,6 +23,7 @@ export class ListaCoordComponent implements OnInit {
   ];
   listadocentes: any[] = [];
   dataSource = new MatTableDataSource<Usuarios>(this.listadocentes);
+  
 
   buscarPorCedula() {
   this.resultadosBusqueda = [];
@@ -85,6 +86,18 @@ export class ListaCoordComponent implements OnInit {
       }
     });
   }
+
+
+  //Filtrado para todos los campos de la tabla
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   
 
 
