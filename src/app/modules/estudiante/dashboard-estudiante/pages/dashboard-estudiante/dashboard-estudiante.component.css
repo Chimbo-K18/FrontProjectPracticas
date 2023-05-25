@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
- font-family: 'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 body {
@@ -8,7 +8,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 13fr 4fr;
 }
-
 
 table {
   font-family: 'Times New Roman', Times, serif;
@@ -32,8 +31,8 @@ font-family: 'Times New Roman', Times, serif;
 
 button{
 font-family: 'Times New Roman', Times, serif;
-}
 
+}
 
 .profile {
   display: flex;
@@ -82,6 +81,7 @@ font-family: 'Times New Roman', Times, serif;
   justify-content: space-between;
 }
 
+
 .promo_card{
   width: 100%;
   color: #fff;
@@ -100,7 +100,6 @@ font-family: 'Times New Roman', Times, serif;
   border-radius: 5px;
   cursor: pointer;
 }
-
 
 /* .left_sidebar {
   display: flex;
@@ -127,7 +126,7 @@ font-family: 'Times New Roman', Times, serif;
 
 .iconBx_m:hover {
   color: #fff;
-  background-color: #4f94e4;
+  background-color: #013F7E;
 }
 
 a {
@@ -139,7 +138,7 @@ a {
   margin-bottom: 1rem;
   border-bottom: 1px solid #888;
   border-radius: 0;
-  color: #4f94e4;
+  color: #013F7E;
 }
 
 #logo:hover {
@@ -172,7 +171,7 @@ a {
 }
 
 .btn3 {
-  font-size: 0.9rem;
+  font-size: .9rem;
   background-color: #747473;
   color: #fff;
   padding: 5px 12px;
@@ -184,12 +183,12 @@ a {
 
 
 .btn3:hover {
-  background-color: #4f94e4;
+  background-color: #013F7E;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
 }
 
 .btn_blue {
-  background-color: #4f94e4;
+  background-color: #013F7E;
 }
 
 h1 {
@@ -208,7 +207,7 @@ h4 {
 }
 
 .sprint_overview .btn3 {
-  color: #4f94e4;
+  color: #013F7E;
   background-color: transparent;
 }
 
@@ -270,7 +269,7 @@ h4 {
 }
 
 .sprint_overview_card:hover {
-  background-color: #4f94e4;
+  background-color: #013F7E;
   color: #fff;
 }
 
@@ -280,7 +279,7 @@ h4 {
 
 .icon_l {
   font-size: 2.5rem;
-  color: #4f94e4;
+  color: #013F7E;
   margin-bottom: 10px;
   transition: .3s;
 }
@@ -308,8 +307,6 @@ td {
   font-size: .9rem;
   color: #555;
 }
-
-
 
 tr:hover {
   background-color: rgba(79, 148, 228, 0.2);
@@ -401,7 +398,7 @@ tr:hover {
   margin-bottom: 10px;
   border-radius: 8px;
   padding: 0.5rem 1rem 1rem 3rem;
-  background-color:#4F94E4;
+  background-color:#013F7E;
 }
 
 .mat-card-content li {
@@ -409,21 +406,14 @@ tr:hover {
   font-weight: bold;
   margin-bottom: 5px;
   text-align: center;
-  background: #0052D4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
   border-radius: 15px;
-  color: #ddd;
-  width: 200px;
-  margin-left: 15px;
-  font-size: 0.9rem;
-
+  color: #000;
 }
-
 
 .mat-card-content p {
   margin: 0;
-  font-size:1.1rem;
+  font-size: 17px;
   text-align: center;
 }
 
@@ -440,7 +430,7 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: red;
+ 
   border-radius: 50%;
   margin-bottom: 20px;
 }
@@ -491,21 +481,23 @@ h2 {
   position: relative;
   width: 80%;
   height: 12px;
-  border: 2px solid #4f94e4;
+  border: 2px solid #013F7E;
   border-radius: 10px;
 }
 
 .btn3 {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #4f94e4;
+  background-color: #013F7E;
   color: white;
   text-decoration: none;
   border: none;
   border-radius: 4px;
+  font-size: 16px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  font-family:'Times New Roman', Times, serif;
 }
 
 
@@ -541,7 +533,7 @@ h2 {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #4f94e4;
+  background-color: #013F7E;
 }
 
 #project {
@@ -645,8 +637,8 @@ h2 {
 .promo_card {
   text-align: center;
   background: #0052D4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  
-  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); 
+  background: -webkit-linear-gradient(to right, #6FB1FC, #013F7E, #013F7E);  
+  background: linear-gradient(to right, #6FB1FC, #013F7E, #013F7E); 
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -660,12 +652,14 @@ h2 {
 }
 
 .promo_card h5 {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 32px;
   color: #004F9F;
   margin: 0;
 }
 
 .promo_card h3 {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 22px;
   margin: 20px 0 0;
 }
@@ -686,6 +680,7 @@ h2 {
 }
 
 .promo_card p {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
   margin: 0;
   color: #f7f6f6;
@@ -698,6 +693,7 @@ h2 {
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 18px;
   transition: background-color 0.3s ease;
 }
@@ -757,10 +753,4 @@ margin-top: 8px;
 
 .mat-mdc-form-field {
 margin-top: 16px;
-}
-
-@media (max-width: 700px) {
-.right_sidebar{
-  visibility: hidden;
-}
 }

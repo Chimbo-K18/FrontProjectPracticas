@@ -7,7 +7,7 @@
 }
 
 .sidebar{
-  background-color: #272e56;
+  background-color: #013F7E;
   color: #fff;
   position: fixed;
   left: 0;
@@ -25,8 +25,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #272e56;
-  border-bottom: 1px solid #272e56;
+  background-color: #013F7E;
+  border-bottom: 1px solid #013F7E;
   color: #fff;
   
 }
@@ -44,7 +44,7 @@
   color: white;
   line-height: 70px;
   text-align: center;
-  background:#272e56;
+  background:#013F7E;
   user-select: none;
   font-family:'Times New Roman', Times, serif;
 }
@@ -88,9 +88,9 @@ label #btn,label #cancel{
   cursor: pointer;
   color: white;
   border-radius: 5px;
-  border: 1px solid #272e56;
+  border: 1px solid #013F7E;
   font-size: 25px;
-  background: #272e56;
+  background: #013F7E;
   height: 30px;
   width: 30px;
   text-align: center;
@@ -164,12 +164,12 @@ visibility: visible;
 .menu li a {
   display: block;
   text-decoration: none;
-  color: #272e56;
+  color: #013F7E;
 
 }
 
 .menu li:hover {
-  background-color: #272e56;
+  background-color: #013F7E;
 
 }
 
@@ -182,7 +182,7 @@ visibility: visible;
   position: absolute;
   top: 0;
   left: 200px;
-  background-color: #272e56;
+  background-color: #013F7E;
   font-family:'Times New Roman', Times, serif;
 }
 
@@ -194,12 +194,12 @@ visibility: visible;
 }
 
 .submenu li:hover {
-  background-color:#272e56;
+  background-color:#013F7E;
   font-family:'Times New Roman', Times, serif;
 }
 
 li::marker{
-color: #272e56;
+color: #013F7E;
 font-family:'Times New Roman', Times, serif;
 
 }

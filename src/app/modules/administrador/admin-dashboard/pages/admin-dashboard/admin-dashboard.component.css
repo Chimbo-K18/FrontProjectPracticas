@@ -126,7 +126,7 @@ font-family: 'Times New Roman', Times, serif;
 
 .iconBx_m:hover {
   color: #fff;
-  background-color: #4f94e4;
+  background-color: #013F7E;
 }
 
 a {
@@ -138,7 +138,7 @@ a {
   margin-bottom: 1rem;
   border-bottom: 1px solid #888;
   border-radius: 0;
-  color: #4f94e4;
+  color: #013F7E;
 }
 
 #logo:hover {
@@ -183,12 +183,12 @@ a {
 
 
 .btn3:hover {
-  background-color: #4f94e4;
+  background-color: #013F7E;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
 }
 
 .btn_blue {
-  background-color: #4f94e4;
+  background-color: #013F7E;
 }
 
 h1 {
@@ -207,7 +207,7 @@ h4 {
 }
 
 .sprint_overview .btn3 {
-  color: #4f94e4;
+  color: #013F7E;
   background-color: transparent;
 }
 
@@ -269,7 +269,7 @@ h4 {
 }
 
 .sprint_overview_card:hover {
-  background-color: #4f94e4;
+  background-color: #013F7E;
   color: #fff;
 }
 
@@ -279,7 +279,7 @@ h4 {
 
 .icon_l {
   font-size: 2.5rem;
-  color: #4f94e4;
+  color: #013F7E;
   margin-bottom: 10px;
   transition: .3s;
 }
@@ -398,7 +398,7 @@ tr:hover {
   margin-bottom: 10px;
   border-radius: 8px;
   padding: 0.5rem 1rem 1rem 3rem;
-  background-color:#4F94E4;
+  background-color:#013F7E;
 }
 
 .mat-card-content li {
@@ -406,12 +406,9 @@ tr:hover {
   font-weight: bold;
   margin-bottom: 5px;
   text-align: center;
-  background: #0052D4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  ;
+ 
   border-radius: 15px;
-  color: #ddd;
+  color: #000;
 }
 
 .mat-card-content p {
@@ -433,7 +430,7 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: red;
+ 
   border-radius: 50%;
   margin-bottom: 20px;
 }
@@ -484,14 +481,14 @@ h2 {
   position: relative;
   width: 80%;
   height: 12px;
-  border: 2px solid #4f94e4;
+  border: 2px solid #013F7E;
   border-radius: 10px;
 }
 
 .btn3 {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #4f94e4;
+  background-color: #013F7E;
   color: white;
   text-decoration: none;
   border: none;
@@ -536,7 +533,7 @@ h2 {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #4f94e4;
+  background-color: #013F7E;
 }
 
 #project {
@@ -640,8 +637,8 @@ h2 {
 .promo_card {
   text-align: center;
   background: #0052D4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  
-  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); 
+  background: -webkit-linear-gradient(to right, #6FB1FC, #013F7E, #013F7E);  
+  background: linear-gradient(to right, #6FB1FC, #013F7E, #013F7E); 
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
